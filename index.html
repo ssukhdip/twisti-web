@@ -49,4 +49,421 @@
     #clear-btn { background: none; border: none; cursor: pointer; padding: 0 10px; color: var(--muted); font-size: 20px; display: none; align-items: center; }
     #search-btn { padding: 10px 22px; margin: 5px 6px; background: var(--green); color: #fff; border: none; cursor: pointer; font-size: 14px; font-weight: 600; border-radius: 40px; white-space: nowrap; transition: background 0.15s; }
     #search-btn:hover { background: var(--green-dark); }
-    .search-hints
+    .search-hints { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; transition: all 0.25s; }
+    #hero.compact .search-hints { display: none; }
+    .hint { font-size: 12px; color: var(--muted); background: var(--bg); border: 1px solid var(--border); padding: 4px 12px; border-radius: 20px; cursor: pointer; transition: border-color 0.15s; }
+    .hint:hover { border-color: var(--green); color: var(--green); }
+
+    /* SECTIONS */
+    .section { padding: 28px 32px; max-width: 900px; margin: 0 auto; }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+    .section-left { display: flex; align-items: center; gap: 8px; }
+    .section-title { font-size: 14px; font-weight: 600; }
+    .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .see-all { font-size: 13px; color: var(--green); background: none; border: none; cursor: pointer; font-weight: 500; }
+
+    /* DEAL CARDS */
+    .deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+    .deal-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; cursor: pointer; transition: border-color 0.15s, transform 0.1s; }
+    .deal-card:hover { border-color: var(--green); transform: translateY(-1px); }
+    .badge { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
+    .badge.sale { background: var(--coral-bg); color: var(--coral-text); }
+    .badge.cb { background: var(--green-light); color: var(--green-dark); }
+    .badge.coupon { background: var(--purple-bg); color: var(--purple-text); }
+    .deal-name { font-size: 13px; font-weight: 500; line-height: 1.35; margin-bottom: 10px; }
+    .deal-price { font-size: 20px; font-weight: 700; color: var(--green); }
+    .deal-was { font-size: 12px; color: var(--muted); text-decoration: line-through; margin-left: 6px; }
+    .deal-store { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+    /* TRUST BAR */
+    .trust-bar { display: flex; align-items: center; justify-content: center; gap: 32px; padding: 20px 32px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); }
+    .trust-icon { color: var(--green); font-size: 15px; }
+
+    /* RESULTS */
+    #results { display: none; max-width: 900px; margin: 0 auto; padding: 20px 32px 60px; }
+    .verdict-bar { display: flex; align-items: flex-start; gap: 12px; background: var(--green-light); border-radius: var(--radius-lg); padding: 14px 18px; margin-bottom: 20px; }
+    .verdict-icon { width: 34px; height: 34px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; color: #fff; }
+    .verdict-text strong { display: block; font-size: 15px; color: #04342C; margin-bottom: 2px; }
+    .verdict-text span { font-size: 13px; color: var(--green-dark); }
+    .product-header { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
+    .product-img { width: 72px; height: 72px; border-radius: var(--radius); background: var(--bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 30px; flex-shrink: 0; }
+    .product-meta h2 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+    .stars { color: var(--amber); font-size: 14px; }
+    .review-count { font-size: 12px; color: var(--muted); margin-left: 4px; }
+    .prices-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+    .price-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .price-row { display: flex; align-items: center; gap: 12px; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; transition: border-color 0.15s; }
+    .price-row:hover { border-color: #ccc; }
+    .price-row.best { border: 2px solid var(--green); }
+    .price-left { flex: 1; }
+    .store-name { font-size: 14px; font-weight: 600; }
+    .best-pill { font-size: 11px; font-weight: 600; background: var(--green); color: #fff; padding: 2px 8px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
+    .perks { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
+    .perk { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px; }
+    .perk.ship { background: var(--green-light); color: var(--green-dark); }
+    .perk.coupon { background: var(--purple-bg); color: var(--purple-text); }
+    .perk.cashback { background: var(--coral-bg); color: var(--coral-text); }
+    .price-right { text-align: right; margin-right: 8px; }
+    .price-final { font-size: 20px; font-weight: 700; }
+    .price-eff { font-size: 11px; color: var(--muted); }
+    .go-btn { font-size: 13px; font-weight: 500; color: var(--green); border: 1.5px solid var(--green); padding: 7px 14px; border-radius: var(--radius); cursor: pointer; background: none; white-space: nowrap; transition: background 0.15s, color 0.15s; }
+    .go-btn:hover { background: var(--green); color: #fff; }
+    .community-box { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 20px; }
+    .community-box h3 { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+    .community-input-row { display: flex; gap: 8px; }
+    .community-input-row input { flex: 1; font-size: 13px; padding: 8px 12px; border-radius: var(--radius); border: 1px solid var(--border); outline: none; color: var(--text); }
+    .community-input-row input:focus { border-color: var(--green); }
+    .submit-btn { padding: 8px 16px; background: var(--green); color: #fff; border: none; border-radius: var(--radius); font-size: 13px; font-weight: 600; cursor: pointer; }
+    .community-tips { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+    .tip-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 6px; }
+    .tip-price { color: var(--text); font-weight: 600; }
+    .upvote-btn { background: none; border: 1px solid var(--border); border-radius: 20px; font-size: 11px; cursor: pointer; padding: 2px 8px; color: var(--muted); }
+    .upvote-btn:hover { border-color: var(--green); color: var(--green); }
+    .reviews-label { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+    .review-list { display: flex; flex-direction: column; gap: 10px; }
+    .review-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+    .review-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+    .review-body { font-size: 13px; line-height: 1.5; }
+    .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 6px; }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 24px 32px; text-align: center; font-size: 12px; color: var(--muted); }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--green); }
+
+    @media (max-width: 600px) {
+      nav { padding: 14px 16px; }
+      #hero { padding: 48px 16px 36px; }
+      .section { padding: 20px 16px; }
+      #results { padding: 16px 16px 40px; }
+      .deals-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-bar { gap: 16px; }
+      .price-row { flex-wrap: wrap; }
+      .go-btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">twi<span>sti</span></a>
+  <div class="nav-right">
+    <a href="#deals">Deals</a>
+    <a href="#">Categories</a>
+    <span id="nav-auth"><a href="/auth.html" class="nav-signin">Sign in</a></span>
+  </div>
+</nav>
+
+<div id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">⚡ NZ's smartest price comparison</div>
+    <h1>Find the best <span>deal</span>,<br>not just the best price</h1>
+    <p class="sub">We compare prices, coupons, cashback &amp; reviews<br>across every major NZ store — instantly.</p>
+    <div class="search-outer">
+      <div class="search-wrap">
+        <input type="text" id="search-input" placeholder='Search any product — e.g. "Sony WH-1000XM5"' autocomplete="off" />
+        <button id="clear-btn" aria-label="Clear search">×</button>
+        <button id="search-btn">Search</button>
+      </div>
+      <div class="search-hints">
+        <span class="hint" onclick="searchFor('AirPods Pro')">AirPods Pro</span>
+        <span class="hint" onclick="searchFor('iPhone 16')">iPhone 16</span>
+        <span class="hint" onclick="searchFor('Samsung TV')">Samsung TV</span>
+        <span class="hint" onclick="searchFor('Dyson vacuum')">Dyson vacuum</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="home-content">
+  <div class="section" id="deals">
+    <div class="section-header">
+      <div class="section-left">
+        <div class="live-dot"></div>
+        <span class="section-title">Flash deals right now</span>
+      </div>
+      <button class="see-all">See all →</button>
+    </div>
+    <div class="deals-grid" id="deals-grid">
+      <div class="deal-card">
+        <span class="badge sale">−22%</span>
+        <div class="deal-name">Sony WH-1000XM5 Headphones</div>
+        <div><span class="deal-price">$329</span><span class="deal-was">$429</span></div>
+        <div class="deal-store">JB Hi-Fi · + cashback</div>
+      </div>
+      <div class="deal-card">
+        <span class="badge cb">Cashback</span>
+        <div class="deal-name">Apple AirPods Pro 2</div>
+        <div><span class="deal-price">$349</span><span class="deal-was">$399</span></div>
+        <div class="deal-store">The Good Guys</div>
+      </div>
+      <div class="deal-card">
+        <span class="badge coupon">Coupon</span>
+        <div class="deal-name">Samsung 65" QLED 4K TV</div>
+        <div><span class="deal-price">$1,199</span><span class="deal-was">$1,599</span></div>
+        <div class="deal-store">Harvey Norman · SAVE20</div>
+      </div>
+      <div class="deal-card">
+        <span class="badge sale">−18%</span>
+        <div class="deal-name">Dyson V15 Detect Vacuum</div>
+        <div><span class="deal-price">$849</span><span class="deal-was">$999</span></div>
+        <div class="deal-store">Mighty Ape</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="trust-bar">
+    <div class="trust-item"><span class="trust-icon">✓</span> No hidden fees</div>
+    <div class="trust-item"><span class="trust-icon">↻</span> Prices updated every 6 hours</div>
+    <div class="trust-item"><span class="trust-icon">👥</span> Community price tips</div>
+    <div class="trust-item"><span class="trust-icon">★</span> Verified reviews</div>
+  </div>
+</div>
+
+<div id="results">
+  <div class="verdict-bar">
+    <div class="verdict-icon">✓</div>
+    <div class="verdict-text">
+      <strong id="verdict-text">Finding the best deal...</strong>
+      <span id="verdict-sub"></span>
+    </div>
+  </div>
+  <div class="product-header">
+    <div class="product-img" id="product-img">📦</div>
+    <div class="product-meta">
+      <h2 id="product-name">Product name</h2>
+      <div><span class="stars" id="product-stars"></span><span class="review-count" id="product-reviews"></span></div>
+    </div>
+  </div>
+  <div class="prices-label">All prices &amp; deals</div>
+  <div class="price-list" id="price-list"></div>
+  <div class="community-box">
+    <h3>👥 Community price tips</h3>
+    <div class="community-input-row">
+      <input type="text" id="community-input" placeholder="Found it cheaper? e.g. Costco · $289" />
+      <button class="submit-btn" onclick="submitCommunityPrice()">Submit</button>
+    </div>
+    <div class="community-tips" id="community-tips"></div>
+  </div>
+  <div class="reviews-label">Reviews</div>
+  <div class="review-list" id="review-list"></div>
+</div>
+
+<footer>
+  <p>© 2025 Twisti · <a href="#">About</a> · <a href="#">Privacy</a> · <a href="#">Contact</a></p>
+  <p style="margin-top:6px">Prices updated every 6 hours. We may earn a commission on purchases.</p>
+</footer>
+
+<script>
+  const API = 'https://twisti-backend-production.up.railway.app';
+  let currentProductId = null;
+
+  const searchInput = document.getElementById('search-input');
+  const clearBtn    = document.getElementById('clear-btn');
+  const searchBtn   = document.getElementById('search-btn');
+  const hero        = document.getElementById('hero');
+  const homeContent = document.getElementById('home-content');
+  const results     = document.getElementById('results');
+
+  function doSearch() {
+    const q = searchInput.value.trim();
+    if (!q || q.length < 2) return;
+    hero.classList.add('compact');
+    homeContent.style.display = 'none';
+    results.style.display = 'block';
+    clearBtn.style.display = 'flex';
+    fetchResults(q);
+  }
+
+  function clearSearch() {
+    searchInput.value = '';
+    hero.classList.remove('compact');
+    homeContent.style.display = 'block';
+    results.style.display = 'none';
+    clearBtn.style.display = 'none';
+    currentProductId = null;
+  }
+
+  function searchFor(name) { searchInput.value = name; doSearch(); }
+
+  searchBtn.addEventListener('click', doSearch);
+  clearBtn.addEventListener('click', clearSearch);
+  searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+  searchInput.addEventListener('input', () => {
+    if (!searchInput.value.trim() && results.style.display === 'block') clearSearch();
+  });
+
+  async function fetchResults(query) {
+    showLoading();
+    try {
+      const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}`);
+      const data = await res.json();
+      if (data.results && data.results.length > 0) {
+        currentProductId = data.results[0].id;
+        const detail = await fetch(`${API}/api/products/${data.results[0].id}`);
+        const prod   = await detail.json();
+        renderProduct(prod);
+        return;
+      }
+    } catch(e) { console.error('API error, using demo:', e); }
+    setTimeout(() => renderDemo(query), 400);
+  }
+
+  function renderDemo(query) {
+    renderProduct({
+      product: { name: `${query} — best results`, avg_rating: 4.5, review_count: 312 },
+      prices: [
+        { store_name: 'JB Hi-Fi', price: 329, effective_price: 329, effective_after_deals: 296, is_best_deal: true, affiliate_url: '#', deals: [{ deal_type: 'cashback', label: '10% cashback' }, { deal_type: 'ship', label: 'Free shipping' }] },
+        { store_name: 'The Good Guys', price: 349, effective_price: 349, effective_after_deals: 296, is_best_deal: false, affiliate_url: '#', deals: [{ deal_type: 'coupon', label: 'Code: GOOD15' }] },
+        { store_name: 'Mighty Ape', price: 359, effective_price: 359, effective_after_deals: 359, is_best_deal: false, affiliate_url: '#', deals: [{ deal_type: 'ship', label: 'Free shipping' }] },
+        { store_name: 'Harvey Norman', price: 399, effective_price: 399, effective_after_deals: 399, is_best_deal: false, affiliate_url: '#', deals: [] },
+      ],
+      reviews: [
+        { rating: 5, author: 'Sarah M.', verified: true, created_at: '2025-06-10', body: 'Absolutely love it. Grabbed the JB Hi-Fi cashback deal — effectively paid under $300. Best purchase this year.' },
+        { rating: 4, author: 'James T.', verified: true, created_at: '2025-06-08', body: 'Great product, very happy overall. Good price too.' },
+      ],
+      community_prices: [
+        { id: 1, store_name: 'Costco', price: 289, note: 'In-store only', upvotes: 14, created_at: '2025-06-15' },
+        { id: 2, store_name: 'PB Tech', price: 319, note: 'Online deal', upvotes: 8, created_at: '2025-06-14' },
+      ]
+    });
+  }
+
+  function renderProduct(data) {
+    const { product, prices, reviews, community_prices } = data;
+    document.getElementById('product-name').textContent = product.name;
+    document.getElementById('product-stars').textContent = starsHtml(product.avg_rating || 4);
+    document.getElementById('product-reviews').textContent = `${product.review_count || 0} reviews`;
+    const best = prices.find(p => p.is_best_deal) || prices[0];
+    if (best) {
+      const saving = best.effective_price - best.effective_after_deals;
+      document.getElementById('verdict-text').textContent = `Best deal: ${best.store_name} at $${best.effective_price}${saving > 0 ? ` → ~$${best.effective_after_deals} after deals` : ''}`;
+      document.getElementById('verdict-sub').textContent = saving > 0 ? `You save $${saving.toFixed(0)} compared to the sticker price.` : 'This is the lowest price we found across all stores.';
+    }
+    document.getElementById('price-list').innerHTML = prices.map(p => `
+      <div class="price-row ${p.is_best_deal ? 'best' : ''}">
+        <div class="price-left">
+          <div class="store-name">${p.store_name}${p.is_best_deal ? '<span class="best-pill">Best deal</span>' : ''}</div>
+          <div class="perks">${(p.deals||[]).map(d => `<span class="perk ${dealClass(d.deal_type)}">${d.label}</span>`).join('')}</div>
+        </div>
+        <div class="price-right">
+          <div class="price-final">$${p.effective_price}</div>
+          ${p.effective_after_deals < p.effective_price ? `<div class="price-eff">~$${p.effective_after_deals} after deals</div>` : ''}
+        </div>
+        <a href="${p.affiliate_url}" target="_blank" rel="noopener" class="go-btn">Go →</a>
+      </div>`).join('');
+    const tipsEl = document.getElementById('community-tips');
+    tipsEl.innerHTML = community_prices && community_prices.length
+      ? community_prices.map(t => `<div class="tip-row"><span>Spotted at <b>${t.store_name}</b> for <span class="tip-price">$${t.price}</span>${t.note ? ` · ${t.note}` : ''} · ${timeAgo(t.created_at)}</span><button class="upvote-btn" onclick="upvote(${t.id}, this)">▲ ${t.upvotes}</button></div>`).join('')
+      : '<p style="font-size:12px;color:var(--muted);padding-top:8px">No community tips yet — be the first!</p>';
+    document.getElementById('review-list').innerHTML = reviews && reviews.length
+      ? reviews.map(r => `<div class="review-card"><div class="review-meta"><span style="color:var(--amber)">${starsHtml(r.rating)}</span><span>${r.author||'Anonymous'} · ${r.verified?'✓ Verified · ':''}${formatDate(r.created_at)}</span></div><div class="review-body">${escapeHtml(r.body)}</div></div>`).join('')
+      : '<p style="font-size:13px;color:var(--muted)">No reviews yet.</p>';
+  }
+
+  async function submitCommunityPrice() {
+    const input = document.getElementById('community-input');
+    const val = input.value.trim();
+    if (!val) return;
+    const match = val.match(/^(.+?)[\s·\-]+\$?(\d+(?:\.\d+)?)$/);
+    if (!match) { alert('Please use format: Store name · $price\ne.g. Costco · $289'); return; }
+    const [, store, price] = match;
+    if (API && currentProductId) {
+      await fetch(`${API}/api/products/${currentProductId}/community-prices`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ store_name: store.trim(), price, note: '' }) });
+    }
+    const tips = document.getElementById('community-tips');
+    const newTip = document.createElement('div');
+    newTip.className = 'tip-row';
+    newTip.innerHTML = `<span>Spotted at <b>${escapeHtml(store.trim())}</b> for <span class="tip-price">$${parseFloat(price).toFixed(2)}</span> · just now</span><button class="upvote-btn">▲ 0</button>`;
+    tips.prepend(newTip);
+    input.value = '';
+  }
+
+  async function upvote(id, btn) {
+    if (API) await fetch(`${API}/api/community-prices/${id}/upvote`, { method: 'POST' });
+    const current = parseInt(btn.textContent.replace('▲','').trim()) || 0;
+    btn.textContent = `▲ ${current + 1}`;
+    btn.style.color = 'var(--green)';
+    btn.style.borderColor = 'var(--green)';
+    btn.disabled = true;
+  }
+
+  function showLoading() {
+    document.getElementById('product-name').textContent = 'Searching...';
+    document.getElementById('product-stars').textContent = '';
+    document.getElementById('product-reviews').textContent = '';
+    document.getElementById('verdict-text').textContent = 'Finding the best deal...';
+    document.getElementById('verdict-sub').textContent = '';
+    document.getElementById('price-list').innerHTML = [1,2,3].map(() => `<div class="price-row"><div class="price-left"><div class="skeleton" style="height:16px;width:120px;margin-bottom:8px"></div><div class="skeleton" style="height:12px;width:180px"></div></div><div class="price-right"><div class="skeleton" style="height:24px;width:60px;margin-left:auto"></div></div></div>`).join('');
+    document.getElementById('review-list').innerHTML = '';
+    document.getElementById('community-tips').innerHTML = '';
+  }
+
+  async function loadFlashDeals() {
+    try {
+      const res  = await fetch(`${API}/api/deals`);
+      const data = await res.json();
+      if (!data.deals || !data.deals.length) return;
+      document.getElementById('deals-grid').innerHTML = data.deals.map(d => `
+        <div class="deal-card" onclick="searchFor('${escapeHtml(d.name)}')">
+          <span class="badge ${d.sale_price ? 'sale' : d.deal_type === 'cashback' ? 'cb' : 'coupon'}">${d.discount_pct ? `−${d.discount_pct}%` : d.label || 'Deal'}</span>
+          <div class="deal-name">${escapeHtml(d.name)}</div>
+          <div><span class="deal-price">$${d.sale_price || d.price}</span>${d.sale_price ? `<span class="deal-was">$${d.price}</span>` : ''}</div>
+          <div class="deal-store">${escapeHtml(d.store_name)}</div>
+        </div>`).join('');
+    } catch(e) { /* keep static deals */ }
+  }
+
+  function initSession() {
+    const user = JSON.parse(localStorage.getItem('twisti_user') || 'null');
+    const navAuth = document.getElementById('nav-auth');
+    if (user) {
+      navAuth.innerHTML = `<span style="color:var(--text);font-weight:500">${escapeHtml(user.name||user.email)}</span> · <a href="#" onclick="signOut()" style="color:var(--muted)">Sign out</a>`;
+    } else {
+      navAuth.innerHTML = '<a href="/auth.html" class="nav-signin">Sign in</a>';
+    }
+  }
+
+  function signOut() {
+    localStorage.removeItem('twisti_access');
+    localStorage.removeItem('twisti_refresh');
+    localStorage.removeItem('twisti_user');
+    location.reload();
+  }
+
+  function dealClass(type) {
+    if (type === 'cashback') return 'cashback';
+    if (type === 'coupon') return 'coupon';
+    return 'ship';
+  }
+
+  function starsHtml(rating) {
+    const full = Math.floor(rating);
+    const half = rating % 1 >= 0.5 ? 1 : 0;
+    return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(5 - full - half);
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function timeAgo(dateStr) {
+    const diff = Date.now() - new Date(dateStr).getTime();
+    const h = Math.floor(diff / 3600000);
+    if (h < 1) return 'just now';
+    if (h < 24) return `${h}h ago`;
+    return `${Math.floor(h/24)}d ago`;
+  }
+
+  function formatDate(dateStr) {
+    return new Date(dateStr).toLocaleDateString('en-NZ', { day:'numeric', month:'short', year:'numeric' });
+  }
+
+  loadFlashDeals();
+  initSession();
+</script>
+</body>
+</html>

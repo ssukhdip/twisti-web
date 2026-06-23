@@ -20,51 +20,33 @@
     h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
     .subtitle { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
     .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
-    .tab { flex: 1; text-align: center; padding: 10px; font-size: 14px; font-weight: 500; cursor: pointer; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+    .tab { flex: 1; text-align: center; padding: 10px; font-size: 14px; font-weight: 500; cursor: pointer; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; background: none; border-top: none; border-left: none; border-right: none; }
     .tab.active { color: var(--green); border-bottom-color: var(--green); }
     .form-group { margin-bottom: 16px; }
     label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; }
-    input[type=text], input[type=email], input[type=password] {
-      width: 100%; padding: 11px 14px; font-size: 14px;
-      border: 1.5px solid var(--border); border-radius: var(--radius);
-      outline: none; color: var(--text); background: var(--white); transition: border-color 0.15s;
-    }
+    input[type=text], input[type=email], input[type=password] { width: 100%; padding: 11px 14px; font-size: 14px; border: 1.5px solid var(--border); border-radius: var(--radius); outline: none; color: var(--text); background: var(--white); transition: border-color 0.15s; }
     input:focus { border-color: var(--green); }
     .error-msg { font-size: 12px; color: var(--red); margin-top: 4px; display: none; }
     .error-msg.show { display: block; }
-    .submit-btn {
-      width: 100%; padding: 12px; background: var(--green); color: #fff;
-      border: none; border-radius: var(--radius); font-size: 15px;
-      font-weight: 600; cursor: pointer; margin-top: 8px; transition: background 0.15s;
-    }
+    .submit-btn { width: 100%; padding: 12px; background: var(--green); color: #fff; border: none; border-radius: var(--radius); font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: background 0.15s; }
     .submit-btn:hover { background: var(--green-dark); }
     .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
     .divider { display: flex; align-items: center; gap: 12px; margin: 20px 0; color: var(--muted); font-size: 13px; }
     .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-    .google-btn {
-      width: 100%; padding: 11px; background: var(--white);
-      border: 1.5px solid var(--border); border-radius: var(--radius);
-      font-size: 14px; font-weight: 500; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      transition: border-color 0.15s, background 0.15s;
-    }
+    .google-btn { width: 100%; padding: 11px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: border-color 0.15s; }
     .google-btn:hover { border-color: #aaa; background: var(--bg); }
-    .global-error {
-      background: #fef2f2; border: 1px solid #fecaca; color: var(--red);
-      border-radius: var(--radius); padding: 10px 14px; font-size: 13px;
-      margin-bottom: 16px; display: none;
-    }
+    .global-error { background: #fef2f2; border: 1px solid #fecaca; color: var(--red); border-radius: var(--radius); padding: 10px 14px; font-size: 13px; margin-bottom: 16px; display: none; }
     .global-error.show { display: block; }
+    .success-msg { background: #f0fdf4; border: 1px solid #86efac; color: #166534; border-radius: var(--radius); padding: 10px 14px; font-size: 13px; margin-bottom: 16px; display: none; }
+    .success-msg.show { display: block; }
     .password-wrap { position: relative; }
-    .toggle-pw {
-      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-      background: none; border: none; cursor: pointer; color: var(--muted); font-size: 13px;
-    }
+    .toggle-pw { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--muted); font-size: 13px; }
     .terms { font-size: 12px; color: var(--muted); text-align: center; margin-top: 16px; }
     .terms a { color: var(--green); text-decoration: none; }
   </style>
 </head>
 <body>
+
 <nav>
   <a href="/" class="logo">twi<span>sti</span></a>
 </nav>
@@ -74,11 +56,12 @@
   <p class="subtitle" id="card-sub">Sign in to track deals and save your searches</p>
 
   <div class="tabs">
-    <div class="tab active" id="tab-login"  onclick="switchTab('login')">Sign in</div>
-    <div class="tab"        id="tab-signup" onclick="switchTab('signup')">Create account</div>
+    <button class="tab active" id="tab-login" onclick="switchTab('login')">Sign in</button>
+    <button class="tab" id="tab-signup" onclick="switchTab('signup')">Create account</button>
   </div>
 
   <div class="global-error" id="global-error"></div>
+  <div class="success-msg" id="success-msg"></div>
 
   <button class="google-btn" onclick="googleSignIn()">
     <svg width="18" height="18" viewBox="0 0 24 24">
@@ -92,6 +75,7 @@
 
   <div class="divider">or</div>
 
+  <!-- LOGIN FORM -->
   <form id="login-form" onsubmit="handleLogin(event)">
     <div class="form-group">
       <label>Email</label>
@@ -107,6 +91,7 @@
     <button type="submit" class="submit-btn" id="login-btn">Sign in</button>
   </form>
 
+  <!-- SIGNUP FORM -->
   <form id="signup-form" style="display:none" onsubmit="handleSignup(event)">
     <div class="form-group">
       <label>Full name</label>
@@ -137,4 +122,128 @@
   function switchTab(tab) {
     document.getElementById('login-form').style.display  = tab === 'login'  ? 'block' : 'none';
     document.getElementById('signup-form').style.display = tab === 'signup' ? 'block' : 'none';
-    document.getElementById('tab-login').cla
+    document.getElementById('tab-login').classList.toggle('active',  tab === 'login');
+    document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
+    document.getElementById('card-title').textContent = tab === 'login' ? 'Welcome back' : 'Create your account';
+    document.getElementById('card-sub').textContent   = tab === 'login' ? 'Sign in to track deals and save your searches' : 'Free forever. No spam.';
+    clearErrors();
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    clearErrors();
+    const btn = document.getElementById('login-btn');
+    btn.disabled = true;
+    btn.textContent = 'Signing in...';
+
+    const email    = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    try {
+      const res  = await fetch(`${API}/api/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      if (!res.ok) { showError(data.error || 'Login failed'); return; }
+      saveSession(data);
+      window.location.href = '/';
+    } catch (err) {
+      showError('Could not connect to server — please try again');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Sign in';
+    }
+  }
+
+  async function handleSignup(e) {
+    e.preventDefault();
+    clearErrors();
+    const btn = document.getElementById('signup-btn');
+    btn.disabled = true;
+    btn.textContent = 'Creating account...';
+
+    const name     = document.getElementById('signup-name').value;
+    const email    = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+
+    try {
+      const res  = await fetch(`${API}/api/auth/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        if (data.errors) {
+          data.errors.forEach(err => {
+            const el = document.getElementById(`err-${err.path}`);
+            if (el) { el.textContent = err.msg; el.classList.add('show'); }
+          });
+        } else {
+          showError(data.error || 'Signup failed');
+        }
+        return;
+      }
+
+      saveSession(data);
+      showSuccess('Account created! Redirecting...');
+      setTimeout(() => { window.location.href = '/'; }, 1000);
+
+    } catch (err) {
+      showError('Could not connect to server — please try again');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Create account';
+    }
+  }
+
+  function googleSignIn() {
+    showError('Google sign-in coming soon — please use email and password for now');
+  }
+
+  function saveSession(data) {
+    localStorage.setItem('twisti_access',  data.access_token);
+    localStorage.setItem('twisti_refresh', data.refresh_token);
+    localStorage.setItem('twisti_user',    JSON.stringify(data.user));
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('global-error');
+    el.textContent = msg;
+    el.classList.add('show');
+  }
+
+  function showSuccess(msg) {
+    const el = document.getElementById('success-msg');
+    el.textContent = msg;
+    el.classList.add('show');
+  }
+
+  function clearErrors() {
+    document.getElementById('global-error').classList.remove('show');
+    document.getElementById('success-msg').classList.remove('show');
+    document.querySelectorAll('.error-msg').forEach(el => el.classList.remove('show'));
+  }
+
+  function togglePw(id, btn) {
+    const input = document.getElementById(id);
+    const show  = input.type === 'password';
+    input.type  = show ? 'text' : 'password';
+    btn.textContent = show ? 'Hide' : 'Show';
+  }
+
+  // If already logged in, go home
+  if (localStorage.getItem('twisti_access')) {
+    window.location.href = '/';
+  }
+
+  // Check for ?tab=signup in URL
+  if (new URLSearchParams(location.search).get('tab') === 'signup') {
+    switchTab('signup');
+  }
+</script>
+</body>
+</html>

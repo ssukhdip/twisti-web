@@ -425,21 +425,31 @@
     if (!searchInput.value.trim() && results.style.display === 'block') clearSearch();
   });
 
-  async function fetchResults(query) {
-    showLoading();
-    try {
-      const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}`);
-      const data = await res.json();
-      if (data.results && data.results.length > 0) {
-        currentProductId = data.results[0].id;
-        const detail = await fetch(`${API}/api/products/${data.results[0].id}`);
-        const prod   = await detail.json();
-        renderProduct(prod);
+async function fetchResults(query) {
+  showLoading();
+  try {
+    const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}`);
+    const data = await res.json();
+
+    if (data.results && data.results.length > 0) {
+      const first = data.results[0];
+
+      // Google result — already has full product + prices
+      if (data.source === 'google') {
+        renderProduct(first);
         return;
       }
-    } catch(e) { console.error('API error, using demo:', e); }
-    setTimeout(() => renderDemo(query), 400);
-  }
+
+      // DB result — need to fetch full product detail
+      currentProductId = first.id;
+      const detail = await fetch(`${API}/api/products/${first.id}`);
+      const prod   = await detail.json();
+      renderProduct(prod);
+      return;
+    }
+  } catch(e) { console.error('API error, using demo:', e); }
+  setTimeout(() => renderDemo(query), 400);
+}
 
   function renderDemo(query) {
     renderProduct({

@@ -482,10 +482,17 @@
     }
 
     const best = prices.find(p => p.is_best_deal) || prices[0];
-    if (best && best.price) {
-      document.getElementById('verdict-text').textContent = `Best deal: ${best.store_name} at $${best.price}`;
-      document.getElementById('verdict-sub').textContent = 'This is the lowest price we found across all stores.';
-    }
+   if (best && best.price) {
+  const messages = [
+    `🎯 You're getting the best price — ${best.store_name} at $${best.price}`,
+    `💚 Cheapest found: ${best.store_name} at $${best.price} — great pick!`,
+    `✓ Best deal locked in — ${best.store_name} at $${best.price}`,
+    `🏆 Top deal: ${best.store_name} at $${best.price} across all NZ stores`,
+  ];
+  const msg = messages[Math.floor(Math.random() * messages.length)];
+  document.getElementById('verdict-text').textContent = msg;
+  document.getElementById('verdict-sub').textContent = `Compared across ${filteredPrices.length} NZ stores · prices updated every 6 hours`;
+}
 
     const filteredPrices = prices.filter(p => p.price && p.price > 0);
 

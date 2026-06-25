@@ -539,15 +539,24 @@ async function fetchResults(query) {
   }
 
   function showLoading() {
-    document.getElementById('product-name').textContent = 'Searching...';
-    document.getElementById('product-stars').textContent = '';
-    document.getElementById('product-reviews').textContent = '';
-    document.getElementById('verdict-text').textContent = 'Finding the best deal...';
-    document.getElementById('verdict-sub').textContent = '';
-    document.getElementById('price-list').innerHTML = [1,2,3].map(() => `<div class="price-row"><div class="price-left"><div class="skeleton" style="height:16px;width:120px;margin-bottom:8px"></div><div class="skeleton" style="height:12px;width:180px"></div></div><div class="price-right"><div class="skeleton" style="height:24px;width:60px;margin-left:auto"></div></div></div>`).join('');
-    document.getElementById('review-list').innerHTML = '';
-    document.getElementById('community-tips').innerHTML = '';
-  }
+  document.getElementById('product-name').textContent = 'Searching NZ stores...';
+  document.getElementById('product-stars').textContent = '';
+  document.getElementById('product-reviews').textContent = '';
+  document.getElementById('verdict-text').textContent = '⚡ Scanning JB Hi-Fi, Mighty Ape, Harvey Norman...';
+  document.getElementById('verdict-sub').textContent = 'This takes 3-5 seconds — finding real NZ prices';
+  document.getElementById('price-list').innerHTML = [1,2,3,4].map(() => `
+    <div class="price-row">
+      <div class="price-left">
+        <div class="skeleton" style="height:16px;width:120px;margin-bottom:8px"></div>
+        <div class="skeleton" style="height:12px;width:180px"></div>
+      </div>
+      <div class="price-right">
+        <div class="skeleton" style="height:24px;width:60px;margin-left:auto"></div>
+      </div>
+    </div>`).join('');
+  document.getElementById('review-list').innerHTML = '';
+  document.getElementById('community-tips').innerHTML = '';
+}
 
   async function loadFlashDeals() {
     try {

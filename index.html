@@ -399,27 +399,81 @@
     if (!searchInput.value.trim() && results.style.display === 'block') clearSearch();
   });
 
-  async function fetchResults(query) {
-    showLoading();
-    try {
-      const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}`);
-      const data = await res.json();
-      if (!data || data.error) { renderDemo(query); return; }
-      if (data.results && data.results.length > 0) {
-        const first = data.results[0];
-        if (first.prices && first.prices.length > 0) {
-          renderProduct(first);
-          return;
-        }
-        currentProductId = first.id;
-        const detail = await fetch(`${API}/api/products/${first.id}`);
-        const prod   = await detail.json();
-        renderProduct(prod);
+ async function fetchResults(query) {
+  showLoading();
+  try {
+    const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}`);
+    const data = await res.json();
+    if (!data || data.error) { renderNoResults(query); return; }
+
+    if (data.results && data.results.length > 0) {
+      const first = data.results[0];
+
+      // Multiple variants — show a selection list
+      if (data.source === 'google_variants' && data.results.length > 1) {
+        renderVariantList(data.results, query);
         return;
       }
-    } catch(e) { console.error('Fetch error:', e); }
-    renderDemo(query);
-  }
+
+      // Single SerpApi result with prices
+      if (first.prices && first.prices.length > 0) {
+        renderProduct(first);
+        return;
+      }
+
+      // DB result
+      currentProductId = first.id;
+      const detail = await fetch(`${API}/api/products/${first.id}`);
+      const prod   = await detail.json();
+      renderProduct(prod);
+      return;
+    }
+  } catch(e) { console.error('Fetch error:', e); }
+  renderNoResults(query);
+}
+
+function renderVariantList(variants, query) {
+  document.getElementById('verdict-text').textContent = `Found ${variants.length} results for "${query}"`;
+  document.getElementById('verdict-sub').textContent = 'Select a product to compare prices across NZ stores';
+  document.getElementById('product-name').textContent = '';
+  document.getElementById('product-stars').textContent = '';
+  document.getElementById('product-reviews').textContent = '';
+  document.getElementById('product-img').textContent = '';
+
+  document.getElementById('price-list').innerHTML = variants.map(v => `
+    <div class="price-row" style="cursor:pointer" onclick="selectVariant('${escapeHtml(v.name)}')">
+      <div class="price-left" style="display:flex;align-items:center;gap:14px">
+        ${v.image_url ? `<img src="${v.image_url}" style="width:48px;height:48px;object-fit:cover;border-radius:4px;border:1px solid var(--border)" onerror="this.style.display='none'" />` : '<div style="width:48px;height:48px;background:var(--bg);border-radius:4px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center">📦</div>'}
+        <div>
+          <div class="store-name" style="font-weight:500">${escapeHtml(v.name)}</div>
+          <div style="font-size:12px;color:#888;margin-top:3px">${v.avg_rating ? `★ ${v.avg_rating} · ` : ''}${v.review_count ? `${v.review_count.toLocaleString()} reviews` : ''}</div>
+        </div>
+      </div>
+      <div class="price-right">
+        ${v.lowest_price ? `<div class="price-final serif">from $${v.lowest_price}</div>` : ''}
+      </div>
+      <button class="go-btn">Compare →</button>
+    </div>`).join('');
+
+  document.getElementById('community-tips').innerHTML = '';
+  document.getElementById('review-list').innerHTML = '';
+}
+
+function selectVariant(productName) {
+  searchInput.value = productName;
+  // Clear cache key so we get fresh price results
+  fetchResults(normaliseQuery(productName));
+}
+
+function renderNoResults(query) {
+  document.getElementById('verdict-text').textContent = 'No results found';
+  document.getElementById('verdict-sub').textContent = 'Try different keywords or check spelling';
+  document.getElementById('price-list').innerHTML = '<p style="font-size:13px;color:#888;padding:20px 0">No products found. Try searching with different keywords.</p>';
+  document.getElementById('product-name').textContent = query;
+  document.getElementById('product-img').textContent = '🔍';
+  document.getElementById('review-list').innerHTML = '';
+  document.getElementById('community-tips').innerHTML = '';
+}
 
   function renderProduct(data) {
     const { product, prices, reviews, community_prices } = data;

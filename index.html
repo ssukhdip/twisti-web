@@ -1,184 +1,219 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Twisti — Find the best deal, not just the best price</title>
   <meta name="description" content="Twisti compares prices, coupons, cashback and reviews across all major NZ stores so you always get the best deal." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <meta name="commission-factory-verification" content="0cd2bf43d0124aa7a6ffe0b3d26dfd9c" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --green: #1a6b4a; --green-dark: #15583d; --green-light: #f0faf5;
-      --text: #1a1a1a; --muted: #666; --border: #e8e8e8;
-      --bg: #f4f4f2; --white: #ffffff; --red: #b91c1c;
-      --amber: #92400e; --purple: #5b21b6;
+
+    /* THEME VARIABLES */
+    [data-theme="light"] {
+      --bg-page:    #f2f2f0;
+      --bg-card:    #ffffff;
+      --bg-input:   #ffffff;
+      --text:       #1a1a1a;
+      --text-muted: #666;
+      --border:     #e0e0de;
+      --green:      #1a6b4a;
+      --green-dark: #15583d;
+      --green-light:#f0faf5;
+      --red:        #b91c1c;
+      --purple:     #5b21b6;
+      --shadow:     0 1px 4px rgba(0,0,0,0.08);
     }
-    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--text); background: #f4f4f2; font-size: 15px; line-height: 1.6; overflow-x: hidden; }
-    .serif { font-family: Georgia, 'Times New Roman', serif; }
+    [data-theme="dark"] {
+      --bg-page:    #1a1a1a;
+      --bg-card:    #242424;
+      --bg-input:   #2a2a2a;
+      --text:       #e8e8e6;
+      --text-muted: #888;
+      --border:     #333;
+      --green:      #2dd4a0;
+      --green-dark: #25b589;
+      --green-light:#0d2e22;
+      --red:        #f87171;
+      --purple:     #a78bfa;
+      --shadow:     0 1px 4px rgba(0,0,0,0.3);
+    }
+
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--text); background: var(--bg-page); font-size: 15px; line-height: 1.6; overflow-x: hidden; transition: background 0.2s, color 0.2s; }
 
     /* NAV */
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; border-bottom: 1px solid var(--border); background: var(--white); position: sticky; top: 0; z-index: 100; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; border-bottom: 1px solid var(--border); background: var(--bg-card); position: sticky; top: 0; z-index: 100; }
     .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .logo-img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--green); }
-    .logo-fallback { width: 36px; height: 36px; border-radius: 50%; background: var(--green-light); border: 1.5px solid var(--green); display: flex; align-items: center; justify-content: center; font-size: 16px; }
-    .logo-text { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; color: var(--text); }
+    .logo-img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--green); }
+    .logo-fallback { width: 34px; height: 34px; border-radius: 50%; background: var(--green-light); border: 1.5px solid var(--green); display: flex; align-items: center; justify-content: center; font-size: 15px; }
+    .logo-text { font-size: 19px; font-weight: 700; letter-spacing: -0.5px; color: var(--text); }
     .logo-text span { color: var(--green); }
-    .nav-right { display: flex; gap: 28px; font-size: 13px; color: var(--muted); align-items: center; }
-    .nav-right a { color: var(--muted); text-decoration: none; }
+    .nav-right { display: flex; gap: 24px; font-size: 13px; color: var(--text-muted); align-items: center; }
+    .nav-right a { color: var(--text-muted); text-decoration: none; }
     .nav-right a:hover { color: var(--text); }
-    .nav-btn { background: var(--green); color: #fff; padding: 8px 20px; font-size: 12px; border: none; cursor: pointer; letter-spacing: 0.5px; border-radius: 4px; }
-.nav-btn:hover { background: var(--green-dark); }
+    .nav-btn { background: var(--green); color: #fff; padding: 7px 18px; font-size: 12px; border: none; cursor: pointer; border-radius: 4px; font-family: inherit; font-weight: 500; }
+    .nav-btn:hover { background: var(--green-dark); }
+    .theme-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 6px 12px; font-size: 12px; cursor: pointer; border-radius: 4px; font-family: inherit; transition: all 0.15s; }
+    .theme-btn:hover { border-color: var(--green); color: var(--green); }
 
     /* HERO */
-    #hero { padding: 64px 40px 52px; text-align: center; border-bottom: 1px solid var(--border); transition: padding 0.25s; }
+    #hero { padding: 60px 40px 48px; text-align: center; border-bottom: 1px solid var(--border); background: var(--bg-card); transition: padding 0.25s; }
     #hero.compact { padding: 16px 40px; }
-    .hero-kicker { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 18px; transition: all 0.25s; }
+    .hero-kicker { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; transition: all 0.25s; }
     #hero.compact .hero-kicker { font-size: 0; margin: 0; }
-    #hero h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 400; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; color: var(--text); transition: all 0.25s; }
+    #hero h1 { font-size: clamp(26px, 4vw, 40px); font-weight: 700; line-height: 1.15; letter-spacing: -1px; margin-bottom: 12px; color: var(--text); transition: all 0.25s; }
     #hero.compact h1 { font-size: 0; margin: 0; }
-    #hero h1 strong { font-weight: 700; color: var(--text); }
-    #hero h1 em { font-style: italic; color: var(--green); }
-    #hero p.sub { font-size: 14px; color: var(--muted); margin-bottom: 36px; line-height: 1.7; transition: all 0.25s; }
+    #hero h1 em { font-style: italic; color: var(--green); font-weight: 700; }
+    #hero p.sub { font-size: 15px; color: var(--text-muted); margin-bottom: 32px; line-height: 1.7; transition: all 0.25s; }
     #hero.compact p.sub { font-size: 0; margin: 0; }
 
     /* SEARCH */
-    .search-outer { max-width: 580px; margin: 0 auto; }
-    .search-wrap { display: flex; border: 1.5px solid var(--border); border-radius: 4px; background: var(--white); overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: border-color 0.2s, box-shadow 0.2s; }
-    .search-wrap:focus-within { border-color: var(--green); box-shadow: 0 2px 12px rgba(26,107,74,0.12); }
-    .search-wrap input { flex: 1; border: none; outline: none; padding: 14px 18px; font-size: 14px; background: var(--white); color: var(--text); }
-    .search-wrap input::placeholder { color: #bbb; }
-    #clear-btn { background: none; border: none; cursor: pointer; padding: 0 10px; color: var(--muted); font-size: 20px; display: none; align-items: center; }
-    #search-btn { padding: 14px 24px; background: var(--green); color: #fff; border: none; cursor: pointer; font-size: 13px; font-weight: 500; white-space: nowrap; transition: background 0.15s; }
+    .search-outer { max-width: 560px; margin: 0 auto; }
+    .search-wrap { display: flex; border: 1.5px solid var(--border); border-radius: 6px; background: var(--bg-input); overflow: hidden; box-shadow: var(--shadow); transition: border-color 0.2s; }
+    .search-wrap:focus-within { border-color: var(--green); }
+    .search-wrap input { flex: 1; border: none; outline: none; padding: 13px 16px; font-size: 14px; background: transparent; color: var(--text); font-family: inherit; }
+    .search-wrap input::placeholder { color: #aaa; }
+    #clear-btn { background: none; border: none; cursor: pointer; padding: 0 10px; color: var(--text-muted); font-size: 20px; display: none; align-items: center; }
+    #search-btn { padding: 13px 22px; background: var(--green); color: #fff; border: none; cursor: pointer; font-size: 13px; font-weight: 600; white-space: nowrap; transition: background 0.15s; font-family: inherit; }
     #search-btn:hover { background: var(--green-dark); }
-    .hints { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; transition: all 0.25s; }
+    .hints { display: flex; gap: 8px; justify-content: center; margin-top: 12px; flex-wrap: wrap; transition: all 0.25s; }
     #hero.compact .hints { display: none; }
-    .hint { font-size: 11px; color: #777; padding: 5px 14px; border: 1px solid var(--border); cursor: pointer; background: var(--white); border-radius: 2px; letter-spacing: 0.5px; }
+    .hint { font-size: 11px; color: var(--text-muted); padding: 4px 12px; border: 1px solid var(--border); cursor: pointer; background: var(--bg-page); border-radius: 20px; transition: all 0.15s; }
     .hint:hover { border-color: var(--green); color: var(--green); }
 
     /* STATS */
-    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--border); }
-    .stat { padding: 22px; text-align: center; border-right: 1px solid var(--border); }
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--border); background: var(--bg-card); }
+    .stat { padding: 20px; text-align: center; border-right: 1px solid var(--border); }
     .stat:last-child { border-right: none; }
-    .stat-n { font-family: Georgia, serif; font-size: 26px; font-weight: 400; color: var(--text); }
-    .stat-l { font-size: 11px; color: #888; margin-top: 4px; letter-spacing: 0.5px; }
+    .stat-n { font-size: 24px; font-weight: 300; color: var(--text); letter-spacing: -0.5px; }
+    .stat-l { font-size: 11px; color: var(--text-muted); margin-top: 3px; letter-spacing: 0.5px; }
 
     /* DEALS */
-    .section { padding: 40px; max-width: 900px; margin: 0 auto; }
-    .sec-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-    .sec-title { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #555; display: flex; align-items: center; gap: 8px; }
+    .section { padding: 32px 40px; max-width: 940px; margin: 0 auto; }
+    .sec-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+    .sec-title { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); display: flex; align-items: center; gap: 8px; font-weight: 500; }
     .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #c41e1e; animation: pulse 1.5s infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-    .see-all { font-size: 11px; color: #888; background: none; border: none; cursor: pointer; letter-spacing: 1px; }
-    .see-all:hover { color: var(--text); }
-    .deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
-    .deal-card { background: var(--white); border: 1px solid var(--border); padding: 20px; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; border-radius: 2px; }
-    .deal-card:hover { border-color: var(--green); box-shadow: 0 2px 12px rgba(26,107,74,0.08); }
-    .d-flag { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: inline-block; padding: 3px 8px; border-radius: 2px; }
+    .see-all { font-size: 11px; color: var(--text-muted); background: none; border: none; cursor: pointer; letter-spacing: 1px; font-family: inherit; }
+    .deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    .deal-card { background: var(--bg-card); border: 1px solid var(--border); padding: 18px; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; border-radius: 6px; box-shadow: var(--shadow); }
+    .deal-card:hover { border-color: var(--green); box-shadow: 0 2px 12px rgba(26,107,74,0.1); }
+    .d-flag { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: inline-block; padding: 3px 8px; border-radius: 3px; font-weight: 600; }
     .f-red { background: #fef2f2; color: var(--red); }
     .f-grn { background: var(--green-light); color: var(--green); }
     .f-pur { background: #f5f3fe; color: var(--purple); }
-    .d-name { font-size: 13px; line-height: 1.4; margin-bottom: 12px; color: var(--text); }
-    .d-price { font-family: Georgia, serif; font-size: 22px; font-weight: 400; color: var(--text); }
-    .d-was { font-size: 11px; color: #bbb; text-decoration: line-through; margin-left: 6px; }
-    .d-store { font-size: 11px; color: #888; margin-top: 8px; }
+    .d-name { font-size: 13px; line-height: 1.4; margin-bottom: 10px; color: var(--text); font-weight: 400; }
+    .d-price { font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.5px; }
+    .d-was { font-size: 11px; color: #aaa; text-decoration: line-through; margin-left: 6px; }
+    .d-store { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
     .d-save { font-size: 11px; color: var(--green); margin-top: 4px; font-weight: 500; }
 
     /* HOW IT WORKS */
-    .how-section { background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 56px 40px; }
+    .how-section { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 48px 40px; }
     .how-inner { max-width: 800px; margin: 0 auto; }
-    .how-ey { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #888; text-align: center; margin-bottom: 40px; }
-    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .how-ey { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); text-align: center; margin-bottom: 36px; }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
     .how-item { text-align: center; }
-    .how-n { font-family: Georgia, serif; font-size: 36px; font-weight: 400; color: #ccc; margin-bottom: 10px; }
-    .how-t { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 8px; }
-    .how-d { font-size: 13px; color: #777; line-height: 1.7; }
+    .how-n { font-size: 32px; font-weight: 200; color: var(--border); margin-bottom: 10px; }
+    .how-t { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; font-weight: 500; }
+    .how-d { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
 
     /* TRUST */
-    .trust-bar { display: flex; justify-content: center; gap: 40px; padding: 18px 40px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
-    .trust-item { font-size: 11px; color: #777; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
+    .trust-bar { display: flex; justify-content: center; gap: 36px; padding: 16px 40px; border-bottom: 1px solid var(--border); flex-wrap: wrap; background: var(--bg-card); }
+    .trust-item { font-size: 11px; color: var(--text-muted); letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
     .trust-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
 
     /* RESULTS */
-    #results { display: none; max-width: 900px; margin: 0 auto; padding: 28px 40px 60px; }
-    .verdict-bar { display: flex; align-items: flex-start; gap: 12px; background: var(--green-light); border: 1px solid #c6e8d8; border-radius: 4px; padding: 16px 20px; margin-bottom: 24px; }
-    .verdict-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; color: #fff; }
-    .verdict-text strong { display: block; font-size: 15px; color: #0d4a30; margin-bottom: 2px; font-weight: 600; }
-    .verdict-text span { font-size: 13px; color: var(--green); }
-    .product-header { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-    .product-img { width: 72px; height: 72px; border-radius: 4px; background: var(--bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; overflow: hidden; }
+    #results { display: none; max-width: 860px; margin: 0 auto; padding: 24px 40px 60px; }
+    .verdict-bar { display: flex; align-items: flex-start; gap: 12px; background: var(--green-light); border: 1px solid rgba(26,107,74,0.2); border-radius: 6px; padding: 14px 18px; margin-bottom: 22px; }
+    .verdict-icon { width: 30px; height: 30px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; color: #fff; }
+    .verdict-text strong { display: block; font-size: 14px; color: var(--green); margin-bottom: 2px; font-weight: 600; }
+    .verdict-text span { font-size: 12px; color: var(--green); opacity: 0.8; }
+    .product-header { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+    .product-img { width: 68px; height: 68px; border-radius: 6px; background: var(--bg-page); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; overflow: hidden; }
     .product-img img { width: 100%; height: 100%; object-fit: cover; }
-    .product-meta h2 { font-family: Georgia, serif; font-size: 18px; font-weight: 400; margin-bottom: 6px; color: var(--text); line-height: 1.3; }
-    .stars { color: var(--amber); font-size: 14px; }
-    .review-count { font-size: 12px; color: #888; margin-left: 4px; }
-    .prices-label { font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
-    .price-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
-    .price-row { display: flex; align-items: center; gap: 12px; background: var(--white); border: 1px solid var(--border); border-radius: 2px; padding: 14px 18px; transition: border-color 0.15s; }
-    .price-row:hover { border-color: #ccc; }
-    .price-row.best { border: 1.5px solid var(--green); background: #fdfffe; }
+    .product-meta h2 { font-size: 16px; font-weight: 600; margin-bottom: 4px; color: var(--text); line-height: 1.3; }
+    .stars { color: #d97706; font-size: 13px; }
+    .review-count { font-size: 12px; color: var(--text-muted); margin-left: 4px; }
+    .prices-label { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+    .price-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+    .price-row { display: flex; align-items: center; gap: 12px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; transition: border-color 0.15s; box-shadow: var(--shadow); }
+    .price-row:hover { border-color: var(--text-muted); }
+    .price-row.best { border: 1.5px solid var(--green); background: var(--green-light); }
     .price-left { flex: 1; }
     .store-name { font-size: 14px; font-weight: 600; color: var(--text); }
-    .best-pill { font-size: 10px; font-weight: 600; background: var(--green); color: #fff; padding: 2px 8px; border-radius: 2px; margin-left: 8px; vertical-align: middle; letter-spacing: 0.5px; }
-    .perks { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
-    .perk { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 2px; }
+    .best-pill { font-size: 10px; font-weight: 600; background: var(--green); color: #fff; padding: 2px 7px; border-radius: 3px; margin-left: 8px; vertical-align: middle; letter-spacing: 0.3px; }
+    .perks { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+    .perk { font-size: 11px; font-weight: 500; padding: 2px 7px; border-radius: 3px; }
     .perk.ship { background: var(--green-light); color: var(--green); }
     .perk.coupon { background: #f5f3fe; color: var(--purple); }
     .perk.cashback { background: #fef2f2; color: var(--red); }
     .price-right { text-align: right; margin-right: 10px; }
-    .price-final { font-family: Georgia, serif; font-size: 22px; font-weight: 400; color: var(--text); }
-    .price-eff { font-size: 11px; color: #888; }
-    .go-btn { font-size: 12px; font-weight: 500; color: var(--green); border: 1px solid var(--green); padding: 8px 16px; border-radius: 2px; cursor: pointer; background: none; white-space: nowrap; transition: background 0.15s, color 0.15s; text-decoration: none; display: inline-block; }
+    .price-final { font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.5px; }
+    .price-eff { font-size: 11px; color: var(--text-muted); }
+    .go-btn { font-size: 12px; font-weight: 500; color: var(--green); border: 1px solid var(--green); padding: 7px 14px; border-radius: 4px; cursor: pointer; background: none; white-space: nowrap; transition: background 0.15s, color 0.15s; text-decoration: none; display: inline-block; font-family: inherit; }
     .go-btn:hover { background: var(--green); color: #fff; }
-    .community-box { background: var(--white); border: 1px solid var(--border); border-radius: 2px; padding: 20px; margin-bottom: 24px; }
-    .community-box h3 { font-size: 13px; font-weight: 600; margin-bottom: 14px; letter-spacing: 0.5px; color: var(--text); }
+    .go-btn.disabled { opacity: 0.4; cursor: default; border-color: var(--border); color: var(--text-muted); }
+
+    /* VARIANT LIST */
+    .variant-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .variant-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 16px; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; box-shadow: var(--shadow); }
+    .variant-card:hover { border-color: var(--green); box-shadow: 0 2px 12px rgba(26,107,74,0.1); }
+    .variant-img { width: 100%; height: 120px; object-fit: contain; border-radius: 4px; background: var(--bg-page); margin-bottom: 10px; }
+    .variant-name { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.3; margin-bottom: 6px; }
+    .variant-price { font-size: 16px; font-weight: 600; color: var(--green); }
+    .variant-rating { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+    /* COMMUNITY */
+    .community-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 18px; margin-bottom: 22px; box-shadow: var(--shadow); }
+    .community-box h3 { font-size: 13px; font-weight: 600; margin-bottom: 12px; color: var(--text); }
     .community-input-row { display: flex; gap: 8px; }
-    .community-input-row input { flex: 1; font-size: 13px; padding: 9px 14px; border-radius: 2px; border: 1px solid var(--border); outline: none; color: var(--text); }
+    .community-input-row input { flex: 1; font-size: 13px; padding: 9px 12px; border-radius: 4px; border: 1px solid var(--border); outline: none; color: var(--text); background: var(--bg-input); font-family: inherit; }
     .community-input-row input:focus { border-color: var(--green); }
-    .submit-btn { padding: 9px 18px; background: var(--green); color: #fff; border: none; border-radius: 2px; font-size: 13px; font-weight: 500; cursor: pointer; }
+    .submit-btn { padding: 9px 16px; background: var(--green); color: #fff; border: none; border-radius: 4px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; }
     .community-tips { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
-    .tip-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #888; border-top: 1px solid var(--border); padding-top: 8px; }
+    .tip-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 7px; }
     .tip-price { color: var(--text); font-weight: 600; }
-    .upvote-btn { background: none; border: 1px solid var(--border); border-radius: 2px; font-size: 11px; cursor: pointer; padding: 3px 10px; color: #888; }
+    .upvote-btn { background: none; border: 1px solid var(--border); border-radius: 3px; font-size: 11px; cursor: pointer; padding: 2px 8px; color: var(--text-muted); font-family: inherit; }
     .upvote-btn:hover { border-color: var(--green); color: var(--green); }
-    .reviews-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #888; margin-bottom: 14px; }
+    .reviews-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 12px; }
     .review-list { display: flex; flex-direction: column; gap: 10px; }
-    .review-card { border: 1px solid var(--border); border-radius: 2px; padding: 16px; }
-    .review-meta { display: flex; justify-content: space-between; font-size: 12px; color: #888; margin-bottom: 8px; }
+    .review-card { border: 1px solid var(--border); border-radius: 6px; padding: 14px; background: var(--bg-card); box-shadow: var(--shadow); }
+    .review-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); margin-bottom: 7px; }
     .review-body { font-size: 13px; line-height: 1.6; color: var(--text); }
-    .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 2px; }
+    .skeleton { background: linear-gradient(90deg, var(--bg-page) 25%, var(--border) 50%, var(--bg-page) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; }
     @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-    .no-results { text-align: center; padding: 48px 20px; color: #888; }
 
     /* FOOTER */
-    footer { padding: 40px; border-top: 1px solid var(--border); }
-    .footer-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+    footer { padding: 36px 40px; border-top: 1px solid var(--border); background: var(--bg-card); }
+    .footer-inner { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
     .f-brand { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-    .f-logo-img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid var(--green); }
-    .f-logo-fallback { width: 28px; height: 28px; border-radius: 50%; background: var(--green-light); border: 1px solid var(--green); display: flex; align-items: center; justify-content: center; font-size: 13px; }
-    .f-logo-t { font-size: 16px; font-weight: 700; color: var(--text); }
+    .f-logo-img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; border: 1px solid var(--green); }
+    .f-logo-t { font-size: 15px; font-weight: 700; color: var(--text); }
     .f-logo-t span { color: var(--green); }
-    .f-desc { font-size: 12px; color: #888; line-height: 1.7; }
-    .f-col h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text); margin-bottom: 12px; }
-    .f-col a { display: block; font-size: 12px; color: #888; text-decoration: none; margin-bottom: 8px; }
+    .f-desc { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+    .f-col h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text); margin-bottom: 12px; font-weight: 600; }
+    .f-col a { display: block; font-size: 12px; color: var(--text-muted); text-decoration: none; margin-bottom: 8px; }
     .f-col a:hover { color: var(--text); }
-    .footer-bottom { max-width: 900px; margin: 20px auto 0; display: flex; justify-content: space-between; font-size: 11px; color: #bbb; align-items: center; }
-    .nz-tag { background: var(--green-light); color: var(--green); padding: 3px 10px; font-size: 10px; letter-spacing: 1px; border-radius: 2px; }
+    .footer-bottom { max-width: 860px; margin: 18px auto 0; display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); align-items: center; }
+    .nz-tag { background: var(--green-light); color: var(--green); padding: 3px 10px; font-size: 10px; letter-spacing: 1px; border-radius: 3px; font-weight: 500; }
 
-    @media (max-width: 600px) {
-      nav { padding: 12px 20px; }
-      #hero { padding: 40px 20px 32px; }
-      .section { padding: 24px 20px; }
-      #results { padding: 20px 20px 40px; }
+    @media (max-width: 640px) {
+      nav { padding: 12px 16px; }
+      #hero { padding: 40px 16px 32px; }
+      .section { padding: 20px 16px; }
+      #results { padding: 16px 16px 40px; }
       .deals-grid { grid-template-columns: repeat(2, 1fr); }
-      .how-grid { grid-template-columns: 1fr; gap: 24px; }
+      .variant-grid { grid-template-columns: repeat(2, 1fr); }
+      .how-grid { grid-template-columns: 1fr; gap: 20px; }
       .stats-row { grid-template-columns: repeat(2, 1fr); }
-      .footer-inner { grid-template-columns: 1fr; gap: 24px; }
-      .trust-bar { gap: 16px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 20px; }
+      .trust-bar { gap: 14px; }
       .price-row { flex-wrap: wrap; }
-      .go-btn { width: 100%; text-align: center; margin-top: 8px; }
+      .go-btn { width: 100%; text-align: center; margin-top: 6px; }
     }
   </style>
 </head>
@@ -186,25 +221,25 @@
 
 <nav>
   <a href="/" class="logo-wrap">
-    <img src="/logo.png" class="logo-img" alt="Twisti logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+    <img src="/logo.png" class="logo-img" alt="Twisti" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
     <div class="logo-fallback" style="display:none">🌿</div>
     <div class="logo-text">twi<span>sti</span></div>
   </a>
   <div class="nav-right">
     <a href="#deals">Deals</a>
     <a href="#">Categories</a>
-    <a href="#">About</a>
+    <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">🌙 Dark</button>
     <span id="nav-auth"><a href="/auth.html" class="nav-btn">Sign in</a></span>
   </div>
 </nav>
 
 <div id="hero">
   <div class="hero-kicker">New Zealand's price intelligence platform</div>
-  <h1>Find the best <em>deal</em>,<br><strong>not just the best price</strong></h1>
+  <h1>Find the best <em>deal</em>,<br>not just the best price</h1>
   <p class="sub">Prices, coupons, cashback & reviews — across every major NZ store, instantly.</p>
   <div class="search-outer">
     <div class="search-wrap">
-      <input type="text" id="search-input" placeholder='Search any product — e.g. "Sony WH-1000XM5"' autocomplete="off" />
+      <input type="text" id="search-input" placeholder='Search any product — e.g. "Dyson V15"' autocomplete="off" />
       <button id="clear-btn" aria-label="Clear">×</button>
       <button id="search-btn">Search</button>
     </div>
@@ -218,10 +253,10 @@
 </div>
 
 <div class="stats-row">
-  <div class="stat"><div class="stat-n serif">50,000+</div><div class="stat-l">Products tracked</div></div>
-  <div class="stat"><div class="stat-n serif">12</div><div class="stat-l">Major NZ stores</div></div>
-  <div class="stat"><div class="stat-n serif">6h</div><div class="stat-l">Price refresh</div></div>
-  <div class="stat"><div class="stat-n serif">$0</div><div class="stat-l">Always free</div></div>
+  <div class="stat"><div class="stat-n">50,000+</div><div class="stat-l">Products tracked</div></div>
+  <div class="stat"><div class="stat-n">12</div><div class="stat-l">Major NZ stores</div></div>
+  <div class="stat"><div class="stat-n">6h</div><div class="stat-l">Price refresh</div></div>
+  <div class="stat"><div class="stat-n">$0</div><div class="stat-l">Always free</div></div>
 </div>
 
 <div id="home-content">
@@ -231,33 +266,29 @@
       <button class="see-all">View all</button>
     </div>
     <div class="deals-grid" id="deals-grid">
-      <div class="deal-card">
+      <div class="deal-card" onclick="searchFor('Sony WH-1000XM5')">
         <span class="d-flag f-red">−22% off</span>
-        <div class="d-name">Sony WH-1000XM5 Wireless Headphones</div>
-        <div><span class="d-price serif">$329</span><span class="d-was">$429</span></div>
-        <div class="d-store">JB Hi-Fi · + cashback</div>
-        <div class="d-save">Save $100</div>
+        <div class="d-name">Sony WH-1000XM5 Headphones</div>
+        <div><span class="d-price">$329</span><span class="d-was">$429</span></div>
+        <div class="d-store">JB Hi-Fi</div><div class="d-save">Save $100</div>
       </div>
-      <div class="deal-card">
+      <div class="deal-card" onclick="searchFor('Apple AirPods Pro')">
         <span class="d-flag f-grn">Cashback</span>
-        <div class="d-name">Apple AirPods Pro 2nd Generation</div>
-        <div><span class="d-price serif">$349</span><span class="d-was">$399</span></div>
-        <div class="d-store">The Good Guys</div>
-        <div class="d-save">Save $50</div>
+        <div class="d-name">Apple AirPods Pro 2</div>
+        <div><span class="d-price">$349</span><span class="d-was">$399</span></div>
+        <div class="d-store">The Good Guys</div><div class="d-save">Save $50</div>
       </div>
-      <div class="deal-card">
+      <div class="deal-card" onclick="searchFor('Samsung 65 QLED TV')">
         <span class="d-flag f-pur">Coupon</span>
-        <div class="d-name">Samsung 65" QLED 4K Smart TV</div>
-        <div><span class="d-price serif">$1,199</span><span class="d-was">$1,599</span></div>
-        <div class="d-store">Harvey Norman · SAVE20</div>
-        <div class="d-save">Save $400</div>
+        <div class="d-name">Samsung 65" QLED 4K TV</div>
+        <div><span class="d-price">$1,199</span><span class="d-was">$1,599</span></div>
+        <div class="d-store">Harvey Norman</div><div class="d-save">Save $400</div>
       </div>
-      <div class="deal-card">
+      <div class="deal-card" onclick="searchFor('Dyson V15 vacuum')">
         <span class="d-flag f-red">−18% off</span>
-        <div class="d-name">Dyson V15 Detect Vacuum Cleaner</div>
-        <div><span class="d-price serif">$849</span><span class="d-was">$999</span></div>
-        <div class="d-store">Mighty Ape</div>
-        <div class="d-save">Save $150</div>
+        <div class="d-name">Dyson V15 Detect Vacuum</div>
+        <div><span class="d-price">$849</span><span class="d-was">$999</span></div>
+        <div class="d-store">Mighty Ape</div><div class="d-save">Save $150</div>
       </div>
     </div>
   </div>
@@ -266,21 +297,9 @@
     <div class="how-inner">
       <div class="how-ey">How Twisti works</div>
       <div class="how-grid">
-        <div class="how-item">
-          <div class="how-n">01</div>
-          <div class="how-t">Search</div>
-          <div class="how-d">Type any product and we instantly scan prices across all major NZ retailers.</div>
-        </div>
-        <div class="how-item">
-          <div class="how-n">02</div>
-          <div class="how-t">Compare</div>
-          <div class="how-d">We surface every deal — sale prices, coupons and cashback — not just the sticker price.</div>
-        </div>
-        <div class="how-item">
-          <div class="how-n">03</div>
-          <div class="how-t">Save</div>
-          <div class="how-d">One clear verdict. The best deal, explained. Click through and buy with confidence.</div>
-        </div>
+        <div class="how-item"><div class="how-n">01</div><div class="how-t">Search</div><div class="how-d">Type any product and we scan prices across all major NZ retailers.</div></div>
+        <div class="how-item"><div class="how-n">02</div><div class="how-t">Compare</div><div class="how-d">We surface every deal — sale prices, coupons and cashback — not just the sticker price.</div></div>
+        <div class="how-item"><div class="how-n">03</div><div class="how-t">Save</div><div class="how-d">One clear verdict. The best deal, explained. Click through and buy with confidence.</div></div>
       </div>
     </div>
   </div>
@@ -297,54 +316,31 @@
   <div class="verdict-bar">
     <div class="verdict-icon">✓</div>
     <div class="verdict-text">
-      <strong id="verdict-text">Finding the best deal...</strong>
+      <strong id="verdict-text">Scanning NZ stores...</strong>
       <span id="verdict-sub"></span>
     </div>
   </div>
-  <div class="product-header">
+  <div class="product-header" id="product-header">
     <div class="product-img" id="product-img">📦</div>
     <div class="product-meta">
-      <h2 id="product-name">Product name</h2>
+      <h2 id="product-name"></h2>
       <div><span class="stars" id="product-stars"></span><span class="review-count" id="product-reviews"></span></div>
     </div>
   </div>
-  <div class="prices-label">All prices & deals</div>
-  <div class="price-list" id="price-list"></div>
-  <div class="community-box">
-    <h3>Community price tips</h3>
-    <div class="community-input-row">
-      <input type="text" id="community-input" placeholder="Found it cheaper? e.g. Costco · $289" />
-      <button class="submit-btn" onclick="submitCommunityPrice()">Submit</button>
-    </div>
-    <div class="community-tips" id="community-tips"></div>
-  </div>
-  <div class="reviews-label">Reviews</div>
-  <div class="review-list" id="review-list"></div>
+  <div id="results-body"></div>
 </div>
 
 <footer>
   <div class="footer-inner">
     <div>
       <div class="f-brand">
-        <img src="/logo.png" class="f-logo-img" alt="Twisti" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="f-logo-fallback" style="display:none">🌿</div>
+        <img src="/logo.png" class="f-logo-img" alt="Twisti" onerror="this.style.display='none'" />
         <div class="f-logo-t">twi<span>sti</span></div>
       </div>
       <div class="f-desc">New Zealand's smartest price comparison. We find the best deal — not just the best price — across every major store.</div>
     </div>
-    <div class="f-col">
-      <h4>Explore</h4>
-      <a href="#">Deals</a>
-      <a href="#">Categories</a>
-      <a href="#">Stores</a>
-      <a href="#">Price alerts</a>
-    </div>
-    <div class="f-col">
-      <h4>Company</h4>
-      <a href="#">About</a>
-      <a href="#">Privacy policy</a>
-      <a href="#">Contact us</a>
-    </div>
+    <div class="f-col"><h4>Explore</h4><a href="#">Deals</a><a href="#">Categories</a><a href="#">Stores</a><a href="#">Price alerts</a></div>
+    <div class="f-col"><h4>Company</h4><a href="#">About</a><a href="#">Privacy policy</a><a href="#">Contact us</a></div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 Twisti · We may earn commission on purchases made through our links</span>
@@ -363,13 +359,26 @@
   const homeContent = document.getElementById('home-content');
   const results     = document.getElementById('results');
 
-  // Smart search — normalise query (handles appleairpod, APPLE AIRPOD etc)
+  // Theme toggle
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.getElementById('theme-btn').textContent = isDark ? '🌙 Dark' : '☀️ Light';
+    localStorage.setItem('twisti_theme', isDark ? 'light' : 'dark');
+  }
+
+  // Restore saved theme
+  const savedTheme = localStorage.getItem('twisti_theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('theme-btn');
+    if (btn) btn.textContent = savedTheme === 'dark' ? '☀️ Light' : '🌙 Dark';
+  });
+
+  // Smart search normalisation
   function normaliseQuery(q) {
-    return q.toLowerCase()
-      .replace(/([a-z])([A-Z])/g, '$1 $2')
-      .replace(/[^a-z0-9\s]/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim();
+    return q.toLowerCase().replace(/([a-z])([A-Z])/g, '$1 $2').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
   }
 
   function doSearch() {
@@ -400,91 +409,71 @@
     if (!searchInput.value.trim() && results.style.display === 'block') clearSearch();
   });
 
- async function fetchResults(query) {
-  showLoading();
-  try {
-    const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}`);
-    const data = await res.json();
-    if (!data || data.error) { renderNoResults(query); return; }
+  async function fetchResults(query) {
+    showLoading();
+    try {
+      const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}`);
+      const data = await res.json();
+      if (!data || data.error) { showNoResults(query); return; }
 
-    if (data.results && data.results.length > 0) {
-      const first = data.results[0];
+      if (data.results && data.results.length > 0) {
+        const first = data.results[0];
 
-      // Multiple variants — show a selection list
-      if (data.source === 'google_variants' && data.results.length > 1) {
-        renderVariantList(data.results, query);
+        // Multiple variants — show grid to pick from
+        if (data.source === 'google_variants' && data.results.length > 1) {
+          showVariants(data.results, query);
+          return;
+        }
+
+        // Single result with prices
+        if (first.prices && first.prices.length > 0) {
+          showProduct(first);
+          return;
+        }
+
+        // DB result
+        currentProductId = first.id;
+        const detail = await fetch(`${API}/api/products/${first.id}`);
+        const prod   = await detail.json();
+        showProduct(prod);
         return;
       }
+    } catch(e) { console.error('Fetch error:', e); }
+    showNoResults(query);
+  }
 
-      // Single SerpApi result with prices
-      if (first.prices && first.prices.length > 0) {
-        renderProduct(first);
-        return;
-      }
+  function showVariants(variants, query) {
+    document.getElementById('verdict-text').textContent = `${variants.length} results for "${query}"`;
+    document.getElementById('verdict-sub').textContent = 'Select a product to compare prices across NZ stores';
+    document.getElementById('product-name').textContent = '';
+    document.getElementById('product-stars').textContent = '';
+    document.getElementById('product-reviews').textContent = '';
+    document.getElementById('product-img').textContent = '🔍';
+    document.getElementById('product-header').style.display = 'none';
 
-      // DB result
-      currentProductId = first.id;
-      const detail = await fetch(`${API}/api/products/${first.id}`);
-      const prod   = await detail.json();
-      renderProduct(prod);
-      return;
-    }
-  } catch(e) { console.error('Fetch error:', e); }
-  renderNoResults(query);
-}
+    document.getElementById('results-body').innerHTML = `
+      <div class="variant-grid">
+        ${variants.map(v => `
+          <div class="variant-card" onclick="searchFor(${JSON.stringify(v.name)})">
+            ${v.image_url
+              ? `<img src="${v.image_url}" class="variant-img" onerror="this.style.display='none'" />`
+              : '<div style="height:80px;background:var(--bg-page);border-radius:4px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;font-size:28px">📦</div>'
+            }
+            <div class="variant-name">${escapeHtml(v.name)}</div>
+            ${v.lowest_price ? `<div class="variant-price">from $${v.lowest_price}</div>` : ''}
+            ${v.avg_rating ? `<div class="variant-rating">★ ${v.avg_rating}${v.review_count ? ` · ${v.review_count.toLocaleString()} reviews` : ''}</div>` : ''}
+          </div>`).join('')}
+      </div>`;
+  }
 
-function renderVariantList(variants, query) {
-  document.getElementById('verdict-text').textContent = `Found ${variants.length} results for "${query}"`;
-  document.getElementById('verdict-sub').textContent = 'Select a product to compare prices across NZ stores';
-  document.getElementById('product-name').textContent = '';
-  document.getElementById('product-stars').textContent = '';
-  document.getElementById('product-reviews').textContent = '';
-  document.getElementById('product-img').textContent = '';
-
-  document.getElementById('price-list').innerHTML = variants.map(v => `
-    <div class="price-row" style="cursor:pointer" onclick="selectVariant('${escapeHtml(v.name)}')">
-      <div class="price-left" style="display:flex;align-items:center;gap:14px">
-        ${v.image_url ? `<img src="${v.image_url}" style="width:48px;height:48px;object-fit:cover;border-radius:4px;border:1px solid var(--border)" onerror="this.style.display='none'" />` : '<div style="width:48px;height:48px;background:var(--bg);border-radius:4px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center">📦</div>'}
-        <div>
-          <div class="store-name" style="font-weight:500">${escapeHtml(v.name)}</div>
-          <div style="font-size:12px;color:#888;margin-top:3px">${v.avg_rating ? `★ ${v.avg_rating} · ` : ''}${v.review_count ? `${v.review_count.toLocaleString()} reviews` : ''}</div>
-        </div>
-      </div>
-      <div class="price-right">
-        ${v.lowest_price ? `<div class="price-final serif">from $${v.lowest_price}</div>` : ''}
-      </div>
-      <button class="go-btn">Compare →</button>
-    </div>`).join('');
-
-  document.getElementById('community-tips').innerHTML = '';
-  document.getElementById('review-list').innerHTML = '';
-}
-
-function selectVariant(productName) {
-  searchInput.value = productName;
-  // Clear cache key so we get fresh price results
-  fetchResults(normaliseQuery(productName));
-}
-
-function renderNoResults(query) {
-  document.getElementById('verdict-text').textContent = 'No results found';
-  document.getElementById('verdict-sub').textContent = 'Try different keywords or check spelling';
-  document.getElementById('price-list').innerHTML = '<p style="font-size:13px;color:#888;padding:20px 0">No products found. Try searching with different keywords.</p>';
-  document.getElementById('product-name').textContent = query;
-  document.getElementById('product-img').textContent = '🔍';
-  document.getElementById('review-list').innerHTML = '';
-  document.getElementById('community-tips').innerHTML = '';
-}
-
-  function renderProduct(data) {
+  function showProduct(data) {
     const { product, prices, reviews, community_prices } = data;
 
-    // Product header
+    document.getElementById('product-header').style.display = 'flex';
     document.getElementById('product-name').textContent = product.name;
-    document.getElementById('product-stars').textContent = starsHtml(product.avg_rating || 0);
+    document.getElementById('product-stars').textContent = product.avg_rating ? starsHtml(product.avg_rating) : '';
     document.getElementById('product-reviews').textContent = product.review_count > 0 ? `${product.review_count.toLocaleString()} reviews` : '';
 
-    // Product image
     const imgEl = document.getElementById('product-img');
     if (product.image_url) {
       imgEl.innerHTML = `<img src="${product.image_url}" alt="${escapeHtml(product.name)}" onerror="this.parentElement.textContent='📦'" />`;
@@ -492,72 +481,84 @@ function renderNoResults(query) {
       imgEl.textContent = '📦';
     }
 
-    // Verdict
     const best = prices.find(p => p.is_best_deal) || prices[0];
     if (best && best.price) {
-      const saving = (best.effective_price || best.price) - (best.effective_after_deals || best.price);
-      document.getElementById('verdict-text').textContent = `Best deal: ${best.store_name} at $${best.effective_price || best.price}${saving > 0 ? ` → ~$${best.effective_after_deals} after deals` : ''}`;
-      document.getElementById('verdict-sub').textContent = saving > 0
-        ? `You save $${saving.toFixed(0)} compared to the sticker price.`
-        : 'This is the lowest price we found across all stores.';
+      document.getElementById('verdict-text').textContent = `Best deal: ${best.store_name} at $${best.price}`;
+      document.getElementById('verdict-sub').textContent = 'This is the lowest price we found across all stores.';
     }
 
-    // Price rows — FIX: use real affiliate_url for click-through
-    document.getElementById('price-list').innerHTML = prices
-      .filter(p => p.price && p.price > 0)
-      .map(p => {
-        const url = p.affiliate_url && p.affiliate_url !== '#' ? p.affiliate_url : null;
-        const price = p.effective_price || p.price;
-        return `
-        <div class="price-row ${p.is_best_deal ? 'best' : ''}">
-          <div class="price-left">
-            <div class="store-name">${escapeHtml(p.store_name)}${p.is_best_deal ? '<span class="best-pill">Best deal</span>' : ''}</div>
-            <div class="perks">${(p.deals||[]).map(d => `<span class="perk ${dealClass(d.deal_type)}">${escapeHtml(d.label)}</span>`).join('')}</div>
-          </div>
-          <div class="price-right">
-            <div class="price-final serif">$${price}</div>
-            ${p.effective_after_deals && p.effective_after_deals < price ? `<div class="price-eff">~$${p.effective_after_deals} after deals</div>` : ''}
-          </div>
-          ${url
-            ? `<a href="${url}" target="_blank" rel="noopener noreferrer" class="go-btn">Visit store →</a>`
-            : `<button class="go-btn" onclick="searchFor('${escapeHtml(p.store_name)}')" style="opacity:0.5">No link</button>`
+    const filteredPrices = prices.filter(p => p.price && p.price > 0);
+
+    document.getElementById('results-body').innerHTML = `
+      <div class="prices-label">All prices & deals</div>
+      <div class="price-list">
+        ${filteredPrices.map(p => {
+          const hasUrl = p.affiliate_url && !p.affiliate_url.includes('google.com/search?ibp');
+          return `
+          <div class="price-row ${p.is_best_deal ? 'best' : ''}">
+            <div class="price-left">
+              <div class="store-name">${escapeHtml(p.store_name)}${p.is_best_deal ? '<span class="best-pill">Best deal</span>' : ''}</div>
+              <div class="perks">${(p.deals||[]).map(d => `<span class="perk ${dealClass(d.deal_type)}">${escapeHtml(d.label)}</span>`).join('')}</div>
+            </div>
+            <div class="price-right">
+              <div class="price-final">$${p.price}</div>
+            </div>
+            ${hasUrl
+              ? `<a href="${p.affiliate_url}" target="_blank" rel="noopener noreferrer" class="go-btn">Visit store →</a>`
+              : `<span class="go-btn disabled">Price only</span>`
+            }
+          </div>`;
+        }).join('')}
+      </div>
+      <div class="community-box">
+        <h3>Community price tips</h3>
+        <div class="community-input-row">
+          <input type="text" id="community-input" placeholder="Found it cheaper? e.g. Costco · $289" />
+          <button class="submit-btn" onclick="submitCommunityPrice()">Submit</button>
+        </div>
+        <div class="community-tips" id="community-tips">
+          ${community_prices && community_prices.length
+            ? community_prices.map(t => `<div class="tip-row"><span>Spotted at <b>${escapeHtml(t.store_name)}</b> for <span class="tip-price">$${t.price}</span>${t.note ? ` · ${t.note}` : ''} · ${timeAgo(t.created_at)}</span><button class="upvote-btn" onclick="upvote(${t.id}, this)">▲ ${t.upvotes}</button></div>`).join('')
+            : '<p style="font-size:12px;color:var(--text-muted);padding-top:8px">No tips yet — be the first!</p>'
           }
-        </div>`;
-      }).join('');
-
-    // Community tips
-    const tipsEl = document.getElementById('community-tips');
-    tipsEl.innerHTML = community_prices && community_prices.length
-      ? community_prices.map(t => `
-        <div class="tip-row">
-          <span>Spotted at <b>${escapeHtml(t.store_name)}</b> for <span class="tip-price">$${t.price}</span>${t.note ? ` · ${t.note}` : ''} · ${timeAgo(t.created_at)}</span>
-          <button class="upvote-btn" onclick="upvote(${t.id}, this)">▲ ${t.upvotes}</button>
-        </div>`).join('')
-      : '<p style="font-size:12px;color:#888;padding-top:8px">No community tips yet — be the first!</p>';
-
-    // Reviews
-    document.getElementById('review-list').innerHTML = reviews && reviews.length
-      ? reviews.map(r => `
-        <div class="review-card">
-          <div class="review-meta">
-            <span style="color:#92400e">${starsHtml(r.rating)}</span>
-            <span>${escapeHtml(r.author || 'Anonymous')} · ${r.verified ? '✓ Verified · ' : ''}${formatDate(r.created_at)}</span>
-          </div>
-          <div class="review-body">${escapeHtml(r.body)}</div>
-        </div>`).join('')
-      : '<p style="font-size:13px;color:#888">No reviews yet.</p>';
+        </div>
+      </div>
+      <div class="reviews-label">Reviews</div>
+      <div class="review-list">
+        ${reviews && reviews.length
+          ? reviews.map(r => `<div class="review-card"><div class="review-meta"><span style="color:#d97706">${starsHtml(r.rating)}</span><span>${escapeHtml(r.author||'Anonymous')} · ${r.verified?'✓ Verified · ':''}${formatDate(r.created_at)}</span></div><div class="review-body">${escapeHtml(r.body)}</div></div>`).join('')
+          : '<p style="font-size:13px;color:var(--text-muted)">No reviews yet.</p>'
+        }
+      </div>`;
   }
 
-  function renderDemo(query) {
-    renderProduct({
-      product: { name: `${query} — search results`, avg_rating: 0, review_count: 0, image_url: null },
-      prices: [],
-      reviews: [],
-      community_prices: []
-    });
+  function showNoResults(query) {
     document.getElementById('verdict-text').textContent = 'No results found';
-    document.getElementById('verdict-sub').textContent = 'Try a different search term or check your spelling.';
-    document.getElementById('price-list').innerHTML = '<p style="font-size:13px;color:#888;padding:20px 0">No prices found for this product. Try searching with different keywords.</p>';
+    document.getElementById('verdict-sub').textContent = 'Try different keywords or check spelling';
+    document.getElementById('product-name').textContent = query;
+    document.getElementById('product-img').textContent = '🔍';
+    document.getElementById('product-stars').textContent = '';
+    document.getElementById('product-reviews').textContent = '';
+    document.getElementById('product-header').style.display = 'flex';
+    document.getElementById('results-body').innerHTML = '<p style="font-size:13px;color:var(--text-muted);padding:20px 0">No products found. Try different keywords.</p>';
+  }
+
+  function showLoading() {
+    document.getElementById('verdict-text').textContent = 'Scanning prices across NZ stores...';
+    document.getElementById('verdict-sub').textContent = 'Finding the best deal — takes a few seconds';
+    document.getElementById('product-name').textContent = '';
+    document.getElementById('product-stars').textContent = '';
+    document.getElementById('product-reviews').textContent = '';
+    document.getElementById('product-img').textContent = '';
+    document.getElementById('product-header').style.display = 'none';
+    document.getElementById('results-body').innerHTML = [1,2,3,4].map(() => `
+      <div class="price-row">
+        <div class="price-left">
+          <div class="skeleton" style="height:15px;width:120px;margin-bottom:8px"></div>
+          <div class="skeleton" style="height:11px;width:160px"></div>
+        </div>
+        <div class="price-right"><div class="skeleton" style="height:22px;width:65px;margin-left:auto"></div></div>
+      </div>`).join('');
   }
 
   async function submitCommunityPrice() {
@@ -565,13 +566,10 @@ function renderNoResults(query) {
     const val = input.value.trim();
     if (!val) return;
     const match = val.match(/^(.+?)[\s·\-]+\$?(\d+(?:\.\d+)?)$/);
-    if (!match) { alert('Please use format: Store name · $price\ne.g. Costco · $289'); return; }
+    if (!match) { alert('Format: Store name · $price — e.g. Costco · $289'); return; }
     const [, store, price] = match;
     if (API && currentProductId) {
-      await fetch(`${API}/api/products/${currentProductId}/community-prices`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ store_name: store.trim(), price, note: '' })
-      });
+      await fetch(`${API}/api/products/${currentProductId}/community-prices`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ store_name: store.trim(), price, note: '' }) });
     }
     const tips = document.getElementById('community-tips');
     const newTip = document.createElement('div');
@@ -586,30 +584,8 @@ function renderNoResults(query) {
     const current = parseInt(btn.textContent.replace('▲','').trim()) || 0;
     btn.textContent = `▲ ${current + 1}`;
     btn.style.color = 'var(--green)';
-    btn.style.borderColor = 'var(--green)';
     btn.disabled = true;
   }
-
-  function showLoading() {
-  document.getElementById('verdict-text').textContent = 'Scanning prices across NZ stores...';
-  document.getElementById('verdict-sub').textContent = 'Finding the best deal — takes a few seconds';
-  document.getElementById('product-name').textContent = '';
-  document.getElementById('product-stars').textContent = '';
-  document.getElementById('product-reviews').textContent = '';
-  document.getElementById('product-img').textContent = '';
-  document.getElementById('price-list').innerHTML = [1,2,3,4].map(() => `
-    <div class="price-row">
-      <div class="price-left">
-        <div class="skeleton" style="height:16px;width:130px;margin-bottom:8px"></div>
-        <div class="skeleton" style="height:12px;width:180px"></div>
-      </div>
-      <div class="price-right">
-        <div class="skeleton" style="height:24px;width:70px;margin-left:auto"></div>
-      </div>
-    </div>`).join('');
-  document.getElementById('review-list').innerHTML = '';
-  document.getElementById('community-tips').innerHTML = '';
-}
 
   async function loadFlashDeals() {
     try {
@@ -618,59 +594,34 @@ function renderNoResults(query) {
       if (!data.deals || !data.deals.length) return;
       document.getElementById('deals-grid').innerHTML = data.deals.map(d => `
         <div class="deal-card" onclick="searchFor('${escapeHtml(d.name)}')">
-          <span class="d-flag ${d.sale_price ? 'f-red' : d.deal_type === 'cashback' ? 'f-grn' : 'f-pur'}">${d.discount_pct ? `−${d.discount_pct}%` : d.label || 'Deal'}</span>
+          <span class="d-flag ${d.sale_price ? 'f-red' : 'f-grn'}">${d.discount_pct ? `−${d.discount_pct}%` : 'Deal'}</span>
           <div class="d-name">${escapeHtml(d.name)}</div>
-          <div><span class="d-price serif">$${d.sale_price || d.price}</span>${d.sale_price ? `<span class="d-was">$${d.price}</span>` : ''}</div>
+          <div><span class="d-price">$${d.sale_price || d.price}</span>${d.sale_price ? `<span class="d-was">$${d.price}</span>` : ''}</div>
           <div class="d-store">${escapeHtml(d.store_name)}</div>
         </div>`).join('');
-    } catch(e) { /* keep static deals */ }
+    } catch(e) {}
   }
 
   function initSession() {
     const user = JSON.parse(localStorage.getItem('twisti_user') || 'null');
     const navAuth = document.getElementById('nav-auth');
     if (user) {
-      navAuth.innerHTML = `<span style="color:var(--text);font-weight:600;font-size:13px">${escapeHtml(user.name||user.email)}</span> · <a href="#" onclick="signOut()" style="color:var(--muted);font-size:13px">Sign out</a>`;
+      navAuth.innerHTML = `<span style="color:var(--text);font-weight:500;font-size:13px">${escapeHtml(user.name||user.email)}</span> · <a href="#" onclick="signOut()" style="color:var(--text-muted);font-size:13px">Sign out</a>`;
     } else {
       navAuth.innerHTML = '<a href="/auth.html" class="nav-btn">Sign in</a>';
     }
   }
 
   function signOut() {
-    localStorage.removeItem('twisti_access');
-    localStorage.removeItem('twisti_refresh');
-    localStorage.removeItem('twisti_user');
+    ['twisti_access','twisti_refresh','twisti_user'].forEach(k => localStorage.removeItem(k));
     location.reload();
   }
 
-  function dealClass(type) {
-    if (type === 'cashback') return 'cashback';
-    if (type === 'coupon') return 'coupon';
-    return 'ship';
-  }
-
-  function starsHtml(rating) {
-    if (!rating) return '';
-    const full = Math.floor(rating);
-    const half = rating % 1 >= 0.5 ? 1 : 0;
-    return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(5 - full - half);
-  }
-
-  function escapeHtml(str) {
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
-
-  function timeAgo(dateStr) {
-    const diff = Date.now() - new Date(dateStr).getTime();
-    const h = Math.floor(diff / 3600000);
-    if (h < 1) return 'just now';
-    if (h < 24) return `${h}h ago`;
-    return `${Math.floor(h/24)}d ago`;
-  }
-
-  function formatDate(dateStr) {
-    return new Date(dateStr).toLocaleDateString('en-NZ', { day:'numeric', month:'short', year:'numeric' });
-  }
+  function dealClass(t) { return t === 'cashback' ? 'cashback' : t === 'coupon' ? 'coupon' : 'ship'; }
+  function starsHtml(r) { const f = Math.floor(r), h = r%1>=0.5?1:0; return '★'.repeat(f)+(h?'½':'')+'☆'.repeat(5-f-h); }
+  function escapeHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function timeAgo(d) { const h=Math.floor((Date.now()-new Date(d).getTime())/3600000); return h<1?'just now':h<24?`${h}h ago`:`${Math.floor(h/24)}d ago`; }
+  function formatDate(d) { return new Date(d).toLocaleDateString('en-NZ',{day:'numeric',month:'short',year:'numeric'}); }
 
   loadFlashDeals();
   initSession();

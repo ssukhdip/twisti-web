@@ -497,9 +497,9 @@
       <div class="prices-label">All prices & deals</div>
       <div class="price-list">
         ${filteredPrices.map(p => {
-          const hasUrl = p.affiliate_url && 
-  !p.affiliate_url.includes('google.com/search') && 
-  !p.affiliate_url.includes('google.com/shopping');
+          const visitUrl = (p.affiliate_url && !p.affiliate_url.includes('google.com'))
+            ? p.affiliate_url
+            : `https://www.google.com/search?q=${encodeURIComponent(product.name + ' ' + p.store_name + ' NZ buy')}`;
           return `
           <div class="price-row ${p.is_best_deal ? 'best' : ''}">
             <div class="price-left">
@@ -509,10 +509,7 @@
             <div class="price-right">
               <div class="price-final">$${p.price}</div>
             </div>
-            ${hasUrl
-              ? `<a href="${p.affiliate_url}" target="_blank" rel="noopener noreferrer" class="go-btn">Visit store →</a>`
-              : `<span class="go-btn disabled">Price only</span>`
-            }
+            <a href="${visitUrl}" target="_blank" rel="noopener noreferrer" class="go-btn">Visit store →</a>
           </div>`;
         }).join('')}
       </div>

@@ -497,7 +497,9 @@
       <div class="prices-label">All prices & deals</div>
       <div class="price-list">
         ${filteredPrices.map(p => {
-          const hasUrl = p.affiliate_url && !p.affiliate_url.includes('google.com/search?ibp');
+          const hasUrl = p.affiliate_url && 
+  !p.affiliate_url.includes('google.com/search') && 
+  !p.affiliate_url.includes('google.com/shopping');
           return `
           <div class="price-row ${p.is_best_deal ? 'best' : ''}">
             <div class="price-left">

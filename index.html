@@ -9,323 +9,283 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --green: #1D9E75; --green-dark: #0F6E56; --green-light: #D1FAE5;
-      --text: #1a1a1a; --muted: #6b7280; --border: #e5e7eb;
-      --bg: #f9fafb; --white: #ffffff; --red: #EF4444;
-      --amber: #F59E0B; --purple: #7C3AED;
-      --radius: 10px; --radius-lg: 16px;
+      --green: #1a6b4a; --green-dark: #15583d; --green-light: #f0faf5;
+      --text: #1a1a1a; --muted: #666; --border: #e8e8e8;
+      --bg: #f8f8f6; --white: #ffffff; --red: #b91c1c;
+      --amber: #92400e; --purple: #5b21b6;
     }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--text); background: var(--white); font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+    .serif { font-family: Georgia, 'Times New Roman', serif; }
 
     /* NAV */
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; border-bottom: 1px solid var(--border); background: var(--white); position: sticky; top: 0; z-index: 100; }
-    .logo { font-size: 22px; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -0.5px; }
-    .logo span { color: var(--green); }
-    .nav-right { display: flex; gap: 24px; font-size: 14px; color: var(--muted); align-items: center; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; border-bottom: 1px solid var(--border); background: var(--white); position: sticky; top: 0; z-index: 100; }
+    .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--green); }
+    .logo-fallback { width: 36px; height: 36px; border-radius: 50%; background: var(--green-light); border: 1.5px solid var(--green); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .logo-text { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; color: var(--text); }
+    .logo-text span { color: var(--green); }
+    .nav-right { display: flex; gap: 28px; font-size: 13px; color: var(--muted); align-items: center; }
     .nav-right a { color: var(--muted); text-decoration: none; }
     .nav-right a:hover { color: var(--text); }
-    .nav-signin { background: var(--text); color: #fff !important; padding: 8px 20px; border-radius: 8px; font-weight: 600; }
-    .nav-signin:hover { background: #333 !important; color: #fff !important; }
+    .nav-btn { background: var(--text); color: #fff; padding: 8px 20px; font-size: 12px; border: none; cursor: pointer; letter-spacing: 0.5px; }
 
     /* HERO */
-    #hero { padding: 72px 32px 60px; text-align: center; position: relative; overflow: hidden; background: #fff; transition: padding 0.25s; }
-    #hero.compact { padding: 18px 32px; }
-    .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
-    .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.18; animation: floatBlob 6s ease-in-out infinite; }
-    .blob1 { width: 400px; height: 400px; background: #1D9E75; top: -100px; left: -80px; animation-delay: 0s; }
-    .blob2 { width: 300px; height: 300px; background: #7C3AED; top: -60px; right: -60px; animation-delay: 2s; }
-    .blob3 { width: 350px; height: 350px; background: #F59E0B; bottom: -120px; left: 40%; animation-delay: 4s; }
-    @keyframes floatBlob { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-20px) scale(1.05); } }
-    #hero.compact .hero-bg { display: none; }
-
-    .hero-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
-    .hero-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; background: var(--text); color: #fff; padding: 6px 16px; border-radius: 20px; margin-bottom: 24px; letter-spacing: 0.5px; transition: all 0.25s; }
-    #hero.compact .hero-tag { font-size: 0; margin: 0; padding: 0; }
-    .tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 1s infinite; flex-shrink: 0; }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
-    #hero h1 { font-size: clamp(28px, 5vw, 52px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 16px; transition: all 0.25s; }
+    #hero { padding: 64px 40px 52px; text-align: center; border-bottom: 1px solid var(--border); transition: padding 0.25s; }
+    #hero.compact { padding: 16px 40px; }
+    .hero-kicker { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 18px; transition: all 0.25s; }
+    #hero.compact .hero-kicker { font-size: 0; margin: 0; }
+    #hero h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 400; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; color: var(--text); transition: all 0.25s; }
     #hero.compact h1 { font-size: 0; margin: 0; }
-    #hero h1 .c-green { color: var(--green); }
-    #hero h1 .c-purple { color: var(--purple); }
-    #hero p.sub { font-size: 17px; color: var(--muted); margin-bottom: 36px; line-height: 1.6; transition: all 0.25s; }
+    #hero h1 strong { font-weight: 700; color: var(--text); }
+    #hero h1 em { font-style: italic; color: var(--green); }
+    #hero p.sub { font-size: 14px; color: var(--muted); margin-bottom: 36px; line-height: 1.7; transition: all 0.25s; }
     #hero.compact p.sub { font-size: 0; margin: 0; }
 
     /* SEARCH */
-    .search-outer { max-width: 600px; margin: 0 auto; }
-    .search-wrap { display: flex; border: 2px solid var(--border); border-radius: 50px; background: var(--white); overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.1); transition: border-color 0.2s, box-shadow 0.2s; }
-    .search-wrap:focus-within { border-color: var(--green); box-shadow: 0 8px 32px rgba(29,158,117,0.2); }
-    .search-wrap input { flex: 1; border: none; outline: none; padding: 16px 22px; font-size: 15px; background: transparent; color: var(--text); }
-    .search-wrap input::placeholder { color: #aaa; }
+    .search-outer { max-width: 580px; margin: 0 auto; }
+    .search-wrap { display: flex; border: 1.5px solid var(--border); border-radius: 4px; background: var(--white); overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: border-color 0.2s, box-shadow 0.2s; }
+    .search-wrap:focus-within { border-color: var(--green); box-shadow: 0 2px 12px rgba(26,107,74,0.12); }
+    .search-wrap input { flex: 1; border: none; outline: none; padding: 14px 18px; font-size: 14px; background: var(--white); color: var(--text); }
+    .search-wrap input::placeholder { color: #bbb; }
     #clear-btn { background: none; border: none; cursor: pointer; padding: 0 10px; color: var(--muted); font-size: 20px; display: none; align-items: center; }
-    #search-btn { padding: 11px 26px; margin: 5px 6px; background: var(--green); color: #fff; border: none; cursor: pointer; font-size: 14px; font-weight: 700; border-radius: 40px; white-space: nowrap; transition: background 0.15s, transform 0.1s; }
-    #search-btn:hover { background: var(--green-dark); transform: scale(1.03); }
-    .hints { display: flex; gap: 8px; justify-content: center; margin-top: 16px; flex-wrap: wrap; transition: all 0.25s; }
+    #search-btn { padding: 14px 24px; background: var(--green); color: #fff; border: none; cursor: pointer; font-size: 13px; font-weight: 500; white-space: nowrap; transition: background 0.15s; }
+    #search-btn:hover { background: var(--green-dark); }
+    .hints { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; transition: all 0.25s; }
     #hero.compact .hints { display: none; }
-    .hint { font-size: 12px; color: var(--muted); background: var(--white); border: 1px solid var(--border); padding: 5px 14px; border-radius: 20px; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .hint { font-size: 11px; color: #777; padding: 5px 14px; border: 1px solid var(--border); cursor: pointer; background: var(--white); border-radius: 2px; letter-spacing: 0.5px; }
     .hint:hover { border-color: var(--green); color: var(--green); }
 
     /* STATS */
-    .stats-row { display: flex; justify-content: center; background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .stat { flex: 1; text-align: center; padding: 24px 16px; border-right: 1px solid var(--border); }
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--border); }
+    .stat { padding: 22px; text-align: center; border-right: 1px solid var(--border); }
     .stat:last-child { border-right: none; }
-    .stat-num { font-size: 26px; font-weight: 800; }
-    .stat-num.s-green { color: var(--green); }
-    .stat-num.s-amber { color: var(--amber); }
-    .stat-num.s-purple { color: var(--purple); }
-    .stat-num.s-red { color: var(--red); }
-    .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; font-weight: 500; }
+    .stat-n { font-family: Georgia, serif; font-size: 26px; font-weight: 400; color: var(--text); }
+    .stat-l { font-size: 11px; color: #888; margin-top: 4px; letter-spacing: 0.5px; }
 
     /* DEALS */
-    .section { padding: 40px 32px; max-width: 920px; margin: 0 auto; }
-    .sec-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
-    .sec-title { font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
-    .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 0 rgba(239,68,68,0.4); animation: ripple 1.5s infinite; }
-    @keyframes ripple { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.4); } 70% { box-shadow: 0 0 0 8px rgba(239,68,68,0); } 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); } }
-    .see-all { font-size: 13px; color: var(--green); background: none; border: none; cursor: pointer; font-weight: 700; }
+    .section { padding: 40px; max-width: 900px; margin: 0 auto; }
+    .sec-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .sec-title { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #555; display: flex; align-items: center; gap: 8px; }
+    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #c41e1e; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .see-all { font-size: 11px; color: #888; background: none; border: none; cursor: pointer; letter-spacing: 1px; }
+    .see-all:hover { color: var(--text); }
     .deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
-    .deal-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 18px; cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden; }
-    .deal-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-    .deal-card.hot { border-color: #FEE2E2; }
-    .deal-card.hot:hover { box-shadow: 0 8px 24px rgba(239,68,68,0.15); }
-    .deal-card.cash { border-color: #D1FAE5; }
-    .deal-card.cash:hover { box-shadow: 0 8px 24px rgba(29,158,117,0.15); }
-    .deal-card.code { border-color: #EDE9FE; }
-    .deal-card.code:hover { box-shadow: 0 8px 24px rgba(124,58,237,0.15); }
-    .card-glow { position: absolute; top: 0; right: 0; width: 80px; height: 80px; border-radius: 50%; filter: blur(30px); opacity: 0.25; pointer-events: none; }
-    .glow-red { background: #EF4444; }
-    .glow-green { background: #1D9E75; }
-    .glow-purple { background: #7C3AED; }
-    .glow-amber { background: #F59E0B; }
-    .badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
-    .badge.sale { background: #FEE2E2; color: #DC2626; }
-    .badge.cb { background: #D1FAE5; color: #065F46; }
-    .badge.coupon { background: #EDE9FE; color: #5B21B6; }
-    .deal-name { font-size: 13px; font-weight: 600; line-height: 1.35; margin-bottom: 10px; }
-    .deal-price { font-size: 22px; font-weight: 800; color: var(--text); }
-    .deal-was { font-size: 12px; color: #9ca3af; text-decoration: line-through; margin-left: 6px; }
-    .deal-store { font-size: 11px; color: var(--muted); margin-top: 6px; }
-    .deal-saving { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 20px; margin-top: 8px; display: inline-block; }
-    .saving-red { background: #FEE2E2; color: #DC2626; }
-    .saving-green { background: #D1FAE5; color: #065F46; }
-    .saving-purple { background: #EDE9FE; color: #5B21B6; }
-    .saving-amber { background: #FEF3C7; color: #92400E; }
+    .deal-card { background: var(--white); border: 1px solid var(--border); padding: 20px; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; border-radius: 2px; }
+    .deal-card:hover { border-color: var(--green); box-shadow: 0 2px 12px rgba(26,107,74,0.08); }
+    .d-flag { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: inline-block; padding: 3px 8px; border-radius: 2px; }
+    .f-red { background: #fef2f2; color: var(--red); }
+    .f-grn { background: var(--green-light); color: var(--green); }
+    .f-pur { background: #f5f3fe; color: var(--purple); }
+    .d-name { font-size: 13px; line-height: 1.4; margin-bottom: 12px; color: var(--text); }
+    .d-price { font-family: Georgia, serif; font-size: 22px; font-weight: 400; color: var(--text); }
+    .d-was { font-size: 11px; color: #bbb; text-decoration: line-through; margin-left: 6px; }
+    .d-store { font-size: 11px; color: #888; margin-top: 8px; }
+    .d-save { font-size: 11px; color: var(--green); margin-top: 4px; font-weight: 500; }
 
     /* HOW IT WORKS */
-    .how-section { padding: 56px 32px; background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .how-inner { max-width: 860px; margin: 0 auto; }
-    .how-title { text-align: center; font-size: 26px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.5px; }
-    .how-sub { text-align: center; font-size: 15px; color: var(--muted); margin-bottom: 40px; }
-    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .how-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 28px 24px; text-align: center; transition: all 0.2s; }
-    .how-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-    .step-num { font-size: 11px; font-weight: 700; color: #9ca3af; margin-bottom: 12px; letter-spacing: 1px; }
-    .how-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 26px; }
-    .icon-green { background: #D1FAE5; }
-    .icon-purple { background: #EDE9FE; }
-    .icon-amber { background: #FEF3C7; }
-    .how-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
-    .how-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .how-section { background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 56px 40px; }
+    .how-inner { max-width: 800px; margin: 0 auto; }
+    .how-ey { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #888; text-align: center; margin-bottom: 40px; }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .how-item { text-align: center; }
+    .how-n { font-family: Georgia, serif; font-size: 36px; font-weight: 400; color: #ccc; margin-bottom: 10px; }
+    .how-t { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 8px; }
+    .how-d { font-size: 13px; color: #777; line-height: 1.7; }
 
     /* TRUST */
-    .trust-bar { display: flex; align-items: center; justify-content: center; gap: 32px; padding: 22px 32px; border-top: 1px solid var(--border); flex-wrap: wrap; }
-    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); font-weight: 500; }
+    .trust-bar { display: flex; justify-content: center; gap: 40px; padding: 18px 40px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+    .trust-item { font-size: 11px; color: #777; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
+    .trust-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
 
     /* RESULTS */
-    #results { display: none; max-width: 920px; margin: 0 auto; padding: 24px 32px 60px; }
-    .verdict-bar { display: flex; align-items: flex-start; gap: 12px; background: var(--green-light); border-radius: var(--radius-lg); padding: 14px 18px; margin-bottom: 20px; }
-    .verdict-icon { width: 34px; height: 34px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; color: #fff; }
-    .verdict-text strong { display: block; font-size: 15px; color: #04342C; margin-bottom: 2px; }
-    .verdict-text span { font-size: 13px; color: var(--green-dark); }
-    .product-header { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
-    .product-img { width: 72px; height: 72px; border-radius: var(--radius); background: var(--bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 30px; flex-shrink: 0; }
-    .product-meta h2 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+    #results { display: none; max-width: 900px; margin: 0 auto; padding: 28px 40px 60px; }
+    .verdict-bar { display: flex; align-items: flex-start; gap: 12px; background: var(--green-light); border: 1px solid #c6e8d8; border-radius: 4px; padding: 16px 20px; margin-bottom: 24px; }
+    .verdict-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; color: #fff; }
+    .verdict-text strong { display: block; font-size: 15px; color: #0d4a30; margin-bottom: 2px; font-weight: 600; }
+    .verdict-text span { font-size: 13px; color: var(--green); }
+    .product-header { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .product-img { width: 72px; height: 72px; border-radius: 4px; background: var(--bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; overflow: hidden; }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; }
+    .product-meta h2 { font-family: Georgia, serif; font-size: 18px; font-weight: 400; margin-bottom: 6px; color: var(--text); line-height: 1.3; }
     .stars { color: var(--amber); font-size: 14px; }
-    .review-count { font-size: 12px; color: var(--muted); margin-left: 4px; }
-    .prices-label { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
-    .price-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-    .price-row { display: flex; align-items: center; gap: 12px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 12px 16px; transition: border-color 0.15s; }
+    .review-count { font-size: 12px; color: #888; margin-left: 4px; }
+    .prices-label { font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+    .price-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+    .price-row { display: flex; align-items: center; gap: 12px; background: var(--white); border: 1px solid var(--border); border-radius: 2px; padding: 14px 18px; transition: border-color 0.15s; }
     .price-row:hover { border-color: #ccc; }
-    .price-row.best { border: 2px solid var(--green); }
+    .price-row.best { border: 1.5px solid var(--green); background: #fdfffe; }
     .price-left { flex: 1; }
-    .store-name { font-size: 14px; font-weight: 700; }
-    .best-pill { font-size: 11px; font-weight: 700; background: var(--green); color: #fff; padding: 2px 8px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
+    .store-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .best-pill { font-size: 10px; font-weight: 600; background: var(--green); color: #fff; padding: 2px 8px; border-radius: 2px; margin-left: 8px; vertical-align: middle; letter-spacing: 0.5px; }
     .perks { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
-    .perk { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
-    .perk.ship { background: #D1FAE5; color: #065F46; }
-    .perk.coupon { background: #EDE9FE; color: #5B21B6; }
-    .perk.cashback { background: #FEE2E2; color: #DC2626; }
-    .price-right { text-align: right; margin-right: 8px; }
-    .price-final { font-size: 20px; font-weight: 800; }
-    .price-eff { font-size: 11px; color: var(--muted); }
-    .go-btn { font-size: 13px; font-weight: 700; color: var(--green); border: 1.5px solid var(--green); padding: 7px 14px; border-radius: var(--radius); cursor: pointer; background: none; white-space: nowrap; transition: background 0.15s, color 0.15s; }
+    .perk { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 2px; }
+    .perk.ship { background: var(--green-light); color: var(--green); }
+    .perk.coupon { background: #f5f3fe; color: var(--purple); }
+    .perk.cashback { background: #fef2f2; color: var(--red); }
+    .price-right { text-align: right; margin-right: 10px; }
+    .price-final { font-family: Georgia, serif; font-size: 22px; font-weight: 400; color: var(--text); }
+    .price-eff { font-size: 11px; color: #888; }
+    .go-btn { font-size: 12px; font-weight: 500; color: var(--green); border: 1px solid var(--green); padding: 8px 16px; border-radius: 2px; cursor: pointer; background: none; white-space: nowrap; transition: background 0.15s, color 0.15s; text-decoration: none; display: inline-block; }
     .go-btn:hover { background: var(--green); color: #fff; }
-    .community-box { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 20px; }
-    .community-box h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+    .community-box { background: var(--white); border: 1px solid var(--border); border-radius: 2px; padding: 20px; margin-bottom: 24px; }
+    .community-box h3 { font-size: 13px; font-weight: 600; margin-bottom: 14px; letter-spacing: 0.5px; color: var(--text); }
     .community-input-row { display: flex; gap: 8px; }
-    .community-input-row input { flex: 1; font-size: 13px; padding: 8px 12px; border-radius: var(--radius); border: 1.5px solid var(--border); outline: none; color: var(--text); }
+    .community-input-row input { flex: 1; font-size: 13px; padding: 9px 14px; border-radius: 2px; border: 1px solid var(--border); outline: none; color: var(--text); }
     .community-input-row input:focus { border-color: var(--green); }
-    .submit-btn { padding: 8px 16px; background: var(--green); color: #fff; border: none; border-radius: var(--radius); font-size: 13px; font-weight: 700; cursor: pointer; }
+    .submit-btn { padding: 9px 18px; background: var(--green); color: #fff; border: none; border-radius: 2px; font-size: 13px; font-weight: 500; cursor: pointer; }
     .community-tips { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
-    .tip-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 6px; }
-    .tip-price { color: var(--text); font-weight: 700; }
-    .upvote-btn { background: none; border: 1px solid var(--border); border-radius: 20px; font-size: 11px; cursor: pointer; padding: 2px 8px; color: var(--muted); }
+    .tip-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #888; border-top: 1px solid var(--border); padding-top: 8px; }
+    .tip-price { color: var(--text); font-weight: 600; }
+    .upvote-btn { background: none; border: 1px solid var(--border); border-radius: 2px; font-size: 11px; cursor: pointer; padding: 3px 10px; color: #888; }
     .upvote-btn:hover { border-color: var(--green); color: var(--green); }
-    .reviews-label { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+    .reviews-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #888; margin-bottom: 14px; }
     .review-list { display: flex; flex-direction: column; gap: 10px; }
-    .review-card { border: 1.5px solid var(--border); border-radius: var(--radius); padding: 14px; }
-    .review-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
-    .review-body { font-size: 13px; line-height: 1.5; }
-    .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 6px; }
+    .review-card { border: 1px solid var(--border); border-radius: 2px; padding: 16px; }
+    .review-meta { display: flex; justify-content: space-between; font-size: 12px; color: #888; margin-bottom: 8px; }
+    .review-body { font-size: 13px; line-height: 1.6; color: var(--text); }
+    .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 2px; }
     @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .no-results { text-align: center; padding: 48px 20px; color: #888; }
 
     /* FOOTER */
-    footer { background: #0f0f0f; color: #6b7280; padding: 48px 32px 28px; }
-    .footer-inner { max-width: 860px; margin: 0 auto; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-    .footer-logo { font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px; margin-bottom: 12px; text-decoration: none; display: block; }
-    .footer-logo span { color: var(--green); }
-    .footer-desc { font-size: 13px; line-height: 1.7; color: #6b7280; }
-    .footer-col h4 { font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .footer-col a { display: block; font-size: 13px; color: #6b7280; text-decoration: none; margin-bottom: 10px; transition: color 0.15s; }
-    .footer-col a:hover { color: #fff; }
-    .footer-bottom { border-top: 1px solid #1f1f1f; padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; align-items: center; }
-    .nz-badge { background: #1f1f1f; color: #9ca3af; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    footer { padding: 40px; border-top: 1px solid var(--border); }
+    .footer-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+    .f-brand { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .f-logo-img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid var(--green); }
+    .f-logo-fallback { width: 28px; height: 28px; border-radius: 50%; background: var(--green-light); border: 1px solid var(--green); display: flex; align-items: center; justify-content: center; font-size: 13px; }
+    .f-logo-t { font-size: 16px; font-weight: 700; color: var(--text); }
+    .f-logo-t span { color: var(--green); }
+    .f-desc { font-size: 12px; color: #888; line-height: 1.7; }
+    .f-col h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text); margin-bottom: 12px; }
+    .f-col a { display: block; font-size: 12px; color: #888; text-decoration: none; margin-bottom: 8px; }
+    .f-col a:hover { color: var(--text); }
+    .footer-bottom { max-width: 900px; margin: 20px auto 0; display: flex; justify-content: space-between; font-size: 11px; color: #bbb; align-items: center; }
+    .nz-tag { background: var(--green-light); color: var(--green); padding: 3px 10px; font-size: 10px; letter-spacing: 1px; border-radius: 2px; }
 
     @media (max-width: 600px) {
-      nav { padding: 14px 16px; }
-      #hero { padding: 48px 16px 36px; }
-      .section { padding: 24px 16px; }
-      #results { padding: 16px 16px 40px; }
+      nav { padding: 12px 20px; }
+      #hero { padding: 40px 20px 32px; }
+      .section { padding: 24px 20px; }
+      #results { padding: 20px 20px 40px; }
       .deals-grid { grid-template-columns: repeat(2, 1fr); }
-      .how-grid { grid-template-columns: 1fr; }
-      .stats-row { flex-wrap: wrap; }
-      .stat { min-width: 50%; }
-      .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+      .how-grid { grid-template-columns: 1fr; gap: 24px; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr; gap: 24px; }
       .trust-bar { gap: 16px; }
       .price-row { flex-wrap: wrap; }
-      .go-btn { width: 100%; text-align: center; }
+      .go-btn { width: 100%; text-align: center; margin-top: 8px; }
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="/" class="logo">twi<span>sti</span></a>
+  <a href="/" class="logo-wrap">
+    <img src="/logo.png" class="logo-img" alt="Twisti logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+    <div class="logo-fallback" style="display:none">🌿</div>
+    <div class="logo-text">twi<span>sti</span></div>
+  </a>
   <div class="nav-right">
     <a href="#deals">Deals</a>
     <a href="#">Categories</a>
     <a href="#">About</a>
-    <span id="nav-auth"><a href="/auth.html" class="nav-signin">Sign in</a></span>
+    <span id="nav-auth"><a href="/auth.html" class="nav-btn">Sign in</a></span>
   </div>
 </nav>
 
 <div id="hero">
-  <div class="hero-bg">
-    <div class="blob blob1"></div>
-    <div class="blob blob2"></div>
-    <div class="blob blob3"></div>
-  </div>
-  <div class="hero-inner">
-    <div class="hero-tag"><div class="tag-dot"></div> LIVE · NZ's smartest price comparison</div>
-    <h1>Find the best <span class="c-green">deal</span>,<br>not just the best <span class="c-purple">price</span></h1>
-    <p class="sub">We compare prices, coupons, cashback &amp; reviews<br>across every major NZ store — instantly.</p>
-    <div class="search-outer">
-      <div class="search-wrap">
-        <input type="text" id="search-input" placeholder='Search any product — e.g. "Sony WH-1000XM5"' autocomplete="off" />
-        <button id="clear-btn" aria-label="Clear">×</button>
-        <button id="search-btn">Search</button>
-      </div>
-      <div class="hints">
-        <span class="hint" onclick="searchFor('AirPods Pro')">AirPods Pro</span>
-        <span class="hint" onclick="searchFor('iPhone 16')">iPhone 16</span>
-        <span class="hint" onclick="searchFor('Samsung TV')">Samsung TV</span>
-        <span class="hint" onclick="searchFor('Dyson vacuum')">Dyson vacuum</span>
-      </div>
+  <div class="hero-kicker">New Zealand's price intelligence platform</div>
+  <h1>Find the best <em>deal</em>,<br><strong>not just the best price</strong></h1>
+  <p class="sub">Prices, coupons, cashback & reviews — across every major NZ store, instantly.</p>
+  <div class="search-outer">
+    <div class="search-wrap">
+      <input type="text" id="search-input" placeholder='Search any product — e.g. "Sony WH-1000XM5"' autocomplete="off" />
+      <button id="clear-btn" aria-label="Clear">×</button>
+      <button id="search-btn">Search</button>
+    </div>
+    <div class="hints">
+      <span class="hint" onclick="searchFor('AirPods Pro')">AirPods Pro</span>
+      <span class="hint" onclick="searchFor('iPhone 16')">iPhone 16</span>
+      <span class="hint" onclick="searchFor('Samsung TV')">Samsung TV</span>
+      <span class="hint" onclick="searchFor('Dyson vacuum')">Dyson vacuum</span>
     </div>
   </div>
 </div>
 
 <div class="stats-row">
-  <div class="stat"><div class="stat-num s-green">50,000+</div><div class="stat-label">Products tracked</div></div>
-  <div class="stat"><div class="stat-num s-amber">12</div><div class="stat-label">Major NZ stores</div></div>
-  <div class="stat"><div class="stat-num s-purple">6hrs</div><div class="stat-label">Price refresh</div></div>
-  <div class="stat"><div class="stat-num s-red">$0</div><div class="stat-label">Always free</div></div>
+  <div class="stat"><div class="stat-n serif">50,000+</div><div class="stat-l">Products tracked</div></div>
+  <div class="stat"><div class="stat-n serif">12</div><div class="stat-l">Major NZ stores</div></div>
+  <div class="stat"><div class="stat-n serif">6h</div><div class="stat-l">Price refresh</div></div>
+  <div class="stat"><div class="stat-n serif">$0</div><div class="stat-l">Always free</div></div>
 </div>
 
 <div id="home-content">
   <div class="section" id="deals">
-    <div class="sec-header">
+    <div class="sec-head">
       <div class="sec-title"><div class="live-dot"></div> Flash deals right now</div>
-      <button class="see-all">See all →</button>
+      <button class="see-all">View all</button>
     </div>
     <div class="deals-grid" id="deals-grid">
-      <div class="deal-card hot">
-        <div class="card-glow glow-red"></div>
-        <span class="badge sale">−22%</span>
-        <div class="deal-name">Sony WH-1000XM5 Headphones</div>
-        <div><span class="deal-price">$329</span><span class="deal-was">$429</span></div>
-        <div class="deal-store">JB Hi-Fi · + cashback</div>
-        <div class="deal-saving saving-red">Save $100</div>
-      </div>
-      <div class="deal-card cash">
-        <div class="card-glow glow-green"></div>
-        <span class="badge cb">Cashback</span>
-        <div class="deal-name">Apple AirPods Pro 2</div>
-        <div><span class="deal-price">$349</span><span class="deal-was">$399</span></div>
-        <div class="deal-store">The Good Guys</div>
-        <div class="deal-saving saving-green">Save $50</div>
-      </div>
-      <div class="deal-card code">
-        <div class="card-glow glow-purple"></div>
-        <span class="badge coupon">Coupon</span>
-        <div class="deal-name">Samsung 65" QLED 4K TV</div>
-        <div><span class="deal-price">$1,199</span><span class="deal-was">$1,599</span></div>
-        <div class="deal-store">Harvey Norman · SAVE20</div>
-        <div class="deal-saving saving-purple">Save $400</div>
+      <div class="deal-card">
+        <span class="d-flag f-red">−22% off</span>
+        <div class="d-name">Sony WH-1000XM5 Wireless Headphones</div>
+        <div><span class="d-price serif">$329</span><span class="d-was">$429</span></div>
+        <div class="d-store">JB Hi-Fi · + cashback</div>
+        <div class="d-save">Save $100</div>
       </div>
       <div class="deal-card">
-        <div class="card-glow glow-amber"></div>
-        <span class="badge sale">−18%</span>
-        <div class="deal-name">Dyson V15 Detect Vacuum</div>
-        <div><span class="deal-price">$849</span><span class="deal-was">$999</span></div>
-        <div class="deal-store">Mighty Ape</div>
-        <div class="deal-saving saving-amber">Save $150</div>
+        <span class="d-flag f-grn">Cashback</span>
+        <div class="d-name">Apple AirPods Pro 2nd Generation</div>
+        <div><span class="d-price serif">$349</span><span class="d-was">$399</span></div>
+        <div class="d-store">The Good Guys</div>
+        <div class="d-save">Save $50</div>
+      </div>
+      <div class="deal-card">
+        <span class="d-flag f-pur">Coupon</span>
+        <div class="d-name">Samsung 65" QLED 4K Smart TV</div>
+        <div><span class="d-price serif">$1,199</span><span class="d-was">$1,599</span></div>
+        <div class="d-store">Harvey Norman · SAVE20</div>
+        <div class="d-save">Save $400</div>
+      </div>
+      <div class="deal-card">
+        <span class="d-flag f-red">−18% off</span>
+        <div class="d-name">Dyson V15 Detect Vacuum Cleaner</div>
+        <div><span class="d-price serif">$849</span><span class="d-was">$999</span></div>
+        <div class="d-store">Mighty Ape</div>
+        <div class="d-save">Save $150</div>
       </div>
     </div>
   </div>
 
   <div class="how-section">
     <div class="how-inner">
-      <div class="how-title">How Twisti works</div>
-      <div class="how-sub">Three steps to the best deal</div>
+      <div class="how-ey">How Twisti works</div>
       <div class="how-grid">
-        <div class="how-card">
-          <div class="step-num">STEP 01</div>
-          <div class="how-icon icon-green">🔍</div>
-          <h3>Search any product</h3>
-          <p>Type what you're looking for and we instantly scan prices across all major NZ retailers.</p>
+        <div class="how-item">
+          <div class="how-n">01</div>
+          <div class="how-t">Search</div>
+          <div class="how-d">Type any product and we instantly scan prices across all major NZ retailers.</div>
         </div>
-        <div class="how-card">
-          <div class="step-num">STEP 02</div>
-          <div class="how-icon icon-purple">⚡</div>
-          <h3>We find every deal</h3>
-          <p>We compare sale prices, coupons, cashback offers and community tips — not just the sticker price.</p>
+        <div class="how-item">
+          <div class="how-n">02</div>
+          <div class="how-t">Compare</div>
+          <div class="how-d">We surface every deal — sale prices, coupons and cashback — not just the sticker price.</div>
         </div>
-        <div class="how-card">
-          <div class="step-num">STEP 03</div>
-          <div class="how-icon icon-amber">✓</div>
-          <h3>Get the verdict</h3>
-          <p>One clear recommendation. The best deal, explained. Click through and buy — no hidden fees ever.</p>
+        <div class="how-item">
+          <div class="how-n">03</div>
+          <div class="how-t">Save</div>
+          <div class="how-d">One clear verdict. The best deal, explained. Click through and buy with confidence.</div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="trust-bar">
-    <div class="trust-item"><span style="color:#1D9E75;font-size:16px">✓</span> No hidden fees</div>
-    <div class="trust-item"><span style="color:#7C3AED;font-size:16px">↻</span> Updated every 6 hours</div>
-    <div class="trust-item"><span style="color:#F59E0B;font-size:16px">👥</span> Community tips</div>
-    <div class="trust-item"><span style="color:#EF4444;font-size:16px">★</span> Verified reviews</div>
+    <div class="trust-item"><div class="trust-dot"></div> No hidden fees</div>
+    <div class="trust-item"><div class="trust-dot"></div> Updated every 6 hours</div>
+    <div class="trust-item"><div class="trust-dot"></div> Community price tips</div>
+    <div class="trust-item"><div class="trust-dot"></div> Verified reviews</div>
   </div>
 </div>
 
@@ -344,10 +304,10 @@
       <div><span class="stars" id="product-stars"></span><span class="review-count" id="product-reviews"></span></div>
     </div>
   </div>
-  <div class="prices-label">All prices &amp; deals</div>
+  <div class="prices-label">All prices & deals</div>
   <div class="price-list" id="price-list"></div>
   <div class="community-box">
-    <h3>👥 Community price tips</h3>
+    <h3>Community price tips</h3>
     <div class="community-input-row">
       <input type="text" id="community-input" placeholder="Found it cheaper? e.g. Costco · $289" />
       <button class="submit-btn" onclick="submitCommunityPrice()">Submit</button>
@@ -360,34 +320,36 @@
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-grid">
-      <div>
-        <a href="/" class="footer-logo">twi<span>sti</span></a>
-        <div class="footer-desc">NZ's smartest price comparison. We find the best deal — not just the best price — across every major store.</div>
+    <div>
+      <div class="f-brand">
+        <img src="/logo.png" class="f-logo-img" alt="Twisti" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="f-logo-fallback" style="display:none">🌿</div>
+        <div class="f-logo-t">twi<span>sti</span></div>
       </div>
-      <div class="footer-col">
-        <h4>Explore</h4>
-        <a href="#">Deals</a>
-        <a href="#">Categories</a>
-        <a href="#">Stores</a>
-        <a href="#">Price alerts</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="#">About</a>
-        <a href="#">Privacy policy</a>
-        <a href="#">Contact us</a>
-      </div>
+      <div class="f-desc">New Zealand's smartest price comparison. We find the best deal — not just the best price — across every major store.</div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2025 Twisti. We may earn commission on purchases.</span>
-      <span class="nz-badge">🇳🇿 Made in NZ</span>
+    <div class="f-col">
+      <h4>Explore</h4>
+      <a href="#">Deals</a>
+      <a href="#">Categories</a>
+      <a href="#">Stores</a>
+      <a href="#">Price alerts</a>
     </div>
+    <div class="f-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Privacy policy</a>
+      <a href="#">Contact us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Twisti · We may earn commission on purchases made through our links</span>
+    <span class="nz-tag">NZ Owned</span>
   </div>
 </footer>
 
 <script>
-const API = 'https://twisti-backend-production.up.railway.app'; // v2
+  const API = 'https://twisti-backend-production.up.railway.app';
   let currentProductId = null;
 
   const searchInput = document.getElementById('search-input');
@@ -397,14 +359,23 @@ const API = 'https://twisti-backend-production.up.railway.app'; // v2
   const homeContent = document.getElementById('home-content');
   const results     = document.getElementById('results');
 
+  // Smart search — normalise query (handles appleairpod, APPLE AIRPOD etc)
+  function normaliseQuery(q) {
+    return q.toLowerCase()
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .replace(/[^a-z0-9\s]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
   function doSearch() {
-    const q = searchInput.value.trim();
-    if (!q || q.length < 2) return;
+    const raw = searchInput.value.trim();
+    if (!raw || raw.length < 2) return;
     hero.classList.add('compact');
     homeContent.style.display = 'none';
     results.style.display = 'block';
     clearBtn.style.display = 'flex';
-    fetchResults(q);
+    fetchResults(normaliseQuery(raw));
   }
 
   function clearSearch() {
@@ -425,87 +396,110 @@ const API = 'https://twisti-backend-production.up.railway.app'; // v2
     if (!searchInput.value.trim() && results.style.display === 'block') clearSearch();
   });
 
-async function fetchResults(query) {
-  showLoading();
-  try {
-    const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}`);
-    const data = await res.json();
-
-    if (!data || data.error) {
-      renderDemo(query);
-      return;
-    }
-
-    if (data.results && data.results.length > 0) {
-      const first = data.results[0];
-      // Check if it has prices directly (SerpApi result)
-      if (first.prices && first.prices.length > 0) {
-        renderProduct(first);
+  async function fetchResults(query) {
+    showLoading();
+    try {
+      const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}`);
+      const data = await res.json();
+      if (!data || data.error) { renderDemo(query); return; }
+      if (data.results && data.results.length > 0) {
+        const first = data.results[0];
+        if (first.prices && first.prices.length > 0) {
+          renderProduct(first);
+          return;
+        }
+        currentProductId = first.id;
+        const detail = await fetch(`${API}/api/products/${first.id}`);
+        const prod   = await detail.json();
+        renderProduct(prod);
         return;
       }
-      // DB result — fetch full detail
-      currentProductId = first.id;
-      const detail = await fetch(`${API}/api/products/${first.id}`);
-      const prod   = await detail.json();
-      renderProduct(prod);
-      return;
-    }
-  } catch(e) {
-    console.error('Fetch error:', e);
-  }
-  renderDemo(query);
-}
-
-  function renderDemo(query) {
-    renderProduct({
-      product: { name: `${query} — best results`, avg_rating: 4.5, review_count: 312 },
-      prices: [
-        { store_name: 'JB Hi-Fi', price: 329, effective_price: 329, effective_after_deals: 296, is_best_deal: true, affiliate_url: '#', deals: [{ deal_type: 'cashback', label: '10% cashback' }, { deal_type: 'ship', label: 'Free shipping' }] },
-        { store_name: 'The Good Guys', price: 349, effective_price: 349, effective_after_deals: 296, is_best_deal: false, affiliate_url: '#', deals: [{ deal_type: 'coupon', label: 'Code: GOOD15' }] },
-        { store_name: 'Mighty Ape', price: 359, effective_price: 359, effective_after_deals: 359, is_best_deal: false, affiliate_url: '#', deals: [{ deal_type: 'ship', label: 'Free shipping' }] },
-        { store_name: 'Harvey Norman', price: 399, effective_price: 399, effective_after_deals: 399, is_best_deal: false, affiliate_url: '#', deals: [] },
-      ],
-      reviews: [
-        { rating: 5, author: 'Sarah M.', verified: true, created_at: '2025-06-10', body: 'Absolutely love it. Grabbed the JB Hi-Fi cashback deal — effectively paid under $300. Best purchase this year.' },
-        { rating: 4, author: 'James T.', verified: true, created_at: '2025-06-08', body: 'Great product, very happy overall. Good price too.' },
-      ],
-      community_prices: [
-        { id: 1, store_name: 'Costco', price: 289, note: 'In-store only', upvotes: 14, created_at: '2025-06-15' },
-        { id: 2, store_name: 'PB Tech', price: 319, note: 'Online deal', upvotes: 8, created_at: '2025-06-14' },
-      ]
-    });
+    } catch(e) { console.error('Fetch error:', e); }
+    renderDemo(query);
   }
 
   function renderProduct(data) {
     const { product, prices, reviews, community_prices } = data;
+
+    // Product header
     document.getElementById('product-name').textContent = product.name;
-    document.getElementById('product-stars').textContent = starsHtml(product.avg_rating || 4);
-    document.getElementById('product-reviews').textContent = `${product.review_count || 0} reviews`;
-    const best = prices.find(p => p.is_best_deal) || prices[0];
-    if (best) {
-      const saving = best.effective_price - best.effective_after_deals;
-      document.getElementById('verdict-text').textContent = `Best deal: ${best.store_name} at $${best.effective_price}${saving > 0 ? ` → ~$${best.effective_after_deals} after deals` : ''}`;
-      document.getElementById('verdict-sub').textContent = saving > 0 ? `You save $${saving.toFixed(0)} compared to the sticker price.` : 'This is the lowest price we found across all stores.';
+    document.getElementById('product-stars').textContent = starsHtml(product.avg_rating || 0);
+    document.getElementById('product-reviews').textContent = product.review_count > 0 ? `${product.review_count.toLocaleString()} reviews` : '';
+
+    // Product image
+    const imgEl = document.getElementById('product-img');
+    if (product.image_url) {
+      imgEl.innerHTML = `<img src="${product.image_url}" alt="${escapeHtml(product.name)}" onerror="this.parentElement.textContent='📦'" />`;
+    } else {
+      imgEl.textContent = '📦';
     }
-    document.getElementById('price-list').innerHTML = prices.map(p => `
-      <div class="price-row ${p.is_best_deal ? 'best' : ''}">
-        <div class="price-left">
-          <div class="store-name">${p.store_name}${p.is_best_deal ? '<span class="best-pill">Best deal</span>' : ''}</div>
-          <div class="perks">${(p.deals||[]).map(d => `<span class="perk ${dealClass(d.deal_type)}">${d.label}</span>`).join('')}</div>
-        </div>
-        <div class="price-right">
-          <div class="price-final">$${p.effective_price}</div>
-          ${p.effective_after_deals < p.effective_price ? `<div class="price-eff">~$${p.effective_after_deals} after deals</div>` : ''}
-        </div>
-        <a href="${p.affiliate_url}" target="_blank" rel="noopener" class="go-btn">Go →</a>
-      </div>`).join('');
+
+    // Verdict
+    const best = prices.find(p => p.is_best_deal) || prices[0];
+    if (best && best.price) {
+      const saving = (best.effective_price || best.price) - (best.effective_after_deals || best.price);
+      document.getElementById('verdict-text').textContent = `Best deal: ${best.store_name} at $${best.effective_price || best.price}${saving > 0 ? ` → ~$${best.effective_after_deals} after deals` : ''}`;
+      document.getElementById('verdict-sub').textContent = saving > 0
+        ? `You save $${saving.toFixed(0)} compared to the sticker price.`
+        : 'This is the lowest price we found across all stores.';
+    }
+
+    // Price rows — FIX: use real affiliate_url for click-through
+    document.getElementById('price-list').innerHTML = prices
+      .filter(p => p.price && p.price > 0)
+      .map(p => {
+        const url = p.affiliate_url && p.affiliate_url !== '#' ? p.affiliate_url : null;
+        const price = p.effective_price || p.price;
+        return `
+        <div class="price-row ${p.is_best_deal ? 'best' : ''}">
+          <div class="price-left">
+            <div class="store-name">${escapeHtml(p.store_name)}${p.is_best_deal ? '<span class="best-pill">Best deal</span>' : ''}</div>
+            <div class="perks">${(p.deals||[]).map(d => `<span class="perk ${dealClass(d.deal_type)}">${escapeHtml(d.label)}</span>`).join('')}</div>
+          </div>
+          <div class="price-right">
+            <div class="price-final serif">$${price}</div>
+            ${p.effective_after_deals && p.effective_after_deals < price ? `<div class="price-eff">~$${p.effective_after_deals} after deals</div>` : ''}
+          </div>
+          ${url
+            ? `<a href="${url}" target="_blank" rel="noopener noreferrer" class="go-btn">Visit store →</a>`
+            : `<button class="go-btn" onclick="searchFor('${escapeHtml(p.store_name)}')" style="opacity:0.5">No link</button>`
+          }
+        </div>`;
+      }).join('');
+
+    // Community tips
     const tipsEl = document.getElementById('community-tips');
     tipsEl.innerHTML = community_prices && community_prices.length
-      ? community_prices.map(t => `<div class="tip-row"><span>Spotted at <b>${t.store_name}</b> for <span class="tip-price">$${t.price}</span>${t.note ? ` · ${t.note}` : ''} · ${timeAgo(t.created_at)}</span><button class="upvote-btn" onclick="upvote(${t.id}, this)">▲ ${t.upvotes}</button></div>`).join('')
-      : '<p style="font-size:12px;color:var(--muted);padding-top:8px">No community tips yet — be the first!</p>';
+      ? community_prices.map(t => `
+        <div class="tip-row">
+          <span>Spotted at <b>${escapeHtml(t.store_name)}</b> for <span class="tip-price">$${t.price}</span>${t.note ? ` · ${t.note}` : ''} · ${timeAgo(t.created_at)}</span>
+          <button class="upvote-btn" onclick="upvote(${t.id}, this)">▲ ${t.upvotes}</button>
+        </div>`).join('')
+      : '<p style="font-size:12px;color:#888;padding-top:8px">No community tips yet — be the first!</p>';
+
+    // Reviews
     document.getElementById('review-list').innerHTML = reviews && reviews.length
-      ? reviews.map(r => `<div class="review-card"><div class="review-meta"><span style="color:var(--amber)">${starsHtml(r.rating)}</span><span>${r.author||'Anonymous'} · ${r.verified?'✓ Verified · ':''}${formatDate(r.created_at)}</span></div><div class="review-body">${escapeHtml(r.body)}</div></div>`).join('')
-      : '<p style="font-size:13px;color:var(--muted)">No reviews yet.</p>';
+      ? reviews.map(r => `
+        <div class="review-card">
+          <div class="review-meta">
+            <span style="color:#92400e">${starsHtml(r.rating)}</span>
+            <span>${escapeHtml(r.author || 'Anonymous')} · ${r.verified ? '✓ Verified · ' : ''}${formatDate(r.created_at)}</span>
+          </div>
+          <div class="review-body">${escapeHtml(r.body)}</div>
+        </div>`).join('')
+      : '<p style="font-size:13px;color:#888">No reviews yet.</p>';
+  }
+
+  function renderDemo(query) {
+    renderProduct({
+      product: { name: `${query} — search results`, avg_rating: 0, review_count: 0, image_url: null },
+      prices: [],
+      reviews: [],
+      community_prices: []
+    });
+    document.getElementById('verdict-text').textContent = 'No results found';
+    document.getElementById('verdict-sub').textContent = 'Try a different search term or check your spelling.';
+    document.getElementById('price-list').innerHTML = '<p style="font-size:13px;color:#888;padding:20px 0">No prices found for this product. Try searching with different keywords.</p>';
   }
 
   async function submitCommunityPrice() {
@@ -516,7 +510,10 @@ async function fetchResults(query) {
     if (!match) { alert('Please use format: Store name · $price\ne.g. Costco · $289'); return; }
     const [, store, price] = match;
     if (API && currentProductId) {
-      await fetch(`${API}/api/products/${currentProductId}/community-prices`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ store_name: store.trim(), price, note: '' }) });
+      await fetch(`${API}/api/products/${currentProductId}/community-prices`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ store_name: store.trim(), price, note: '' })
+      });
     }
     const tips = document.getElementById('community-tips');
     const newTip = document.createElement('div');
@@ -536,24 +533,25 @@ async function fetchResults(query) {
   }
 
   function showLoading() {
-  document.getElementById('product-name').textContent = 'Searching NZ stores...';
-  document.getElementById('product-stars').textContent = '';
-  document.getElementById('product-reviews').textContent = '';
-  document.getElementById('verdict-text').textContent = '⚡ Scanning JB Hi-Fi, Mighty Ape, Harvey Norman...';
-  document.getElementById('verdict-sub').textContent = 'This takes 3-5 seconds — finding real NZ prices';
-  document.getElementById('price-list').innerHTML = [1,2,3,4].map(() => `
-    <div class="price-row">
-      <div class="price-left">
-        <div class="skeleton" style="height:16px;width:120px;margin-bottom:8px"></div>
-        <div class="skeleton" style="height:12px;width:180px"></div>
-      </div>
-      <div class="price-right">
-        <div class="skeleton" style="height:24px;width:60px;margin-left:auto"></div>
-      </div>
-    </div>`).join('');
-  document.getElementById('review-list').innerHTML = '';
-  document.getElementById('community-tips').innerHTML = '';
-}
+    document.getElementById('product-name').textContent = 'Searching NZ stores...';
+    document.getElementById('product-stars').textContent = '';
+    document.getElementById('product-reviews').textContent = '';
+    document.getElementById('product-img').textContent = '📦';
+    document.getElementById('verdict-text').textContent = 'Scanning prices across NZ stores...';
+    document.getElementById('verdict-sub').textContent = 'This takes a few seconds — finding real NZ prices';
+    document.getElementById('price-list').innerHTML = [1,2,3,4].map(() => `
+      <div class="price-row">
+        <div class="price-left">
+          <div class="skeleton" style="height:16px;width:130px;margin-bottom:8px"></div>
+          <div class="skeleton" style="height:12px;width:180px"></div>
+        </div>
+        <div class="price-right">
+          <div class="skeleton" style="height:24px;width:70px;margin-left:auto"></div>
+        </div>
+      </div>`).join('');
+    document.getElementById('review-list').innerHTML = '';
+    document.getElementById('community-tips').innerHTML = '';
+  }
 
   async function loadFlashDeals() {
     try {
@@ -562,10 +560,10 @@ async function fetchResults(query) {
       if (!data.deals || !data.deals.length) return;
       document.getElementById('deals-grid').innerHTML = data.deals.map(d => `
         <div class="deal-card" onclick="searchFor('${escapeHtml(d.name)}')">
-          <span class="badge ${d.sale_price ? 'sale' : d.deal_type === 'cashback' ? 'cb' : 'coupon'}">${d.discount_pct ? `−${d.discount_pct}%` : d.label || 'Deal'}</span>
-          <div class="deal-name">${escapeHtml(d.name)}</div>
-          <div><span class="deal-price">$${d.sale_price || d.price}</span>${d.sale_price ? `<span class="deal-was">$${d.price}</span>` : ''}</div>
-          <div class="deal-store">${escapeHtml(d.store_name)}</div>
+          <span class="d-flag ${d.sale_price ? 'f-red' : d.deal_type === 'cashback' ? 'f-grn' : 'f-pur'}">${d.discount_pct ? `−${d.discount_pct}%` : d.label || 'Deal'}</span>
+          <div class="d-name">${escapeHtml(d.name)}</div>
+          <div><span class="d-price serif">$${d.sale_price || d.price}</span>${d.sale_price ? `<span class="d-was">$${d.price}</span>` : ''}</div>
+          <div class="d-store">${escapeHtml(d.store_name)}</div>
         </div>`).join('');
     } catch(e) { /* keep static deals */ }
   }
@@ -574,9 +572,9 @@ async function fetchResults(query) {
     const user = JSON.parse(localStorage.getItem('twisti_user') || 'null');
     const navAuth = document.getElementById('nav-auth');
     if (user) {
-      navAuth.innerHTML = `<span style="color:var(--text);font-weight:600">${escapeHtml(user.name||user.email)}</span> · <a href="#" onclick="signOut()" style="color:var(--muted)">Sign out</a>`;
+      navAuth.innerHTML = `<span style="color:var(--text);font-weight:600;font-size:13px">${escapeHtml(user.name||user.email)}</span> · <a href="#" onclick="signOut()" style="color:var(--muted);font-size:13px">Sign out</a>`;
     } else {
-      navAuth.innerHTML = '<a href="/auth.html" class="nav-signin">Sign in</a>';
+      navAuth.innerHTML = '<a href="/auth.html" class="nav-btn">Sign in</a>';
     }
   }
 
@@ -594,6 +592,7 @@ async function fetchResults(query) {
   }
 
   function starsHtml(rating) {
+    if (!rating) return '';
     const full = Math.floor(rating);
     const half = rating % 1 >= 0.5 ? 1 : 0;
     return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(5 - full - half);

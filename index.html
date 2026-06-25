@@ -443,28 +443,23 @@
   }
 
   function showVariants(variants, query) {
-    document.getElementById('verdict-text').textContent = `${variants.length} results for "${query}"`;
-    document.getElementById('verdict-sub').textContent = 'Select a product to compare prices across NZ stores';
-    document.getElementById('product-name').textContent = '';
-    document.getElementById('product-stars').textContent = '';
-    document.getElementById('product-reviews').textContent = '';
-    document.getElementById('product-img').textContent = '🔍';
-    document.getElementById('product-header').style.display = 'none';
-
     document.getElementById('results-body').innerHTML = `
       <div class="variant-grid">
         ${variants.map(v => `
           <div class="variant-card" onclick="searchFor(${JSON.stringify(v.name)})">
             ${v.image_url
               ? `<img src="${v.image_url}" class="variant-img" onerror="this.style.display='none'" />`
-              : '<div style="height:80px;background:var(--bg-page);border-radius:4px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;font-size:28px">📦</div>'
+              : '<div style="height:120px;background:var(--bg-page);border-radius:4px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;font-size:32px">📦</div>'
             }
             <div class="variant-name">${escapeHtml(v.name)}</div>
             ${v.lowest_price ? `<div class="variant-price">from $${v.lowest_price}</div>` : ''}
             ${v.avg_rating ? `<div class="variant-rating">★ ${v.avg_rating}${v.review_count ? ` · ${v.review_count.toLocaleString()} reviews` : ''}</div>` : ''}
+            <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">
+              <span style="font-size:12px;color:var(--green);font-weight:500">Compare prices →</span>
+            </div>
           </div>`).join('')}
       </div>`;
-  }
+    
 
   function showProduct(data) {
     const { product, prices, reviews, community_prices } = data;

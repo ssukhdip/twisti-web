@@ -442,7 +442,15 @@
     showNoResults(query);
   }
 
-  function showVariants(variants, query) {
+ function showVariants(variants, query) {
+    document.getElementById('verdict-text').textContent = `${variants.length} results for "${query}"`;
+    document.getElementById('verdict-sub').textContent = 'Select a product to compare prices across NZ stores';
+    document.getElementById('product-name').textContent = '';
+    document.getElementById('product-stars').textContent = '';
+    document.getElementById('product-reviews').textContent = '';
+    document.getElementById('product-img').textContent = '🔍';
+    document.getElementById('product-header').style.display = 'none';
+
     document.getElementById('results-body').innerHTML = `
       <div class="variant-grid">
         ${variants.map(v => `
@@ -459,6 +467,7 @@
             </div>
           </div>`).join('')}
       </div>`;
+  }
     
 
   function showProduct(data) {

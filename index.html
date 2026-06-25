@@ -387,7 +387,7 @@
 </footer>
 
 <script>
-  const API = 'https://twisti-backend-production.up.railway.app';
+const API = 'https://twisti-backend-production.up.railway.app'; // v2
   let currentProductId = null;
 
   const searchInput = document.getElementById('search-input');
@@ -431,22 +431,19 @@ async function fetchResults(query) {
     const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}`);
     const data = await res.json();
 
-    if (data.error) {
-      console.error('API error:', data.error);
+    if (!data || data.error) {
       renderDemo(query);
       return;
     }
 
     if (data.results && data.results.length > 0) {
       const first = data.results[0];
-
-      // SerpApi/Google result — already has full product + prices
-      if (data.source === 'google' || data.source === 'cache' || first.prices) {
+      // Check if it has prices directly (SerpApi result)
+      if (first.prices && first.prices.length > 0) {
         renderProduct(first);
         return;
       }
-
-      // DB result — need to fetch full product detail
+      // DB result — fetch full detail
       currentProductId = first.id;
       const detail = await fetch(`${API}/api/products/${first.id}`);
       const prod   = await detail.json();

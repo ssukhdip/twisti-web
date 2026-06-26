@@ -402,7 +402,7 @@ function doSearch(forceProduct = false) {
 
   function searchFor(name) { searchInput.value = name; doSearch(); }
 function searchForProduct(name) { searchInput.value = name; doSearch(true); }
-function searchForProduct(name) { searchInput.value = name; doSearch(true); }
+
 
   searchBtn.addEventListener('click', doSearch);
   clearBtn.addEventListener('click', clearSearch);
@@ -457,10 +457,10 @@ function searchForProduct(name) { searchInput.value = name; doSearch(true); }
       <div class="variant-grid">
         ${variants.map(v => `
           <div class="variant-card" onclick="searchForProduct(${JSON.stringify(v.name)})">
-            ${v.image_url
-              ? `<img src="${v.image_url}" class="variant-img" onerror="this.style.display='none'" />`
-              : '<div style="height:120px;background:var(--bg-page);border-radius:4px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;font-size:32px">📦</div>'
-            }
+            ${v.image_url && !v.image_url.startsWith('data:')
+  ? `<img src="${v.image_url}" class="variant-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" /><div style="display:none;height:120px;background:var(--bg-page);border-radius:4px;margin-bottom:10px;align-items:center;justify-content:center;font-size:32px">📦</div>`
+  : '<div style="height:120px;background:var(--bg-page);border-radius:4px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;font-size:32px">📦</div>'
+}
             <div class="variant-name">${escapeHtml(v.name)}</div>
             ${v.lowest_price ? `<div class="variant-price">from $${v.lowest_price}</div>` : ''}
             ${v.avg_rating ? `<div class="variant-rating">★ ${v.avg_rating}${v.review_count ? ` · ${v.review_count.toLocaleString()} reviews` : ''}</div>` : ''}
@@ -536,6 +536,52 @@ function searchForProduct(name) { searchInput.value = name; doSearch(true); }
         }
       </div>`;
   }
+  async function fetchImageForProduct(name) {
+  try {
+    const res = await axios.post(
+      'https://google.serper.dev/images',
+      { q: name, gl: 'nz', hl: 'en', num: 1 },
+      { headers: { 'X-API-KEY': SERPER_KEY, 'Content-Type': 'application/json' }, timeout: 5000 }
+    );
+    const images = res.data.images || [];
+    for (const img of images) {
+      const url = img.imageUrl || img.thumbnailUrl || '';
+      if (url.startsWith('http')) return url;
+    }
+    return null;
+  } catch { return null; }
+}
+
+async function searchVariants(query) {
+  const items = await serperShopping(`${query} NZ`);
+  if (items.length === 0) throw new Error('No results found');
+
+  const seen = new Set();
+  const rawVariants = [];
+  for (const item of items) {
+    const key = (item.title || '').toLowerCase().replace(/[^a-z0-9]/g, '').substring(0, 35);
+    if (!seen.has(key) && item.title) {
+      seen.add(key);
+      rawVariants.push({
+        id:           `serper_v_${rawVariants.length}_${Date.now()}`,
+        name:         item.title,
+        image_url:    null,
+        avg_rating:   item.rating || null,
+        review_count: item.ratingCount || 0,
+        lowest_price: item.price ? parseFloat(item.price.replace(/[^0-9.]/g, '')) : null,
+        store_count:  1,
+      });
+    }
+  }
+
+  const top = rawVariants.slice(0, 10);
+
+  // Fetch images in parallel for all variants — 1 image credit each
+  const images = await Promise.all(top.map(v => fetchImageForProduct(v.name)));
+  top.forEach((v, i) => { v.image_url = images[i]; });
+
+  return top;
+}
 
   function showNoResults(query) {
     document.getElementById('verdict-text').textContent = 'No results found';

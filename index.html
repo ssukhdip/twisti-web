@@ -402,6 +402,7 @@ function doSearch(forceProduct = false) {
 
   function searchFor(name) { searchInput.value = name; doSearch(); }
 function searchForProduct(name) { searchInput.value = name; doSearch(true); }
+function searchForProduct(name) { searchInput.value = name; doSearch(true); }
 
   searchBtn.addEventListener('click', doSearch);
   clearBtn.addEventListener('click', clearSearch);

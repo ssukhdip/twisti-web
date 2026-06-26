@@ -381,15 +381,15 @@
     return q.toLowerCase().replace(/([a-z])([A-Z])/g, '$1 $2').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
   }
 
-  function doSearch() {
-    const raw = searchInput.value.trim();
-    if (!raw || raw.length < 2) return;
-    hero.classList.add('compact');
-    homeContent.style.display = 'none';
-    results.style.display = 'block';
-    clearBtn.style.display = 'flex';
-    fetchResults(normaliseQuery(raw));
-  }
+function doSearch(forceProduct = false) {
+  const raw = searchInput.value.trim();
+  if (!raw || raw.length < 2) return;
+  hero.classList.add('compact');
+  homeContent.style.display = 'none';
+  results.style.display = 'block';
+  clearBtn.style.display = 'flex';
+  fetchResults(normaliseQuery(raw), forceProduct);
+}
 
   function clearSearch() {
     searchInput.value = '';
@@ -401,6 +401,7 @@
   }
 
   function searchFor(name) { searchInput.value = name; doSearch(); }
+function searchForProduct(name) { searchInput.value = name; doSearch(true); }
 
   searchBtn.addEventListener('click', doSearch);
   clearBtn.addEventListener('click', clearSearch);
@@ -409,7 +410,7 @@
     if (!searchInput.value.trim() && results.style.display === 'block') clearSearch();
   });
 
-  async function fetchResults(query) {
+ async function fetchResults(query, forceProduct = false) {
     showLoading();
     try {
       const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}`);
@@ -420,7 +421,7 @@
         const first = data.results[0];
 
         // Multiple variants — show grid to pick from
-        if (data.source === 'google_variants' && data.results.length > 1) {
+        if (!forceProduct && data.source === 'google_variants' && data.results.length > 1) {
           showVariants(data.results, query);
           return;
         }
@@ -454,7 +455,7 @@
     document.getElementById('results-body').innerHTML = `
       <div class="variant-grid">
         ${variants.map(v => `
-          <div class="variant-card" onclick="searchFor(${JSON.stringify(v.name)})">
+          <div class="variant-card" onclick="searchForProduct(${JSON.stringify(v.name)})">
             ${v.image_url
               ? `<img src="${v.image_url}" class="variant-img" onerror="this.style.display='none'" />`
               : '<div style="height:120px;background:var(--bg-page);border-radius:4px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;font-size:32px">📦</div>'

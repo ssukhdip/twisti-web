@@ -361,6 +361,8 @@
       const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}`);
       const data = await res.json();
       if (!data || data.error) { showNoResults(query); return; }
+      // Category search — show brand guide
+      if (data.source === 'category' && data.category) { showCategory(query, data.category); return; }
       if (data.results && data.results.length > 0) {
         const first = data.results[0];
         if (!forceProduct && data.source === 'google_variants' && data.results.length > 1) { showVariants(data.results, query); return; }
@@ -371,6 +373,67 @@
       }
     } catch(e) { console.error('Fetch error:', e); }
     showNoResults(query);
+  }
+
+  // ── Category page ──
+  function showCategory(query, info) {
+    setVerdict('🔍', `Searching for a ${query}?`, 'Here are the top brands — narrow your search or keep it broad.', 'default');
+    document.getElementById('ai-badge').style.display = 'none';
+    document.getElementById('product-header').style.display = 'none';
+
+    const cap = q => q.charAt(0).toUpperCase() + q.slice(1);
+
+    document.getElementById('results-body').innerHTML = `
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px 22px;margin-bottom:16px;box-shadow:var(--shadow)">
+        <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px">Top brands for ${cap(query)}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px">
+          ${info.brands.map(b => `
+            <button onclick="searchFor('${b} ${query}')" style="padding:9px 16px;background:var(--bg-page);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--text);transition:all 0.15s;text-align:left"
+              onmouseover="this.style.borderColor='var(--green)';this.style.color='var(--green)';this.style.background='var(--green-light)'"
+              onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text)';this.style.background='var(--bg-page)'">
+              ${b}
+            </button>`).join('')}
+        </div>
+        ${info.tip ? `<div style="font-size:13px;color:var(--text-muted);padding:12px 14px;background:var(--bg-page);border-radius:6px;border-left:3px solid var(--green)">💡 ${info.tip}</div>` : ''}
+      </div>
+
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px 22px;box-shadow:var(--shadow)">
+        <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px">Or search by feature</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+          ${getCategoryFeatures(query).map(f => `
+            <button onclick="searchFor('${f} ${query}')" style="padding:7px 14px;background:var(--green-light);border:1px solid rgba(26,107,74,0.2);border-radius:20px;cursor:pointer;font-family:inherit;font-size:12px;color:var(--green);font-weight:500;transition:all 0.15s"
+              onmouseover="this.style.background='var(--green)';this.style.color='#fff'"
+              onmouseout="this.style.background='var(--green-light)';this.style.color='var(--green)'">
+              ${f}
+            </button>`).join('')}
+        </div>
+        <button onclick="searchFor('${query}'+'s')" style="width:100%;padding:11px;background:var(--green);color:#fff;border:none;border-radius:6px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600">
+          Compare all ${cap(query)}s across NZ stores →
+        </button>
+      </div>`;
+  }
+
+  function getCategoryFeatures(query) {
+    const q = query.toLowerCase();
+    const features = {
+      'washing machine': ['front loader', 'top loader', 'heat pump', 'quiet', '8kg', '10kg', '12kg'],
+      'washer': ['front loader', 'top loader', '8kg', '10kg', 'quiet'],
+      'tv': ['4K OLED', '4K QLED', '55 inch', '65 inch', '75 inch', 'smart'],
+      'television': ['4K OLED', '4K QLED', '55 inch', '65 inch', '75 inch', 'smart'],
+      'laptop': ['gaming', 'business', 'ultrabook', 'MacBook', '16 inch', 'touchscreen'],
+      'vacuum': ['cordless', 'robot', 'bagless', 'HEPA', 'pet hair', 'handheld'],
+      'vacuum cleaner': ['cordless', 'robot', 'bagless', 'HEPA', 'pet hair'],
+      'headphones': ['noise cancelling', 'wireless', 'over ear', 'earbuds', 'gaming', 'sport'],
+      'fridge': ['french door', 'side by side', 'bottom freezer', '500L', 'stainless'],
+      'refrigerator': ['french door', 'side by side', 'bottom freezer', '500L', 'stainless'],
+      'dishwasher': ['freestanding', 'integrated', 'slimline', 'quiet', 'smart'],
+      'air conditioner': ['heat pump', 'inverter', '2.5kW', '3.5kW', '6kW', 'wifi'],
+      'heat pump': ['2.5kW', '3.5kW', '6kW', 'wifi', 'inverter', 'ducted'],
+      'camera': ['mirrorless', 'DSLR', 'action', 'compact', 'vlogging', '4K'],
+      'phone': ['5G', 'iPhone', 'foldable', '128GB', '256GB', 'pro'],
+      'smartphone': ['5G', 'iPhone', 'foldable', '128GB', '256GB', 'pro'],
+    };
+    return features[q] || ['budget', 'mid range', 'premium', 'best seller', 'new'];
   }
 
   // ── Variants ──

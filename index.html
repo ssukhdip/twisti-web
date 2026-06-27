@@ -153,6 +153,9 @@
     .upvote-btn:hover{border-color:var(--green);color:var(--green);}
 
     /* Variants */
+    .variant-group{margin-bottom:16px;}
+    .variant-group:last-child{margin-bottom:0;}
+    .variant-group-heading{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;padding-left:2px;}
     .variant-list{display:flex;flex-direction:column;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:var(--shadow);}
     .variant-row{display:flex;align-items:center;gap:14px;padding:13px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.12s;}
     .variant-row:last-child{border-bottom:none;}
@@ -380,6 +383,82 @@
     showNoResults(query);
   }
 
+  // ── Group variants by series ──
+  function groupVariants(variants) {
+    const groups = {};
+    for (const v of variants) {
+      const group = detectSeries(v.name);
+      if (!groups[group]) groups[group] = [];
+      groups[group].push(v);
+    }
+    return groups;
+  }
+
+  function detectSeries(name) {
+    if (!name) return 'Other';
+    const n = name.toLowerCase();
+
+    // Apple Watch
+    if (n.includes('ultra')) return 'Apple Watch Ultra';
+    if (n.includes('series 10') || n.includes('series 11') || n.includes('series 12')) return 'Apple Watch Series (Latest)';
+    if (n.includes('series 9') || n.includes('series 8') || n.includes('series 7')) return 'Apple Watch Series (Previous)';
+    if (n.includes('series 6') || n.includes('series 5') || n.includes('series 4') || n.includes('series 3')) return 'Apple Watch Series (Older)';
+    if (n.includes('se')) return 'Apple Watch SE';
+
+    // Garmin
+    if (n.includes('fenix')) return 'Garmin Fenix';
+    if (n.includes('forerunner')) return 'Garmin Forerunner';
+    if (n.includes('instinct')) return 'Garmin Instinct';
+    if (n.includes('vivoactive')) return 'Garmin Vivoactive';
+    if (n.includes('venu')) return 'Garmin Venu';
+    if (n.includes('epix')) return 'Garmin Epix';
+
+    // Samsung Galaxy Watch
+    if (n.includes('ultra')) return 'Samsung Galaxy Watch Ultra';
+    if (n.includes('galaxy watch 7') || n.includes('galaxy watch 6') || n.includes('galaxy watch 5')) return 'Samsung Galaxy Watch';
+    if (n.includes('galaxy watch')) return 'Samsung Galaxy Watch';
+
+    // iPhone
+    if (n.includes('pro max')) return 'iPhone Pro Max';
+    if (n.includes('pro')) return 'iPhone Pro';
+    if (n.includes('plus')) return 'iPhone Plus';
+    if (n.includes('iphone')) return 'iPhone Standard';
+
+    // Samsung Galaxy phones
+    if (n.includes('s25') || n.includes('s24') || n.includes('s23')) return 'Samsung Galaxy S Series';
+    if (n.includes('a55') || n.includes('a35') || n.includes('a15') || n.includes('galaxy a')) return 'Samsung Galaxy A Series';
+    if (n.includes('fold') || n.includes('flip')) return 'Samsung Galaxy Foldable';
+
+    // Laptops
+    if (n.includes('macbook pro')) return 'MacBook Pro';
+    if (n.includes('macbook air')) return 'MacBook Air';
+    if (n.includes('macbook')) return 'MacBook';
+    if (n.includes('dell xps')) return 'Dell XPS';
+    if (n.includes('thinkpad')) return 'Lenovo ThinkPad';
+    if (n.includes('spectre') || n.includes('envy') || n.includes('pavilion')) return 'HP Laptops';
+
+    // Headphones
+    if (n.includes('airpods pro')) return 'AirPods Pro';
+    if (n.includes('airpods max')) return 'AirPods Max';
+    if (n.includes('airpods')) return 'AirPods';
+    if (n.includes('wh-1000') || n.includes('wf-1000')) return 'Sony WH/WF Series';
+    if (n.includes('quietcomfort') || n.includes('qc')) return 'Bose QuietComfort';
+
+    // TVs
+    if (n.includes('oled')) return 'OLED TVs';
+    if (n.includes('qled') || n.includes('neo qled')) return 'QLED TVs';
+    if (n.includes('4k') || n.includes('uhd')) return '4K TVs';
+
+    // Vacuum
+    if (n.includes('v15') || n.includes('v12') || n.includes('v11') || n.includes('v10') || n.includes('v8')) return 'Dyson V-Series Cordless';
+    if (n.includes('roomba')) return 'iRobot Roomba';
+    if (n.includes('dyson')) return 'Dyson';
+
+    // Extract first 2-3 meaningful words as group
+    const words = name.split(' ').filter(w => w.length > 2);
+    return words.slice(0, 2).join(' ');
+  }
+
   // ── Category page ──
   function showCategory(query, info) {
     setVerdict('🔍', `Searching for a ${query}?`, 'Here are the top brands — narrow your search or keep it broad.', 'default');
@@ -446,21 +525,28 @@
     setVerdict('✓', `${variants.length} results for "${query}"`, 'Select a product to compare prices across NZ stores', 'default');
     document.getElementById('ai-badge').style.display = 'none';
     document.getElementById('product-header').style.display = 'none';
+    // Group variants by series/model family
+    const grouped = groupVariants(variants);
+    const groupKeys = Object.keys(grouped);
+
     document.getElementById('results-body').innerHTML = `
-      <div class="variant-list">
-        ${variants.map((v, i) => `
-          <div class="variant-row" data-product-name="${escapeHtml(v.name)}">
-            <div class="variant-row-num">${i + 1}</div>
-            <div class="variant-row-info">
-              <div class="variant-row-name">${escapeHtml(v.name)}</div>
-              <div class="variant-row-meta">
-                ${v.avg_rating ? `★ ${v.avg_rating}${v.review_count ? ` · ${v.review_count.toLocaleString()} reviews` : ''}` : ''}
-              </div>
-            </div>
-            ${v.lowest_price ? `<div class="variant-row-price">from $${v.lowest_price}</div>` : ''}
-            <div class="variant-row-arrow">→</div>
-          </div>`).join('')}
-      </div>`;
+      ${groupKeys.map(group => `
+        <div class="variant-group">
+          ${groupKeys.length > 1 ? `<div class="variant-group-heading">${escapeHtml(group)}</div>` : ''}
+          <div class="variant-list">
+            ${grouped[group].map((v, i) => `
+              <div class="variant-row" data-product-name="${escapeHtml(v.name)}">
+                <div class="variant-row-info">
+                  <div class="variant-row-name">${escapeHtml(v.name)}</div>
+                  <div class="variant-row-meta">
+                    ${v.avg_rating ? `★ ${v.avg_rating}${v.review_count ? ` · ${v.review_count.toLocaleString()} reviews` : ''}` : ''}
+                  </div>
+                </div>
+                ${v.lowest_price ? `<div class="variant-row-price">from $${v.lowest_price}</div>` : ''}
+                <div class="variant-row-arrow">→</div>
+              </div>`).join('')}
+          </div>
+        </div>`).join('')}`;
   }
 
   // ── Product ──

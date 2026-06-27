@@ -80,49 +80,67 @@
     .trust-dot{width:4px;height:4px;border-radius:50%;background:var(--green);flex-shrink:0;}
     /* Results */
     #results{display:none;max-width:860px;margin:0 auto;padding:24px 40px 60px;}
-    .verdict-bar{display:flex;align-items:flex-start;gap:12px;background:var(--green-light);border:1px solid rgba(26,107,74,0.2);border-radius:6px;padding:14px 18px;margin-bottom:22px;transition:background 0.3s,border-color 0.3s;}
-    .verdict-icon{width:30px;height:30px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;color:#fff;transition:background 0.3s;}
-    .verdict-text-wrap{display:flex;align-items:center;gap:6px;margin-bottom:2px;}
-    .verdict-headline{font-size:14px;font-weight:600;color:var(--green);transition:color 0.3s;}
-    .ai-badge{font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;background:var(--green);color:#fff;padding:2px 6px;border-radius:3px;opacity:0.8;}
-    #verdict-sub{font-size:12px;color:var(--green);opacity:0.85;display:block;transition:color 0.3s;}
-    .product-header{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--border);}
-    .product-img{width:68px;height:68px;border-radius:6px;background:var(--bg-page);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;overflow:hidden;}
+    .verdict-bar{display:flex;align-items:flex-start;gap:14px;background:var(--green-light);border:1px solid rgba(26,107,74,0.2);border-radius:8px;padding:16px 20px;margin-bottom:24px;transition:background 0.3s,border-color 0.3s;}
+    .verdict-icon{width:34px;height:34px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:#fff;transition:background 0.3s;}
+    .verdict-text-wrap{display:flex;align-items:center;gap:6px;margin-bottom:3px;}
+    .verdict-headline{font-size:15px;font-weight:600;color:var(--green);transition:color 0.3s;}
+    .ai-badge{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:var(--green);color:#fff;padding:2px 6px;border-radius:3px;opacity:0.85;}
+    #verdict-sub{font-size:13px;color:var(--green);opacity:0.85;display:block;line-height:1.5;transition:color 0.3s;}
+    .product-header{display:flex;gap:14px;align-items:flex-start;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+    .product-img{width:72px;height:72px;border-radius:8px;background:var(--bg-page);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;overflow:hidden;}
     .product-img img{width:100%;height:100%;object-fit:cover;}
-    .product-meta h2{font-size:16px;font-weight:600;margin-bottom:4px;line-height:1.3;}
+    .product-meta h2{font-size:17px;font-weight:600;margin-bottom:4px;line-height:1.3;}
     .stars{color:#d97706;font-size:13px;}
     .review-count{font-size:12px;color:var(--text-muted);margin-left:4px;}
-    /* Filter bar */
-    .filter-bar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center;}
-    .filter-label{font-size:11px;color:var(--text-muted);font-weight:500;letter-spacing:0.5px;margin-right:4px;}
-    .filter-chip{font-size:12px;padding:5px 12px;border:1px solid var(--border);border-radius:20px;cursor:pointer;background:var(--bg-card);color:var(--text-muted);transition:all 0.15s;font-family:inherit;}
-    .filter-chip:hover{border-color:var(--green);color:var(--green);}
-    .filter-chip.active{background:var(--green);border-color:var(--green);color:#fff;}
-    /* Price list */
-    .prices-label{font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;}
-    .price-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
-    .price-row{display:flex;align-items:center;gap:12px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px 16px;transition:border-color 0.15s;box-shadow:var(--shadow);}
-    .price-row.best{border:1.5px solid var(--green);background:var(--green-light);}
-    .price-left{flex:1;}
-    .store-name{font-size:14px;font-weight:600;}
-    .best-pill{font-size:10px;font-weight:600;background:var(--green);color:#fff;padding:2px 7px;border-radius:3px;margin-left:8px;vertical-align:middle;}
-    .store-type-tag{font-size:10px;color:var(--text-muted);margin-top:3px;}
-    .price-right{text-align:right;margin-right:10px;}
-    .price-final{font-size:20px;font-weight:600;letter-spacing:-0.5px;}
-    .go-btn{font-size:12px;font-weight:500;color:var(--green);border:1px solid var(--green);padding:7px 14px;border-radius:4px;cursor:pointer;background:none;white-space:nowrap;transition:background 0.15s,color 0.15s;text-decoration:none;display:inline-block;font-family:inherit;}
-    .go-btn:hover{background:var(--green);color:#fff;}
-    .show-more-btn{width:100%;padding:10px;background:none;border:1px dashed var(--border);border-radius:6px;color:var(--text-muted);font-size:13px;cursor:pointer;font-family:inherit;transition:all 0.15s;margin-bottom:20px;}
-    .show-more-btn:hover{border-color:var(--green);color:var(--green);}
-    /* Variant grid */
-    .variant-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-    .variant-card{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:16px;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;box-shadow:var(--shadow);}
-    .variant-card:hover{border-color:var(--green);box-shadow:0 2px 12px rgba(26,107,74,0.1);}
-    .variant-img{width:100%;height:120px;object-fit:contain;border-radius:4px;background:var(--bg-page);margin-bottom:10px;}
-    .variant-name{font-size:13px;font-weight:500;line-height:1.3;margin-bottom:6px;}
-    .variant-price{font-size:16px;font-weight:600;color:var(--green);}
-    .variant-rating{font-size:11px;color:var(--text-muted);margin-top:4px;}
+
+    /* ── Filter tabs ── */
+    .filter-tabs{display:flex;gap:0;margin-bottom:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+    .ftab{flex:1;padding:11px 8px;border:none;background:none;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--text-muted);transition:all 0.15s;border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:6px;}
+    .ftab:last-child{border-right:none;}
+    .ftab:hover{background:var(--bg-page);color:var(--text);}
+    .ftab.active{background:var(--bg-card);color:var(--green);font-weight:600;box-shadow:inset 0 -2.5px 0 var(--green);}
+    .ftab-count{font-size:11px;background:var(--bg-page);color:var(--text-muted);padding:1px 7px;border-radius:10px;font-weight:400;}
+    .ftab.active .ftab-count{background:var(--green-light);color:var(--green);}
+
+    /* ── Price cards ── */
+    .prices-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+    .prices-section-label{font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;}
+    .price-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+
+    .price-card{display:grid;grid-template-columns:28px 1fr auto auto;align-items:center;gap:14px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;transition:all 0.15s;box-shadow:var(--shadow);}
+    .price-card:hover{border-color:rgba(26,107,74,0.4);box-shadow:0 2px 10px rgba(0,0,0,0.08);}
+    .price-card.winner{border:2px solid var(--green);background:var(--green-light);padding:13px 15px;}
+
+    .pc-rank{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+    .rank-1{background:var(--green);color:#fff;}
+    .rank-other{background:var(--bg-page);color:var(--text-muted);border:1px solid var(--border);font-size:12px;}
+
+    .pc-info{}
+    .pc-store-name{font-size:14px;font-weight:600;color:var(--text);}
+    .price-card.winner .pc-store-name{color:var(--green);}
+    .pc-tags{display:flex;gap:6px;margin-top:4px;flex-wrap:wrap;}
+    .pc-tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;}
+    .tag-cheapest{background:var(--green);color:#fff;}
+    .tag-instore{background:#eff6ff;color:#1d4ed8;}
+    [data-theme="dark"] .tag-instore{background:#1e3a5f;color:#93c5fd;}
+    .tag-online{background:var(--green-light);color:var(--green);}
+
+    .pc-price-wrap{text-align:right;}
+    .pc-price{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.1;}
+    .price-card.winner .pc-price{color:var(--green);}
+    .pc-savings{font-size:11px;color:var(--green);font-weight:500;margin-top:2px;}
+
+    .pc-btn{font-size:12px;font-weight:600;color:var(--green);border:1.5px solid var(--green);padding:9px 18px;border-radius:6px;cursor:pointer;background:none;white-space:nowrap;transition:background 0.15s,color 0.15s;text-decoration:none;display:inline-block;font-family:inherit;}
+    .pc-btn:hover{background:var(--green);color:#fff;}
+    .price-card.winner .pc-btn{background:var(--green);color:#fff;}
+    .price-card.winner .pc-btn:hover{background:var(--green-dark);}
+
+    .show-more-wrap{text-align:center;margin-bottom:22px;}
+    .show-more-btn{padding:10px 28px;background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-muted);font-size:13px;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+    .show-more-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-light);}
+
     /* Community */
-    .community-box{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:18px;margin-bottom:22px;box-shadow:var(--shadow);}
+    .community-box{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:18px;margin-bottom:22px;box-shadow:var(--shadow);}
     .community-box h3{font-size:13px;font-weight:600;margin-bottom:12px;}
     .community-input-row{display:flex;gap:8px;}
     .community-input-row input{flex:1;font-size:13px;padding:9px 12px;border-radius:4px;border:1px solid var(--border);outline:none;color:var(--text);background:var(--bg-input);font-family:inherit;}
@@ -133,25 +151,37 @@
     .tip-price{color:var(--text);font-weight:600;}
     .upvote-btn{background:none;border:1px solid var(--border);border-radius:3px;font-size:11px;cursor:pointer;padding:2px 8px;color:var(--text-muted);font-family:inherit;}
     .upvote-btn:hover{border-color:var(--green);color:var(--green);}
+
+    /* Variants */
+    .variant-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+    .variant-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:16px;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;box-shadow:var(--shadow);}
+    .variant-card:hover{border-color:var(--green);box-shadow:0 2px 12px rgba(26,107,74,0.1);}
+    .variant-img{width:100%;height:120px;object-fit:contain;border-radius:4px;background:var(--bg-page);margin-bottom:10px;}
+    .variant-name{font-size:13px;font-weight:500;line-height:1.3;margin-bottom:6px;}
+    .variant-price{font-size:16px;font-weight:600;color:var(--green);}
+    .variant-rating{font-size:11px;color:var(--text-muted);margin-top:4px;}
+
     /* Skeleton */
     .skeleton{background:linear-gradient(90deg,var(--bg-page) 25%,var(--border) 50%,var(--bg-page) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:4px;}
     @keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+
     footer{padding:36px 40px;border-top:1px solid var(--border);background:var(--bg-card);}
     .footer-inner{max-width:860px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:24px;border-bottom:1px solid var(--border);}
-    .f-brand{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
-    .f-logo-t{font-size:15px;font-weight:700;}
+    .f-logo-t{font-size:15px;font-weight:700;margin-bottom:8px;}
     .f-logo-t span{color:var(--green);}
     .f-desc{font-size:12px;color:var(--text-muted);line-height:1.7;}
     .f-col h4{font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;font-weight:600;}
     .f-col a{display:block;font-size:12px;color:var(--text-muted);text-decoration:none;margin-bottom:8px;}
     .footer-bottom{max-width:860px;margin:18px auto 0;display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);}
     .nz-tag{background:var(--green-light);color:var(--green);padding:3px 10px;font-size:10px;letter-spacing:1px;border-radius:3px;font-weight:500;}
+
     @media(max-width:640px){
       nav{padding:12px 16px;}#hero{padding:40px 16px 32px;}.section{padding:20px 16px;}
       #results{padding:16px 16px 40px;}.deals-grid{grid-template-columns:repeat(2,1fr);}
       .variant-grid{grid-template-columns:repeat(2,1fr);}.how-grid{grid-template-columns:1fr;gap:20px;}
       .stats-row{grid-template-columns:repeat(2,1fr);}.footer-inner{grid-template-columns:1fr;gap:20px;}
-      .price-row{flex-wrap:wrap;}.go-btn{width:100%;text-align:center;margin-top:6px;}
+      .price-card{grid-template-columns:26px 1fr auto;}
+      .pc-btn{display:none;}
     }
   </style>
 </head>
@@ -214,9 +244,9 @@
     <div class="how-inner">
       <div class="how-ey">How Twisti works</div>
       <div class="how-grid">
-        <div class="how-item"><div class="how-n">01</div><div class="how-t">Search</div><div class="how-d">Type any product and we scan prices across all major NZ retailers.</div></div>
-        <div class="how-item"><div class="how-n">02</div><div class="how-t">Compare</div><div class="how-d">We show the 3 cheapest options first, then let you filter by store type or preference.</div></div>
-        <div class="how-item"><div class="how-n">03</div><div class="how-t">Save</div><div class="how-d">Our AI gives you a clear verdict. The best deal, explained. Buy with confidence.</div></div>
+        <div class="how-item"><div class="how-n">01</div><div class="how-t">Search</div><div class="how-d">Type any product and we scan prices across all major NZ retailers instantly.</div></div>
+        <div class="how-item"><div class="how-n">02</div><div class="how-t">Compare</div><div class="how-d">See the cheapest 3 first. Filter by in-store or online. Show all stores anytime.</div></div>
+        <div class="how-item"><div class="how-n">03</div><div class="how-t">Save</div><div class="how-d">Our AI gives you a clear verdict. Buy with confidence — the best deal, explained.</div></div>
       </div>
     </div>
   </div>
@@ -231,7 +261,7 @@
 <div id="results">
   <div class="verdict-bar" id="verdict-bar">
     <div class="verdict-icon" id="verdict-icon">✓</div>
-    <div class="verdict-text">
+    <div style="flex:1">
       <div class="verdict-text-wrap">
         <span class="verdict-headline" id="verdict-text">Scanning NZ stores...</span>
         <span class="ai-badge" id="ai-badge" style="display:none">AI</span>
@@ -252,7 +282,7 @@
 <footer>
   <div class="footer-inner">
     <div>
-      <div class="f-brand"><div class="f-logo-t">twi<span>sti</span></div></div>
+      <div class="f-logo-t">twi<span>sti</span></div>
       <div class="f-desc">New Zealand's smartest price comparison. We find the best deal — not just the best price — across every major store.</div>
     </div>
     <div class="f-col"><h4>Explore</h4><a href="#">Deals</a><a href="#">Categories</a><a href="#">Stores</a></div>
@@ -264,8 +294,9 @@
 <script>
   const API = 'https://twisti-backend-production.up.railway.app';
   let currentProductId = null;
-  let allPrices = [];  // full price list for filtering
+  let allPrices = [];
   let activeFilter = 'all';
+  let currentProduct = null;
 
   const searchInput = document.getElementById('search-input');
   const clearBtn    = document.getElementById('clear-btn');
@@ -274,7 +305,7 @@
   const homeContent = document.getElementById('home-content');
   const resultsEl   = document.getElementById('results');
 
-  // ── Theme ──────────────────────────────────────────────────────────────────
+  // ── Theme ──
   function toggleTheme() {
     const html = document.documentElement;
     const isDark = html.getAttribute('data-theme') === 'dark';
@@ -289,10 +320,8 @@
     if (btn) btn.textContent = savedTheme === 'dark' ? '☀️ Light' : '🌙 Dark';
   });
 
-  // ── Search ─────────────────────────────────────────────────────────────────
-  function normaliseQuery(q) {
-    return q.toLowerCase().replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
-  }
+  // ── Search ──
+  function normaliseQuery(q) { return q.toLowerCase().replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim(); }
   function doSearch(forceProduct = false) {
     const raw = searchInput.value.trim();
     if (!raw || raw.length < 2) return;
@@ -309,8 +338,7 @@
     homeContent.style.display = 'block';
     resultsEl.style.display = 'none';
     clearBtn.style.display = 'none';
-    currentProductId = null;
-    allPrices = [];
+    currentProductId = null; allPrices = []; currentProduct = null;
   }
   function searchFor(name) { searchInput.value = name; doSearch(); }
   function searchForProduct(name) { searchInput.value = name; doSearch(true); }
@@ -326,30 +354,26 @@
     if (!searchInput.value.trim() && resultsEl.style.display === 'block') clearSearch();
   });
 
-  // ── Fetch ──────────────────────────────────────────────────────────────────
+  // ── Fetch ──
   async function fetchResults(query, forceProduct = false) {
     showLoading();
     try {
       const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}`);
       const data = await res.json();
       if (!data || data.error) { showNoResults(query); return; }
-
       if (data.results && data.results.length > 0) {
         const first = data.results[0];
-        if (!forceProduct && data.source === 'google_variants' && data.results.length > 1) {
-          showVariants(data.results, query); return;
-        }
+        if (!forceProduct && data.source === 'google_variants' && data.results.length > 1) { showVariants(data.results, query); return; }
         if (first.prices && first.prices.length > 0) { showProduct(first); return; }
         currentProductId = first.id;
-        const detail = await fetch(`${API}/api/products/${first.id}`);
-        showProduct(await detail.json());
+        showProduct(await (await fetch(`${API}/api/products/${first.id}`)).json());
         return;
       }
     } catch(e) { console.error('Fetch error:', e); }
     showNoResults(query);
   }
 
-  // ── Variants ───────────────────────────────────────────────────────────────
+  // ── Variants ──
   function showVariants(variants, query) {
     setVerdict('✓', `${variants.length} results for "${query}"`, 'Select a product to compare prices across NZ stores', 'default');
     document.getElementById('ai-badge').style.display = 'none';
@@ -359,7 +383,7 @@
         ${variants.map(v => `
           <div class="variant-card" data-product-name="${escapeHtml(v.name)}">
             ${v.image_url && !v.image_url.startsWith('data:')
-              ? `<img src="${v.image_url}" class="variant-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" /><div style="display:none;height:120px;background:var(--bg-page);border-radius:4px;margin-bottom:10px;align-items:center;justify-content:center;font-size:32px">📦</div>`
+              ? `<img src="${v.image_url}" class="variant-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div style="display:none;height:120px;background:var(--bg-page);border-radius:4px;margin-bottom:10px;align-items:center;justify-content:center;font-size:32px">📦</div>`
               : `<div style="height:120px;background:var(--bg-page);border-radius:4px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;font-size:32px">📦</div>`}
             <div class="variant-name">${escapeHtml(v.name)}</div>
             ${v.lowest_price ? `<div class="variant-price">from $${v.lowest_price}</div>` : ''}
@@ -369,9 +393,10 @@
       </div>`;
   }
 
-  // ── Product ────────────────────────────────────────────────────────────────
+  // ── Product ──
   function showProduct(data) {
     const { product, prices, community_prices } = data;
+    currentProduct = product;
     allPrices = (prices || []).filter(p => p.price && p.price > 0).sort((a,b) => a.price - b.price);
 
     document.getElementById('product-header').style.display = 'flex';
@@ -382,52 +407,103 @@
     const imgEl = document.getElementById('product-img');
     if (product.image_url && !product.image_url.startsWith('data:')) {
       imgEl.innerHTML = `<img src="${product.image_url}" alt="${escapeHtml(product.name)}" onerror="this.parentElement.textContent='📦'" />`;
-    } else { imgEl.textContent = '📦'; }
+    } else imgEl.textContent = '📦';
 
-    // Verdict loading
     setVerdict('⏳', 'Analysing prices with AI', 'Getting a smart buying verdict — just a moment...', 'default');
     document.getElementById('ai-badge').style.display = 'inline';
 
-    renderPriceList(allPrices, product, community_prices || []);
+    renderPriceSection(allPrices, community_prices || []);
     fetchVerdict(product.name, allPrices);
   }
 
-  // ── Price list with filters ────────────────────────────────────────────────
-  function renderPriceList(prices, product, communityPrices) {
-    const filtered = filterPrices(prices, activeFilter);
-    const top3     = filtered.slice(0, 3);
-    const rest     = filtered.slice(3);
-    const productName = product ? product.name : document.getElementById('product-name').textContent;
+  // ── Price section with tabs ──
+  function filterPrices(prices, filter) {
+    if (filter === 'instore') return prices.filter(p => p.store_type === 'both');
+    if (filter === 'online')  return prices.filter(p => p.store_type === 'online' || p.store_type === 'both');
+    return prices;
+  }
 
-    const priceHTML = (list, markBest = true) => list.map((p, i) => {
+  function countByFilter(prices, filter) { return filterPrices(prices, filter).length; }
+
+  function setFilter(filter) {
+    activeFilter = filter;
+    renderPriceSection(allPrices, []);
+  }
+
+  function renderPriceSection(prices, communityPrices) {
+    const allCount     = countByFilter(prices, 'all');
+    const instoreCount = countByFilter(prices, 'instore');
+    const onlineCount  = countByFilter(prices, 'online');
+    const filtered     = filterPrices(prices, activeFilter);
+
+    // For "All" show top 10, for others show all
+    const limit  = activeFilter === 'all' ? 10 : filtered.length;
+    const shown  = filtered.slice(0, limit);
+    const hidden = filtered.slice(limit);
+
+    // Cheapest price for savings calc
+    const cheapest = filtered[0]?.price || 0;
+
+    const cardHTML = (list, startRank = 1) => list.map((p, i) => {
+      const rank   = startRank + i;
+      const isWinner = rank === 1;
       const visitUrl = (p.affiliate_url && !p.affiliate_url.includes('google.com'))
         ? p.affiliate_url
-        : `https://www.google.com/search?q=${encodeURIComponent(productName + ' ' + p.store_name + ' NZ buy')}`;
-      const isBest = markBest && i === 0;
+        : `https://www.google.com/search?q=${encodeURIComponent((currentProduct?.name || '') + ' ' + p.store_name + ' NZ buy')}`;
+      const savings = (rank > 1 && p.price > cheapest) ? `$${(p.price - cheapest).toFixed(0)} more than cheapest` : '';
+
       return `
-        <div class="price-row ${isBest ? 'best' : ''}">
-          <div class="price-left">
-            <div class="store-name">${escapeHtml(p.store_name)}${isBest ? '<span class="best-pill">Cheapest</span>' : ''}</div>
-            <div class="store-type-tag">${p.store_type === 'online' ? '🌐 Online only' : p.store_type === 'both' ? '🏪 In-store & online' : ''}</div>
+        <div class="price-card${isWinner ? ' winner' : ''}">
+          <div class="pc-rank ${isWinner ? 'rank-1' : 'rank-other'}">${rank}</div>
+          <div class="pc-info">
+            <div class="pc-store-name">${escapeHtml(p.store_name)}</div>
+            <div class="pc-tags">
+              ${isWinner ? '<span class="pc-tag tag-cheapest">Cheapest</span>' : ''}
+              ${p.store_type === 'both' ? '<span class="pc-tag tag-instore">In-store & online</span>' : ''}
+              ${p.store_type === 'online' ? '<span class="pc-tag tag-online">Online only</span>' : ''}
+            </div>
           </div>
-          <div class="price-right"><div class="price-final">$${p.price}</div></div>
-          <a href="${visitUrl}" target="_blank" rel="noopener noreferrer" class="go-btn">Visit →</a>
+          <div class="pc-price-wrap">
+            <div class="pc-price">$${p.price}</div>
+            ${savings ? `<div style="font-size:11px;color:var(--text-muted);text-align:right">${savings}</div>` : ''}
+          </div>
+          <a href="${visitUrl}" target="_blank" rel="noopener noreferrer" class="pc-btn">Visit →</a>
         </div>`;
     }).join('');
 
     document.getElementById('results-body').innerHTML = `
-      <div class="filter-bar">
-        <span class="filter-label">Filter:</span>
-        <button class="filter-chip ${activeFilter==='all'?'active':''}" onclick="setFilter('all',this)">All stores</button>
-        <button class="filter-chip ${activeFilter==='instore'?'active':''}" onclick="setFilter('instore',this)">🏪 In-store</button>
-        <button class="filter-chip ${activeFilter==='online'?'active':''}" onclick="setFilter('online',this)">🌐 Online only</button>
+      <div class="filter-tabs">
+        <button class="ftab ${activeFilter==='all'?'active':''}" onclick="setFilter('all')">
+          All stores <span class="ftab-count">${allCount}</span>
+        </button>
+        <button class="ftab ${activeFilter==='instore'?'active':''}" onclick="setFilter('instore')">
+          🏪 In-store <span class="ftab-count">${instoreCount}</span>
+        </button>
+        <button class="ftab ${activeFilter==='online'?'active':''}" onclick="setFilter('online')">
+          🌐 Online <span class="ftab-count">${onlineCount}</span>
+        </button>
       </div>
-      <div class="prices-label">Cheapest ${top3.length} of ${filtered.length} stores</div>
-      <div class="price-list" id="price-list-top">${priceHTML(top3)}</div>
-      ${rest.length > 0
-        ? `<button class="show-more-btn" id="show-more-btn" onclick="showAllPrices()">Show ${rest.length} more store${rest.length > 1 ? 's' : ''} →</button>
-           <div class="price-list" id="price-list-rest" style="display:none">${priceHTML(rest, false)}</div>`
-        : ''}
+
+      <div class="prices-header">
+        <div class="prices-section-label">
+          ${filtered.length > 0 ? `Showing ${shown.length} of ${filtered.length} stores` : 'No stores found for this filter'}
+        </div>
+      </div>
+
+      <div class="price-cards">
+        ${shown.length > 0 ? cardHTML(shown) : '<p style="font-size:13px;color:var(--text-muted);padding:12px 0">No stores match this filter.</p>'}
+      </div>
+
+      ${hidden.length > 0 ? `
+        <div class="show-more-wrap">
+          <button class="show-more-btn" onclick="showHiddenPrices(this, ${shown.length})">
+            Show ${hidden.length} more store${hidden.length > 1 ? 's' : ''} →
+          </button>
+        </div>
+        <div class="price-cards" id="hidden-prices" style="display:none">
+          ${cardHTML(hidden, shown.length + 1)}
+        </div>` : ''}
+
       <div class="community-box">
         <h3>Community price tips</h3>
         <div class="community-input-row">
@@ -442,60 +518,41 @@
       </div>`;
   }
 
-  function filterPrices(prices, filter) {
-    if (filter === 'instore') return prices.filter(p => p.store_type === 'both');
-    if (filter === 'online')  return prices.filter(p => p.store_type === 'online' || p.store_type === 'both');
-    return prices;
+  function showHiddenPrices(btn, startRank) {
+    document.getElementById('hidden-prices').style.display = 'flex';
+    document.getElementById('hidden-prices').style.flexDirection = 'column';
+    document.getElementById('hidden-prices').style.gap = '10px';
+    btn.parentElement.style.display = 'none';
   }
 
-  function setFilter(filter, btn) {
-    activeFilter = filter;
-    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-    if (btn) btn.classList.add('active');
-    const productName = document.getElementById('product-name').textContent;
-    renderPriceList(allPrices, { name: productName }, []);
-  }
-
-  function showAllPrices() {
-    const rest = document.getElementById('price-list-rest');
-    const btn  = document.getElementById('show-more-btn');
-    if (rest) rest.style.display = 'flex';
-    if (rest) rest.style.flexDirection = 'column';
-    if (rest) rest.style.gap = '8px';
-    if (btn)  btn.style.display = 'none';
-  }
-
-  // ── AI verdict ─────────────────────────────────────────────────────────────
-  const VERDICT_STYLES = {
-    great_deal:   { bg:'var(--green-light)', border:'rgba(26,107,74,0.3)',  iconBg:'var(--green)', color:'var(--green)' },
-    good_deal:    { bg:'var(--green-light)', border:'rgba(26,107,74,0.2)',  iconBg:'var(--green)', color:'var(--green)' },
-    fair_price:   { bg:'var(--bg-card)',     border:'var(--border)',         iconBg:'var(--text-muted)', color:'var(--text-muted)' },
-    wait:         { bg:'#fef9ec',            border:'rgba(217,119,6,0.3)',  iconBg:'#d97706',     color:'#92400e' },
-    compare_more: { bg:'#eff6ff',            border:'rgba(59,130,246,0.3)', iconBg:'#3b82f6',     color:'#1e40af' },
+  // ── AI Verdict ──
+  const VSTYLES = {
+    great_deal:   { bg:'var(--green-light)', border:'rgba(26,107,74,0.35)', iconBg:'var(--green)', color:'var(--green)' },
+    good_deal:    { bg:'var(--green-light)', border:'rgba(26,107,74,0.25)', iconBg:'var(--green)', color:'var(--green)' },
+    fair_price:   { bg:'var(--bg-card)',     border:'var(--border)',          iconBg:'#888',         color:'var(--text-muted)' },
+    wait:         { bg:'#fef9ec',            border:'rgba(217,119,6,0.35)', iconBg:'#d97706',      color:'#92400e' },
+    compare_more: { bg:'#eff6ff',            border:'rgba(59,130,246,0.35)',iconBg:'#3b82f6',      color:'#1e40af' },
+    default:      { bg:'var(--green-light)', border:'rgba(26,107,74,0.2)',  iconBg:'var(--green)', color:'var(--green)' },
   };
 
   function setVerdict(icon, headline, sub, styleKey) {
-    const s = VERDICT_STYLES[styleKey] || { bg:'var(--green-light)', border:'rgba(26,107,74,0.2)', iconBg:'var(--green)', color:'var(--green)' };
+    const s = VSTYLES[styleKey] || VSTYLES.default;
     const bar = document.getElementById('verdict-bar');
     bar.style.background  = s.bg;
     bar.style.borderColor = s.border;
     const ico = document.getElementById('verdict-icon');
-    ico.textContent      = icon;
-    ico.style.background = s.iconBg;
+    ico.textContent = icon; ico.style.background = s.iconBg;
     const ht = document.getElementById('verdict-text');
-    ht.textContent  = headline;
-    ht.style.color  = s.color;
+    ht.textContent = headline; ht.style.color = s.color;
     const st = document.getElementById('verdict-sub');
-    st.textContent  = sub;
-    st.style.color  = s.color;
+    st.textContent = sub; st.style.color = s.color;
   }
 
   async function fetchVerdict(productName, prices) {
     if (!prices || prices.length === 0) return;
     try {
       const res = await fetch(`${API}/api/verdict`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ productName, prices }),
       });
       const v = await res.json();
@@ -504,29 +561,24 @@
       document.getElementById('ai-badge').style.display = 'inline';
     } catch {
       const best = prices[0];
-      if (best) {
-        setVerdict('✓', `Best price: $${best.price} at ${best.store_name}`, 'Lowest price found across NZ stores.', 'good_deal');
-        document.getElementById('ai-badge').style.display = 'none';
-      }
+      if (best) { setVerdict('✓', `Best price: $${best.price} at ${best.store_name}`, 'Lowest price found across NZ stores.', 'good_deal'); }
+      document.getElementById('ai-badge').style.display = 'none';
     }
   }
 
-  // ── Loading / No results ───────────────────────────────────────────────────
+  // ── Loading / No results ──
   function showLoading() {
     setVerdict('✓', 'Scanning prices across NZ stores...', 'Finding the best deal — takes a few seconds', 'default');
     document.getElementById('ai-badge').style.display = 'none';
     document.getElementById('product-header').style.display = 'none';
-    document.getElementById('product-name').textContent = '';
-    document.getElementById('product-stars').textContent = '';
-    document.getElementById('product-reviews').textContent = '';
+    ['product-name','product-stars','product-reviews'].forEach(id => document.getElementById(id).textContent = '');
     document.getElementById('product-img').textContent = '';
     document.getElementById('results-body').innerHTML = [1,2,3].map(() => `
-      <div class="price-row">
-        <div class="price-left">
-          <div class="skeleton" style="height:15px;width:120px;margin-bottom:8px"></div>
-          <div class="skeleton" style="height:11px;width:80px"></div>
-        </div>
-        <div class="price-right"><div class="skeleton" style="height:22px;width:65px;margin-left:auto"></div></div>
+      <div class="price-card">
+        <div class="skeleton" style="width:26px;height:26px;border-radius:50%"></div>
+        <div><div class="skeleton" style="height:15px;width:130px;margin-bottom:8px"></div><div class="skeleton" style="height:11px;width:80px"></div></div>
+        <div class="skeleton" style="height:26px;width:70px"></div>
+        <div class="skeleton" style="height:36px;width:80px;border-radius:6px"></div>
       </div>`).join('');
   }
 
@@ -539,21 +591,16 @@
     document.getElementById('results-body').innerHTML = '<p style="font-size:13px;color:var(--text-muted);padding:20px 0">No products found. Try different keywords.</p>';
   }
 
-  // ── Community ──────────────────────────────────────────────────────────────
+  // ── Community ──
   async function submitCommunityPrice() {
     const input = document.getElementById('community-input');
-    const val   = input.value.trim();
+    const val = input.value.trim();
     if (!val) return;
     const match = val.match(/^(.+?)[\s·\-]+\$?(\d+(?:\.\d+)?)$/);
     if (!match) { alert('Format: Store name · $price — e.g. Costco · $289'); return; }
     const [, store, price] = match;
-    if (API && currentProductId) {
-      await fetch(`${API}/api/products/${currentProductId}/community-prices`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ store_name: store.trim(), price, note: '' })
-      });
-    }
-    const tips   = document.getElementById('community-tips');
+    if (API && currentProductId) await fetch(`${API}/api/products/${currentProductId}/community-prices`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ store_name: store.trim(), price, note: '' }) });
+    const tips = document.getElementById('community-tips');
     const newTip = document.createElement('div');
     newTip.className = 'tip-row';
     newTip.innerHTML = `<span>Spotted at <b>${escapeHtml(store.trim())}</b> for <span class="tip-price">$${parseFloat(price).toFixed(2)}</span> · just now</span><button class="upvote-btn">▲ 0</button>`;
@@ -563,12 +610,10 @@
   async function upvote(id, btn) {
     if (API) await fetch(`${API}/api/community-prices/${id}/upvote`, { method: 'POST' });
     const c = parseInt(btn.textContent.replace('▲','').trim()) || 0;
-    btn.textContent = `▲ ${c + 1}`;
-    btn.style.color = 'var(--green)';
-    btn.disabled = true;
+    btn.textContent = `▲ ${c+1}`; btn.style.color = 'var(--green)'; btn.disabled = true;
   }
 
-  // ── Deals ──────────────────────────────────────────────────────────────────
+  // ── Deals ──
   async function loadFlashDeals() {
     try {
       const res = await fetch(`${API}/api/deals`);
@@ -584,22 +629,14 @@
     } catch(e) {}
   }
 
-  // ── Auth ───────────────────────────────────────────────────────────────────
   function initSession() {
     const user = JSON.parse(localStorage.getItem('twisti_user') || 'null');
     const navAuth = document.getElementById('nav-auth');
-    if (user) {
-      navAuth.innerHTML = `<span style="color:var(--text);font-weight:500;font-size:13px">${escapeHtml(user.name||user.email)}</span> · <a href="#" onclick="signOut()" style="color:var(--text-muted);font-size:13px">Sign out</a>`;
-    } else {
-      navAuth.innerHTML = '<a href="/auth.html" class="nav-btn">Sign in</a>';
-    }
+    if (user) navAuth.innerHTML = `<span style="color:var(--text);font-weight:500;font-size:13px">${escapeHtml(user.name||user.email)}</span> · <a href="#" onclick="signOut()" style="color:var(--text-muted);font-size:13px">Sign out</a>`;
+    else navAuth.innerHTML = '<a href="/auth.html" class="nav-btn">Sign in</a>';
   }
-  function signOut() {
-    ['twisti_access','twisti_refresh','twisti_user'].forEach(k => localStorage.removeItem(k));
-    location.reload();
-  }
+  function signOut() { ['twisti_access','twisti_refresh','twisti_user'].forEach(k => localStorage.removeItem(k)); location.reload(); }
 
-  // ── Helpers ────────────────────────────────────────────────────────────────
   function starsHtml(r){const f=Math.floor(r),h=r%1>=0.5?1:0;return '★'.repeat(f)+(h?'½':'')+'☆'.repeat(5-f-h);}
   function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   function timeAgo(d){const h=Math.floor((Date.now()-new Date(d).getTime())/3600000);return h<1?'just now':h<24?`${h}h ago`:`${Math.floor(h/24)}d ago`;}

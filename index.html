@@ -264,7 +264,10 @@
   <div class="verdict-bar" id="verdict-bar">
     <div class="verdict-icon" id="verdict-icon">✓</div>
     <div class="verdict-text">
-      <strong id="verdict-text">Scanning NZ stores...<span class="ai-badge" id="ai-badge" style="display:none">AI</span></strong>
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
+        <strong id="verdict-text">Scanning NZ stores...</strong>
+        <span class="ai-badge" id="ai-badge" style="display:none">AI</span>
+      </div>
       <span id="verdict-sub"></span>
     </div>
   </div>
@@ -531,15 +534,15 @@
 
       const vText = document.getElementById('verdict-text');
       vText.style.color = style.textColor;
-      // Keep the AI badge
-      const badge = document.getElementById('ai-badge');
       vText.textContent = v.headline;
-      vText.appendChild(badge);
-      badge.style.display = 'inline';
 
       const vSub = document.getElementById('verdict-sub');
       vSub.textContent = v.reason;
       vSub.style.color = style.textColor;
+
+      const badge = document.getElementById('ai-badge');
+      badge.style.display = 'inline';
+      badge.style.background = style.iconBg;
 
     } catch (err) {
       // Graceful fallback — show cheapest price

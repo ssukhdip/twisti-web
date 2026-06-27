@@ -91,10 +91,11 @@
     .trust-item{font-size:11px;color:var(--text-muted);letter-spacing:0.5px;display:flex;align-items:center;gap:6px;}
     .trust-dot{width:4px;height:4px;border-radius:50%;background:var(--green);flex-shrink:0;}
     #results{display:none;max-width:860px;margin:0 auto;padding:24px 40px 60px;}
-    .verdict-bar{display:flex;align-items:flex-start;gap:12px;background:var(--green-light);border:1px solid rgba(26,107,74,0.2);border-radius:6px;padding:14px 18px;margin-bottom:22px;}
-    .verdict-icon{width:30px;height:30px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;color:#fff;}
-    .verdict-text strong{display:block;font-size:14px;color:var(--green);margin-bottom:2px;font-weight:600;}
-    .verdict-text span{font-size:12px;color:var(--green);opacity:0.8;}
+    .verdict-bar{display:flex;align-items:flex-start;gap:12px;background:var(--green-light);border:1px solid rgba(26,107,74,0.2);border-radius:6px;padding:14px 18px;margin-bottom:22px;transition:background 0.3s,border-color 0.3s;}
+    .verdict-icon{width:30px;height:30px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;color:#fff;transition:background 0.3s;}
+    .verdict-text strong{display:block;font-size:14px;color:var(--green);margin-bottom:2px;font-weight:600;transition:color 0.3s;}
+    .verdict-text span{font-size:12px;color:var(--green);opacity:0.85;transition:color 0.3s;}
+    .ai-badge{font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;background:var(--green);color:#fff;padding:2px 6px;border-radius:3px;margin-left:8px;vertical-align:middle;opacity:0.8;}
     .product-header{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--border);}
     .product-img{width:68px;height:68px;border-radius:6px;background:var(--bg-page);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;overflow:hidden;}
     .product-img img{width:100%;height:100%;object-fit:cover;}
@@ -246,7 +247,7 @@
       <div class="how-grid">
         <div class="how-item"><div class="how-n">01</div><div class="how-t">Search</div><div class="how-d">Type any product and we scan prices across all major NZ retailers.</div></div>
         <div class="how-item"><div class="how-n">02</div><div class="how-t">Compare</div><div class="how-d">We surface every deal — sale prices, coupons and cashback — not just the sticker price.</div></div>
-        <div class="how-item"><div class="how-n">03</div><div class="how-t">Save</div><div class="how-d">One clear verdict. The best deal, explained. Click through and buy with confidence.</div></div>
+        <div class="how-item"><div class="how-n">03</div><div class="how-t">Save</div><div class="how-d">Our AI gives you a clear verdict. The best deal, explained. Buy with confidence.</div></div>
       </div>
     </div>
   </div>
@@ -254,16 +255,16 @@
   <div class="trust-bar">
     <div class="trust-item"><div class="trust-dot"></div> No hidden fees</div>
     <div class="trust-item"><div class="trust-dot"></div> Updated every 6 hours</div>
+    <div class="trust-item"><div class="trust-dot"></div> AI buying verdicts</div>
     <div class="trust-item"><div class="trust-dot"></div> Community price tips</div>
-    <div class="trust-item"><div class="trust-dot"></div> Verified reviews</div>
   </div>
 </div>
 
 <div id="results">
-  <div class="verdict-bar">
-    <div class="verdict-icon">✓</div>
+  <div class="verdict-bar" id="verdict-bar">
+    <div class="verdict-icon" id="verdict-icon">✓</div>
     <div class="verdict-text">
-      <strong id="verdict-text">Scanning NZ stores...</strong>
+      <strong id="verdict-text">Scanning NZ stores...<span class="ai-badge" id="ai-badge" style="display:none">AI</span></strong>
       <span id="verdict-sub"></span>
     </div>
   </div>
@@ -306,14 +307,14 @@
   const homeContent = document.getElementById('home-content');
   const results     = document.getElementById('results');
 
+  // ── Theme ──────────────────────────────────────────────────────────────────
   function toggleTheme() {
-    const html = document.documentElement;
+    const html   = document.documentElement;
     const isDark = html.getAttribute('data-theme') === 'dark';
     html.setAttribute('data-theme', isDark ? 'light' : 'dark');
     document.getElementById('theme-btn').textContent = isDark ? '🌙 Dark' : '☀️ Light';
     localStorage.setItem('twisti_theme', isDark ? 'light' : 'dark');
   }
-
   const savedTheme = localStorage.getItem('twisti_theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
   document.addEventListener('DOMContentLoaded', () => {
@@ -321,6 +322,7 @@
     if (btn) btn.textContent = savedTheme === 'dark' ? '☀️ Light' : '🌙 Dark';
   });
 
+  // ── Search ─────────────────────────────────────────────────────────────────
   function normaliseQuery(q) {
     return q.toLowerCase().replace(/([a-z])([A-Z])/g, '$1 $2').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
   }
@@ -347,12 +349,10 @@
   function searchFor(name) { searchInput.value = name; doSearch(); }
   function searchForProduct(name) { searchInput.value = name; doSearch(true); }
 
-  // Use event delegation on the results body — avoids all onclick/quoting issues
+  // Event delegation for variant cards — avoids quoting issues
   document.addEventListener('click', function(e) {
     const card = e.target.closest('.variant-card');
-    if (card && card.dataset.productName) {
-      searchForProduct(card.dataset.productName);
-    }
+    if (card && card.dataset.productName) searchForProduct(card.dataset.productName);
   });
 
   searchBtn.addEventListener('click', doSearch);
@@ -362,6 +362,7 @@
     if (!searchInput.value.trim() && results.style.display === 'block') clearSearch();
   });
 
+  // ── Fetch results ──────────────────────────────────────────────────────────
   async function fetchResults(query, forceProduct = false) {
     showLoading();
     try {
@@ -392,17 +393,14 @@
     showNoResults(query);
   }
 
+  // ── Show variant grid ──────────────────────────────────────────────────────
   function showVariants(variants, query) {
     document.getElementById('verdict-text').textContent = `${variants.length} results for "${query}"`;
     document.getElementById('verdict-sub').textContent = 'Select a product to compare prices across NZ stores';
-    document.getElementById('product-name').textContent = '';
-    document.getElementById('product-stars').textContent = '';
-    document.getElementById('product-reviews').textContent = '';
-    document.getElementById('product-img').textContent = '🔍';
     document.getElementById('product-header').style.display = 'none';
+    document.getElementById('ai-badge').style.display = 'none';
+    resetVerdictBar();
 
-    // KEY FIX: store name in data-product-name attribute, NOT in onclick
-    // This avoids all quoting/escaping issues with apostrophes and special chars
     document.getElementById('results-body').innerHTML = `
       <div class="variant-grid">
         ${variants.map(v => `
@@ -422,6 +420,7 @@
       </div>`;
   }
 
+  // ── Show product prices + trigger AI verdict ───────────────────────────────
   function showProduct(data) {
     const { product, prices, reviews, community_prices } = data;
 
@@ -437,11 +436,12 @@
       imgEl.textContent = '📦';
     }
 
-    const best = prices.find(p => p.is_best_deal) || prices[0];
-    if (best && best.price) {
-      document.getElementById('verdict-text').textContent = `Best deal: ${best.store_name} at $${best.price}`;
-      document.getElementById('verdict-sub').textContent = 'This is the lowest price we found across all stores.';
-    }
+    // Verdict bar — loading state while AI analyses
+    document.getElementById('verdict-icon').textContent = '⏳';
+    document.getElementById('verdict-text').textContent = 'Analysing prices with AI';
+    document.getElementById('verdict-sub').textContent = 'Getting a smart buying verdict — just a moment...';
+    document.getElementById('ai-badge').style.display = 'inline';
+    resetVerdictBar();
 
     const filteredPrices = prices.filter(p => p.price && p.price > 0);
 
@@ -485,27 +485,100 @@
           : '<p style="font-size:13px;color:var(--text-muted)">No reviews yet.</p>'
         }
       </div>`;
+
+    // Fetch AI verdict async — page is already interactive
+    fetchVerdict(product.name, filteredPrices);
   }
 
+  // ── AI verdict ─────────────────────────────────────────────────────────────
+  const VERDICT_STYLES = {
+    great_deal:   { bg: 'var(--green-light)', border: 'rgba(26,107,74,0.3)',    iconBg: 'var(--green)',   textColor: 'var(--green)' },
+    good_deal:    { bg: 'var(--green-light)', border: 'rgba(26,107,74,0.2)',    iconBg: 'var(--green)',   textColor: 'var(--green)' },
+    fair_price:   { bg: 'var(--bg-card)',     border: 'var(--border)',           iconBg: 'var(--text-muted)', textColor: 'var(--text-muted)' },
+    wait:         { bg: '#fef9ec',            border: 'rgba(217,119,6,0.3)',    iconBg: '#d97706',        textColor: '#92400e' },
+    compare_more: { bg: '#eff6ff',            border: 'rgba(59,130,246,0.3)',   iconBg: '#3b82f6',        textColor: '#1e40af' },
+  };
+
+  function resetVerdictBar() {
+    const bar = document.getElementById('verdict-bar');
+    bar.style.background  = 'var(--green-light)';
+    bar.style.borderColor = 'rgba(26,107,74,0.2)';
+    const icon = document.getElementById('verdict-icon');
+    icon.style.background = 'var(--green)';
+    document.getElementById('verdict-text').style.color = 'var(--green)';
+    document.getElementById('verdict-sub').style.color  = 'var(--green)';
+  }
+
+  async function fetchVerdict(productName, prices) {
+    if (!prices || prices.length === 0) return;
+    try {
+      const res = await fetch(`${API}/api/verdict`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ productName, prices }),
+      });
+      const v = await res.json();
+      if (!v || v.error) throw new Error('No verdict');
+
+      const style = VERDICT_STYLES[v.verdict] || VERDICT_STYLES.fair_price;
+      const bar   = document.getElementById('verdict-bar');
+      bar.style.background  = style.bg;
+      bar.style.borderColor = style.border;
+
+      const icon = document.getElementById('verdict-icon');
+      icon.textContent      = v.emoji || '✓';
+      icon.style.background = style.iconBg;
+
+      const vText = document.getElementById('verdict-text');
+      vText.style.color = style.textColor;
+      // Keep the AI badge
+      const badge = document.getElementById('ai-badge');
+      vText.textContent = v.headline;
+      vText.appendChild(badge);
+      badge.style.display = 'inline';
+
+      const vSub = document.getElementById('verdict-sub');
+      vSub.textContent = v.reason;
+      vSub.style.color = style.textColor;
+
+    } catch (err) {
+      // Graceful fallback — show cheapest price
+      const best = prices.find(p => p.is_best_deal) || prices[0];
+      if (best) {
+        document.getElementById('verdict-icon').textContent = '✓';
+        document.getElementById('verdict-text').textContent = `Best price: ${best.store_name} at $${best.price}`;
+        document.getElementById('verdict-sub').textContent  = 'This is the lowest price we found across all stores.';
+        document.getElementById('ai-badge').style.display  = 'none';
+      }
+    }
+  }
+
+  // ── Loading / No results ───────────────────────────────────────────────────
   function showNoResults(query) {
+    resetVerdictBar();
+    document.getElementById('verdict-icon').textContent = '🔍';
     document.getElementById('verdict-text').textContent = 'No results found';
-    document.getElementById('verdict-sub').textContent = 'Try different keywords or check spelling';
+    document.getElementById('verdict-sub').textContent  = 'Try different keywords or check spelling';
+    document.getElementById('ai-badge').style.display   = 'none';
+    document.getElementById('product-header').style.display = 'flex';
     document.getElementById('product-name').textContent = query;
-    document.getElementById('product-img').textContent = '🔍';
+    document.getElementById('product-img').textContent  = '🔍';
     document.getElementById('product-stars').textContent = '';
     document.getElementById('product-reviews').textContent = '';
-    document.getElementById('product-header').style.display = 'flex';
     document.getElementById('results-body').innerHTML = '<p style="font-size:13px;color:var(--text-muted);padding:20px 0">No products found. Try different keywords.</p>';
   }
 
   function showLoading() {
-    document.getElementById('verdict-text').textContent = 'Scanning prices across NZ stores...';
-    document.getElementById('verdict-sub').textContent = 'Finding the best deal — takes a few seconds';
-    document.getElementById('product-name').textContent = '';
+    resetVerdictBar();
+    document.getElementById('verdict-icon').textContent  = '✓';
+    document.getElementById('verdict-text').textContent  = 'Scanning prices across NZ stores...';
+    document.getElementById('verdict-sub').textContent   = 'Finding the best deal — takes a few seconds';
+    document.getElementById('ai-badge').style.display    = 'none';
+    document.getElementById('product-header').style.display = 'none';
+    document.getElementById('product-name').textContent  = '';
     document.getElementById('product-stars').textContent = '';
     document.getElementById('product-reviews').textContent = '';
-    document.getElementById('product-img').textContent = '';
-    document.getElementById('product-header').style.display = 'none';
+    document.getElementById('product-img').textContent   = '';
     document.getElementById('results-body').innerHTML = [1,2,3,4].map(() => `
       <div class="price-row">
         <div class="price-left">
@@ -516,15 +589,19 @@
       </div>`).join('');
   }
 
+  // ── Community prices ───────────────────────────────────────────────────────
   async function submitCommunityPrice() {
     const input = document.getElementById('community-input');
-    const val = input.value.trim();
+    const val   = input.value.trim();
     if (!val) return;
     const match = val.match(/^(.+?)[\s·\-]+\$?(\d+(?:\.\d+)?)$/);
     if (!match) { alert('Format: Store name · $price — e.g. Costco · $289'); return; }
     const [, store, price] = match;
     if (API && currentProductId) {
-      await fetch(`${API}/api/products/${currentProductId}/community-prices`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ store_name: store.trim(), price, note: '' }) });
+      await fetch(`${API}/api/products/${currentProductId}/community-prices`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ store_name: store.trim(), price, note: '' })
+      });
     }
     const tips = document.getElementById('community-tips');
     const newTip = document.createElement('div');
@@ -542,6 +619,7 @@
     btn.disabled = true;
   }
 
+  // ── Deals ──────────────────────────────────────────────────────────────────
   async function loadFlashDeals() {
     try {
       const res  = await fetch(`${API}/api/deals`);
@@ -557,8 +635,9 @@
     } catch(e) {}
   }
 
+  // ── Auth ───────────────────────────────────────────────────────────────────
   function initSession() {
-    const user = JSON.parse(localStorage.getItem('twisti_user') || 'null');
+    const user    = JSON.parse(localStorage.getItem('twisti_user') || 'null');
     const navAuth = document.getElementById('nav-auth');
     if (user) {
       navAuth.innerHTML = `<span style="color:var(--text);font-weight:500;font-size:13px">${escapeHtml(user.name||user.email)}</span> · <a href="#" onclick="signOut()" style="color:var(--text-muted);font-size:13px">Sign out</a>`;
@@ -566,14 +645,14 @@
       navAuth.innerHTML = '<a href="/auth.html" class="nav-btn">Sign in</a>';
     }
   }
-
   function signOut() {
     ['twisti_access','twisti_refresh','twisti_user'].forEach(k => localStorage.removeItem(k));
     location.reload();
   }
 
+  // ── Helpers ────────────────────────────────────────────────────────────────
   function dealClass(t) { return t === 'cashback' ? 'cashback' : t === 'coupon' ? 'coupon' : 'ship'; }
-  function starsHtml(r) { const f = Math.floor(r), h = r%1>=0.5?1:0; return '★'.repeat(f)+(h?'½':'')+'☆'.repeat(5-f-h); }
+  function starsHtml(r) { const f=Math.floor(r),h=r%1>=0.5?1:0; return '★'.repeat(f)+(h?'½':'')+'☆'.repeat(5-f-h); }
   function escapeHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function timeAgo(d) { const h=Math.floor((Date.now()-new Date(d).getTime())/3600000); return h<1?'just now':h<24?`${h}h ago`:`${Math.floor(h/24)}d ago`; }
   function formatDate(d) { return new Date(d).toLocaleDateString('en-NZ',{day:'numeric',month:'short',year:'numeric'}); }

@@ -493,6 +493,13 @@
   let allPrices = [];
   let activeFilter = 'all';
   let currentProduct = null;
+  let userCountry = 'NZ';
+  // Session ID for anonymous user tracking
+  let sessionId = localStorage.getItem('twisti_session');
+  if (!sessionId) {
+    sessionId = 'sess_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+    localStorage.setItem('twisti_session', sessionId);
+  }
 
   const searchInput = document.getElementById('search-input');
   const clearBtn    = document.getElementById('clear-btn');
@@ -529,7 +536,7 @@
     // Hide stats bar during search (hero-cats auto-hides via CSS .compact)
     const statsRow = document.getElementById('stats-row');
     if (statsRow) statsRow.style.display = 'none';
-    fetchResults(normaliseQuery(raw), forceProduct);
+    fetchResults(normaliseQuery(raw), forceProduct, userCountry);
   }
   function clearSearch() {
     searchInput.value = '';
@@ -574,10 +581,10 @@
   });
 
   // ── Fetch ──
-  async function fetchResults(query, forceProduct = false) {
+  async function fetchResults(query, forceProduct = false, country = 'NZ') {
     showLoading();
     try {
-      const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}`);
+      const res  = await fetch(`${API}/api/search?q=${encodeURIComponent(query)}&country=${country}`);
       const data = await res.json();
       if (!data || data.error) { showNoResults(query); return; }
       // Category search — show brand guide
@@ -842,6 +849,17 @@
     currentProduct = product;
     allPrices = (prices || []).filter(p => p.price && p.price > 0).sort((a,b) => a.price - b.price);
 
+    // Log for personalisation
+    var _u = JSON.parse(localStorage.getItem('twisti_user') || 'null');
+    var _pp = allPrices.map(p => p.price).filter(Boolean);
+    fetch(API + '/api/log-search', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ query: searchInput.value.trim(), productName: product.name,
+        category: product.category || null, priceRangeLow: _pp.length ? Math.min(..._pp) : null,
+        priceRangeHigh: _pp.length ? Math.max(..._pp) : null,
+        userId: _u?.id || null, sessionId })
+    }).catch(()=>{});
+
     document.getElementById('product-header').style.display = 'flex';
     document.getElementById('product-name').textContent = product.name;
     document.getElementById('product-stars').textContent = product.avg_rating ? starsHtml(product.avg_rating) : '';
@@ -941,7 +959,7 @@
             </div>
           </div>
           <div class="pc-price-wrap">
-            <div class="pc-price">$${p.price}</div>
+            <div class="pc-price">$${p.price}<span style="font-size:11px;font-weight:400;color:var(--text-muted);margin-left:3px">${userCountry === 'AU' ? 'AUD' : 'NZD'}</span></div>
             ${savings ? `<div style="font-size:11px;color:var(--text-muted);text-align:right">${savings}</div>` : ''}
           </div>
           <a href="${p.affiliate_url}" target="_blank" rel="noopener noreferrer" class="pc-btn">Visit →</a>
@@ -1040,11 +1058,53 @@
     try {
       const res = await fetch(`${API}/api/verdict`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productName, prices }),
+        body: JSON.stringify({ productName, prices, country: userCountry,
+          userId: JSON.parse(localStorage.getItem('twisti_user')||'null')?.id || null,
+          sessionId }),
       });
       const v = await res.json();
       if (!v || v.error) throw new Error('No verdict');
-      setVerdict(v.emoji || '✓', v.headline, v.reason, v.verdict);
+      // Build rich verdict display
+      const hasRich = v.pros && v.pros.length > 0;
+
+      if (hasRich) {
+        // Rich verdict with pros/cons/tips
+        const bar  = document.getElementById('verdict-bar');
+        const s    = VSTYLES[v.verdict] || VSTYLES.default;
+        bar.style.background  = s.bg;
+        bar.style.borderColor = s.border;
+
+        const ico = document.getElementById('verdict-icon');
+        ico.textContent = v.emoji || '✓';
+        ico.style.background = s.iconBg;
+
+        const ht = document.getElementById('verdict-text');
+        ht.textContent = v.headline;
+        ht.style.color = s.color;
+
+        const st = document.getElementById('verdict-sub');
+        st.style.color = s.color;
+
+        // Build rich sub-content
+        let richHTML = '';
+        if (v.pros?.length) richHTML += `<div style="margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
+          <div style="flex:1;min-width:140px">
+            <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;opacity:0.7">Pros</div>
+            ${v.pros.map(p => `<div style="font-size:12px;margin-bottom:4px;display:flex;gap:6px"><span>✓</span><span>${escapeHtml(p)}</span></div>`).join('')}
+          </div>
+          <div style="flex:1;min-width:140px">
+            <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;opacity:0.7">Cons</div>
+            ${(v.cons||[]).map(c => `<div style="font-size:12px;margin-bottom:4px;display:flex;gap:6px"><span>✗</span><span>${escapeHtml(c)}</span></div>`).join('')}
+          </div>
+        </div>`;
+        if (v.buy_now) richHTML += `<div style="margin-top:10px;font-size:12px;padding:8px 10px;background:rgba(255,255,255,0.15);border-radius:5px"><b>Buy now?</b> ${escapeHtml(v.buy_now)}</div>`;
+        if (v.alternative) richHTML += `<div style="margin-top:6px;font-size:12px;opacity:0.85">💡 <b>Alternative:</b> ${escapeHtml(v.alternative)}</div>`;
+        if (v.personal_tip) richHTML += `<div style="margin-top:6px;font-size:12px;opacity:0.85">👤 <b>For you:</b> ${escapeHtml(v.personal_tip)}</div>`;
+
+        st.innerHTML = richHTML;
+      } else {
+        setVerdict(v.emoji || '✓', v.headline, v.buy_now || v.reason || '', v.verdict);
+      }
       document.getElementById('ai-badge').style.display = 'inline';
     } catch {
       const best = prices[0];
@@ -1130,6 +1190,87 @@
 
   loadFlashDeals();
   initSession();
+  detectCountry();
+
+  // ── Geo detection ──────────────────────────────────────────────────────────
+  async function detectCountry() {
+    try {
+      const res  = await fetch('https://ipapi.co/json/');
+      const data = await res.json();
+      const country = data.country_code || 'NZ';
+
+      // Set AU if Australian, NZ for everyone else
+      if (country === 'AU') {
+        userCountry = 'AU';
+        updateUIForCountry('AU', data.country_name);
+      } else if (country !== 'NZ') {
+        showGeoBanner(country, data.country_name);
+      }
+    } catch {
+      // Silently fail
+    }
+  }
+
+  function updateUIForCountry(country, countryName) {
+    if (country !== 'AU') return;
+
+    // Update hero subtitle
+    const sub = document.querySelector('#hero p.sub');
+    if (sub) sub.textContent = 'Prices across every major Australian store — JB Hi-Fi, Harvey Norman, Amazon AU, Kogan, Officeworks and more.';
+
+    // Update stat
+    const stats = document.querySelectorAll('.stat-l');
+    stats.forEach(s => { if (s.textContent === 'Major NZ stores') s.textContent = 'Major AU stores'; });
+
+    // Update search placeholder
+    const input = document.getElementById('search-input');
+    if (input) input.placeholder = 'Search any product — e.g. "Dyson V15"';
+
+    // Show AU banner
+    const banner = document.createElement('div');
+    banner.style.cssText = 'background:var(--green-light);border-bottom:1px solid rgba(26,107,74,0.2);padding:8px 40px;font-size:12px;color:var(--green);display:flex;align-items:center;gap:8px;font-weight:500;';
+    banner.innerHTML = '🇦🇺 Showing Australian prices — JB Hi-Fi AU, Harvey Norman AU, Amazon AU, Kogan, Officeworks and more';
+    const nav = document.querySelector('nav');
+    if (nav) nav.insertAdjacentElement('afterend', banner);
+  }
+
+  function showGeoBanner(code, countryName) {
+    const storeMap = {
+      'AU': { flag: '🇦🇺', stores: 'JB Hi-Fi AU, Harvey Norman AU, Kogan AU', coming: true },
+      'US': { flag: '🇺🇸', stores: 'Amazon, Best Buy, Walmart', coming: true },
+      'GB': { flag: '🇬🇧', stores: 'Amazon UK, Currys, Argos', coming: true },
+      'CA': { flag: '🇨🇦', stores: 'Amazon CA, Best Buy CA', coming: true },
+      'IN': { flag: '🇮🇳', stores: 'Amazon India, Flipkart', coming: true },
+    };
+
+    const info = storeMap[code] || { flag: '🌍', stores: 'local retailers', coming: true };
+
+    const banner = document.createElement('div');
+    banner.id = 'geo-banner';
+    banner.style.cssText = `
+      background:#fffbeb;border-bottom:1px solid #fcd34d;padding:10px 40px;
+      display:flex;align-items:center;justify-content:space-between;
+      font-size:13px;color:#92400e;gap:12px;flex-wrap:wrap;
+    `;
+    banner.innerHTML = `
+      <span>
+        ${info.flag} Hi from ${countryName}! Twisti currently shows <strong>NZ prices</strong>.
+        ${info.coming ? `<strong>${countryName} stores</strong> (${info.stores}) coming soon.` : ''}
+      </span>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <a href="mailto:hello@twisti.org?subject=Launch Twisti in ${countryName}&body=Hi, I'd love to use Twisti in ${countryName}!"
+           style="font-size:12px;font-weight:600;color:#92400e;border:1px solid #fcd34d;padding:4px 12px;border-radius:4px;text-decoration:none;background:#fef9c3;">
+          Notify me when ${countryName} launches
+        </a>
+        <button onclick="this.parentElement.parentElement.remove()"
+          style="background:none;border:none;cursor:pointer;font-size:18px;color:#92400e;padding:0;line-height:1;">×</button>
+      </div>
+    `;
+
+    // Insert after nav
+    const nav = document.querySelector('nav');
+    if (nav) nav.insertAdjacentElement('afterend', banner);
+  }
 </script>
 </body>
 </html>

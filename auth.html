@@ -1,249 +1,230 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign in — Twisti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --green: #1D9E75; --green-dark: #0F6E56;
-      --text: #1a1a1a; --muted: #6b7280; --border: #e5e7eb;
-      --bg: #f9fafb; --white: #ffffff; --red: #dc2626;
-      --radius: 10px;
-    }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-    nav { display: flex; align-items: center; padding: 14px 24px; border-bottom: 1px solid var(--border); background: var(--white); }
-    .logo { font-size: 20px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.5px; }
-    .logo span { color: var(--green); }
-    .card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 36px; width: 100%; max-width: 420px; margin: 48px auto; }
-    h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
-    .subtitle { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
-    .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
-    .tab { flex: 1; text-align: center; padding: 10px; font-size: 14px; font-weight: 500; cursor: pointer; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; background: none; border-top: none; border-left: none; border-right: none; }
-    .tab.active { color: var(--green); border-bottom-color: var(--green); }
-    .form-group { margin-bottom: 16px; }
-    label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; }
-    input[type=text], input[type=email], input[type=password] { width: 100%; padding: 11px 14px; font-size: 14px; border: 1.5px solid var(--border); border-radius: var(--radius); outline: none; color: var(--text); background: var(--white); transition: border-color 0.15s; }
-    input:focus { border-color: var(--green); }
-    .error-msg { font-size: 12px; color: var(--red); margin-top: 4px; display: none; }
-    .error-msg.show { display: block; }
-    .submit-btn { width: 100%; padding: 12px; background: var(--green); color: #fff; border: none; border-radius: var(--radius); font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: background 0.15s; }
-    .submit-btn:hover { background: var(--green-dark); }
-    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-    .divider { display: flex; align-items: center; gap: 12px; margin: 20px 0; color: var(--muted); font-size: 13px; }
-    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-    .google-btn { width: 100%; padding: 11px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: border-color 0.15s; }
-    .google-btn:hover { border-color: #aaa; background: var(--bg); }
-    .global-error { background: #fef2f2; border: 1px solid #fecaca; color: var(--red); border-radius: var(--radius); padding: 10px 14px; font-size: 13px; margin-bottom: 16px; display: none; }
-    .global-error.show { display: block; }
-    .success-msg { background: #f0fdf4; border: 1px solid #86efac; color: #166534; border-radius: var(--radius); padding: 10px 14px; font-size: 13px; margin-bottom: 16px; display: none; }
-    .success-msg.show { display: block; }
-    .password-wrap { position: relative; }
-    .toggle-pw { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--muted); font-size: 13px; }
-    .terms { font-size: 12px; color: var(--muted); text-align: center; margin-top: 16px; }
-    .terms a { color: var(--green); text-decoration: none; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    [data-theme="light"]{--bg:#f2f2f0;--card:#fff;--text:#1a1a1a;--muted:#666;--border:#e0e0de;--green:#1a6b4a;--green-dark:#15583d;--green-light:#f0faf5;--red:#b91c1c;--input:#fff;}
+    [data-theme="dark"]{--bg:#1a1a1a;--card:#242424;--text:#e8e8e6;--muted:#888;--border:#333;--green:#2dd4a0;--green-dark:#25b589;--green-light:#0d2e22;--red:#f87171;--input:#2a2a2a;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:36px 40px;width:100%;max-width:420px;box-shadow:0 2px 20px rgba(0,0,0,0.08);}
+    .logo{display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:28px;text-decoration:none;}
+    .logo-t{font-size:22px;font-weight:700;color:var(--text);}
+    .logo-t span{color:var(--green);}
+    h1{font-size:20px;font-weight:600;text-align:center;margin-bottom:6px;}
+    .subtitle{font-size:13px;color:var(--muted);text-align:center;margin-bottom:28px;line-height:1.5;}
+    /* Google button */
+    .google-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:12px;border:1.5px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;transition:all 0.15s;text-decoration:none;margin-bottom:20px;}
+    .google-btn:hover{border-color:var(--green);background:var(--green-light);}
+    .google-icon{width:20px;height:20px;flex-shrink:0;}
+    /* Divider */
+    .divider{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+    .divider-line{flex:1;height:1px;background:var(--border);}
+    .divider-text{font-size:12px;color:var(--muted);}
+    /* Form */
+    .field{margin-bottom:14px;}
+    label{display:block;font-size:12px;font-weight:500;color:var(--muted);margin-bottom:5px;letter-spacing:0.3px;}
+    input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;font-family:inherit;background:var(--input);color:var(--text);outline:none;transition:border-color 0.15s;}
+    input:focus{border-color:var(--green);}
+    .submit-btn{width:100%;padding:12px;background:var(--green);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background 0.15s;margin-top:6px;}
+    .submit-btn:hover{background:var(--green-dark);}
+    .submit-btn:disabled{opacity:0.6;cursor:not-allowed;}
+    /* Toggle */
+    .toggle{text-align:center;margin-top:18px;font-size:13px;color:var(--muted);}
+    .toggle a{color:var(--green);text-decoration:none;font-weight:500;cursor:pointer;}
+    /* Error/success */
+    .msg{padding:10px 14px;border-radius:6px;font-size:13px;margin-bottom:16px;display:none;}
+    .msg.error{background:#fef2f2;border:1px solid #fecaca;color:var(--red);}
+    .msg.success{background:var(--green-light);border:1px solid rgba(26,107,74,0.3);color:var(--green);}
+    /* Benefits */
+    .benefits{margin-top:24px;padding-top:20px;border-top:1px solid var(--border);}
+    .benefit{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin-bottom:8px;}
+    .benefit-dot{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0;}
+    /* Back link */
+    .back-link{margin-top:20px;text-align:center;font-size:13px;color:var(--muted);}
+    .back-link a{color:var(--green);text-decoration:none;}
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="/" class="logo">twi<span>sti</span></a>
-</nav>
-
 <div class="card">
-  <h1 id="card-title">Welcome back</h1>
-  <p class="subtitle" id="card-sub">Sign in to track deals and save your searches</p>
+  <a href="/" class="logo">
+    <div class="logo-t">twi<span>sti</span></div>
+  </a>
 
-  <div class="tabs">
-    <button class="tab active" id="tab-login" onclick="switchTab('login')">Sign in</button>
-    <button class="tab" id="tab-signup" onclick="switchTab('signup')">Create account</button>
+  <div id="msg" class="msg"></div>
+
+  <!-- Sign in view -->
+  <div id="signin-view">
+    <h1>Welcome back</h1>
+    <p class="subtitle">Sign in to track prices, get deal alerts, and save your favourites.</p>
+
+    <a href="https://twisti-backend-production.up.railway.app/api/auth/google" class="google-btn">
+      <svg class="google-icon" viewBox="0 0 24 24">
+        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+      </svg>
+      Continue with Google
+    </a>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-text">or sign in with email</div>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="field">
+      <label>Email address</label>
+      <input type="email" id="signin-email" placeholder="you@example.com" autocomplete="email" />
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="signin-password" placeholder="Your password" autocomplete="current-password" />
+    </div>
+    <button class="submit-btn" onclick="doSignIn()">Sign in</button>
+
+    <div class="toggle">Don't have an account? <a onclick="showSignup()">Create one free</a></div>
   </div>
 
-  <div class="global-error" id="global-error"></div>
-  <div class="success-msg" id="success-msg"></div>
+  <!-- Sign up view -->
+  <div id="signup-view" style="display:none">
+    <h1>Create your account</h1>
+    <p class="subtitle">Free forever. Get deal alerts and price drop notifications.</p>
 
-  <button class="google-btn" onclick="googleSignIn()">
-    <svg width="18" height="18" viewBox="0 0 24 24">
-      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-      <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-    </svg>
-    Continue with Google
-  </button>
+    <a href="https://twisti-backend-production.up.railway.app/api/auth/google" class="google-btn">
+      <svg class="google-icon" viewBox="0 0 24 24">
+        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+      </svg>
+      Sign up with Google
+    </a>
 
-  <div class="divider">or</div>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-text">or sign up with email</div>
+      <div class="divider-line"></div>
+    </div>
 
-  <!-- LOGIN FORM -->
-  <form id="login-form" onsubmit="handleLogin(event)">
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" id="login-email" placeholder="you@example.com" required />
+    <div class="field">
+      <label>Your name</label>
+      <input type="text" id="signup-name" placeholder="First name" autocomplete="given-name" />
     </div>
-    <div class="form-group">
-      <label>Password</label>
-      <div class="password-wrap">
-        <input type="password" id="login-password" placeholder="Your password" required />
-        <button type="button" class="toggle-pw" onclick="togglePw('login-password', this)">Show</button>
-      </div>
+    <div class="field">
+      <label>Email address</label>
+      <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email" />
     </div>
-    <button type="submit" class="submit-btn" id="login-btn">Sign in</button>
-  </form>
+    <div class="field">
+      <label>Password (min 8 characters)</label>
+      <input type="password" id="signup-password" placeholder="Choose a password" autocomplete="new-password" />
+    </div>
+    <button class="submit-btn" onclick="doSignUp()">Create account</button>
 
-  <!-- SIGNUP FORM -->
-  <form id="signup-form" style="display:none" onsubmit="handleSignup(event)">
-    <div class="form-group">
-      <label>Full name</label>
-      <input type="text" id="signup-name" placeholder="Your name" required />
-      <div class="error-msg" id="err-name"></div>
+    <div class="toggle">Already have an account? <a onclick="showSignin()">Sign in</a></div>
+
+    <div class="benefits">
+      <div class="benefit"><div class="benefit-dot"></div> Price drop alerts to your email</div>
+      <div class="benefit"><div class="benefit-dot"></div> Save products to your wishlist</div>
+      <div class="benefit"><div class="benefit-dot"></div> Weekly NZ deals newsletter</div>
+      <div class="benefit"><div class="benefit-dot"></div> Always free — no credit card</div>
     </div>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" id="signup-email" placeholder="you@example.com" required />
-      <div class="error-msg" id="err-email"></div>
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <div class="password-wrap">
-        <input type="password" id="signup-password" placeholder="Min 8 chars, 1 uppercase, 1 number" required />
-        <button type="button" class="toggle-pw" onclick="togglePw('signup-password', this)">Show</button>
-      </div>
-      <div class="error-msg" id="err-password"></div>
-    </div>
-    <button type="submit" class="submit-btn" id="signup-btn">Create account</button>
-    <p class="terms">By signing up you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a></p>
-  </form>
+  </div>
+
+  <div class="back-link"><a href="/">← Back to Twisti</a></div>
 </div>
 
 <script>
   const API = 'https://twisti-backend-production.up.railway.app';
 
-  function switchTab(tab) {
-    document.getElementById('login-form').style.display  = tab === 'login'  ? 'block' : 'none';
-    document.getElementById('signup-form').style.display = tab === 'signup' ? 'block' : 'none';
-    document.getElementById('tab-login').classList.toggle('active',  tab === 'login');
-    document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
-    document.getElementById('card-title').textContent = tab === 'login' ? 'Welcome back' : 'Create your account';
-    document.getElementById('card-sub').textContent   = tab === 'login' ? 'Sign in to track deals and save your searches' : 'Free forever. No spam.';
-    clearErrors();
+  // Handle Google callback — token in URL params
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('token')) {
+    const token = params.get('token');
+    const name  = params.get('name') || '';
+    const email = params.get('email') || '';
+    localStorage.setItem('twisti_access', token);
+    localStorage.setItem('twisti_user', JSON.stringify({ name, email }));
+    window.history.replaceState({}, '', '/auth.html');
+    showMsg('success', `Welcome${name ? ', ' + name : ''}! Redirecting...`);
+    setTimeout(() => window.location.href = '/', 1200);
+  }
+  if (params.get('error')) {
+    showMsg('error', 'Sign in failed. Please try again.');
   }
 
-  async function handleLogin(e) {
-    e.preventDefault();
-    clearErrors();
-    const btn = document.getElementById('login-btn');
-    btn.disabled = true;
-    btn.textContent = 'Signing in...';
+  function showMsg(type, text) {
+    const el = document.getElementById('msg');
+    el.className = `msg ${type}`;
+    el.textContent = text;
+    el.style.display = 'block';
+  }
+  function hideMsg() { document.getElementById('msg').style.display = 'none'; }
+  function showSignup() { hideMsg(); document.getElementById('signin-view').style.display='none'; document.getElementById('signup-view').style.display='block'; }
+  function showSignin() { hideMsg(); document.getElementById('signup-view').style.display='none'; document.getElementById('signin-view').style.display='block'; }
 
-    const email    = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
-
+  async function doSignIn() {
+    hideMsg();
+    const email    = document.getElementById('signin-email').value.trim();
+    const password = document.getElementById('signin-password').value;
+    if (!email || !password) return showMsg('error', 'Please enter your email and password.');
+    const btn = document.querySelector('#signin-view .submit-btn');
+    btn.disabled = true; btn.textContent = 'Signing in...';
     try {
       const res  = await fetch(`${API}/api/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
-      if (!res.ok) { showError(data.error || 'Login failed'); return; }
-      saveSession(data);
-      window.location.href = '/';
+      if (!res.ok) throw new Error(data.error || 'Sign in failed');
+      localStorage.setItem('twisti_access', data.token);
+      localStorage.setItem('twisti_user', JSON.stringify(data.user));
+      showMsg('success', `Welcome back, ${data.user.name || data.user.email}! Redirecting...`);
+      setTimeout(() => window.location.href = '/', 1000);
     } catch (err) {
-      showError('Could not connect to server — please try again');
-    } finally {
-      btn.disabled = false;
-      btn.textContent = 'Sign in';
+      showMsg('error', err.message);
+      btn.disabled = false; btn.textContent = 'Sign in';
     }
   }
 
-  async function handleSignup(e) {
-    e.preventDefault();
-    clearErrors();
-    const btn = document.getElementById('signup-btn');
-    btn.disabled = true;
-    btn.textContent = 'Creating account...';
-
-    const name     = document.getElementById('signup-name').value;
-    const email    = document.getElementById('signup-email').value;
+  async function doSignUp() {
+    hideMsg();
+    const name     = document.getElementById('signup-name').value.trim();
+    const email    = document.getElementById('signup-email').value.trim();
     const password = document.getElementById('signup-password').value;
-
+    if (!email || !password) return showMsg('error', 'Please fill in all fields.');
+    if (password.length < 8) return showMsg('error', 'Password must be at least 8 characters.');
+    const btn = document.querySelector('#signup-view .submit-btn');
+    btn.disabled = true; btn.textContent = 'Creating account...';
     try {
       const res  = await fetch(`${API}/api/auth/signup`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password })
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, name }),
       });
       const data = await res.json();
-
-      if (!res.ok) {
-        if (data.errors) {
-          data.errors.forEach(err => {
-            const el = document.getElementById(`err-${err.path}`);
-            if (el) { el.textContent = err.msg; el.classList.add('show'); }
-          });
-        } else {
-          showError(data.error || 'Signup failed');
-        }
-        return;
-      }
-
-      saveSession(data);
-      showSuccess('Account created! Redirecting...');
-      setTimeout(() => { window.location.href = '/'; }, 1000);
-
+      if (!res.ok) throw new Error(data.error || 'Sign up failed');
+      localStorage.setItem('twisti_access', data.token);
+      localStorage.setItem('twisti_user', JSON.stringify(data.user));
+      showMsg('success', `Account created! Welcome, ${data.user.name}!`);
+      setTimeout(() => window.location.href = '/', 1200);
     } catch (err) {
-      showError('Could not connect to server — please try again');
-    } finally {
-      btn.disabled = false;
-      btn.textContent = 'Create account';
+      showMsg('error', err.message);
+      btn.disabled = false; btn.textContent = 'Create account';
     }
   }
 
-  function googleSignIn() {
-    showError('Google sign-in coming soon — please use email and password for now');
-  }
-
-  function saveSession(data) {
-    localStorage.setItem('twisti_access',  data.access_token);
-    localStorage.setItem('twisti_refresh', data.refresh_token);
-    localStorage.setItem('twisti_user',    JSON.stringify(data.user));
-  }
-
-  function showError(msg) {
-    const el = document.getElementById('global-error');
-    el.textContent = msg;
-    el.classList.add('show');
-  }
-
-  function showSuccess(msg) {
-    const el = document.getElementById('success-msg');
-    el.textContent = msg;
-    el.classList.add('show');
-  }
-
-  function clearErrors() {
-    document.getElementById('global-error').classList.remove('show');
-    document.getElementById('success-msg').classList.remove('show');
-    document.querySelectorAll('.error-msg').forEach(el => el.classList.remove('show'));
-  }
-
-  function togglePw(id, btn) {
-    const input = document.getElementById(id);
-    const show  = input.type === 'password';
-    input.type  = show ? 'text' : 'password';
-    btn.textContent = show ? 'Hide' : 'Show';
-  }
-
-  // If already logged in, go home
-  if (localStorage.getItem('twisti_access')) {
-    window.location.href = '/';
-  }
-
-  // Check for ?tab=signup in URL
-  if (new URLSearchParams(location.search).get('tab') === 'signup') {
-    switchTab('signup');
-  }
+  // Enter key submits
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    if (document.getElementById('signup-view').style.display !== 'none') doSignUp();
+    else doSignIn();
+  });
 </script>
 </body>
 </html>

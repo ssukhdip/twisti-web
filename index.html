@@ -14,7 +14,13 @@
     [data-theme="light"]{--bg-page:#f2f2f0;--bg-card:#ffffff;--bg-input:#ffffff;--text:#1a1a1a;--text-muted:#666;--border:#e0e0de;--green:#1a6b4a;--green-dark:#15583d;--green-light:#f0faf5;--red:#b91c1c;--purple:#5b21b6;--shadow:0 1px 4px rgba(0,0,0,0.08);}
     [data-theme="dark"]{--bg-page:#1a1a1a;--bg-card:#242424;--bg-input:#2a2a2a;--text:#e8e8e6;--text-muted:#888;--border:#333;--green:#2dd4a0;--green-dark:#25b589;--green-light:#0d2e22;--red:#f87171;--purple:#a78bfa;--shadow:0 1px 4px rgba(0,0,0,0.3);}
     body{font-family:'Inter',-apple-system,sans-serif;color:var(--text);background:var(--bg-page);font-size:15px;line-height:1.6;overflow-x:hidden;transition:background 0.2s,color 0.2s;}
-    nav{display:flex;align-items:center;justify-content:space-between;padding:14px 40px;border-bottom:1px solid var(--border);background:var(--bg-card);position:sticky;top:0;z-index:100;}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:12px 40px;border-bottom:1px solid var(--border);background:var(--bg-card);position:sticky;top:0;z-index:100;}
+    .cat-bar{background:var(--bg-card);border-bottom:1px solid var(--border);position:sticky;top:57px;z-index:99;overflow-x:auto;scrollbar-width:none;}
+    .cat-bar::-webkit-scrollbar{display:none;}
+    .cat-inner{display:flex;gap:4px;padding:8px 40px;min-width:max-content;}
+    .cat-item{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:500;color:var(--text-muted);cursor:pointer;font-family:inherit;white-space:nowrap;transition:all 0.15s;}
+    .cat-item:hover{border-color:var(--green);color:var(--green);background:var(--green-light);}
+    .cat-item.active{background:var(--green);border-color:var(--green);color:#fff;}
     .logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none;}
     .logo-img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1.5px solid var(--green);}
     .logo-fallback{width:34px;height:34px;border-radius:50%;background:var(--green-light);border:1.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:15px;}
@@ -183,6 +189,26 @@
     .footer-bottom{max-width:860px;margin:18px auto 0;display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);}
     .nz-tag{background:var(--green-light);color:var(--green);padding:3px 10px;font-size:10px;letter-spacing:1px;border-radius:3px;font-weight:500;}
 
+    /* Autocomplete suggestions */
+    .suggestions-box{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.12);z-index:200;overflow:hidden;}
+    .suggestions-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);padding:10px 14px 6px;}
+    .suggestion-chips{display:flex;flex-wrap:wrap;gap:6px;padding:6px 14px 12px;}
+    .suggestion-chip{font-size:12px;font-weight:500;padding:5px 12px;border:1px solid var(--border);border-radius:16px;cursor:pointer;background:var(--bg-page);color:var(--text);transition:all 0.12s;white-space:nowrap;}
+    .suggestion-chip:hover{border-color:var(--green);color:var(--green);background:var(--green-light);}
+    /* Trending section */
+    .trending-section{padding:28px 40px;max-width:940px;margin:0 auto;}
+    .trending-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
+    .trending-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:16px;cursor:pointer;transition:all 0.15s;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;}
+    .trending-card:hover{border-color:var(--green);box-shadow:0 2px 12px rgba(26,107,74,0.1);}
+    .trending-rank{font-size:20px;font-weight:200;color:var(--border);width:24px;flex-shrink:0;text-align:center;}
+    .trending-info{}
+    .trending-name{font-size:13px;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:2px;}
+    .trending-meta{font-size:11px;color:var(--text-muted);}
+    .trending-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:10px;margin-bottom:4px;}
+    .badge-hot{background:#fef2f2;color:var(--red);}
+    .badge-deal{background:var(--green-light);color:var(--green);}
+    .badge-new{background:#f5f3fe;color:var(--purple);}
+    .search-outer{position:relative;}
     @media(max-width:640px){
       nav{padding:12px 16px;}#hero{padding:40px 16px 32px;}.section{padding:20px 16px;}
       #results{padding:16px 16px 40px;}.deals-grid{grid-template-columns:repeat(2,1fr);}
@@ -196,18 +222,32 @@
 <body>
 
 <nav>
-  <a href="/" class="logo-wrap">
+  <a href="/" class="logo-wrap" onclick="goHome(event)">
     <img src="/logo.png" class="logo-img" alt="Twisti" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
     <div class="logo-fallback" style="display:none">🌿</div>
     <div class="logo-text">twi<span>sti</span></div>
   </a>
   <div class="nav-right">
-    <a href="#deals">Deals</a>
-    <a href="#">Categories</a>
     <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">🌙 Dark</button>
     <span id="nav-auth"><a href="/auth.html" class="nav-btn">Sign in</a></span>
   </div>
 </nav>
+<div class="cat-bar" id="cat-bar">
+  <div class="cat-inner">
+    <button class="cat-item" onclick="searchFor('smartphones', this)">📱 Phones</button>
+    <button class="cat-item" onclick="searchFor('laptop', this)">💻 Laptops</button>
+    <button class="cat-item" onclick="searchFor('television', this)">📺 TVs</button>
+    <button class="cat-item" onclick="searchFor('headphones', this)">🎧 Headphones</button>
+    <button class="cat-item" onclick="searchFor('tablet', this)">📟 Tablets</button>
+    <button class="cat-item" onclick="searchFor('camera', this)">📷 Cameras</button>
+    <button class="cat-item" onclick="searchFor('washing machine', this)">🫧 Washing Machines</button>
+    <button class="cat-item" onclick="searchFor('vacuum cleaner', this)">🌀 Vacuums</button>
+    <button class="cat-item" onclick="searchFor('heat pump', this)">❄️ Heat Pumps</button>
+    <button class="cat-item" onclick="searchFor('gaming console', this)">🎮 Gaming</button>
+    <button class="cat-item" onclick="searchFor('speaker', this)">🔊 Speakers</button>
+    <button class="cat-item" onclick="searchFor('fridge', this)">🧊 Fridges</button>
+  </div>
+</div>
 
 <div id="hero">
   <div class="hero-kicker">New Zealand's price intelligence platform</div>
@@ -219,16 +259,20 @@
       <button id="clear-btn" aria-label="Clear">×</button>
       <button id="search-btn">Search</button>
     </div>
+    <div class="suggestions-box" id="suggestions-box" style="display:none">
+      <div class="suggestions-label" id="suggestions-label">Suggestions</div>
+      <div class="suggestion-chips" id="suggestion-chips"></div>
+    </div>
     <div class="hints">
-      <span class="hint" onclick="searchFor('AirPods Pro')">AirPods Pro</span>
-      <span class="hint" onclick="searchFor('iPhone 16')">iPhone 16</span>
-      <span class="hint" onclick="searchFor('Samsung TV')">Samsung TV</span>
-      <span class="hint" onclick="searchFor('Dyson vacuum')">Dyson vacuum</span>
+      <span class="hint" onclick="searchFor('AirPods Pro', this)">AirPods Pro</span>
+      <span class="hint" onclick="searchFor('iPhone 16', this)">iPhone 16</span>
+      <span class="hint" onclick="searchFor('Samsung TV', this)">Samsung TV</span>
+      <span class="hint" onclick="searchFor('Dyson vacuum', this)">Dyson vacuum</span>
     </div>
   </div>
 </div>
 
-<div class="stats-row">
+<div class="stats-row" id="stats-row">
   <div class="stat"><div class="stat-n">50,000+</div><div class="stat-l">Products tracked</div></div>
   <div class="stat"><div class="stat-n">12</div><div class="stat-l">Major NZ stores</div></div>
   <div class="stat"><div class="stat-n">6h</div><div class="stat-l">Price refresh</div></div>
@@ -242,10 +286,10 @@
       <button class="see-all">View all</button>
     </div>
     <div class="deals-grid" id="deals-grid">
-      <div class="deal-card" onclick="searchFor('Sony WH-1000XM5')"><span class="d-flag f-red">−22% off</span><div class="d-name">Sony WH-1000XM5 Headphones</div><div><span class="d-price">$329</span><span class="d-was">$429</span></div><div class="d-store">JB Hi-Fi</div><div class="d-save">Save $100</div></div>
-      <div class="deal-card" onclick="searchFor('Apple AirPods Pro')"><span class="d-flag f-grn">Cashback</span><div class="d-name">Apple AirPods Pro 2</div><div><span class="d-price">$349</span><span class="d-was">$399</span></div><div class="d-store">The Good Guys</div><div class="d-save">Save $50</div></div>
-      <div class="deal-card" onclick="searchFor('Samsung 65 QLED TV')"><span class="d-flag f-pur">Coupon</span><div class="d-name">Samsung 65" QLED 4K TV</div><div><span class="d-price">$1,199</span><span class="d-was">$1,599</span></div><div class="d-store">Harvey Norman</div><div class="d-save">Save $400</div></div>
-      <div class="deal-card" onclick="searchFor('Dyson V15 vacuum')"><span class="d-flag f-red">−18% off</span><div class="d-name">Dyson V15 Detect Vacuum</div><div><span class="d-price">$849</span><span class="d-was">$999</span></div><div class="d-store">Mighty Ape</div><div class="d-save">Save $150</div></div>
+      <div class="deal-card" onclick="searchFor('Sony WH-1000XM5', this)"><span class="d-flag f-red">−22% off</span><div class="d-name">Sony WH-1000XM5 Headphones</div><div><span class="d-price">$329</span><span class="d-was">$429</span></div><div class="d-store">JB Hi-Fi</div><div class="d-save">Save $100</div></div>
+      <div class="deal-card" onclick="searchFor('Apple AirPods Pro', this)"><span class="d-flag f-grn">Cashback</span><div class="d-name">Apple AirPods Pro 2</div><div><span class="d-price">$349</span><span class="d-was">$399</span></div><div class="d-store">The Good Guys</div><div class="d-save">Save $50</div></div>
+      <div class="deal-card" onclick="searchFor('Samsung 65 QLED TV', this)"><span class="d-flag f-pur">Coupon</span><div class="d-name">Samsung 65" QLED 4K TV</div><div><span class="d-price">$1,199</span><span class="d-was">$1,599</span></div><div class="d-store">Harvey Norman</div><div class="d-save">Save $400</div></div>
+      <div class="deal-card" onclick="searchFor('Dyson V15 vacuum', this)"><span class="d-flag f-red">−18% off</span><div class="d-name">Dyson V15 Detect Vacuum</div><div><span class="d-price">$849</span><span class="d-was">$999</span></div><div class="d-store">Mighty Ape</div><div class="d-save">Save $150</div></div>
     </div>
   </div>
   <div class="how-section">
@@ -264,9 +308,54 @@
     <div class="trust-item"><div class="trust-dot"></div> AI buying verdicts</div>
     <div class="trust-item"><div class="trust-dot"></div> Community price tips</div>
   </div>
+  <div class="trending-section">
+    <div class="sec-head">
+      <div class="sec-title">🔥 Trending now in NZ</div>
+      <span style="font-size:11px;color:var(--text-muted)">Updated weekly</span>
+    </div>
+    <div class="trending-grid" id="trending-grid">
+      <div class="trending-card" onclick="searchFor('Apple AirPods Pro 2', this)">
+        <div class="trending-rank">1</div>
+        <div class="trending-info"><div class="trending-badge badge-hot">🔥 Hot</div><div class="trending-name">Apple AirPods Pro 2</div><div class="trending-meta">from $349 · 5 stores</div></div>
+      </div>
+      <div class="trending-card" onclick="searchFor('Samsung Galaxy S25', this)">
+        <div class="trending-rank">2</div>
+        <div class="trending-info"><div class="trending-badge badge-new">✨ New</div><div class="trending-name">Samsung Galaxy S25</div><div class="trending-meta">from $1,299 · 6 stores</div></div>
+      </div>
+      <div class="trending-card" onclick="searchFor('Dyson V15 Detect', this)">
+        <div class="trending-rank">3</div>
+        <div class="trending-info"><div class="trending-badge badge-deal">💚 Deal</div><div class="trending-name">Dyson V15 Detect</div><div class="trending-meta">from $849 · 4 stores</div></div>
+      </div>
+      <div class="trending-card" onclick="searchFor('Apple MacBook Air M3', this)">
+        <div class="trending-rank">4</div>
+        <div class="trending-info"><div class="trending-badge badge-hot">🔥 Hot</div><div class="trending-name">Apple MacBook Air M3</div><div class="trending-meta">from $1,899 · 5 stores</div></div>
+      </div>
+      <div class="trending-card" onclick="searchFor('Sony WH-1000XM5', this)">
+        <div class="trending-rank">5</div>
+        <div class="trending-info"><div class="trending-badge badge-deal">💚 Deal</div><div class="trending-name">Sony WH-1000XM5</div><div class="trending-meta">from $329 · 6 stores</div></div>
+      </div>
+      <div class="trending-card" onclick="searchFor('LG C3 OLED TV', this)">
+        <div class="trending-rank">6</div>
+        <div class="trending-info"><div class="trending-badge badge-deal">💚 Deal</div><div class="trending-name">LG C3 OLED 65"</div><div class="trending-meta">from $2,199 · 4 stores</div></div>
+      </div>
+      <div class="trending-card" onclick="searchFor('iPhone 16 Pro', this)">
+        <div class="trending-rank">7</div>
+        <div class="trending-info"><div class="trending-badge badge-hot">🔥 Hot</div><div class="trending-name">iPhone 16 Pro</div><div class="trending-meta">from $1,799 · 6 stores</div></div>
+      </div>
+      <div class="trending-card" onclick="searchFor('Fisher Paykel washing machine', this)">
+        <div class="trending-rank">8</div>
+        <div class="trending-info"><div class="trending-badge badge-new">✨ New</div><div class="trending-name">Fisher & Paykel Washer</div><div class="trending-meta">from $999 · 5 stores</div></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div id="results">
+  <div id="back-bar" style="display:none;margin-bottom:14px;">
+    <button onclick="goBackToList()" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:13px;color:var(--text-muted);display:flex;align-items:center;gap:6px;padding:0;">
+      <span style="font-size:16px">←</span> <span id="back-label">Back to results</span>
+    </button>
+  </div>
   <div class="verdict-bar" id="verdict-bar">
     <div class="verdict-icon" id="verdict-icon">✓</div>
     <div style="flex:1">
@@ -301,6 +390,92 @@
 
 <script>
   const API = 'https://twisti-backend-production.up.railway.app';
+
+  // ── Brand suggestion data ──
+  const BRAND_SUGGESTIONS = {
+    'apple':    { label: 'Apple products', chips: ['iPhone 16', 'MacBook Air', 'AirPods Pro', 'Apple Watch', 'iPad', 'Mac Mini'] },
+    'samsung':  { label: 'Samsung products', chips: ['Galaxy S25', 'Samsung TV', 'Samsung Tablet', 'Samsung Washing Machine', 'Samsung Fridge'] },
+    'sony':     { label: 'Sony products', chips: ['Sony WH-1000XM5', 'Sony TV OLED', 'Sony Camera', 'Sony Earbuds', 'Sony Speaker'] },
+    'lg':       { label: 'LG products', chips: ['LG OLED TV', 'LG Washing Machine', 'LG Fridge', 'LG Monitor', 'LG Dishwasher'] },
+    'dyson':    { label: 'Dyson products', chips: ['Dyson V15', 'Dyson Airwrap', 'Dyson Hot Cool', 'Dyson V12', 'Dyson Air Purifier'] },
+    'bosch':    { label: 'Bosch products', chips: ['Bosch Dishwasher', 'Bosch Washing Machine', 'Bosch Fridge', 'Bosch Coffee Machine'] },
+    'fisher':   { label: 'Fisher & Paykel', chips: ['Fisher Paykel Washing Machine', 'Fisher Paykel Fridge', 'Fisher Paykel Dishwasher', 'Fisher Paykel Dryer'] },
+    'mitsubishi':{ label: 'Mitsubishi products', chips: ['Mitsubishi Heat Pump', 'Mitsubishi Electric Air Conditioner', 'Mitsubishi Fridge'] },
+    'garmin':   { label: 'Garmin products', chips: ['Garmin Forerunner', 'Garmin Fenix', 'Garmin Instinct', 'Garmin Venu', 'Garmin Vivoactive'] },
+    'bose':     { label: 'Bose products', chips: ['Bose QuietComfort', 'Bose SoundLink', 'Bose Smart Speaker', 'Bose Earbuds'] },
+    'dell':     { label: 'Dell products', chips: ['Dell XPS 15', 'Dell XPS 13', 'Dell Monitor', 'Dell Laptop', 'Dell Gaming'] },
+    'lenovo':   { label: 'Lenovo products', chips: ['Lenovo ThinkPad', 'Lenovo IdeaPad', 'Lenovo Tab', 'Lenovo Gaming Laptop'] },
+    'hp':       { label: 'HP products', chips: ['HP Laptop', 'HP Spectre', 'HP Envy', 'HP Printer', 'HP Monitor'] },
+    'canon':    { label: 'Canon products', chips: ['Canon Camera', 'Canon DSLR', 'Canon Mirrorless', 'Canon Printer', 'Canon Lens'] },
+    'nikon':    { label: 'Nikon products', chips: ['Nikon Z30', 'Nikon D3500', 'Nikon Mirrorless', 'Nikon Camera', 'Nikon Lens'] },
+    'daikin':   { label: 'Daikin products', chips: ['Daikin Heat Pump', 'Daikin Air Conditioner', 'Daikin Inverter'] },
+    'panasonic':{ label: 'Panasonic products', chips: ['Panasonic TV', 'Panasonic Microwave', 'Panasonic Camera', 'Panasonic Heat Pump'] },
+    'nintendo': { label: 'Nintendo products', chips: ['Nintendo Switch 2', 'Nintendo Switch', 'Nintendo Switch OLED', 'Nintendo Games'] },
+    'whirlpool':{ label: 'Whirlpool products', chips: ['Whirlpool Washing Machine', 'Whirlpool Dryer', 'Whirlpool Fridge', 'Whirlpool Dishwasher'] },
+  };
+
+  // Category suggestion chips
+  const CATEGORY_SUGGESTIONS = {
+    'laptop':     ['gaming laptop', 'ultrabook', 'MacBook', 'business laptop', '2-in-1 laptop', 'budget laptop'],
+    'phone':      ['iPhone 16', 'Samsung Galaxy S25', '5G phone', 'budget smartphone', 'foldable phone'],
+    'tv':         ['OLED TV', 'QLED TV', '55 inch TV', '65 inch TV', '4K TV', 'smart TV'],
+    'headphones': ['noise cancelling', 'wireless earbuds', 'gaming headset', 'over ear', 'sport earbuds'],
+    'watch':      ['Apple Watch', 'Samsung Galaxy Watch', 'Garmin watch', 'smartwatch', 'fitness tracker'],
+    'vacuum':     ['Dyson cordless', 'robot vacuum', 'Dyson V15', 'bagless vacuum', 'HEPA vacuum'],
+    'camera':     ['mirrorless camera', 'DSLR camera', 'action camera', 'vlog camera', 'GoPro'],
+    'tablet':     ['iPad', 'Samsung tablet', 'Android tablet', 'iPad Pro', 'kids tablet'],
+  };
+
+  let lastVariants = null;
+  let lastVariantQuery = '';
+  let activeCatItem = null;
+
+  function getSuggestions(q) {
+    if (!q || q.length < 2) return null;
+    const lower = q.toLowerCase().trim();
+
+    // Brand match
+    for (const [brand, data] of Object.entries(BRAND_SUGGESTIONS)) {
+      if (lower === brand || lower.startsWith(brand + ' ') || brand.startsWith(lower)) {
+        return { label: data.label, chips: data.chips };
+      }
+    }
+    // Category match
+    for (const [cat, chips] of Object.entries(CATEGORY_SUGGESTIONS)) {
+      if (lower.includes(cat) || cat.includes(lower)) {
+        return { label: `${q} types`, chips };
+      }
+    }
+    return null;
+  }
+
+  function showSuggestions(q) {
+    const box   = document.getElementById('suggestions-box');
+    const label = document.getElementById('suggestions-label');
+    const chips = document.getElementById('suggestion-chips');
+    const data  = getSuggestions(q);
+    if (!data || !hero.classList.contains('compact') === false) {
+      // Only show suggestions on homepage (not compact)
+      if (hero.classList.contains('compact')) { box.style.display = 'none'; return; }
+    }
+    if (!data) { box.style.display = 'none'; return; }
+    label.textContent = data.label;
+    chips.innerHTML = data.chips.map(c =>
+      `<button class="suggestion-chip" onclick="searchFor('${c.replace(/'/g,"\'")}');hideSuggestions()">${c}</button>`
+    ).join('');
+    box.style.display = 'block';
+  }
+
+  function hideSuggestions() {
+    document.getElementById('suggestions-box').style.display = 'none';
+  }
+
+  function goHome(e) {
+    e.preventDefault();
+    clearSearch();
+    activeCatItem = null;
+    document.querySelectorAll('.cat-item').forEach(c => c.classList.remove('active'));
+  }
   let currentProductId = null;
   let allPrices = [];
   let activeFilter = 'all';
@@ -338,6 +513,9 @@
     resultsEl.style.display = 'block';
     clearBtn.style.display = 'flex';
     activeFilter = 'all';
+    // Hide stats bar during search
+    const statsRow = document.getElementById('stats-row');
+    if (statsRow) statsRow.style.display = 'none';
     fetchResults(normaliseQuery(raw), forceProduct);
   }
   function clearSearch() {
@@ -347,19 +525,39 @@
     resultsEl.style.display = 'none';
     clearBtn.style.display = 'none';
     currentProductId = null; allPrices = []; currentProduct = null;
+    lastVariants = null; lastVariantQuery = '';
+    hideSuggestions();
+    // Restore stats bar
+    const statsRow = document.getElementById('stats-row');
+    if (statsRow) statsRow.style.display = 'grid';
+    document.getElementById('back-bar').style.display = 'none';
+    document.querySelectorAll('.cat-item').forEach(c => c.classList.remove('active'));
   }
-  function searchFor(name) { searchInput.value = name; doSearch(); }
+  function searchFor(name, catBtn) {
+    searchInput.value = name;
+    hideSuggestions();
+    // Update active category pill if clicked from cat bar
+    document.querySelectorAll('.cat-item').forEach(c => c.classList.remove('active'));
+    if (catBtn) catBtn.classList.add('active');
+    doSearch();
+  }
   function searchForProduct(name) { searchInput.value = name; doSearch(true); }
 
   document.addEventListener('click', e => {
     const row = e.target.closest('.variant-row, .variant-card');
     if (row && row.dataset.productName) searchForProduct(row.dataset.productName);
   });
-  searchBtn.addEventListener('click', doSearch);
+  searchBtn.addEventListener('click', () => { hideSuggestions(); doSearch(); });
   clearBtn.addEventListener('click', clearSearch);
-  searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+  searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') { hideSuggestions(); doSearch(); } });
   searchInput.addEventListener('input', () => {
-    if (!searchInput.value.trim() && resultsEl.style.display === 'block') clearSearch();
+    const val = searchInput.value.trim();
+    if (!val && resultsEl.style.display === 'block') clearSearch();
+    else showSuggestions(val);
+  });
+  searchInput.addEventListener('focus', () => showSuggestions(searchInput.value.trim()));
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.search-outer')) hideSuggestions();
   });
 
   // ── Fetch ──
@@ -472,7 +670,7 @@
         <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px">Top brands for ${cap(query)}</div>
         <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px">
           ${info.brands.map(b => `
-            <button onclick="searchFor('${b} ${query}')" style="padding:9px 16px;background:var(--bg-page);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--text);transition:all 0.15s;text-align:left"
+            <button onclick="searchFor('${b} ${query}', this)" style="padding:9px 16px;background:var(--bg-page);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--text);transition:all 0.15s;text-align:left"
               onmouseover="this.style.borderColor='var(--green)';this.style.color='var(--green)';this.style.background='var(--green-light)'"
               onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text)';this.style.background='var(--bg-page)'">
               ${b}
@@ -485,7 +683,7 @@
         <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px">Or search by feature</div>
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
           ${getCategoryFeatures(query).map(f => `
-            <button onclick="searchFor('${f} ${query}')" style="padding:7px 14px;background:var(--green-light);border:1px solid rgba(26,107,74,0.2);border-radius:20px;cursor:pointer;font-family:inherit;font-size:12px;color:var(--green);font-weight:500;transition:all 0.15s"
+            <button onclick="searchFor('${f} ${query}', this)" style="padding:7px 14px;background:var(--green-light);border:1px solid rgba(26,107,74,0.2);border-radius:20px;cursor:pointer;font-family:inherit;font-size:12px;color:var(--green);font-weight:500;transition:all 0.15s"
               onmouseover="this.style.background='var(--green)';this.style.color='#fff'"
               onmouseout="this.style.background='var(--green-light)';this.style.color='var(--green)'">
               ${f}
@@ -522,6 +720,9 @@
 
   // ── Variants ──
   function showVariants(variants, query) {
+    lastVariants = variants;
+    lastVariantQuery = query;
+    document.getElementById('back-bar').style.display = 'none';
     setVerdict('✓', `${variants.length} results for "${query}"`, 'Select a product to compare prices across NZ stores', 'default');
     document.getElementById('ai-badge').style.display = 'none';
     document.getElementById('product-header').style.display = 'none';
@@ -550,7 +751,24 @@
   }
 
   // ── Product ──
+  function goBackToList() {
+    if (lastVariants && lastVariants.length > 1) {
+      document.getElementById('back-bar').style.display = 'none';
+      showVariants(lastVariants, lastVariantQuery);
+    } else {
+      clearSearch();
+    }
+  }
+
   function showProduct(data) {
+    // Show back button if we came from a variant list
+    const backBar = document.getElementById('back-bar');
+    if (lastVariants && lastVariants.length > 1) {
+      backBar.style.display = 'block';
+      document.getElementById('back-label').textContent = `← Back to "${lastVariantQuery}" results`;
+    } else {
+      backBar.style.display = 'none';
+    }
     const { product, prices, community_prices } = data;
     currentProduct = product;
     allPrices = (prices || []).filter(p => p.price && p.price > 0).sort((a,b) => a.price - b.price);
@@ -573,40 +791,74 @@
   }
 
   // ── Price section with tabs ──
+  // ── Price validation ──────────────────────────────────────────────────────
+  // Removes outliers before displaying — catches Serper snippet errors like
+  // "$99 left earpod" appearing as AirPods Pro price
+  function validatePrices(prices) {
+    if (!prices || prices.length === 0) return [];
+    if (prices.length === 1) return prices; // can't validate with one price
+
+    const vals = prices.map(p => p.price).filter(Boolean).sort((a, b) => a - b);
+    const median = vals[Math.floor(vals.length / 2)];
+
+    return prices.filter(p => {
+      // Reject if price is less than 20% of median — likely an accessory
+      if (p.price < median * 0.20) return false;
+      // Reject if price is more than 400% of median — likely a bundle or error
+      if (p.price > median * 4.0) return false;
+      // Reject if price looks like cents (under $2) — parsing error
+      if (p.price < 2) return false;
+      // Reject if affiliate_url goes to Google — we have no real link for this store
+      if (!p.affiliate_url || p.affiliate_url.includes('google.com')) return false;
+      return true;
+    });
+  }
+
   function filterPrices(prices, filter) {
     if (filter === 'instore') return prices.filter(p => p.store_type === 'both');
     if (filter === 'online')  return prices.filter(p => p.store_type === 'online' || p.store_type === 'both');
     return prices;
   }
 
-  function countByFilter(prices, filter) { return filterPrices(prices, filter).length; }
-
   function setFilter(filter) {
     activeFilter = filter;
     renderPriceSection(allPrices, []);
   }
 
+  // Check if online and in-store prices actually differ
+  // Only show filter tabs if there's a meaningful price difference between categories
+  function shouldShowFilters(prices) {
+    const instore = prices.filter(p => p.store_type === 'both');
+    const online  = prices.filter(p => p.store_type === 'online');
+    // No point showing filter if only one type exists
+    if (instore.length === 0 || online.length === 0) return false;
+    // Check if cheapest in-store vs cheapest online differ by more than $5
+    const cheapestInstore = Math.min(...instore.map(p => p.price));
+    const cheapestOnline  = Math.min(...online.map(p => p.price));
+    return Math.abs(cheapestInstore - cheapestOnline) > 5;
+  }
+
   function renderPriceSection(prices, communityPrices) {
-    const allCount     = countByFilter(prices, 'all');
-    const instoreCount = countByFilter(prices, 'instore');
-    const onlineCount  = countByFilter(prices, 'online');
-    const filtered     = filterPrices(prices, activeFilter);
+    // Validate prices before displaying
+    const validated = validatePrices(prices);
+    const showFilters = shouldShowFilters(validated);
 
-    // For "All" show top 10, for others show all
-    const limit  = activeFilter === 'all' ? 10 : filtered.length;
-    const shown  = filtered.slice(0, limit);
-    const hidden = filtered.slice(limit);
+    // Reset filter to 'all' if current filter has no results after validation
+    if (activeFilter !== 'all' && filterPrices(validated, activeFilter).length === 0) {
+      activeFilter = 'all';
+    }
 
-    // Cheapest price for savings calc
+    const filtered = filterPrices(validated, activeFilter);
+    const limit    = activeFilter === 'all' ? 10 : filtered.length;
+    const shown    = filtered.slice(0, limit);
+    const hidden   = filtered.slice(limit);
     const cheapest = filtered[0]?.price || 0;
 
     const cardHTML = (list, startRank = 1) => list.map((p, i) => {
-      const rank   = startRank + i;
+      const rank     = startRank + i;
       const isWinner = rank === 1;
-      const visitUrl = (p.affiliate_url && !p.affiliate_url.includes('google.com'))
-        ? p.affiliate_url
-        : `https://www.google.com/search?q=${encodeURIComponent((currentProduct?.name || '') + ' ' + p.store_name + ' NZ buy')}`;
-      const savings = (rank > 1 && p.price > cheapest) ? `$${(p.price - cheapest).toFixed(0)} more than cheapest` : '';
+      const savings  = (rank > 1 && p.price > cheapest)
+        ? `$${(p.price - cheapest).toFixed(0)} more than cheapest` : '';
 
       return `
         <div class="price-card${isWinner ? ' winner' : ''}">
@@ -623,31 +875,41 @@
             <div class="pc-price">$${p.price}</div>
             ${savings ? `<div style="font-size:11px;color:var(--text-muted);text-align:right">${savings}</div>` : ''}
           </div>
-          <a href="${visitUrl}" target="_blank" rel="noopener noreferrer" class="pc-btn">Visit →</a>
+          <a href="${p.affiliate_url}" target="_blank" rel="noopener noreferrer" class="pc-btn">Visit →</a>
         </div>`;
     }).join('');
 
-    document.getElementById('results-body').innerHTML = `
+    // Only render filter tabs if prices differ between online and in-store
+    const filterTabsHTML = showFilters ? `
       <div class="filter-tabs">
         <button class="ftab ${activeFilter==='all'?'active':''}" onclick="setFilter('all')">
-          All stores <span class="ftab-count">${allCount}</span>
+          All stores <span class="ftab-count">${validated.length}</span>
         </button>
         <button class="ftab ${activeFilter==='instore'?'active':''}" onclick="setFilter('instore')">
-          🏪 In-store <span class="ftab-count">${instoreCount}</span>
+          🏪 In-store <span class="ftab-count">${filterPrices(validated,'instore').length}</span>
         </button>
         <button class="ftab ${activeFilter==='online'?'active':''}" onclick="setFilter('online')">
-          🌐 Online <span class="ftab-count">${onlineCount}</span>
+          🌐 Online only <span class="ftab-count">${filterPrices(validated,'online').length}</span>
         </button>
-      </div>
+      </div>` : '';
+
+    const noResultsMsg = validated.length === 0
+      ? '<p style="font-size:13px;color:var(--text-muted);padding:16px 0">No verified prices found. Prices may be unavailable or outside our store coverage.</p>'
+      : filtered.length === 0
+        ? '<p style="font-size:13px;color:var(--text-muted);padding:12px 0">No stores match this filter.</p>'
+        : '';
+
+    document.getElementById('results-body').innerHTML = `
+      ${filterTabsHTML}
 
       <div class="prices-header">
         <div class="prices-section-label">
-          ${filtered.length > 0 ? `Showing ${shown.length} of ${filtered.length} stores` : 'No stores found for this filter'}
+          ${validated.length === 0 ? 'No verified prices' : `Showing ${shown.length} of ${filtered.length} verified prices`}
         </div>
       </div>
 
       <div class="price-cards">
-        ${shown.length > 0 ? cardHTML(shown) : '<p style="font-size:13px;color:var(--text-muted);padding:12px 0">No stores match this filter.</p>'}
+        ${shown.length > 0 ? cardHTML(shown) : noResultsMsg}
       </div>
 
       ${hidden.length > 0 ? `
@@ -776,7 +1038,7 @@
       const data = await res.json();
       if (!data.deals || !data.deals.length) return;
       document.getElementById('deals-grid').innerHTML = data.deals.map(d => `
-        <div class="deal-card" onclick="searchFor('${escapeHtml(d.name)}')">
+        <div class="deal-card" onclick="searchFor('${escapeHtml(d.name)}', this)">
           <span class="d-flag ${d.sale_price ? 'f-red' : 'f-grn'}">${d.discount_pct ? `−${d.discount_pct}%` : 'Deal'}</span>
           <div class="d-name">${escapeHtml(d.name)}</div>
           <div><span class="d-price">$${d.sale_price || d.price}</span>${d.sale_price ? `<span class="d-was">$${d.price}</span>` : ''}</div>

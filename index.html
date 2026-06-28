@@ -15,12 +15,19 @@
     [data-theme="dark"]{--bg-page:#1a1a1a;--bg-card:#242424;--bg-input:#2a2a2a;--text:#e8e8e6;--text-muted:#888;--border:#333;--green:#2dd4a0;--green-dark:#25b589;--green-light:#0d2e22;--red:#f87171;--purple:#a78bfa;--shadow:0 1px 4px rgba(0,0,0,0.3);}
     body{font-family:'Inter',-apple-system,sans-serif;color:var(--text);background:var(--bg-page);font-size:15px;line-height:1.6;overflow-x:hidden;transition:background 0.2s,color 0.2s;}
     nav{display:flex;align-items:center;justify-content:space-between;padding:12px 40px;border-bottom:1px solid var(--border);background:var(--bg-card);position:sticky;top:0;z-index:100;}
-    .cat-bar{background:var(--bg-card);border-bottom:1px solid var(--border);position:sticky;top:57px;z-index:99;overflow-x:auto;scrollbar-width:none;}
-    .cat-bar::-webkit-scrollbar{display:none;}
-    .cat-inner{display:flex;gap:4px;padding:8px 40px;min-width:max-content;}
-    .cat-item{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:500;color:var(--text-muted);cursor:pointer;font-family:inherit;white-space:nowrap;transition:all 0.15s;}
-    .cat-item:hover{border-color:var(--green);color:var(--green);background:var(--green-light);}
-    .cat-item.active{background:var(--green);border-color:var(--green);color:#fff;}
+    /* Hero category grid */
+    .hero-cats{max-width:640px;margin:28px auto 0;transition:all 0.25s;}
+    #hero.compact .hero-cats{display:none;}
+    .hero-cats-label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;}
+    .hero-cats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+    .hcat{background:var(--bg-page);border:1.5px solid var(--border);border-radius:10px;padding:12px 6px 10px;cursor:pointer;font-family:inherit;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;gap:6px;}
+    .hcat:hover{border-color:var(--green);background:var(--green-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,107,74,0.12);}
+    .hcat.active{border-color:var(--green);background:var(--green);color:#fff;}
+    .hcat-icon{font-size:22px;line-height:1;}
+    .hcat-name{font-size:11px;font-weight:600;color:var(--text-muted);white-space:nowrap;}
+    .hcat:hover .hcat-name{color:var(--green);}
+    .hcat.active .hcat-name{color:#fff;}
+    @media(max-width:640px){.hero-cats-grid{grid-template-columns:repeat(4,1fr);gap:8px;}.hcat{padding:10px 4px 8px;}.hcat-icon{font-size:18px;}}
     .logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none;}
     .logo-img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1.5px solid var(--green);}
     .logo-fallback{width:34px;height:34px;border-radius:50%;background:var(--green-light);border:1.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:15px;}
@@ -46,10 +53,6 @@
     #clear-btn{background:none;border:none;cursor:pointer;padding:0 10px;color:var(--text-muted);font-size:20px;display:none;align-items:center;}
     #search-btn{padding:13px 22px;background:var(--green);color:#fff;border:none;cursor:pointer;font-size:13px;font-weight:600;transition:background 0.15s;font-family:inherit;}
     #search-btn:hover{background:var(--green-dark);}
-    .hints{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap;}
-    #hero.compact .hints{display:none;}
-    .hint{font-size:11px;color:var(--text-muted);padding:4px 12px;border:1px solid var(--border);cursor:pointer;background:var(--bg-page);border-radius:20px;}
-    .hint:hover{border-color:var(--green);color:var(--green);}
     .stats-row{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);background:var(--bg-card);}
     .stat{padding:20px;text-align:center;border-right:1px solid var(--border);}
     .stat:last-child{border-right:none;}
@@ -232,22 +235,6 @@
     <span id="nav-auth"><a href="/auth.html" class="nav-btn">Sign in</a></span>
   </div>
 </nav>
-<div class="cat-bar" id="cat-bar">
-  <div class="cat-inner">
-    <button class="cat-item" onclick="searchFor('smartphones', this)">📱 Phones</button>
-    <button class="cat-item" onclick="searchFor('laptop', this)">💻 Laptops</button>
-    <button class="cat-item" onclick="searchFor('television', this)">📺 TVs</button>
-    <button class="cat-item" onclick="searchFor('headphones', this)">🎧 Headphones</button>
-    <button class="cat-item" onclick="searchFor('tablet', this)">📟 Tablets</button>
-    <button class="cat-item" onclick="searchFor('camera', this)">📷 Cameras</button>
-    <button class="cat-item" onclick="searchFor('washing machine', this)">🫧 Washing Machines</button>
-    <button class="cat-item" onclick="searchFor('vacuum cleaner', this)">🌀 Vacuums</button>
-    <button class="cat-item" onclick="searchFor('heat pump', this)">❄️ Heat Pumps</button>
-    <button class="cat-item" onclick="searchFor('gaming console', this)">🎮 Gaming</button>
-    <button class="cat-item" onclick="searchFor('speaker', this)">🔊 Speakers</button>
-    <button class="cat-item" onclick="searchFor('fridge', this)">🧊 Fridges</button>
-  </div>
-</div>
 
 <div id="hero">
   <div class="hero-kicker">New Zealand's price intelligence platform</div>
@@ -263,11 +250,23 @@
       <div class="suggestions-label" id="suggestions-label">Suggestions</div>
       <div class="suggestion-chips" id="suggestion-chips"></div>
     </div>
-    <div class="hints">
-      <span class="hint" onclick="searchFor('AirPods Pro', this)">AirPods Pro</span>
-      <span class="hint" onclick="searchFor('iPhone 16', this)">iPhone 16</span>
-      <span class="hint" onclick="searchFor('Samsung TV', this)">Samsung TV</span>
-      <span class="hint" onclick="searchFor('Dyson vacuum', this)">Dyson vacuum</span>
+
+  </div>
+  <div class="hero-cats" id="hero-cats">
+    <div class="hero-cats-label">Browse by category</div>
+    <div class="hero-cats-grid">
+      <button class="hcat" onclick="searchFor('smartphones', this)"><span class="hcat-icon">📱</span><span class="hcat-name">Phones</span></button>
+      <button class="hcat" onclick="searchFor('laptop', this)"><span class="hcat-icon">💻</span><span class="hcat-name">Laptops</span></button>
+      <button class="hcat" onclick="searchFor('television', this)"><span class="hcat-icon">📺</span><span class="hcat-name">TVs</span></button>
+      <button class="hcat" onclick="searchFor('headphones', this)"><span class="hcat-icon">🎧</span><span class="hcat-name">Headphones</span></button>
+      <button class="hcat" onclick="searchFor('tablet', this)"><span class="hcat-icon">📟</span><span class="hcat-name">Tablets</span></button>
+      <button class="hcat" onclick="searchFor('camera', this)"><span class="hcat-icon">📷</span><span class="hcat-name">Cameras</span></button>
+      <button class="hcat" onclick="searchFor('washing machine', this)"><span class="hcat-icon">🫧</span><span class="hcat-name">Washers</span></button>
+      <button class="hcat" onclick="searchFor('vacuum cleaner', this)"><span class="hcat-icon">🌀</span><span class="hcat-name">Vacuums</span></button>
+      <button class="hcat" onclick="searchFor('heat pump', this)"><span class="hcat-icon">❄️</span><span class="hcat-name">Heat Pumps</span></button>
+      <button class="hcat" onclick="searchFor('gaming console', this)"><span class="hcat-icon">🎮</span><span class="hcat-name">Gaming</span></button>
+      <button class="hcat" onclick="searchFor('speaker', this)"><span class="hcat-icon">🔊</span><span class="hcat-name">Speakers</span></button>
+      <button class="hcat" onclick="searchFor('fridge', this)"><span class="hcat-icon">🧊</span><span class="hcat-name">Fridges</span></button>
     </div>
   </div>
 </div>
@@ -474,7 +473,7 @@
     e.preventDefault();
     clearSearch();
     activeCatItem = null;
-    document.querySelectorAll('.cat-item').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.hcat, .cat-item').forEach(c => c.classList.remove('active'));
   }
   let currentProductId = null;
   let allPrices = [];
@@ -513,7 +512,7 @@
     resultsEl.style.display = 'block';
     clearBtn.style.display = 'flex';
     activeFilter = 'all';
-    // Hide stats bar during search
+    // Hide stats bar during search (hero-cats auto-hides via CSS .compact)
     const statsRow = document.getElementById('stats-row');
     if (statsRow) statsRow.style.display = 'none';
     fetchResults(normaliseQuery(raw), forceProduct);
@@ -531,13 +530,13 @@
     const statsRow = document.getElementById('stats-row');
     if (statsRow) statsRow.style.display = 'grid';
     document.getElementById('back-bar').style.display = 'none';
-    document.querySelectorAll('.cat-item').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.hcat, .cat-item').forEach(c => c.classList.remove('active'));
   }
   function searchFor(name, catBtn) {
     searchInput.value = name;
     hideSuggestions();
     // Update active category pill if clicked from cat bar
-    document.querySelectorAll('.cat-item').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.hcat, .cat-item').forEach(c => c.classList.remove('active'));
     if (catBtn) catBtn.classList.add('active');
     doSearch();
   }
@@ -765,7 +764,7 @@
     const backBar = document.getElementById('back-bar');
     if (lastVariants && lastVariants.length > 1) {
       backBar.style.display = 'block';
-      document.getElementById('back-label').textContent = `← Back to "${lastVariantQuery}" results`;
+      document.getElementById('back-label').textContent = `Back to "${lastVariantQuery}" results`;
     } else {
       backBar.style.display = 'none';
     }

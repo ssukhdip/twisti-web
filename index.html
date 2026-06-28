@@ -213,12 +213,25 @@
     .badge-new{background:#f5f3fe;color:var(--purple);}
     .search-outer{position:relative;}
     @media(max-width:640px){
-      nav{padding:12px 16px;}#hero{padding:40px 16px 32px;}.section{padding:20px 16px;}
-      #results{padding:16px 16px 40px;}.deals-grid{grid-template-columns:repeat(2,1fr);}
+      nav{padding:12px 16px;}#hero{padding:32px 16px 24px;}.section{padding:20px 16px;}
+      #results{padding:12px 16px 40px;}.deals-grid{grid-template-columns:repeat(2,1fr);}
       .how-grid{grid-template-columns:1fr;gap:20px;}
       .stats-row{grid-template-columns:repeat(2,1fr);}.footer-inner{grid-template-columns:1fr;gap:20px;}
-      .price-card{grid-template-columns:26px 1fr auto;}
-      .pc-btn{display:none;}
+      /* Mobile price cards — stack price and button below store name */
+      .price-card{grid-template-columns:28px 1fr;grid-template-rows:auto auto;gap:8px;padding:14px;}
+      .pc-price-wrap{grid-column:2;margin-top:-4px;}
+      .pc-price{font-size:20px;}
+      .pc-btn{grid-column:2;display:inline-block;padding:10px 0;text-align:center;width:100%;margin-top:4px;font-size:13px;}
+      /* Bigger filter tabs on mobile */
+      .ftab{padding:13px 6px;font-size:12px;}
+      .ftab-count{display:none;}
+      /* Variant rows easier to tap */
+      .variant-row{padding:16px;}
+      .variant-row-name{font-size:15px;}
+      /* Results padding */
+      .verdict-bar{padding:14px 16px;}
+      .verdict-headline{font-size:14px;}
+      #verdict-sub{font-size:12px;}
     }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
@@ -652,9 +665,16 @@
     if (n.includes('roomba')) return 'iRobot Roomba';
     if (n.includes('dyson')) return 'Dyson';
 
-    // Extract first 2-3 meaningful words as group
-    const words = name.split(' ').filter(w => w.length > 2);
-    return words.slice(0, 2).join(' ');
+    // Better fallback — extract brand + type, skip model numbers
+    const words = name.split(' ');
+    const meaningful = words.filter(w =>
+      w.length > 2 &&
+      !/^[\d\-\.]+$/.test(w) &&          // skip pure numbers/dashes
+      !/^[A-Z0-9]{4,}$/.test(w) &&       // skip model codes like FC0786AU
+      !w.match(/^\d+[a-z]+"?$/i) &&      // skip sizes like 15.6" 14"
+      !['inch','fhd','hd','amd','intel','ghz','ssd','ram','win','windows','notebook','laptop','with','and','for','the'].includes(w.toLowerCase())
+    );
+    return meaningful.slice(0, 3).join(' ') || words.slice(0, 2).join(' ');
   }
 
   // ── Category page ──

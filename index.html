@@ -162,21 +162,21 @@
     .upvote-btn:hover{border-color:var(--green);color:var(--green);}
 
     /* Variants */
-    .variant-group{margin-bottom:16px;}
+    .variant-group{margin-bottom:20px;}
     .variant-group:last-child{margin-bottom:0;}
-    .variant-group-heading{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;padding-left:2px;}
-    .variant-list{display:flex;flex-direction:column;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:var(--shadow);}
-    .variant-row{display:flex;align-items:center;gap:14px;padding:13px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.12s;}
-    .variant-row:last-child{border-bottom:none;}
-    .variant-row:hover{background:var(--green-light);}
+    .variant-group-heading{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;padding:0 2px;display:flex;align-items:center;gap:8px;}
+    .variant-group-heading::after{content:'';flex:1;height:1px;background:var(--border);}
+    .variant-list{display:flex;flex-direction:column;gap:8px;}
+    .variant-row{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all 0.15s;box-shadow:var(--shadow);}
+    .variant-row:hover{border-color:var(--green);background:var(--green-light);transform:translateX(2px);}
     .variant-row:hover .variant-row-name{color:var(--green);}
-    .variant-row-num{font-size:12px;color:var(--text-muted);font-weight:500;width:18px;flex-shrink:0;text-align:right;}
+    .variant-row-num{font-size:12px;color:var(--text-muted);font-weight:600;width:20px;flex-shrink:0;text-align:center;}
     .variant-row-info{flex:1;min-width:0;}
-    .variant-row-name{font-size:14px;font-weight:500;color:var(--text);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-    .variant-row-meta{font-size:11px;color:var(--text-muted);margin-top:2px;display:flex;align-items:center;gap:8px;}
-    .variant-row-price{font-size:14px;font-weight:700;color:var(--green);white-space:nowrap;flex-shrink:0;}
-    .variant-row-arrow{font-size:13px;color:var(--text-muted);flex-shrink:0;transition:color 0.12s;}
-    .variant-row:hover .variant-row-arrow{color:var(--green);}
+    .variant-row-name{font-size:14px;font-weight:600;color:var(--text);line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+    .variant-row-meta{font-size:11px;color:var(--text-muted);margin-top:3px;display:flex;align-items:center;gap:6px;}
+    .variant-row-price{font-size:15px;font-weight:700;color:var(--green);white-space:nowrap;flex-shrink:0;text-align:right;}
+    .variant-row-arrow{font-size:18px;color:var(--text-muted);flex-shrink:0;transition:all 0.15s;margin-left:4px;}
+    .variant-row:hover .variant-row-arrow{color:var(--green);transform:translateX(3px);}
 
     /* Skeleton */
     .skeleton{background:linear-gradient(90deg,var(--bg-page) 25%,var(--border) 50%,var(--bg-page) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:4px;}
@@ -609,72 +609,121 @@
     if (!name) return 'Other';
     const n = name.toLowerCase();
 
-    // Apple Watch
-    if (n.includes('ultra')) return 'Apple Watch Ultra';
-    if (n.includes('series 10') || n.includes('series 11') || n.includes('series 12')) return 'Apple Watch Series (Latest)';
-    if (n.includes('series 9') || n.includes('series 8') || n.includes('series 7')) return 'Apple Watch Series (Previous)';
-    if (n.includes('series 6') || n.includes('series 5') || n.includes('series 4') || n.includes('series 3')) return 'Apple Watch Series (Older)';
-    if (n.includes('se')) return 'Apple Watch SE';
+    // ── Must check SPECIFIC product lines before generic brand terms ──
 
-    // Garmin
-    if (n.includes('fenix')) return 'Garmin Fenix';
-    if (n.includes('forerunner')) return 'Garmin Forerunner';
-    if (n.includes('instinct')) return 'Garmin Instinct';
-    if (n.includes('vivoactive')) return 'Garmin Vivoactive';
-    if (n.includes('venu')) return 'Garmin Venu';
-    if (n.includes('epix')) return 'Garmin Epix';
-
-    // Samsung Galaxy Watch
-    if (n.includes('ultra')) return 'Samsung Galaxy Watch Ultra';
-    if (n.includes('galaxy watch 7') || n.includes('galaxy watch 6') || n.includes('galaxy watch 5')) return 'Samsung Galaxy Watch';
-    if (n.includes('galaxy watch')) return 'Samsung Galaxy Watch';
-
-    // iPhone
-    if (n.includes('pro max')) return 'iPhone Pro Max';
-    if (n.includes('pro')) return 'iPhone Pro';
-    if (n.includes('plus')) return 'iPhone Plus';
-    if (n.includes('iphone')) return 'iPhone Standard';
-
-    // Samsung Galaxy phones
-    if (n.includes('s25') || n.includes('s24') || n.includes('s23')) return 'Samsung Galaxy S Series';
-    if (n.includes('a55') || n.includes('a35') || n.includes('a15') || n.includes('galaxy a')) return 'Samsung Galaxy A Series';
-    if (n.includes('fold') || n.includes('flip')) return 'Samsung Galaxy Foldable';
-
-    // Laptops
+    // Apple — specific first
     if (n.includes('macbook pro')) return 'MacBook Pro';
     if (n.includes('macbook air')) return 'MacBook Air';
     if (n.includes('macbook')) return 'MacBook';
-    if (n.includes('dell xps')) return 'Dell XPS';
-    if (n.includes('thinkpad')) return 'Lenovo ThinkPad';
-    if (n.includes('spectre') || n.includes('envy') || n.includes('pavilion')) return 'HP Laptops';
-
-    // Headphones
     if (n.includes('airpods pro')) return 'AirPods Pro';
     if (n.includes('airpods max')) return 'AirPods Max';
     if (n.includes('airpods')) return 'AirPods';
+    if (n.includes('ipad pro')) return 'iPad Pro';
+    if (n.includes('ipad air')) return 'iPad Air';
+    if (n.includes('ipad mini')) return 'iPad Mini';
+    if (n.includes('ipad')) return 'iPad';
+    if (n.includes('apple watch ultra')) return 'Apple Watch Ultra';
+    if (n.includes('apple watch se')) return 'Apple Watch SE';
+    if (n.includes('apple watch series')) return 'Apple Watch Series';
+    if (n.includes('apple watch')) return 'Apple Watch';
+    if (n.includes('iphone') && n.includes('pro max')) return 'iPhone Pro Max';
+    if (n.includes('iphone') && n.includes('pro')) return 'iPhone Pro';
+    if (n.includes('iphone') && n.includes('plus')) return 'iPhone Plus';
+    if (n.includes('iphone')) return 'iPhone';
+    if (n.includes('mac mini')) return 'Mac Mini';
+    if (n.includes('imac')) return 'iMac';
+
+    // Samsung — specific first
+    if (n.includes('galaxy s25') || n.includes('galaxy s24') || n.includes('galaxy s23')) return 'Samsung Galaxy S Series';
+    if (n.includes('galaxy a')) return 'Samsung Galaxy A Series';
+    if (n.includes('galaxy z fold') || n.includes('galaxy z flip')) return 'Samsung Galaxy Z Foldable';
+    if (n.includes('galaxy watch')) return 'Samsung Galaxy Watch';
+    if (n.includes('galaxy tab')) return 'Samsung Galaxy Tab';
+    if (n.includes('neo qled')) return 'Samsung Neo QLED TV';
+    if (n.includes('samsung') && n.includes('qled')) return 'Samsung QLED TV';
+    if (n.includes('samsung') && (n.includes(' tv') || n.includes('television'))) return 'Samsung TV';
+    if (n.includes('samsung') && (n.includes('washer') || n.includes('washing'))) return 'Samsung Washing Machine';
+    if (n.includes('samsung') && n.includes('fridge')) return 'Samsung Fridge';
+
+    // Sony
     if (n.includes('wh-1000') || n.includes('wf-1000')) return 'Sony WH/WF Series';
-    if (n.includes('quietcomfort') || n.includes('qc')) return 'Bose QuietComfort';
+    if (n.includes('sony') && (n.includes('tv') || n.includes('oled') || n.includes('bravia'))) return 'Sony TV';
+    if (n.includes('sony') && n.includes('camera')) return 'Sony Camera';
+    if (n.includes('sony') && n.includes('headphones')) return 'Sony Headphones';
 
-    // TVs
-    if (n.includes('oled')) return 'OLED TVs';
-    if (n.includes('qled') || n.includes('neo qled')) return 'QLED TVs';
-    if (n.includes('4k') || n.includes('uhd')) return '4K TVs';
+    // Garmin
+    if (n.includes('garmin') && n.includes('fenix')) return 'Garmin Fenix';
+    if (n.includes('garmin') && n.includes('forerunner')) return 'Garmin Forerunner';
+    if (n.includes('garmin') && n.includes('instinct')) return 'Garmin Instinct';
+    if (n.includes('garmin') && n.includes('vivoactive')) return 'Garmin Vivoactive';
+    if (n.includes('garmin') && n.includes('venu')) return 'Garmin Venu';
+    if (n.includes('garmin')) return 'Garmin Watch';
 
-    // Vacuum
-    if (n.includes('v15') || n.includes('v12') || n.includes('v11') || n.includes('v10') || n.includes('v8')) return 'Dyson V-Series Cordless';
-    if (n.includes('roomba')) return 'iRobot Roomba';
+    // HP laptops — specific
+    if (n.includes('hp') && n.includes('spectre')) return 'HP Spectre';
+    if (n.includes('hp') && n.includes('envy')) return 'HP Envy';
+    if (n.includes('hp') && n.includes('pavilion')) return 'HP Pavilion';
+    if (n.includes('hp') && n.includes('omen')) return 'HP Omen Gaming';
+    if (n.includes('hp') && n.includes('elitebook')) return 'HP EliteBook';
+    if (n.includes('hp') && (n.includes('laptop') || n.includes('notebook'))) return 'HP Laptop';
+
+    // Dell
+    if (n.includes('dell') && n.includes('xps')) return 'Dell XPS';
+    if (n.includes('dell') && n.includes('inspiron')) return 'Dell Inspiron';
+    if (n.includes('dell') && n.includes('latitude')) return 'Dell Latitude';
+    if (n.includes('dell') && (n.includes('laptop') || n.includes('notebook'))) return 'Dell Laptop';
+
+    // Lenovo
+    if (n.includes('thinkpad')) return 'Lenovo ThinkPad';
+    if (n.includes('ideapad')) return 'Lenovo IdeaPad';
+    if (n.includes('yoga') && n.includes('lenovo')) return 'Lenovo Yoga';
+    if (n.includes('lenovo') && (n.includes('laptop') || n.includes('notebook'))) return 'Lenovo Laptop';
+
+    // Asus
+    if (n.includes('zenbook')) return 'Asus ZenBook';
+    if (n.includes('vivobook')) return 'Asus VivoBook';
+    if (n.includes('rog') || (n.includes('asus') && n.includes('gaming'))) return 'Asus ROG Gaming';
+    if (n.includes('asus') && (n.includes('laptop') || n.includes('notebook'))) return 'Asus Laptop';
+
+    // Acer
+    if (n.includes('acer') && n.includes('swift')) return 'Acer Swift';
+    if (n.includes('acer') && n.includes('aspire')) return 'Acer Aspire';
+    if (n.includes('acer') && n.includes('nitro')) return 'Acer Nitro Gaming';
+    if (n.includes('acer') && (n.includes('laptop') || n.includes('notebook'))) return 'Acer Laptop';
+
+    // Dyson
+    if (n.includes('dyson') && n.includes('v15')) return 'Dyson V15';
+    if (n.includes('dyson') && n.includes('v12')) return 'Dyson V12';
+    if (n.includes('dyson') && n.includes('v11')) return 'Dyson V11';
+    if (n.includes('dyson') && n.includes('airwrap')) return 'Dyson Airwrap';
     if (n.includes('dyson')) return 'Dyson';
 
-    // Better fallback — extract brand + type, skip model numbers
+    // Bose
+    if (n.includes('quietcomfort') || (n.includes('bose') && n.includes('qc'))) return 'Bose QuietComfort';
+    if (n.includes('bose') && n.includes('soundlink')) return 'Bose SoundLink';
+    if (n.includes('bose')) return 'Bose';
+
+    // TVs by type
+    if (n.includes('oled') && (n.includes('tv') || n.includes('television'))) return 'OLED TVs';
+    if (n.includes('qled') && (n.includes('tv') || n.includes('television'))) return 'QLED TVs';
+    if ((n.includes('4k') || n.includes('uhd')) && (n.includes('tv') || n.includes('television'))) return '4K TVs';
+    if (n.includes(' tv ') || n.includes('television')) return 'TVs';
+
+    // Appliances
+    if (n.includes('washing machine') || n.includes('washer')) return 'Washing Machines';
+    if (n.includes('heat pump') || n.includes('air conditioner')) return 'Heat Pumps';
+    if (n.includes('fridge') || n.includes('refrigerator')) return 'Fridges';
+    if (n.includes('dishwasher')) return 'Dishwashers';
+    if (n.includes('dryer')) return 'Dryers';
+
+    // Roomba / robot vacuums
+    if (n.includes('roomba')) return 'iRobot Roomba';
+
+    // Generic fallback — extract first 2 meaningful words only
     const words = name.split(' ');
-    const meaningful = words.filter(w =>
-      w.length > 2 &&
-      !/^[\d\-\.]+$/.test(w) &&          // skip pure numbers/dashes
-      !/^[A-Z0-9]{4,}$/.test(w) &&       // skip model codes like FC0786AU
-      !w.match(/^\d+[a-z]+"?$/i) &&      // skip sizes like 15.6" 14"
-      !['inch','fhd','hd','amd','intel','ghz','ssd','ram','win','windows','notebook','laptop','with','and','for','the'].includes(w.toLowerCase())
-    );
-    return meaningful.slice(0, 3).join(' ') || words.slice(0, 2).join(' ');
+    const skip = new Set(['the','and','with','for','inch','fhd','uhd','hd','4k','ram','ssd','ghz','wifi','amd','intel','windows','win','laptop','notebook','tablet','phone','pc','laptop']);
+    const meaningful = words.filter(w => w.length > 1 && !skip.has(w.toLowerCase()) && !/^\d/.test(w) && !/^[A-Z0-9\-]{5,}$/.test(w));
+    return meaningful.slice(0, 2).join(' ') || words.slice(0, 2).join(' ');
   }
 
   // ── Category page ──

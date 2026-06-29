@@ -1,57 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terms of Service — Twisti</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap" rel="stylesheet">
   <style>
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'Inter',sans-serif;background:#f2f2f0;color:#1a1a1a;padding:40px 20px;}
-    .wrap{max-width:700px;margin:0 auto;background:#fff;border-radius:12px;padding:48px;border:1px solid #e0e0de;}
-    .logo{font-size:20px;font-weight:700;margin-bottom:32px;display:block;text-decoration:none;color:#1a1a1a;}
-    .logo span{color:#1a6b4a;}
-    h1{font-size:26px;font-weight:700;margin-bottom:8px;}
-    .updated{font-size:13px;color:#666;margin-bottom:32px;}
-    h2{font-size:16px;font-weight:600;margin:28px 0 10px;}
-    p{font-size:14px;color:#333;line-height:1.7;margin-bottom:12px;}
-    ul{font-size:14px;color:#333;line-height:1.7;margin:0 0 12px 20px;}
-    a{color:#1a6b4a;}
-    .back{display:inline-block;margin-top:32px;font-size:13px;color:#1a6b4a;text-decoration:none;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    [data-theme="light"]{--bg:#f0f0ee;--bg-card:#ffffff;--text:#111;--text-2:#444;--text-muted:#888;--border:#e2e2e0;--green:#1a6b4a;--green-light:#edf7f2;}
+    [data-theme="dark"]{--bg:#141414;--bg-card:#1e1e1e;--text:#f0f0ee;--text-2:#b8b8b6;--text-muted:#666;--border:#2a2a2a;--green:#2dd4a0;--green-light:#0a2218;}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);padding:40px 20px;line-height:1.6;}
+    .wrap{max-width:720px;margin:0 auto;background:var(--bg-card);border-radius:14px;padding:52px;border:1px solid var(--border);}
+    .logo-wrap{display:flex;align-items:center;gap:8px;text-decoration:none;margin-bottom:36px;}
+    .logo-mark{width:28px;height:28px;border-radius:7px;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;}
+    .logo-text{font-size:17px;font-weight:700;letter-spacing:-0.5px;color:var(--text);}
+    .logo-text em{font-style:normal;color:var(--green);}
+    h1{font-size:26px;font-weight:700;letter-spacing:-0.5px;margin-bottom:6px;}
+    .meta{font-size:13px;color:var(--text-muted);margin-bottom:8px;}
+    .jurisdiction-note{font-size:12px;color:var(--text-muted);background:var(--green-light);border-left:3px solid var(--green);padding:10px 14px;border-radius:0 6px 6px 0;margin-bottom:32px;line-height:1.6;}
+    h2{font-size:15px;font-weight:700;margin:32px 0 10px;color:var(--text);letter-spacing:-0.2px;}
+    p{font-size:14px;color:var(--text-2);line-height:1.8;margin-bottom:12px;}
+    ul,ol{font-size:14px;color:var(--text-2);line-height:1.8;margin:0 0 12px 20px;}
+    li{margin-bottom:4px;}
+    a{color:var(--green);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    .back{display:inline-block;margin-top:36px;font-size:13px;color:var(--green);}
+    @media(max-width:600px){.wrap{padding:28px 20px;}}
   </style>
 </head>
 <body>
 <div class="wrap">
-  <a href="/" class="logo">twi<span>sti</span></a>
+  <a href="/" class="logo-wrap">
+    <div class="logo-mark">tw</div>
+    <div class="logo-text">twi<em>sti</em></div>
+  </a>
+
   <h1>Terms of Service</h1>
-  <p class="updated">Last updated: June 2026</p>
+  <p class="meta">Last updated: 30 June 2026 · Effective: 30 June 2026</p>
+  <p class="jurisdiction-note">These terms are governed by New Zealand law. If you are accessing Twisti from Australia, these terms also incorporate applicable Australian Consumer Law obligations. By using Twisti, you agree to these terms.</p>
 
-  <p>By using Twisti (twisti.org), you agree to these terms. Please read them carefully.</p>
+  <p>These Terms of Service ("Terms") govern your access to and use of Twisti ("we", "us", "our"), a free online price comparison service operated at twisti.org. Please read them carefully before using the service.</p>
 
-  <h2>What Twisti Does</h2>
-  <p>Twisti is a free price comparison service for New Zealand shoppers. We aggregate publicly available prices from NZ retailers to help you find the best deal.</p>
+  <h2>1. About Twisti</h2>
+  <p>Twisti is a free price comparison service that aggregates publicly available product prices from major New Zealand and Australian retailers. We also provide AI-generated buying verdicts to help you make informed purchasing decisions. Twisti is New Zealand-owned and operated.</p>
 
-  <h2>Price Accuracy</h2>
-  <p>Prices displayed on Twisti are sourced from third-party retailers and may not always reflect the current price at that store. Always verify the final price on the retailer's website before purchasing. Twisti is not responsible for price discrepancies.</p>
+  <h2>2. Acceptance of Terms</h2>
+  <p>By accessing or using twisti.org, you confirm that you are at least 16 years old and agree to be bound by these Terms and our <a href="/privacy.html">Privacy Policy</a>. If you do not agree, you must not use the service.</p>
 
-  <h2>Affiliate Links</h2>
-  <p>Some links on Twisti are affiliate links. If you make a purchase through these links, we may earn a small commission at no extra cost to you. This helps us keep Twisti free.</p>
+  <h2>3. Price Accuracy and Disclaimer</h2>
+  <p>Prices displayed on Twisti are sourced from third-party retailer websites and may not always reflect the current price at the time of your visit. Prices can change without notice. You should always verify the final price on the retailer's own website before completing a purchase.</p>
+  <p>Twisti makes no warranty, express or implied, as to the accuracy, completeness, or timeliness of prices shown. We are not responsible for any loss arising from reliance on prices displayed on our site.</p>
 
-  <h2>User Accounts</h2>
+  <h2>4. AI Verdicts</h2>
+  <p>Twisti provides AI-generated buying verdicts ("Verdict") that include analysis of pricing, pros and cons, and purchase recommendations. These verdicts are for general informational purposes only. They do not constitute financial advice. You should exercise your own judgement before making any purchase based on a Verdict.</p>
+  <p>AI verdicts are generated automatically and may contain errors or omissions. Twisti does not guarantee the accuracy of any Verdict.</p>
+
+  <h2>5. Affiliate Links and Commercial Relationships</h2>
+  <p>Twisti participates in affiliate marketing programmes, including Commission Factory. When you click a "Visit store" link and make a purchase, we may receive a commission from the retailer. This commission is paid by the retailer and does not add any cost to your purchase.</p>
+  <p>Our affiliate relationships do not influence the ranking of prices. The cheapest verified price is always shown first, regardless of whether an affiliate relationship exists with that retailer.</p>
+
+  <h2>6. User Accounts</h2>
+  <p>You may use Twisti without creating an account. If you create an account, you agree to:</p>
   <ul>
-    <li>You must provide accurate information when creating an account</li>
-    <li>You are responsible for keeping your account secure</li>
-    <li>You may delete your account at any time</li>
+    <li>Provide accurate and truthful information when registering</li>
+    <li>Keep your login credentials secure and confidential</li>
+    <li>Notify us immediately at <a href="mailto:hello@twisti.org">hello@twisti.org</a> if you suspect unauthorised access to your account</li>
+    <li>Accept responsibility for all activity that occurs under your account</li>
   </ul>
+  <p>You may delete your account at any time by contacting us at <a href="mailto:hello@twisti.org">hello@twisti.org</a>.</p>
 
-  <h2>Prohibited Use</h2>
-  <p>You may not use Twisti to scrape data, attack our systems, or use our service for any unlawful purpose.</p>
+  <h2>7. Acceptable Use</h2>
+  <p>You agree not to use Twisti to:</p>
+  <ul>
+    <li>Scrape, harvest, or systematically download data from our website using automated tools</li>
+    <li>Attempt to access, probe, or interfere with our systems, databases, or servers</li>
+    <li>Use our service for any unlawful purpose under New Zealand or Australian law</li>
+    <li>Impersonate any person or entity, or misrepresent your affiliation with any person or entity</li>
+    <li>Upload or transmit malicious code, viruses, or harmful content</li>
+    <li>Attempt to circumvent any security or access controls</li>
+  </ul>
+  <p>We reserve the right to suspend or terminate access for any user who breaches these terms.</p>
 
-  <h2>Disclaimer</h2>
-  <p>Twisti is provided "as is" without warranties of any kind. We are not liable for any losses arising from use of our service or from purchases made through retailer links.</p>
+  <h2>8. Intellectual Property</h2>
+  <p>All content on twisti.org — including but not limited to the Twisti name, logo, design, AI verdicts, and written content — is owned by or licensed to Twisti and is protected by New Zealand and international intellectual property laws. You may not reproduce, distribute, or create derivative works from our content without our prior written consent.</p>
+  <p>Product names, trademarks, and images displayed on Twisti remain the property of their respective owners.</p>
 
-  <h2>Contact</h2>
-  <p>Questions? Email <a href="mailto:hello@twisti.org">hello@twisti.org</a></p>
+  <h2>9. Third-Party Websites</h2>
+  <p>Twisti contains links to third-party retailer websites. We are not responsible for the content, accuracy, availability, or privacy practices of those websites. A link from Twisti does not constitute endorsement of a retailer or product. Your dealings with third-party retailers are governed by their own terms and conditions.</p>
+
+  <h2>10. Limitation of Liability</h2>
+  <p>To the maximum extent permitted by law, Twisti and its operators are not liable for:</p>
+  <ul>
+    <li>Any loss or damage arising from your reliance on prices, verdicts, or other information displayed on Twisti</li>
+    <li>Any loss arising from a purchase made through a retailer link on our site</li>
+    <li>Any indirect, incidental, consequential, or punitive loss</li>
+    <li>Any interruption, suspension, or termination of the service</li>
+  </ul>
+  <p>Nothing in these Terms excludes or limits any rights you have under the Consumer Guarantees Act 1993 (NZ) or Australian Consumer Law that cannot be excluded or limited by agreement.</p>
+
+  <h2>11. Disclaimer of Warranties</h2>
+  <p>Twisti is provided on an "as is" and "as available" basis. We do not warrant that the service will be uninterrupted, error-free, or free from viruses or other harmful components. We make no warranties, express or implied, regarding the service beyond what is required by applicable New Zealand or Australian law.</p>
+
+  <h2>12. Consumer Rights (NZ and AU)</h2>
+  <p>If you are a consumer in New Zealand, nothing in these Terms affects your rights under the Consumer Guarantees Act 1993, the Fair Trading Act 1986, or the Contract and Commercial Law Act 2017.</p>
+  <p>If you are a consumer in Australia, nothing in these Terms affects your rights under the Australian Consumer Law (Schedule 2 to the Competition and Consumer Act 2010), including your statutory guarantees for services.</p>
+
+  <h2>13. Modifications to the Service</h2>
+  <p>We reserve the right to modify, suspend, or discontinue any part of Twisti at any time without notice. We will not be liable to you or any third party for any modification, suspension, or discontinuation of the service.</p>
+
+  <h2>14. Changes to These Terms</h2>
+  <p>We may update these Terms from time to time. Updated Terms will be posted at this URL with a revised "Last updated" date. If changes are material, we will notify registered users by email. Continued use of Twisti after changes are posted constitutes your acceptance of the updated Terms.</p>
+
+  <h2>15. Governing Law and Disputes</h2>
+  <p>These Terms are governed by the laws of New Zealand. Any dispute arising from or in connection with these Terms or your use of Twisti shall be subject to the exclusive jurisdiction of the courts of New Zealand, except where mandatory consumer protection laws in Australia require otherwise.</p>
+  <p>We encourage you to contact us first to resolve any dispute informally at <a href="mailto:hello@twisti.org">hello@twisti.org</a> before seeking formal resolution.</p>
+
+  <h2>16. Contact</h2>
+  <p>Questions about these Terms? Contact us at:<br>
+  📧 <a href="mailto:hello@twisti.org">hello@twisti.org</a></p>
 
   <a href="/" class="back">← Back to Twisti</a>
 </div>

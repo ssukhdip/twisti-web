@@ -5,46 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign in — Twisti</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'Inter',sans-serif;background:#f2f2f0;color:#1a1a1a;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;}
-    .card{background:#fff;border:1px solid #e0e0de;border-radius:12px;padding:36px 40px;width:100%;max-width:420px;box-shadow:0 2px 20px rgba(0,0,0,0.08);}
-    .logo{display:flex;align-items:center;justify-content:center;margin-bottom:28px;text-decoration:none;}
-    .logo-t{font-size:22px;font-weight:700;color:#1a1a1a;}
-    .logo-t span{color:#1a6b4a;}
-    h1{font-size:20px;font-weight:600;text-align:center;margin-bottom:6px;}
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:linear-gradient(135deg,#0d1f17 0%,#0a1a24 50%,#0d1a0d 100%);
+      min-height:100vh;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      padding:20px;
+    }
+
+    /* ── Card ── */
+    .card{
+      background:#ffffff;
+      border-radius:20px;
+      padding:40px 40px 32px;
+      width:100%;max-width:420px;
+      box-shadow:0 24px 80px rgba(0,0,0,0.35),0 0 0 1px rgba(255,255,255,0.05);
+    }
+
+    /* ── Logo ── */
+    .logo{
+      display:flex;align-items:center;justify-content:center;
+      gap:12px;margin-bottom:32px;text-decoration:none;
+    }
+    .logo-img{
+      width:44px;height:44px;border-radius:12px;
+      object-fit:cover;
+      box-shadow:0 4px 14px rgba(26,107,74,0.35);
+      flex-shrink:0;
+    }
+    .logo-name{
+      font-family:'Inter',sans-serif;
+      font-size:30px;
+      font-weight:900;
+      color:#1a1a1a;
+      letter-spacing:-1.5px;
+      line-height:1;
+      text-transform:uppercase;
+    }
+    .logo-name em{
+      font-style:normal;
+      background:linear-gradient(135deg,#1a6b4a,#2dd4a0);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+
+    /* ── Headings ── */
+    h1{font-size:20px;font-weight:700;text-align:center;margin-bottom:6px;color:#111;}
     .subtitle{font-size:13px;color:#666;text-align:center;margin-bottom:28px;line-height:1.5;}
-    .google-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:12px;border:1.5px solid #e0e0de;border-radius:8px;background:#fff;color:#1a1a1a;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;transition:all 0.15s;text-decoration:none;margin-bottom:20px;}
-    .google-btn:hover{border-color:#1a6b4a;background:#f0faf5;}
-    .divider{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
-    .divider-line{flex:1;height:1px;background:#e0e0de;}
-    .divider-text{font-size:12px;color:#666;}
-    .field{margin-bottom:14px;}
-    label{display:block;font-size:12px;font-weight:500;color:#666;margin-bottom:5px;}
-    input{width:100%;padding:10px 12px;border:1px solid #e0e0de;border-radius:6px;font-size:14px;font-family:inherit;background:#fff;color:#1a1a1a;outline:none;transition:border-color 0.15s;}
-    input:focus{border-color:#1a6b4a;}
-    .submit-btn{width:100%;padding:12px;background:#1a6b4a;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background 0.15s;margin-top:6px;}
-    .submit-btn:hover{background:#15583d;}
-    .submit-btn:disabled{opacity:0.6;cursor:not-allowed;}
-    .toggle{text-align:center;margin-top:18px;font-size:13px;color:#666;}
-    .toggle a{color:#1a6b4a;text-decoration:none;font-weight:500;cursor:pointer;}
-    .msg{padding:10px 14px;border-radius:6px;font-size:13px;margin-bottom:16px;display:none;}
+
+    /* ── Messages ── */
+    .msg{padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:16px;display:none;line-height:1.5;}
     .msg.error{background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;}
     .msg.success{background:#f0faf5;border:1px solid rgba(26,107,74,0.3);color:#1a6b4a;}
-    .benefits{margin-top:24px;padding-top:20px;border-top:1px solid #e0e0de;}
-    .benefit{display:flex;align-items:center;gap:8px;font-size:12px;color:#666;margin-bottom:8px;}
-    .benefit::before{content:'•';color:#1a6b4a;font-size:16px;flex-shrink:0;}
+
+    /* ── Google button ── */
+    .google-btn{
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      width:100%;padding:12px;
+      border:1.5px solid #e0e0de;border-radius:10px;
+      background:#fff;color:#1a1a1a;
+      font-size:14px;font-weight:500;
+      cursor:pointer;font-family:inherit;
+      transition:all 0.15s;text-decoration:none;
+      margin-bottom:20px;
+    }
+    .google-btn:hover{border-color:#1a6b4a;background:#f0faf5;box-shadow:0 2px 8px rgba(26,107,74,0.1);}
+
+    /* ── Divider ── */
+    .divider{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+    .divider-line{flex:1;height:1px;background:#e8e8e6;}
+    .divider-text{font-size:12px;color:#999;}
+
+    /* ── Fields ── */
+    .field{margin-bottom:14px;}
+    label{display:block;font-size:12px;font-weight:600;color:#555;margin-bottom:5px;letter-spacing:0.2px;}
+    input{
+      width:100%;padding:11px 14px;
+      border:1.5px solid #e2e2e0;border-radius:8px;
+      font-size:14px;font-family:inherit;
+      background:#fafafa;color:#111;
+      outline:none;transition:all 0.15s;
+    }
+    input:focus{border-color:#1a6b4a;background:#fff;box-shadow:0 0 0 3px rgba(26,107,74,0.08);}
+
+    /* ── Submit ── */
+    .submit-btn{
+      width:100%;padding:13px;
+      background:linear-gradient(135deg,#1a6b4a,#1a8a60);
+      color:#fff;border:none;border-radius:10px;
+      font-size:14px;font-weight:700;
+      cursor:pointer;font-family:inherit;
+      transition:all 0.15s;margin-top:6px;
+      letter-spacing:0.2px;
+      box-shadow:0 4px 14px rgba(26,107,74,0.3);
+    }
+    .submit-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,107,74,0.4);}
+    .submit-btn:active{transform:translateY(0);}
+    .submit-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+
+    /* ── Toggle ── */
+    .toggle{text-align:center;margin-top:18px;font-size:13px;color:#666;}
+    .toggle a{color:#1a6b4a;text-decoration:none;font-weight:600;cursor:pointer;}
+    .toggle a:hover{text-decoration:underline;}
+
+    /* ── Benefits ── */
+    .benefits{margin-top:24px;padding-top:20px;border-top:1px solid #f0f0ee;}
+    .benefit{display:flex;align-items:center;gap:8px;font-size:12px;color:#777;margin-bottom:7px;}
+    .benefit-dot{width:5px;height:5px;border-radius:50%;background:#1a6b4a;flex-shrink:0;}
+
+    /* ── Back link ── */
     .back-link{margin-top:20px;text-align:center;font-size:13px;color:#666;}
-    .back-link a{color:#1a6b4a;text-decoration:none;}
+    .back-link a{color:#1a6b4a;text-decoration:none;font-weight:500;}
+    .back-link a:hover{text-decoration:underline;}
+
+    @media(max-width:480px){.card{padding:32px 24px 24px;}.logo-name{font-size:28px;}}
   </style>
 </head>
 <body>
 <div class="card">
-  <a href="/" class="logo"><div class="logo-t">twi<span>sti</span></div></a>
+
+  <!-- Logo -->
+  <a href="/" class="logo">
+    <img src="/logo.png" class="logo-img" alt="Twisti" onerror="this.style.display='none'" />
+    <div class="logo-name">TWI<em>STI</em></div>
+  </a>
+
   <div id="msg" class="msg"></div>
 
-  <!-- Sign in -->
+  <!-- Sign in view -->
   <div id="signin-view">
     <h1>Welcome back</h1>
     <p class="subtitle">Sign in to track prices, get deal alerts, and save your favourites.</p>
@@ -59,7 +152,7 @@
     <div class="toggle">Don't have an account? <a onclick="showSignup()">Create one free</a></div>
   </div>
 
-  <!-- Sign up -->
+  <!-- Sign up view -->
   <div id="signup-view" style="display:none">
     <h1>Create your account</h1>
     <p class="subtitle">Free forever. Get deal alerts and price drop notifications.</p>
@@ -74,10 +167,10 @@
     <button class="submit-btn" id="signup-btn" onclick="doSignUp()">Create account</button>
     <div class="toggle">Already have an account? <a onclick="showSignin()">Sign in</a></div>
     <div class="benefits">
-      <div class="benefit">Price drop alerts to your email</div>
-      <div class="benefit">Save products to your wishlist</div>
-      <div class="benefit">Weekly NZ deals newsletter</div>
-      <div class="benefit">Always free — no credit card</div>
+      <div class="benefit"><div class="benefit-dot"></div>Price drop alerts to your email</div>
+      <div class="benefit"><div class="benefit-dot"></div>Save products to your wishlist</div>
+      <div class="benefit"><div class="benefit-dot"></div>Weekly NZ deals newsletter</div>
+      <div class="benefit"><div class="benefit-dot"></div>Always free — no credit card</div>
     </div>
   </div>
 
@@ -85,9 +178,7 @@
 </div>
 
 <script>
-  const API = 'https://twisti-backend-production.up.railway.app';
-
-  // ── All functions defined first ──────────────────────────────────────────
+  var API = 'https://twisti-backend-production.up.railway.app';
 
   function showMsg(type, text) {
     var el = document.getElementById('msg');
@@ -183,7 +274,7 @@
   document.getElementById('google-signin-btn').href = googleUrl;
   document.getElementById('google-signup-btn').href = googleUrl;
 
-  // ── Handle Google callback — runs after functions are defined ─────────────
+  // ── Handle Google callback ────────────────────────────────────────────────
   var params = new URLSearchParams(window.location.search);
 
   if (params.get('token')) {
@@ -199,13 +290,6 @@
   if (params.get('error')) {
     showMsg('error', 'Google sign in failed. Please try email sign up instead.');
   }
-
-  // ── Enter key support ──────────────────────────────────────────────────────
-  document.addEventListener('keydown', function(e) {
-    if (e.key !== 'Enter') return;
-    if (document.getElementById('signup-view').style.display !== 'none') doSignUp();
-    else doSignIn();
-  });
 </script>
 </body>
 </html>

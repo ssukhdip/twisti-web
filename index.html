@@ -88,6 +88,11 @@
       position:sticky;top:0;z-index:200;
     }
     .logo-wrap{display:flex;align-items:center;gap:8px;text-decoration:none;}
+    .logo-img{
+      width:44px;height:44px;border-radius:12px;
+      object-fit:cover;flex-shrink:0;
+      box-shadow:0 3px 12px var(--green-glow);
+    }
     .logo-icon{
       width:44px;height:44px;border-radius:12px;
       background:linear-gradient(135deg,var(--green),#25b589);
@@ -746,7 +751,9 @@
 <!-- ── Nav ── -->
 <nav>
   <a href="/" class="logo-wrap" onclick="goHome(event)">
-    <div class="logo-icon">
+    <img src="/logo.png" class="logo-img" alt="Twisti"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+    <div class="logo-icon" style="display:none">
       <svg viewBox="0 0 32 32" fill="none" width="22" height="22">
         <path d="M16 4 C10 7,7 13,9 20 C11 25,16 28,16 28 C16 28,21 25,23 20 C25 13,22 7,16 4Z" fill="white" opacity="0.95"/>
         <path d="M16 10 L16 27" stroke="#1a6b4a" stroke-width="2.5" stroke-linecap="round"/>

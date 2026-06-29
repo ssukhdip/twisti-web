@@ -31,6 +31,11 @@
       display:flex;align-items:center;justify-content:center;
       gap:12px;margin-bottom:32px;text-decoration:none;
     }
+    .logo-img{
+      width:52px;height:52px;border-radius:14px;
+      object-fit:cover;flex-shrink:0;
+      box-shadow:0 4px 16px rgba(26,107,74,0.35);
+    }
     .logo-icon{
       width:52px;height:52px;border-radius:14px;
       background:linear-gradient(135deg,#1a6b4a,#2dd4a0);
@@ -132,7 +137,9 @@
 
   <!-- Logo -->
   <a href="/" class="logo">
-    <div class="logo-icon">
+    <img src="/logo.png" class="logo-img" alt="Twisti"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+    <div class="logo-icon" style="display:none">
       <svg viewBox="0 0 32 32" fill="none" width="26" height="26">
         <path d="M16 4 C10 7,7 13,9 20 C11 25,16 28,16 28 C16 28,21 25,23 20 C25 13,22 7,16 4Z" fill="white" opacity="0.95"/>
         <path d="M16 10 L16 27" stroke="#1a6b4a" stroke-width="2.5" stroke-linecap="round"/>

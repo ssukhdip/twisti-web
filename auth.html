@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign in — Twisti</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Nunito:wght@900&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
@@ -31,11 +31,12 @@
       display:flex;align-items:center;justify-content:center;
       gap:12px;margin-bottom:32px;text-decoration:none;
     }
-    .logo-img{
-      width:44px;height:44px;border-radius:12px;
-      object-fit:cover;
-      box-shadow:0 4px 14px rgba(26,107,74,0.35);
+    .logo-icon{
+      width:52px;height:52px;border-radius:14px;
+      background:linear-gradient(135deg,#1a6b4a,#2dd4a0);
+      display:flex;align-items:center;justify-content:center;
       flex-shrink:0;
+      box-shadow:0 4px 16px rgba(26,107,74,0.35);
     }
     .logo-name{
       font-family:'Inter',sans-serif;
@@ -131,8 +132,15 @@
 
   <!-- Logo -->
   <a href="/" class="logo">
-    <img src="/logo.png" class="logo-img" alt="Twisti" onerror="this.style.display='none'" />
-    <div class="logo-name">TWI<em>STI</em></div>
+    <div class="logo-icon">
+      <svg viewBox="0 0 32 32" fill="none" width="26" height="26">
+        <path d="M16 4 C10 7,7 13,9 20 C11 25,16 28,16 28 C16 28,21 25,23 20 C25 13,22 7,16 4Z" fill="white" opacity="0.95"/>
+        <path d="M16 10 L16 27" stroke="#1a6b4a" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M16 15 C13 13,10 16,10 19" stroke="#1a6b4a" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <path d="M16 20 C19 18,22 21,22 24" stroke="#1a6b4a" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="logo-name">Twi<em>sti</em></div>
   </a>
 
   <div id="msg" class="msg"></div>

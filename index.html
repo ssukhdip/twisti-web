@@ -1050,6 +1050,23 @@
   const homeContent = document.getElementById('home-content');
   const resultsEl   = document.getElementById('results');
 
+  // ── Browser back button hijack prevention ──
+  // Replace the current history entry with a "home" state so we always have
+  // something to pop back to. When the user presses back while results are open,
+  // we intercept it and return to the Twisti home view instead of leaving the site.
+  window.history.replaceState({ twisti: 'home' }, '');
+  window.addEventListener('popstate', () => {
+    if (resultsEl.style.display === 'block') {
+      if (lastVariants && lastVariants.length > 1 && document.getElementById('back-bar').style.display !== 'none') {
+        goBackToList();
+      } else {
+        clearSearch();
+      }
+      // Re-push so the next back press is also intercepted
+      window.history.pushState({ twisti: 'home' }, '');
+    }
+  });
+
   // ── Theme ──
   function toggleTheme() {
     const html = document.documentElement;
@@ -1075,6 +1092,8 @@
     resultsEl.style.display = 'block';
     clearBtn.style.display = 'flex';
     activeFilter = 'all';
+    // Push a history state so the browser back button fires popstate instead of leaving the site
+    window.history.pushState({ twisti: 'results', q: raw }, '', '?q=' + encodeURIComponent(raw));
     const statsRow = document.getElementById('stats-row');
     if (statsRow) statsRow.style.display = 'none';
     fetchResults(normaliseQuery(raw), forceProduct, userCountry);
@@ -1092,6 +1111,8 @@
     if (statsRow) statsRow.style.display = 'grid';
     document.getElementById('back-bar').style.display = 'none';
     document.querySelectorAll('.hcat,.cat-item').forEach(c => c.classList.remove('active'));
+    // Clean up the URL without triggering popstate
+    window.history.replaceState({ twisti: 'home' }, '', '/');
   }
   function searchFor(name, catBtn) {
     searchInput.value = name;
@@ -1472,7 +1493,7 @@
       <div class="community-box">
         <h3>Community price tips</h3>
         <div class="community-input-row">
-          <input type="text" id="community-input" placeholder="Found it cheaper? e.g. Costco · $289" />
+          <input type="text" id="community-input" placeholder="Found it cheaper? e.g. Costco $289 or The Warehouse $199" />
           <button class="submit-btn" onclick="submitCommunityPrice()">Submit</button>
         </div>
         <div class="community-tips" id="community-tips">
@@ -1592,9 +1613,21 @@
     const input = document.getElementById('community-input');
     const val = input.value.trim();
     if (!val) return;
-    const match = val.match(/^(.+?)[\s·\-]+\$?(\d+(?:\.\d+)?)$/);
-    if (!match) { alert('Format: Store name · $price — e.g. Costco · $289'); return; }
-    const [, store, price] = match;
+
+    // Flexible parsing: extract the last number as price, everything before it as store name.
+    // Accepts: "Costco $289", "Costco · $289", "Costco - $289", "Costco $289.99", "Costco289" etc.
+    const priceMatch = val.match(/\$?\s*(\d+(?:\.\d{1,2})?)(?:\s*(?:nzd|aud))?[\s]*$/i);
+    if (!priceMatch) {
+      alert('Please include a price — e.g. "Costco $289" or "The Warehouse · $199"');
+      return;
+    }
+    const price = priceMatch[1];
+    // Strip the price (and any separator before it) from the end to get store name
+    const store = val.slice(0, val.lastIndexOf(priceMatch[0])).replace(/[\s·\-·,]+$/, '').trim() || 'Unknown store';
+    if (!store || parseFloat(price) <= 0) {
+      alert('Please include a store name and price — e.g. "Costco $289"');
+      return;
+    }
     if (API && currentProductId) await fetch(`${API}/api/products/${currentProductId}/community-prices`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ store_name: store.trim(), price, note: '' }) });
     const tips = document.getElementById('community-tips');
     const newTip = document.createElement('div');

@@ -618,6 +618,43 @@
     .upvote-btn{background:none;border:1px solid var(--border);padding:3px 8px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:11px;color:var(--text-muted);transition:all 0.15s;}
     .upvote-btn:hover{border-color:var(--green);color:var(--green);}
 
+    /* ── Secondhand (Trade Me) section ── */
+    .secondhand-section{margin-bottom:16px;}
+    .secondhand-toggle{
+      width:100%;display:flex;align-items:center;gap:10px;
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:10px;padding:13px 16px;
+      cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;
+      color:var(--text-2);transition:all 0.15s;text-align:left;
+    }
+    .secondhand-toggle:hover{border-color:var(--amber);color:var(--text);}
+    .secondhand-toggle.open{border-color:var(--amber);border-bottom-left-radius:0;border-bottom-right-radius:0;}
+    .secondhand-count{
+      display:inline-block;font-size:10px;font-weight:700;
+      background:var(--border);color:var(--text-muted);
+      padding:2px 8px;border-radius:8px;margin-left:4px;
+    }
+    .secondhand-chevron{margin-left:auto;font-size:10px;color:var(--text-muted);}
+    .secondhand-body{
+      border:1px solid var(--border);border-top:none;
+      border-bottom-left-radius:10px;border-bottom-right-radius:10px;
+      overflow:hidden;
+    }
+    .secondhand-disclaimer{
+      font-size:12px;color:var(--amber);
+      background:rgba(180,83,9,0.08);
+      padding:10px 16px;
+      border-bottom:1px solid var(--border);
+      line-height:1.5;
+    }
+    [data-theme="dark"] .secondhand-disclaimer{background:rgba(251,191,36,0.06);color:var(--amber);}
+    .secondhand-body .price-cards{padding:12px;gap:8px;}
+    .tag-secondhand{
+      background:rgba(180,83,9,0.1);color:var(--amber);
+      border:none;
+    }
+    [data-theme="dark"] .tag-secondhand{background:rgba(251,191,36,0.1);color:var(--amber);}
+
     /* ── Skeleton ── */
     .skeleton{
       background:linear-gradient(90deg,var(--border) 25%,var(--border-subtle) 50%,var(--border) 75%);
@@ -1366,7 +1403,7 @@
     } else {
       backBar.style.display = 'none';
     }
-    const { product, prices, community_prices } = data;
+    const { product, prices, community_prices, secondhand_prices } = data;
     currentProduct = product;
     allPrices = (prices || []).filter(p => p.price && p.price > 0).sort((a,b) => a.price - b.price);
 
@@ -1394,7 +1431,7 @@
     setVerdict('⏳', 'Analysing prices with AI', 'Getting a smart buying verdict — just a moment...', 'default');
     document.getElementById('ai-badge').style.display = 'none';
 
-    renderPriceSection(allPrices, community_prices || []);
+    renderPriceSection(allPrices, community_prices || [], secondhand_prices || []);
     fetchVerdict(product.name, allPrices);
   }
 
@@ -1429,7 +1466,8 @@
     return Math.abs(cheapestInstore - cheapestOnline) > 5;
   }
 
-  function renderPriceSection(prices, communityPrices) {
+  function renderPriceSection(prices, communityPrices, secondhandPrices) {
+    secondhandPrices = secondhandPrices || [];
     const validated = validatePrices(prices);
     const showFilters = shouldShowFilters(validated);
     if (activeFilter !== 'all' && filterPrices(validated, activeFilter).length === 0) activeFilter = 'all';
@@ -1462,6 +1500,35 @@
         </div>`;
     }).join('');
 
+    // Secondhand section HTML
+    const secondhandHTML = secondhandPrices.length > 0 ? `
+      <div class="secondhand-section" id="secondhand-section">
+        <button class="secondhand-toggle" onclick="toggleSecondhand()" id="secondhand-toggle">
+          <span>🔄 Secondhand · Trade Me</span>
+          <span class="secondhand-count">${secondhandPrices.length} listing${secondhandPrices.length > 1 ? 's' : ''}</span>
+          <span class="secondhand-chevron" id="secondhand-chevron">▼</span>
+        </button>
+        <div class="secondhand-body" id="secondhand-body" style="display:none">
+          <div class="secondhand-disclaimer">
+            ⚠️ These are secondhand or used listings from Trade Me. Prices and condition vary — always check the individual listing before purchasing.
+          </div>
+          <div class="price-cards">
+            ${secondhandPrices.map((p, i) => `
+              <div class="price-card">
+                <div class="pc-rank rank-other">${i + 1}</div>
+                <div class="pc-info">
+                  <div class="pc-store-name">${escapeHtml(p.store_name)}</div>
+                  <div class="pc-tags"><span class="pc-tag tag-secondhand">Used / Secondhand</span></div>
+                </div>
+                <div class="pc-price-wrap">
+                  <div class="pc-price">$${p.price}<span style="font-size:11px;font-weight:400;color:var(--text-muted);margin-left:3px">NZD</span></div>
+                </div>
+                <a href="${p.affiliate_url}" target="_blank" rel="noopener noreferrer" class="pc-btn">View →</a>
+              </div>`).join('')}
+          </div>
+        </div>
+      </div>` : '';
+
     const filterTabsHTML = showFilters ? `
       <div class="filter-tabs">
         <button class="ftab ${activeFilter==='all'?'active':''}" onclick="setFilter('all')">
@@ -1490,6 +1557,7 @@
           <button class="show-more-btn" onclick="showHiddenPrices(this,${shown.length})">Show ${hidden.length} more store${hidden.length>1?'s':''} →</button>
         </div>
         <div class="price-cards" id="hidden-prices" style="display:none">${cardHTML(hidden, shown.length+1)}</div>` : ''}
+      ${secondhandHTML}
       <div class="community-box">
         <h3>Community price tips</h3>
         <div class="community-input-row">
@@ -1502,6 +1570,16 @@
             : '<p style="font-size:12px;color:var(--text-muted);padding-top:8px">No tips yet — be the first!</p>'}
         </div>
       </div>`;
+  }
+
+  function toggleSecondhand() {
+    const body    = document.getElementById('secondhand-body');
+    const chevron = document.getElementById('secondhand-chevron');
+    const toggle  = document.getElementById('secondhand-toggle');
+    const isOpen  = body.style.display !== 'none';
+    body.style.display    = isOpen ? 'none' : 'block';
+    chevron.textContent   = isOpen ? '▼' : '▲';
+    toggle.classList.toggle('open', !isOpen);
   }
 
   function showHiddenPrices(btn, startRank) {

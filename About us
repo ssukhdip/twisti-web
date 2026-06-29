@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Twisti — NZ's AI-Powered Price Comparison</title>
+  <meta name="description" content="Twisti is a New Zealand-owned, family-driven price comparison platform using AI to help Kiwis get the best deal on everything." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    [data-theme="light"]{--bg:#f0f0ee;--bg-card:#ffffff;--text:#111111;--text-2:#444;--text-muted:#888;--border:#e2e2e0;--green:#1a6b4a;--green-light:#edf7f2;--green-glow:rgba(26,107,74,0.1);--nav-bg:rgba(255,255,255,0.92);}
+    [data-theme="dark"]{--bg:#141414;--bg-card:#1e1e1e;--text:#f0f0ee;--text-2:#b8b8b6;--text-muted:#666;--border:#2a2a2a;--green:#2dd4a0;--green-light:#0a2218;--green-glow:rgba(45,212,160,0.08);--nav-bg:rgba(20,20,20,0.92);}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:58px;border-bottom:1px solid var(--border);background:var(--nav-bg);backdrop-filter:blur(12px);position:sticky;top:0;z-index:100;}
+    .logo-wrap{display:flex;align-items:center;gap:8px;text-decoration:none;}
+    .logo-mark{width:30px;height:30px;border-radius:8px;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;}
+    .logo-text{font-size:18px;font-weight:700;letter-spacing:-0.5px;color:var(--text);}
+    .logo-text em{font-style:normal;color:var(--green);}
+    .nav-right{display:flex;gap:8px;align-items:center;}
+    .nav-link{font-size:13px;color:var(--text-muted);text-decoration:none;padding:6px 12px;border-radius:6px;transition:color 0.15s;}
+    .nav-link:hover{color:var(--green);}
+    .nav-btn{background:var(--green);color:#fff;padding:7px 16px;font-size:13px;border:none;cursor:pointer;border-radius:6px;font-family:inherit;font-weight:500;text-decoration:none;}
+
+    /* Hero */
+    .hero{
+      padding:80px 40px 72px;text-align:center;
+      border-bottom:1px solid var(--border);
+      background:var(--bg);position:relative;overflow:hidden;
+    }
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,var(--green-glow),transparent 70%);pointer-events:none;}
+    .hero-kicker{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:8px;}
+    .hero-kicker::before,.hero-kicker::after{content:'';width:20px;height:1px;background:var(--green);opacity:0.5;}
+    .hero h1{font-size:clamp(28px,5vw,52px);font-weight:700;letter-spacing:-1.5px;line-height:1.1;margin-bottom:20px;}
+    .hero h1 em{font-style:italic;color:var(--green);}
+    .hero-sub{font-size:17px;color:var(--text-2);max-width:520px;margin:0 auto;}
+
+    /* Motto */
+    .motto-strip{
+      background:var(--green);
+      padding:28px 40px;text-align:center;
+    }
+    .motto-text{font-size:clamp(18px,3vw,28px);font-weight:700;color:#fff;letter-spacing:-0.5px;font-style:italic;}
+    .motto-sub{font-size:13px;color:rgba(255,255,255,0.7);margin-top:6px;font-weight:400;}
+
+    /* Story */
+    .page{max-width:780px;margin:0 auto;padding:0 40px;}
+    .section{padding:60px 0;border-bottom:1px solid var(--border);}
+    .section:last-child{border-bottom:none;}
+    .section-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:16px;}
+    .section h2{font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.8px;margin-bottom:20px;line-height:1.2;}
+    .section p{font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:16px;}
+    .section p:last-child{margin-bottom:0;}
+
+    /* Pillars */
+    .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;}
+    .pillar{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;}
+    .pillar-icon{font-size:28px;margin-bottom:14px;}
+    .pillar-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-0.2px;}
+    .pillar-body{font-size:13px;color:var(--text-muted);line-height:1.7;}
+
+    /* Vision */
+    .vision-box{
+      background:var(--bg-card);border:1px solid var(--border);
+      border-left:3px solid var(--green);
+      border-radius:12px;padding:28px 32px;margin-top:32px;
+    }
+    .vision-box p{font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:0;}
+
+    /* Team */
+    .origin-wrap{display:flex;gap:32px;align-items:flex-start;margin-top:12px;}
+    .origin-badge{
+      flex-shrink:0;width:64px;height:64px;
+      border-radius:16px;background:var(--green-light);
+      border:2px solid var(--green);
+      display:flex;align-items:center;justify-content:center;
+      font-size:30px;
+    }
+
+    /* CTA */
+    .cta-section{padding:60px 40px;text-align:center;background:var(--bg-card);border-top:1px solid var(--border);}
+    .cta-section h2{font-size:clamp(20px,3vw,30px);font-weight:700;letter-spacing:-0.5px;margin-bottom:12px;}
+    .cta-section p{font-size:15px;color:var(--text-2);margin-bottom:28px;}
+    .cta-btn{display:inline-block;background:var(--green);color:#fff;padding:13px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;letter-spacing:-0.2px;transition:opacity 0.15s;}
+    .cta-btn:hover{opacity:0.88;}
+    .cta-links{margin-top:20px;font-size:13px;color:var(--text-muted);}
+    .cta-links a{color:var(--green);text-decoration:none;}
+
+    /* Footer */
+    footer{padding:32px 40px;border-top:1px solid var(--border);background:var(--bg-card);}
+    .footer-inner{max-width:780px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--text-muted);}
+    .footer-links{display:flex;gap:20px;}
+    .footer-links a{color:var(--text-muted);text-decoration:none;transition:color 0.15s;}
+    .footer-links a:hover{color:var(--green);}
+
+    @media(max-width:640px){
+      nav{padding:0 16px;}.hero{padding:48px 20px 36px;}
+      .page{padding:0 20px;}.pillars{grid-template-columns:1fr;}
+      .cta-section{padding:40px 20px;}footer{padding:24px 20px;}
+      .origin-wrap{flex-direction:column;gap:16px;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo-wrap">
+    <div class="logo-mark">tw</div>
+    <div class="logo-text">twi<em>sti</em></div>
+  </a>
+  <div class="nav-right">
+    <a href="/" class="nav-link">← Back to Twisti</a>
+    <a href="/auth.html" class="nav-btn">Sign in</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-kicker">New Zealand Owned &amp; Built</div>
+  <h1>Helping Kiwis get the<br><em>best deal</em> on everything</h1>
+  <p class="hero-sub">Twisti is a free, AI-powered price comparison platform built right here in New Zealand — for New Zealanders.</p>
+</div>
+
+<div class="motto-strip">
+  <div class="motto-text">"Money saved is money earned."</div>
+  <div class="motto-sub">The philosophy behind everything we do at Twisti.</div>
+</div>
+
+<div class="page">
+
+  <div class="section">
+    <div class="section-label">Our Story</div>
+    <h2>Built by a family who felt the pinch</h2>
+    <div class="origin-wrap">
+      <div class="origin-badge">🌿</div>
+      <div>
+        <p>Twisti was born from a simple frustration: why should finding the best price take hours of tab-switching, forum-scrolling, and guesswork? As a family who cares deeply about making every dollar count, we wanted something better — not just for us, but for every New Zealander dealing with the rising cost of living.</p>
+        <p>We're not a faceless corporation. Twisti is a family-driven project built with the belief that technology should give something back to the community. We built it ourselves, and we keep it free, because helping others stretch their budget further is the whole point.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">What We Do</div>
+    <h2>New Zealand's first AI-powered price comparison</h2>
+    <p>Twisti scans prices across all major NZ retailers in real time — JB Hi-Fi, Harvey Norman, PB Tech, Noel Leeming, The Warehouse, Farmers, Mighty Ape, and more — and surfaces them in one clean view. No ads pushing you toward a sponsor. No hidden ranking. Just honest prices, ranked cheapest first.</p>
+    <p>But we went further. Twisti's AI verdict doesn't just show you prices — it tells you <em>whether to buy right now</em>. It weighs up the price spread, historical trends, product pros and cons, and even suggests better alternatives if something cheaper exists. It's like having a knowledgeable friend who's already done the research.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">🇳🇿</div>
+        <div class="pillar-title">NZ-built &amp; owned</div>
+        <div class="pillar-body">Designed for New Zealand shoppers, with NZ stores, NZ prices, and the NZ context in mind. First of its kind in this market.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🤖</div>
+        <div class="pillar-title">AI at the core</div>
+        <div class="pillar-body">Our AI verdict engine gives you a clear buy/wait recommendation — not just a list. Powered by the same AI behind Claude.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">💚</div>
+        <div class="pillar-title">Always free</div>
+        <div class="pillar-body">We earn a small commission if you buy through our links. You pay nothing extra — and you always see the cheapest option first, commission or not.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Our Vision</div>
+    <h2>The future of shopping is already here</h2>
+    <p>We're at the beginning of a shift in how people buy things. Right now, finding a great deal still takes effort — you have to know where to look, compare across sites, and hope you're not missing something cheaper elsewhere.</p>
+    <p>We believe that future looks very different: AI that knows what you need, finds the best deal automatically, and tells you exactly when to act — with minimal effort from you. Not hours of hunting. Just the answer, on your phone, when you need it.</p>
+
+    <div class="vision-box">
+      <p>Twisti is our step toward that future. We're expanding our AI capabilities, growing our store coverage, and building tools that turn deal-hunting from a chore into something that simply happens in the background. The best deal, on your fingertips, before you even had to ask.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Contact Us</div>
+    <h2>We'd love to hear from you</h2>
+    <p>Found a bug? Have a store you'd like us to add? Just want to say hi? We read every email personally.</p>
+    <p>📧 <a href="mailto:hello@twisti.org" style="color:var(--green);font-weight:500;">hello@twisti.org</a></p>
+    <p style="margin-top:12px;font-size:13px;color:var(--text-muted);">We're a small team, but we aim to reply within 24–48 hours.</p>
+  </div>
+
+</div>
+
+<div class="cta-section">
+  <h2>Start saving today</h2>
+  <p>Search any product and let Twisti find you the best deal across every major NZ store — in seconds.</p>
+  <a href="/" class="cta-btn">Compare prices now →</a>
+  <div class="cta-links">
+    <a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="/terms.html">Terms of Service</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@twisti.org">Contact</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 Twisti · New Zealand Owned &amp; Operated</span>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

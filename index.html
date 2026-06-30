@@ -462,6 +462,59 @@
     }
     .compare-pill:hover{background:var(--green);color:#fff;}
 
+    /* ── Persistent compare tray ── */
+    .compare-tray{
+      position:fixed;bottom:0;left:0;right:0;z-index:300;
+      background:var(--bg-card);
+      border-top:2px solid var(--green);
+      padding:12px 24px;
+      display:none;
+      align-items:center;gap:12px;
+      box-shadow:0 -4px 24px rgba(0,0,0,0.15);
+      flex-wrap:wrap;
+    }
+    .compare-tray.visible{display:flex;}
+    .compare-tray-label{font-size:12px;font-weight:700;color:var(--text-muted);letter-spacing:0.5px;flex-shrink:0;}
+    .compare-tray-items{display:flex;gap:8px;flex:1;flex-wrap:wrap;}
+    .compare-tray-item{
+      display:flex;align-items:center;gap:6px;
+      background:var(--bg);border:1px solid var(--border);
+      border-radius:8px;padding:6px 10px;
+      font-size:12px;font-weight:500;color:var(--text);
+      max-width:180px;
+    }
+    .compare-tray-item-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .compare-tray-remove{
+      background:none;border:none;cursor:pointer;
+      color:var(--text-muted);font-size:14px;padding:0;
+      flex-shrink:0;line-height:1;
+    }
+    .compare-tray-remove:hover{color:var(--red);}
+    .compare-tray-slots{display:flex;gap:6px;}
+    .compare-slot-empty{
+      width:80px;height:34px;
+      border:1.5px dashed var(--border);
+      border-radius:8px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:10px;color:var(--text-muted);
+    }
+    .compare-now-btn{
+      background:var(--green);color:#fff;
+      border:none;border-radius:8px;
+      padding:10px 20px;font-size:14px;font-weight:700;
+      cursor:pointer;font-family:inherit;
+      white-space:nowrap;flex-shrink:0;
+      transition:opacity 0.15s;
+    }
+    .compare-now-btn:hover{opacity:0.88;}
+    .compare-now-btn:disabled{opacity:0.4;cursor:not-allowed;}
+    .compare-clear-btn{
+      background:none;border:none;color:var(--text-muted);
+      font-size:12px;cursor:pointer;font-family:inherit;
+      flex-shrink:0;
+    }
+    .compare-clear-btn:hover{color:var(--red);}
+
     /* ── Verdict panel — bright, visible, easy to follow ── */
     .verdict-wrap{
       background:#ffffff;
@@ -1169,6 +1222,14 @@
   </div>
 </footer>
 
+<!-- ── Persistent Compare Tray ── -->
+<div class="compare-tray" id="compare-tray">
+  <div class="compare-tray-label">⚖️ Comparing</div>
+  <div class="compare-tray-items" id="compare-tray-items"></div>
+  <button class="compare-now-btn" id="compare-now-btn" onclick="startCompare()" disabled>Compare now →</button>
+  <button class="compare-clear-btn" onclick="clearCompare()">✕ Clear</button>
+</div>
+
 <script>
   const API = 'https://twisti-backend-production.up.railway.app';
 
@@ -1582,7 +1643,7 @@
                   </div>
                 </div>
                 ${v.lowest_price ? `<div class="variant-row-price">from $${v.lowest_price}</div>` : ''}
-                <label class="compare-check" onclick="event.stopPropagation()" title="Add to compare">
+                <label class="compare-check" onclick="event.stopPropagation()" title="Add to compare (up to 5 products)">
                   <input type="checkbox" onchange="addToCompare('${escapeHtml(v.name)}', ${v.lowest_price||0}, 'various')" />
                   <span>⚖️</span>
                   <span class="compare-label">Compare</span>
@@ -2069,31 +2130,85 @@
     success.style.display = 'block';
   }
 
-  // ── Compare feature ─────────────────────────────────────────────────────────
+  // ── Compare feature — persistent tray, works across searches ────────────────
   var compareList = [];
 
-  function toggleCompare() {
-    if (compareList.length < 2) {
-      alert('Select at least 2 products to compare. Tick the checkbox on each product row.');
+  function addToCompare(productName, price, store) {
+    var existing = compareList.findIndex(function(p){ return p.name === productName; });
+    if (existing >= 0) {
+      compareList.splice(existing, 1);
+    } else {
+      if (compareList.length >= 5) {
+        alert('You can compare up to 5 products at once. Remove one first.');
+        return;
+      }
+      compareList.push({ name: productName, price: price, store: store });
+    }
+    updateCompareTray();
+    updateComparePill();
+  }
+
+  function updateCompareTray() {
+    var tray      = document.getElementById('compare-tray');
+    var itemsEl   = document.getElementById('compare-tray-items');
+    var nowBtn    = document.getElementById('compare-now-btn');
+    if (!tray) return;
+
+    if (compareList.length === 0) {
+      tray.classList.remove('visible');
       return;
+    }
+    tray.classList.add('visible');
+
+    // Build tray items
+    var html = compareList.map(function(p, i) {
+      return '<div class="compare-tray-item">' +
+        '<span class="compare-tray-item-name" title="' + escapeHtml(p.name) + '">' + escapeHtml(p.name.length > 22 ? p.name.slice(0,22)+'…' : p.name) + '</span>' +
+        '<button class="compare-tray-remove" onclick="removeFromCompare(' + i + ')" title="Remove">✕</button>' +
+        '</div>';
+    }).join('');
+
+    // Add empty slots
+    for (var i = compareList.length; i < 5; i++) {
+      html += '<div class="compare-slot-empty">+ add</div>';
+    }
+    itemsEl.innerHTML = html;
+    nowBtn.disabled = compareList.length < 2;
+  }
+
+  function removeFromCompare(index) {
+    compareList.splice(index, 1);
+    updateCompareTray();
+    updateComparePill();
+    // Uncheck any matching checkboxes
+    document.querySelectorAll('.compare-check input').forEach(function(cb) {
+      var row = cb.closest('[data-product-name]');
+      if (row && !compareList.find(function(p){ return p.name === row.dataset.productName; })) {
+        cb.checked = false;
+      }
+    });
+  }
+
+  function startCompare() {
+    if (compareList.length < 2) return;
+    // Switch to results view if not already there
+    if (resultsEl.style.display !== 'block') {
+      hero.classList.add('compact');
+      homeContent.style.display = 'none';
+      resultsEl.style.display = 'block';
+      var abar = document.getElementById('action-bar');
+      if (abar) abar.style.display = 'none';
     }
     showCompareView();
   }
 
-  function addToCompare(productName, price, store) {
-    if (compareList.find(function(p){ return p.name === productName; })) {
-      // Remove if already in list
-      compareList = compareList.filter(function(p){ return p.name !== productName; });
-    } else {
-      if (compareList.length >= 5) { alert('You can compare up to 5 products at once'); return; }
-      compareList.push({ name: productName, price: price, store: store });
-    }
-    updateComparePill();
+  function toggleCompare() {
+    startCompare();
   }
 
   function updateComparePill() {
-    var pill    = document.getElementById('compare-pill');
-    var count   = document.getElementById('compare-count');
+    var pill      = document.getElementById('compare-pill');
+    var count     = document.getElementById('compare-count');
     var actionBtn = document.getElementById('compare-action-btn');
     var countBar  = document.getElementById('compare-count-bar');
     if (pill) {
@@ -2101,7 +2216,7 @@
       else pill.style.display = 'none';
     }
     if (actionBtn) {
-      if (compareList.length > 0) { actionBtn.style.display = 'inline-flex'; if(countBar) countBar.textContent = compareList.length; }
+      if (compareList.length >= 2) { actionBtn.style.display = 'inline-flex'; if(countBar) countBar.textContent = compareList.length; }
       else actionBtn.style.display = 'none';
     }
   }
@@ -2183,8 +2298,19 @@
           return '<th style="padding:12px 14px;border-bottom:2px solid var(--border);background:var(--bg);font-size:13px;font-weight:700;color:var(--text);text-align:left;min-width:160px">' + escapeHtml(r.name) + '</th>';
         }).join('') + '</tr>';
 
+      // Hide verdict panel when showing compare view
+      var vbar = document.getElementById('verdict-bar');
+      if (vbar) vbar.classList.remove('visible');
+      var abar = document.getElementById('action-bar');
+      if (abar) abar.style.display = 'none';
+      var ph = document.getElementById('product-header');
+      if (ph) ph.style.display = 'none';
+
       document.getElementById('results-body').innerHTML =
-        '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px">Comparing ' + results.length + ' products</div>' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">' +
+        '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted)">Comparing ' + results.length + ' products</div>' +
+        '<button onclick="goBackToList()" style="font-size:12px;color:var(--green);background:none;border:none;cursor:pointer;font-family:inherit;font-weight:600">← Back to results</button>' +
+        '</div>' +
         '<div style="overflow-x:auto;margin-bottom:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden">' +
         '<table style="width:100%;border-collapse:collapse">' +
         '<thead>' + productHeaders + '</thead>' +
@@ -2197,7 +2323,13 @@
   function clearCompare() {
     compareList = [];
     updateComparePill();
-    document.getElementById('results-body').innerHTML = '';
+    updateCompareTray();
+    // Uncheck all compare checkboxes
+    document.querySelectorAll('.compare-check input').forEach(function(cb){ cb.checked = false; });
+    // Go back to search results if on compare view
+    if (lastVariants && lastVariants.length > 1) {
+      showVariants(lastVariants, lastVariantQuery);
+    }
   }
 
   loadFlashDeals();

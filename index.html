@@ -719,14 +719,15 @@
       border-radius:10px;padding:18px 20px;margin-top:16px;
     }
     .community-box h3{font-size:12px;font-weight:700;letter-spacing:0.5px;margin-bottom:12px;color:var(--text);}
-    .community-input-row{display:flex;gap:8px;margin-bottom:12px;}
+    .community-input-row{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
     .community-input-row input{
-      flex:1;border:1px solid var(--border);border-radius:8px;
+      flex:1;border:1.5px solid var(--border);border-radius:8px;
       padding:9px 12px;font-size:13px;font-family:inherit;
       background:var(--bg);color:var(--text);outline:none;
-      transition:border-color 0.15s;
+      transition:border-color 0.15s;min-width:80px;
     }
     .community-input-row input:focus{border-color:var(--green);}
+    .community-input-row input[type="number"]{max-width:110px;}
     .submit-btn{
       padding:9px 16px;background:var(--green);color:#fff;
       border:none;border-radius:8px;font-size:13px;font-weight:600;
@@ -906,7 +907,7 @@
         <path d="M16 20 C19 18,22 21,22 24" stroke="#1a6b4a" stroke-width="1.8" stroke-linecap="round" fill="none"/>
       </svg>
     </div>
-    <div class="logo-text">Twi<em>sti</em></div>
+    <div class="logo-text">twi<em>sti</em></div>
   </a>
   <div class="nav-right">
     <a href="/about.html" class="nav-link">About</a>
@@ -1766,7 +1767,8 @@
       <div class="community-box">
         <h3>Community price tips</h3>
         <div class="community-input-row">
-          <input type="text" id="community-input" placeholder="Found it cheaper? e.g. Costco $289 or The Warehouse $199" />
+          <input type="text" id="community-store" placeholder="Store name (e.g. Costco)" style="flex:1.2" />
+          <input type="number" id="community-price-input" placeholder="Price $" min="1" style="flex:0.8;max-width:110px" />
           <button class="submit-btn" onclick="submitCommunityPrice()">Submit</button>
         </div>
         <div class="community-tips" id="community-tips">
@@ -1923,31 +1925,21 @@
 
   // ── Community ──
   async function submitCommunityPrice() {
-    const input = document.getElementById('community-input');
-    const val = input.value.trim();
-    if (!val) return;
+    var storeEl = document.getElementById('community-store');
+    var priceEl = document.getElementById('community-price-input');
+    var store = (storeEl ? storeEl.value : '').trim();
+    var price = (priceEl ? priceEl.value : '').trim();
 
-    // Flexible parsing: extract the last number as price, everything before it as store name.
-    // Accepts: "Costco $289", "Costco · $289", "Costco - $289", "Costco $289.99", "Costco289" etc.
-    const priceMatch = val.match(/\$?\s*(\d+(?:\.\d{1,2})?)(?:\s*(?:nzd|aud))?[\s]*$/i);
-    if (!priceMatch) {
-      alert('Please include a price — e.g. "Costco $289" or "The Warehouse · $199"');
-      return;
-    }
-    const price = priceMatch[1];
-    // Strip the price (and any separator before it) from the end to get store name
-    const store = val.slice(0, val.lastIndexOf(priceMatch[0])).replace(/[\s·\-·,]+$/, '').trim() || 'Unknown store';
-    if (!store || parseFloat(price) <= 0) {
-      alert('Please include a store name and price — e.g. "Costco $289"');
-      return;
-    }
+    if (!store) { storeEl.focus(); storeEl.style.borderColor = 'var(--red)'; setTimeout(function(){ storeEl.style.borderColor = ''; }, 2000); return; }
+    if (!price || parseFloat(price) <= 0) { priceEl.focus(); priceEl.style.borderColor = 'var(--red)'; setTimeout(function(){ priceEl.style.borderColor = ''; }, 2000); return; }
     if (API && currentProductId) await fetch(`${API}/api/products/${currentProductId}/community-prices`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ store_name: store.trim(), price, note: '' }) });
     const tips = document.getElementById('community-tips');
     const newTip = document.createElement('div');
     newTip.className = 'tip-row';
     newTip.innerHTML = `<span>Spotted at <b>${escapeHtml(store.trim())}</b> for <span class="tip-price">$${parseFloat(price).toFixed(2)}</span> · just now</span><button class="upvote-btn">▲ 0</button>`;
     tips.prepend(newTip);
-    input.value = '';
+    if (storeEl) storeEl.value = '';
+    if (priceEl) priceEl.value = '';
   }
   async function upvote(id, btn) {
     if (API) await fetch(`${API}/api/community-prices/${id}/upvote`, { method: 'POST' });

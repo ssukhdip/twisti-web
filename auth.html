@@ -11,7 +11,7 @@
 
     body{
       font-family:'Inter',sans-serif;
-      background:linear-gradient(135deg,#0d1f17 0%,#0a1a24 50%,#0d1a0d 100%);
+      background:linear-gradient(135deg,#dbeafe 0%,#e0f2fe 40%,#f0f9ff 100%);
       min-height:100vh;
       display:flex;flex-direction:column;align-items:center;justify-content:center;
       padding:20px;
@@ -37,10 +37,10 @@
     }
     .logo-icon{
       width:52px;height:52px;border-radius:14px;
-      background:linear-gradient(135deg,#1a6b4a,#2dd4a0);
+      background:linear-gradient(135deg,#0284c7,#38bdf8);
       display:flex;align-items:center;justify-content:center;
       flex-shrink:0;
-      box-shadow:0 4px 16px rgba(26,107,74,0.35);
+      box-shadow:0 4px 16px rgba(2,132,199,0.35);
     }
     .logo-name{
       font-family:'Inter',sans-serif;
@@ -53,7 +53,7 @@
     }
     .logo-name em{
       font-style:normal;
-      background:linear-gradient(135deg,#1a6b4a,#2dd4a0);
+      background:linear-gradient(135deg,#0284c7,#38bdf8);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       background-clip:text;
@@ -66,7 +66,7 @@
     /* ── Messages ── */
     .msg{padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:16px;display:none;line-height:1.5;}
     .msg.error{background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;}
-    .msg.success{background:#f0faf5;border:1px solid rgba(26,107,74,0.3);color:#1a6b4a;}
+    .msg.success{background:#f0f9ff;border:1px solid rgba(2,132,199,0.3);color:#0284c7;}
 
     /* ── Google button ── */
     .google-btn{
@@ -79,7 +79,7 @@
       transition:all 0.15s;text-decoration:none;
       margin-bottom:20px;
     }
-    .google-btn:hover{border-color:#1a6b4a;background:#f0faf5;box-shadow:0 2px 8px rgba(26,107,74,0.1);}
+    .google-btn:hover{border-color:#0284c7;background:#f0f9ff;box-shadow:0 2px 8px rgba(2,132,199,0.1);}
 
     /* ── Divider ── */
     .divider{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
@@ -96,36 +96,36 @@
       background:#fafafa;color:#111;
       outline:none;transition:all 0.15s;
     }
-    input:focus{border-color:#1a6b4a;background:#fff;box-shadow:0 0 0 3px rgba(26,107,74,0.08);}
+    input:focus{border-color:#0284c7;background:#fff;box-shadow:0 0 0 3px rgba(2,132,199,0.08);}
 
     /* ── Submit ── */
     .submit-btn{
       width:100%;padding:13px;
-      background:linear-gradient(135deg,#1a6b4a,#1a8a60);
+      background:linear-gradient(135deg,#0284c7,#1a8a60);
       color:#fff;border:none;border-radius:10px;
       font-size:14px;font-weight:700;
       cursor:pointer;font-family:inherit;
       transition:all 0.15s;margin-top:6px;
       letter-spacing:0.2px;
-      box-shadow:0 4px 14px rgba(26,107,74,0.3);
+      box-shadow:0 4px 14px rgba(2,132,199,0.3);
     }
-    .submit-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,107,74,0.4);}
+    .submit-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(2,132,199,0.4);}
     .submit-btn:active{transform:translateY(0);}
     .submit-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
 
     /* ── Toggle ── */
     .toggle{text-align:center;margin-top:18px;font-size:13px;color:#666;}
-    .toggle a{color:#1a6b4a;text-decoration:none;font-weight:600;cursor:pointer;}
+    .toggle a{color:#0284c7;text-decoration:none;font-weight:600;cursor:pointer;}
     .toggle a:hover{text-decoration:underline;}
 
     /* ── Benefits ── */
     .benefits{margin-top:24px;padding-top:20px;border-top:1px solid #f0f0ee;}
     .benefit{display:flex;align-items:center;gap:8px;font-size:12px;color:#777;margin-bottom:7px;}
-    .benefit-dot{width:5px;height:5px;border-radius:50%;background:#1a6b4a;flex-shrink:0;}
+    .benefit-dot{width:5px;height:5px;border-radius:50%;background:#0284c7;flex-shrink:0;}
 
     /* ── Back link ── */
     .back-link{margin-top:20px;text-align:center;font-size:13px;color:#666;}
-    .back-link a{color:#1a6b4a;text-decoration:none;font-weight:500;}
+    .back-link a{color:#0284c7;text-decoration:none;font-weight:500;}
     .back-link a:hover{text-decoration:underline;}
 
     @media(max-width:480px){.card{padding:32px 24px 24px;}.logo-name{font-size:28px;}}
@@ -141,9 +141,9 @@
     <div class="logo-icon" style="display:none">
       <svg viewBox="0 0 32 32" fill="none" width="26" height="26">
         <path d="M16 4 C10 7,7 13,9 20 C11 25,16 28,16 28 C16 28,21 25,23 20 C25 13,22 7,16 4Z" fill="white" opacity="0.95"/>
-        <path d="M16 10 L16 27" stroke="#1a6b4a" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M16 15 C13 13,10 16,10 19" stroke="#1a6b4a" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-        <path d="M16 20 C19 18,22 21,22 24" stroke="#1a6b4a" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <path d="M16 10 L16 27" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M16 15 C13 13,10 16,10 19" stroke="#0284c7" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <path d="M16 20 C19 18,22 21,22 24" stroke="#0284c7" stroke-width="1.8" stroke-linecap="round" fill="none"/>
       </svg>
     </div>
     <div class="logo-name">Twi<em>sti</em></div>

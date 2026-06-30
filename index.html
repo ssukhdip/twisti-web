@@ -22,46 +22,46 @@
       --text-muted:#64748b;
       --border:#dde3ea;
       --border-subtle:#e8edf2;
-      --green:#0284c7;
-      --green-dark:#0369a1;
-      --green-mid:#0ea5e9;
-      --green-light:#e0f2fe;
-      --green-glow:rgba(14,165,233,0.12);
+      --green:#1a6b4a;
+      --green-dark:#145438;
+      --green-mid:#1a8a60;
+      --green-light:#dcfce7;
+      --green-glow:rgba(26,107,74,0.12);
       --red:#dc2626;
       --purple:#7c3aed;
       --amber:#d97706;
       --shadow-sm:0 1px 3px rgba(15,23,42,0.06);
       --shadow:0 2px 8px rgba(15,23,42,0.08);
       --shadow-lg:0 8px 32px rgba(15,23,42,0.1);
-      --ai-bg:linear-gradient(135deg,#e0f2fe 0%,#f0f9ff 100%);
-      --ai-border:rgba(14,165,233,0.25);
-      --ai-pill-bg:#0284c7;
+      --ai-bg:linear-gradient(135deg,#dcfce7 0%,#f0fdf4 100%);
+      --ai-border:rgba(26,107,74,0.2);
+      --ai-pill-bg:#1a6b4a;
       --nav-bg:rgba(255,255,255,0.95);
     }
     [data-theme="dark"]{
-      --bg:#0c1220;
-      --bg-card:#131c2e;
-      --bg-input:#131c2e;
-      --text:#f0f4f8;
+      --bg:#0f172a;
+      --bg-card:#1e293b;
+      --bg-input:#1e293b;
+      --text:#f8fafc;
       --text-2:#94a3b8;
       --text-muted:#475569;
-      --border:#1e2d45;
-      --border-subtle:#182438;
-      --green:#38bdf8;
-      --green-dark:#0ea5e9;
-      --green-mid:#7dd3fc;
-      --green-light:#0c1e30;
-      --green-glow:rgba(56,189,248,0.12);
+      --border:#334155;
+      --border-subtle:#1e293b;
+      --green:#2dd4a0;
+      --green-dark:#25b589;
+      --green-mid:#35e8b0;
+      --green-light:#0d2e1e;
+      --green-glow:rgba(45,212,160,0.12);
       --red:#f87171;
       --purple:#a78bfa;
       --amber:#fbbf24;
       --shadow-sm:0 1px 3px rgba(0,0,0,0.4);
       --shadow:0 2px 8px rgba(0,0,0,0.5);
       --shadow-lg:0 8px 32px rgba(0,0,0,0.6);
-      --ai-bg:linear-gradient(135deg,#0c1e30 0%,#0e2035 100%);
-      --ai-border:rgba(56,189,248,0.2);
-      --ai-pill-bg:#0369a1;
-      --nav-bg:rgba(12,18,32,0.97);
+      --ai-bg:linear-gradient(135deg,#0d2e1e 0%,#0f2e20 100%);
+      --ai-border:rgba(45,212,160,0.2);
+      --ai-pill-bg:#1a6b4a;
+      --nav-bg:rgba(15,23,42,0.97);
     }
 
     /* ── Base ── */
@@ -431,6 +431,12 @@
     }
     .action-verdict:hover{opacity:0.9;transform:translateY(-1px);}
     .action-verdict:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+    .action-compare{
+      background:var(--bg-card);color:var(--green);
+      border:1.5px solid var(--green);flex:0 0 auto;
+      padding:13px 16px;font-weight:700;
+    }
+    .action-compare:hover{background:var(--green);color:#fff;}
     .action-track{
       background:var(--bg-card);color:var(--text);
       border:1.5px solid var(--border);flex:0 0 auto;
@@ -522,6 +528,13 @@
     .label-cons{color:#dc2626;}
     .verdict-item{font-size:13px;color:var(--text-2);display:flex;gap:8px;margin-bottom:7px;line-height:1.5;}
     .verdict-item-icon{flex-shrink:0;font-size:14px;margin-top:1px;}
+    .verdict-price-ctx{
+      font-size:13px;font-weight:600;
+      color:var(--green);
+      background:var(--green-light);
+      border-radius:8px;padding:8px 12px;
+      margin-bottom:12px;
+    }
     .verdict-buynow{
       background:rgba(45,212,160,0.08);border:1px solid rgba(45,212,160,0.2);
       border-radius:10px;padding:12px 14px;
@@ -593,14 +606,16 @@
 
     /* ── Compare checkbox ── */
     .compare-check{
-      display:flex;align-items:center;cursor:pointer;
-      font-size:14px;opacity:0.4;transition:opacity 0.15s;
-      flex-shrink:0;
+      display:flex;align-items:center;gap:4px;cursor:pointer;
+      font-size:11px;font-weight:600;color:var(--text-muted);
+      border:1px solid var(--border);border-radius:6px;
+      padding:4px 8px;flex-shrink:0;
+      transition:all 0.15s;background:var(--bg);
     }
-    .compare-check:hover{opacity:1;}
+    .compare-check:hover{border-color:var(--green);color:var(--green);background:var(--green-light);}
     .compare-check input{display:none;}
-    .compare-check input:checked + span{opacity:1;}
-    .compare-check span{opacity:0.6;}
+    .compare-check input:checked ~ .compare-label{color:var(--green);}
+    .compare-check:has(input:checked){border-color:var(--green);background:var(--green-light);color:var(--green);}
 
     /* ── Filter tabs ── */
     .filter-tabs{
@@ -1025,6 +1040,9 @@
     </button>
     <button class="action-btn action-track" onclick="openTrackForm()">
       🔔 Track price
+    </button>
+    <button class="action-btn action-compare" id="compare-action-btn" onclick="toggleCompare()" style="display:none">
+      ⚖️ Compare <span id="compare-count-bar">0</span>
     </button>
   </div>
 
@@ -1568,6 +1586,7 @@
                 <label class="compare-check" onclick="event.stopPropagation()" title="Add to compare">
                   <input type="checkbox" onchange="addToCompare('${escapeHtml(v.name)}', ${v.lowest_price||0}, 'various')" />
                   <span>⚖️</span>
+                  <span class="compare-label">Compare</span>
                 </label>
                 <div class="variant-row-arrow">→</div>
               </div>`).join('')}
@@ -1856,6 +1875,7 @@
       var sub = document.getElementById('verdict-sub');
       if (hasRich) {
         sub.innerHTML =
+          (v.price_context ? '<div class="verdict-price-ctx">📊 ' + escapeHtml(v.price_context) + '</div>' : '') +
           '<div class="verdict-pcons">' +
             '<div class="verdict-col">' +
               '<div class="verdict-col-label label-pros">✅ Pros</div>' +
@@ -1866,9 +1886,10 @@
               (v.cons||[]).map(function(c){ return '<div class="verdict-item"><span class="verdict-item-icon">❌</span><span>' + escapeHtml(c) + '</span></div>'; }).join('') +
             '</div>' +
           '</div>' +
-          (v.buy_now ? '<div class="verdict-buynow"><b>Should you buy?</b> ' + escapeHtml(v.buy_now) + '</div>' : '') +
+          (v.buy_now ? '<div class="verdict-buynow"><b>Buy now or wait?</b> ' + escapeHtml(v.buy_now) + '</div>' : '') +
+          (v.timing_tip ? '<div class="verdict-alt">⏰ <b>Timing:</b> ' + escapeHtml(v.timing_tip) + '</div>' : '') +
           (v.alternative ? '<div class="verdict-alt">💡 <b>Alternative:</b> ' + escapeHtml(v.alternative) + '</div>' : '') +
-          (v.personal_tip ? '<div class="verdict-alt" style="margin-top:6px">👤 <b>Personal tip:</b> ' + escapeHtml(v.personal_tip) + '</div>' : '');
+          (v.personal_tip ? '<div class="verdict-alt" style="margin-top:6px">👤 <b>For you:</b> ' + escapeHtml(v.personal_tip) + '</div>' : '');
       } else {
         sub.textContent = v.buy_now || v.reason || '';
       }
@@ -2059,14 +2080,17 @@
   }
 
   function updateComparePill() {
-    var pill = document.getElementById('compare-pill');
-    var count = document.getElementById('compare-count');
-    if (!pill) return;
-    if (compareList.length > 0) {
-      pill.style.display = 'block';
-      count.textContent = compareList.length;
-    } else {
-      pill.style.display = 'none';
+    var pill    = document.getElementById('compare-pill');
+    var count   = document.getElementById('compare-count');
+    var actionBtn = document.getElementById('compare-action-btn');
+    var countBar  = document.getElementById('compare-count-bar');
+    if (pill) {
+      if (compareList.length > 0) { pill.style.display = 'block'; if(count) count.textContent = compareList.length; }
+      else pill.style.display = 'none';
+    }
+    if (actionBtn) {
+      if (compareList.length > 0) { actionBtn.style.display = 'inline-flex'; if(countBar) countBar.textContent = compareList.length; }
+      else actionBtn.style.display = 'none';
     }
   }
 

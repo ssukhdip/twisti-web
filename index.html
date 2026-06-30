@@ -80,12 +80,13 @@
     /* ── Nav ── */
     nav{
       display:flex;align-items:center;justify-content:space-between;
-      padding:0 40px;height:58px;
+      padding:0 32px;height:56px;
       border-bottom:1px solid var(--border);
       background:var(--nav-bg);
       backdrop-filter:blur(12px);
       -webkit-backdrop-filter:blur(12px);
       position:sticky;top:0;z-index:200;
+      gap:16px;
     }
     .logo-wrap{display:flex;align-items:center;gap:8px;text-decoration:none;}
     .logo-img{
@@ -113,7 +114,7 @@
       color:var(--text);
     }
     .logo-text em{font-style:normal;color:var(--green);}
-    .nav-right{display:flex;gap:8px;align-items:center;}
+    .nav-right{display:flex;gap:6px;align-items:center;flex-shrink:0;}
     .nav-link{font-size:13px;color:var(--text-muted);text-decoration:none;padding:6px 12px;border-radius:6px;transition:all 0.15s;}
     .nav-link:hover{color:var(--text);background:var(--border-subtle);}
     .theme-btn{
@@ -1079,28 +1080,36 @@
   <div class="stores-banner-label">Prices compared across NZ's biggest stores</div>
   <div class="stores-logos">
     <a href="https://www.jbhifi.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
-      <div class="store-dot" style="background:#f6a800"></div>JB Hi-Fi
+      <img src="https://www.google.com/s2/favicons?domain=jbhifi.co.nz&sz=32" alt="JB Hi-Fi" onerror="this.style.display='none'">
+      JB Hi-Fi
     </a>
     <a href="https://www.pbtech.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
-      <div class="store-dot" style="background:#cc0000"></div>PB Tech
+      <img src="https://www.google.com/s2/favicons?domain=pbtech.co.nz&sz=32" alt="PB Tech" onerror="this.style.display='none'">
+      PB Tech
     </a>
     <a href="https://www.noelleeming.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
-      <div class="store-dot" style="background:#e31837"></div>Noel Leeming
+      <img src="https://www.google.com/s2/favicons?domain=noelleeming.co.nz&sz=32" alt="Noel Leeming" onerror="this.style.display='none'">
+      Noel Leeming
     </a>
     <a href="https://www.harveynorman.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
-      <div class="store-dot" style="background:#e30614"></div>Harvey Norman
+      <img src="https://www.google.com/s2/favicons?domain=harveynorman.co.nz&sz=32" alt="Harvey Norman" onerror="this.style.display='none'">
+      Harvey Norman
     </a>
     <a href="https://www.thewarehouse.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
-      <div class="store-dot" style="background:#cc0000"></div>The Warehouse
+      <img src="https://www.google.com/s2/favicons?domain=thewarehouse.co.nz&sz=32" alt="The Warehouse" onerror="this.style.display='none'">
+      The Warehouse
     </a>
     <a href="https://www.farmers.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
-      <div class="store-dot" style="background:#00529b"></div>Farmers
+      <img src="https://www.google.com/s2/favicons?domain=farmers.co.nz&sz=32" alt="Farmers" onerror="this.style.display='none'">
+      Farmers
     </a>
     <a href="https://www.heathcotes.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
-      <div class="store-dot" style="background:#004990"></div>Heathcotes
+      <img src="https://www.google.com/s2/favicons?domain=heathcotes.co.nz&sz=32" alt="Heathcotes" onerror="this.style.display='none'">
+      Heathcotes
     </a>
     <a href="https://www.trademe.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
-      <div class="store-dot" style="background:#4aa3da"></div>Trade Me
+      <img src="https://www.google.com/s2/favicons?domain=trademe.co.nz&sz=32" alt="Trade Me" onerror="this.style.display='none'">
+      Trade Me
     </a>
   </div>
   <p style="font-size:10px;color:var(--text-muted);text-align:center;margin-top:12px;">All brand names and logos are property of their respective owners and are used for identification purposes only.</p>
@@ -1265,9 +1274,10 @@
   function toggleTheme() {
     var html = document.documentElement;
     var isDark = html.getAttribute('data-theme') === 'dark';
-    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    updateThemeBtn(isDark ? 'light' : 'dark');
-    localStorage.setItem('twisti_theme', isDark ? 'light' : 'dark');
+    var newTheme = isDark ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('twisti_theme', newTheme);
+    updateThemeBtn(newTheme);
   }
   function updateThemeBtn(theme) {
     var icon  = document.getElementById('theme-icon');
@@ -1281,8 +1291,10 @@
       label.textContent = 'Dark mode';
     }
   }
+  // Apply saved theme immediately before DOM loads to prevent flash
   var savedTheme = localStorage.getItem('twisti_theme') || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
+  // Update button once DOM is ready
   document.addEventListener('DOMContentLoaded', function() {
     updateThemeBtn(savedTheme);
   });
@@ -2080,7 +2092,7 @@
           '<td style="padding:12px;color:var(--text);font-weight:600;max-width:200px">' + escapeHtml(p.name) + '</td>' +
           '<td style="padding:12px;text-align:center;color:var(--green);font-weight:700;font-size:16px">$' + (p.price || '—') + '</td>' +
           '<td style="padding:12px;text-align:center;color:var(--text-2)">' + escapeHtml(p.store || '—') + '</td>' +
-          '<td style="padding:12px;text-align:center"><button onclick="searchFor('' + escapeHtml(p.name).replace(/'/g,"\'") + '')" style="padding:6px 12px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">View prices</button></td>' +
+          '<td style="padding:12px;text-align:center"><button onclick="searchFor(this.dataset.name)" data-name="' + escapeHtml(p.name) + '" style="padding:6px 12px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">View prices</button></td>' +
           '</tr>';
       }).join('') +
       '</tbody></table></div>' +

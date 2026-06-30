@@ -39,29 +39,29 @@
       --nav-bg:rgba(255,255,255,0.92);
     }
     [data-theme="dark"]{
-      --bg:#141414;
-      --bg-card:#1e1e1e;
-      --bg-input:#1e1e1e;
+      --bg:#000000;
+      --bg-card:#0a0a0a;
+      --bg-input:#0f0f0f;
       --text:#f0f0ee;
       --text-2:#b8b8b6;
-      --text-muted:#666666;
-      --border:#2a2a2a;
-      --border-subtle:#252525;
+      --text-muted:#555555;
+      --border:#1a1a1a;
+      --border-subtle:#111111;
       --green:#2dd4a0;
       --green-dark:#25b589;
       --green-mid:#35e8b0;
-      --green-light:#0a2218;
-      --green-glow:rgba(45,212,160,0.1);
+      --green-light:#051209;
+      --green-glow:rgba(45,212,160,0.12);
       --red:#f87171;
       --purple:#a78bfa;
       --amber:#fbbf24;
-      --shadow-sm:0 1px 3px rgba(0,0,0,0.3);
-      --shadow:0 2px 8px rgba(0,0,0,0.4);
-      --shadow-lg:0 8px 32px rgba(0,0,0,0.5);
-      --ai-bg:linear-gradient(135deg,#0a2218 0%,#0d2a1e 100%);
-      --ai-border:rgba(45,212,160,0.25);
+      --shadow-sm:0 1px 3px rgba(0,0,0,0.6);
+      --shadow:0 2px 8px rgba(0,0,0,0.7);
+      --shadow-lg:0 8px 32px rgba(0,0,0,0.8);
+      --ai-bg:linear-gradient(135deg,#051209 0%,#071a0e 100%);
+      --ai-border:rgba(45,212,160,0.2);
       --ai-pill-bg:#1a6b4a;
-      --nav-bg:rgba(20,20,20,0.92);
+      --nav-bg:rgba(0,0,0,0.95);
     }
 
     /* ── Base ── */
@@ -89,9 +89,14 @@
     }
     .logo-wrap{display:flex;align-items:center;gap:8px;text-decoration:none;}
     .logo-img{
-      width:44px;height:44px;border-radius:12px;
-      object-fit:cover;flex-shrink:0;
-      box-shadow:0 3px 12px var(--green-glow);
+      width:44px;height:44px;border-radius:0;
+      object-fit:contain;flex-shrink:0;
+      /* Remove white background on dark mode */
+      mix-blend-mode:multiply;
+    }
+    [data-theme="dark"] .logo-img{
+      mix-blend-mode:screen;
+      filter:brightness(1.1);
     }
     .logo-icon{
       width:44px;height:44px;border-radius:12px;
@@ -406,64 +411,152 @@
     }
 
     /* ── AI Verdict (REDESIGNED) ── */
+    /* ── Get AI Verdict button ── */
+    .get-verdict-wrap{margin-bottom:20px;}
+    .get-verdict-btn{
+      width:100%;padding:16px 24px;
+      background:linear-gradient(135deg,#1a6b4a,#2dd4a0);
+      color:#fff;border:none;border-radius:12px;
+      font-size:16px;font-weight:700;letter-spacing:-0.2px;
+      cursor:pointer;font-family:inherit;
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      transition:all 0.2s;
+      box-shadow:0 4px 20px rgba(45,212,160,0.3);
+    }
+    .get-verdict-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(45,212,160,0.4);}
+    .get-verdict-btn:active{transform:translateY(0);}
+    .get-verdict-btn:disabled{opacity:0.7;cursor:not-allowed;transform:none;}
+    .get-verdict-btn .btn-icon{font-size:20px;}
+    .get-verdict-btn .btn-spinner{
+      width:18px;height:18px;border-radius:50%;
+      border:2px solid rgba(255,255,255,0.3);
+      border-top-color:#fff;
+      animation:spin 0.7s linear infinite;
+      display:none;
+    }
+    @keyframes spin{to{transform:rotate(360deg);}}
+
+    /* ── Verdict panel — bright, visible, easy to follow ── */
     .verdict-wrap{
-      background:var(--ai-bg);
-      border:1.5px solid var(--ai-border);
+      background:#ffffff;
+      border:2px solid var(--green);
       border-radius:14px;
-      padding:20px 24px;
-      margin-bottom:24px;
+      padding:0;
+      margin-bottom:20px;
       position:relative;
       overflow:hidden;
+      display:none;
+      box-shadow:0 8px 32px rgba(45,212,160,0.2);
     }
-    .verdict-wrap::before{
-      content:'';position:absolute;
-      top:0;left:0;right:0;height:2px;
-      background:linear-gradient(90deg,var(--green) 0%,var(--green-mid) 50%,var(--green) 100%);
-      background-size:200% 100%;
-      animation:shimmer 3s ease infinite;
-    }
+    [data-theme="dark"] .verdict-wrap{background:#051209;}
+    .verdict-wrap.visible{display:block;}
     @keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
-    .verdict-top-row{display:flex;align-items:flex-start;gap:14px;}
-    .verdict-icon-wrap{flex-shrink:0;}
-    .verdict-icon{
-      width:38px;height:38px;border-radius:10px;
-      background:var(--green);
-      display:flex;align-items:center;justify-content:center;
-      font-size:18px;color:#fff;
-      box-shadow:0 2px 8px rgba(45,212,160,0.3);
+
+    /* Verdict badge strip at top */
+    .verdict-badge-strip{
+      padding:12px 20px;
+      display:flex;align-items:center;gap:10px;
     }
-    .verdict-main{flex:1;min-width:0;}
-    .verdict-title-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap;}
-    .verdict-headline{font-size:15px;font-weight:700;color:var(--green);line-height:1.3;}
+    .verdict-badge{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:6px 14px;border-radius:20px;
+      font-size:12px;font-weight:800;letter-spacing:1px;
+      text-transform:uppercase;
+    }
+    .badge-buy{background:#16a34a;color:#fff;}
+    .badge-wait{background:#d97706;color:#fff;}
+    .badge-compare{background:#2563eb;color:#fff;}
+    .badge-default{background:var(--green);color:#fff;}
+    .verdict-badge-label{font-size:12px;color:var(--text-muted);font-weight:500;}
     .ai-badge{
+      margin-left:auto;
       display:inline-flex;align-items:center;gap:4px;
-      background:var(--ai-pill-bg);color:#fff;
+      background:#1a6b4a;color:#fff;
       font-size:9px;font-weight:700;letter-spacing:1.5px;
-      text-transform:uppercase;padding:3px 8px;border-radius:4px;
-      flex-shrink:0;
+      text-transform:uppercase;padding:4px 10px;border-radius:4px;
     }
     .ai-badge::before{content:'⚡';font-size:9px;}
-    .verdict-sub-text{font-size:13px;color:var(--green);opacity:0.85;line-height:1.5;}
-    /* Rich verdict panels */
-    .verdict-rich{margin-top:16px;}
-    .verdict-pcons{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:12px;}
-    .verdict-col{flex:1;min-width:160px;}
+
+    /* Verdict headline */
+    .verdict-headline-wrap{
+      padding:0 20px 16px;
+      border-bottom:1px solid var(--border);
+    }
+    .verdict-headline{
+      font-size:20px;font-weight:800;
+      color:var(--text);
+      line-height:1.3;letter-spacing:-0.3px;
+    }
+    [data-theme="dark"] .verdict-headline{color:#f0f0ee;}
+
+    /* Pros / cons */
+    .verdict-body{padding:16px 20px;}
+    .verdict-pcons{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+    .verdict-col{}
     .verdict-col-label{
-      font-size:9px;font-weight:700;letter-spacing:2px;
-      text-transform:uppercase;color:var(--green);opacity:0.7;
-      margin-bottom:8px;
+      font-size:10px;font-weight:800;letter-spacing:2px;
+      text-transform:uppercase;margin-bottom:10px;
+      display:flex;align-items:center;gap:6px;
     }
-    .verdict-item{font-size:12px;color:var(--text-2);display:flex;gap:7px;margin-bottom:5px;line-height:1.4;}
-    .verdict-item-icon{flex-shrink:0;font-size:11px;margin-top:1px;}
+    .label-pros{color:#16a34a;}
+    .label-cons{color:#dc2626;}
+    .verdict-item{font-size:13px;color:var(--text-2);display:flex;gap:8px;margin-bottom:7px;line-height:1.5;}
+    .verdict-item-icon{flex-shrink:0;font-size:14px;margin-top:1px;}
     .verdict-buynow{
-      background:rgba(0,0,0,0.08);border-radius:8px;
-      padding:10px 12px;font-size:12px;color:var(--text-2);
-      line-height:1.5;margin-bottom:8px;
+      background:rgba(45,212,160,0.08);border:1px solid rgba(45,212,160,0.2);
+      border-radius:10px;padding:12px 14px;
+      font-size:13px;color:var(--text-2);
+      line-height:1.6;margin-bottom:10px;
     }
-    [data-theme="dark"] .verdict-buynow{background:rgba(255,255,255,0.05);}
-    .verdict-buynow b{color:var(--text);}
-    .verdict-alt{font-size:12px;color:var(--text-muted);line-height:1.5;}
-    .verdict-alt b{color:var(--text-2);}
+    [data-theme="dark"] .verdict-buynow{background:rgba(45,212,160,0.06);}
+    .verdict-buynow b{color:var(--text);font-weight:700;}
+    .verdict-alt{font-size:13px;color:var(--text-muted);line-height:1.6;margin-top:8px;}
+    .verdict-alt b{color:var(--text-2);font-weight:600;}
+
+    /* ── Price tracking card ── */
+    .track-card{
+      background:var(--bg-card);
+      border:1.5px solid var(--border);
+      border-radius:12px;
+      padding:16px 20px;
+      margin-bottom:16px;
+      display:none;
+    }
+    .track-card.visible{display:block;}
+    .track-card-top{display:flex;align-items:center;gap:12px;margin-bottom:0;}
+    .track-icon{font-size:24px;flex-shrink:0;}
+    .track-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;}
+    .track-sub{font-size:12px;color:var(--text-muted);}
+    .track-btn{
+      margin-left:auto;
+      padding:8px 16px;background:var(--green);color:#fff;
+      border:none;border-radius:8px;font-size:13px;font-weight:600;
+      cursor:pointer;font-family:inherit;white-space:nowrap;
+      transition:all 0.15s;flex-shrink:0;
+    }
+    .track-btn:hover{opacity:0.88;}
+    .track-form{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);display:none;}
+    .track-form.open{display:block;}
+    .track-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+    .track-field label{display:block;font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:5px;letter-spacing:0.5px;text-transform:uppercase;}
+    .track-field input,.track-field select{
+      width:100%;padding:9px 12px;border:1.5px solid var(--border);
+      border-radius:8px;font-size:13px;font-family:inherit;
+      background:var(--bg);color:var(--text);outline:none;
+      transition:border-color 0.15s;
+    }
+    .track-field input:focus,.track-field select:focus{border-color:var(--green);}
+    .track-submit{
+      width:100%;padding:11px;background:var(--green);color:#fff;
+      border:none;border-radius:8px;font-size:14px;font-weight:700;
+      cursor:pointer;font-family:inherit;transition:all 0.15s;
+    }
+    .track-submit:hover{opacity:0.88;}
+    .track-success{
+      text-align:center;padding:16px;
+      font-size:14px;font-weight:600;color:var(--green);
+      display:none;
+    }
 
     /* ── Back bar ── */
     #back-bar{display:none;margin-bottom:16px;}
@@ -944,20 +1037,61 @@
     </button>
   </div>
 
-  <!-- AI Verdict bar (redesigned) -->
+  <!-- Get AI Verdict button -->
+  <div class="get-verdict-wrap" id="get-verdict-wrap" style="display:none">
+    <button class="get-verdict-btn" id="get-verdict-btn" onclick="triggerVerdict()">
+      <span class="btn-icon">🤖</span>
+      <span id="verdict-btn-text">Get AI Verdict</span>
+      <div class="btn-spinner" id="verdict-spinner"></div>
+    </button>
+  </div>
+
+  <!-- AI Verdict panel -->
   <div class="verdict-wrap" id="verdict-bar">
-    <div class="verdict-top-row">
-      <div class="verdict-icon-wrap">
-        <div class="verdict-icon" id="verdict-icon">✓</div>
-      </div>
-      <div class="verdict-main">
-        <div class="verdict-title-row">
-          <span class="verdict-headline" id="verdict-text">Scanning NZ stores...</span>
-          <span class="ai-badge" id="ai-badge" style="display:none">AI</span>
-        </div>
-        <span id="verdict-sub" class="verdict-sub-text"></span>
-      </div>
+    <!-- Badge strip -->
+    <div class="verdict-badge-strip">
+      <span class="verdict-badge badge-default" id="verdict-badge">⚡ AI Verdict</span>
+      <span class="verdict-badge-label" id="verdict-badge-label"></span>
+      <span class="ai-badge" id="ai-badge">AI</span>
     </div>
+    <!-- Headline -->
+    <div class="verdict-headline-wrap">
+      <div class="verdict-headline" id="verdict-text"></div>
+    </div>
+    <!-- Body -->
+    <div class="verdict-body">
+      <span id="verdict-sub"></span>
+    </div>
+  </div>
+
+  <!-- Price tracking card -->
+  <div class="track-card" id="track-card">
+    <div class="track-card-top">
+      <div class="track-icon">🔔</div>
+      <div>
+        <div class="track-title">Track this price</div>
+        <div class="track-sub" id="track-sub">Get notified when the price drops</div>
+      </div>
+      <button class="track-btn" id="track-btn" onclick="openTrackForm()">Set alert</button>
+    </div>
+    <div class="track-form" id="track-form">
+      <div class="track-fields">
+        <div class="track-field">
+          <label>Alert me when price drops below</label>
+          <input type="number" id="track-price" placeholder="e.g. 299" min="1" />
+        </div>
+        <div class="track-field">
+          <label>Check frequency</label>
+          <select id="track-freq">
+            <option value="instant">Instantly (when found)</option>
+            <option value="daily" selected>Daily</option>
+            <option value="weekly">Weekly</option>
+          </select>
+        </div>
+      </div>
+      <button class="track-submit" onclick="submitTrackAlert()">🔔 Start tracking</button>
+    </div>
+    <div class="track-success" id="track-success">✅ Price alert set! We'll email you at <span id="track-email"></span></div>
   </div>
 
   <!-- Product header -->
@@ -1172,6 +1306,13 @@
     document.querySelectorAll('.hcat,.cat-item').forEach(c => c.classList.remove('active'));
     // Clean up the URL without triggering popstate
     window.history.replaceState({ twisti: 'home' }, '', '/');
+    // Hide verdict + tracking
+    var gvw = document.getElementById('get-verdict-wrap');
+    if (gvw) gvw.style.display = 'none';
+    var vbar = document.getElementById('verdict-bar');
+    if (vbar) vbar.classList.remove('visible');
+    var tcard = document.getElementById('track-card');
+    if (tcard) tcard.classList.remove('visible');
   }
   function searchFor(name, catBtn) {
     searchInput.value = name;
@@ -1450,11 +1591,27 @@
       imgEl.innerHTML = `<img src="${product.image_url}" alt="${escapeHtml(product.name)}" onerror="this.parentElement.textContent='📦'" />`;
     } else imgEl.textContent = '📦';
 
-    setVerdict('⏳', 'Analysing prices with AI', 'Getting a smart buying verdict — just a moment...', 'default');
-    document.getElementById('ai-badge').style.display = 'none';
+    // Show verdict button & tracking card — verdict is on-demand
+    var gvw = document.getElementById('get-verdict-wrap');
+    var vbar = document.getElementById('verdict-bar');
+    var tcard = document.getElementById('track-card');
+    if (gvw) gvw.style.display = 'block';
+    if (vbar) { vbar.classList.remove('visible'); }
+    if (tcard) tcard.classList.remove('visible');
+
+    // Store product name for on-demand verdict
+    window._currentProductName = product.name;
+    window._currentPrices = allPrices;
+
+    // Reset verdict button
+    var btn = document.getElementById('get-verdict-btn');
+    var btnText = document.getElementById('verdict-btn-text');
+    var spinner = document.getElementById('verdict-spinner');
+    if (btn) { btn.disabled = false; }
+    if (btnText) { btnText.textContent = 'Get AI Verdict'; }
+    if (spinner) { spinner.style.display = 'none'; }
 
     renderPriceSection(allPrices, community_prices || [], secondhand_prices || []);
-    fetchVerdict(product.name, allPrices);
   }
 
   // ── Price validation ──
@@ -1611,25 +1768,34 @@
   }
 
   // ── AI Verdict ──
-  const VSTYLES = {
-    great_deal:   { iconBg:'var(--green)', headColor:'var(--green)' },
-    good_deal:    { iconBg:'var(--green)', headColor:'var(--green)' },
-    fair_price:   { iconBg:'var(--text-muted)', headColor:'var(--text-muted)' },
-    wait:         { iconBg:'var(--amber)', headColor:'var(--amber)' },
-    compare_more: { iconBg:'#3b82f6', headColor:'#3b82f6' },
-    default:      { iconBg:'var(--green)', headColor:'var(--green)' },
+  var BADGE_STYLES = {
+    great_deal:   { cls:'badge-buy',     label:'Great deal — buy now',   emoji:'🟢' },
+    good_deal:    { cls:'badge-buy',     label:'Good price',             emoji:'✅' },
+    fair_price:   { cls:'badge-default', label:'Fair price',             emoji:'💡' },
+    wait:         { cls:'badge-wait',    label:'Wait for a better deal', emoji:'⏳' },
+    compare_more: { cls:'badge-compare', label:'Compare more options',   emoji:'🔍' },
+    default:      { cls:'badge-default', label:'AI Analysis',            emoji:'⚡' },
   };
 
+  function triggerVerdict() {
+    var btn     = document.getElementById('get-verdict-btn');
+    var btnText = document.getElementById('verdict-btn-text');
+    var spinner = document.getElementById('verdict-spinner');
+    if (!window._currentProductName || !window._currentPrices) return;
+    btn.disabled = true;
+    btnText.textContent = 'Analysing with AI...';
+    spinner.style.display = 'block';
+    fetchVerdict(window._currentProductName, window._currentPrices);
+  }
+
   function setVerdict(icon, headline, sub, styleKey) {
-    const s = VSTYLES[styleKey] || VSTYLES.default;
-    const ico = document.getElementById('verdict-icon');
-    ico.textContent = icon; ico.style.background = s.iconBg;
-    const ht = document.getElementById('verdict-text');
-    ht.textContent = headline; ht.style.color = s.headColor;
-    const st = document.getElementById('verdict-sub');
-    if (typeof sub === 'string') {
-      st.textContent = sub; st.style.color = 'var(--text-2)';
-    }
+    // Legacy function kept for loading/error states
+    var vbar = document.getElementById('verdict-bar');
+    if (vbar) { vbar.classList.add('visible'); }
+    var ht = document.getElementById('verdict-text');
+    if (ht) ht.textContent = headline;
+    var st = document.getElementById('verdict-sub');
+    if (st && typeof sub === 'string') st.textContent = sub;
   }
 
   async function fetchVerdict(productName, prices) {
@@ -1642,44 +1808,71 @@
       });
       const v = await res.json();
       if (!v || v.error) throw new Error('No verdict');
-      const hasRich = v.pros && v.pros.length > 0;
-      const s = VSTYLES[v.verdict] || VSTYLES.default;
+      var bs = BADGE_STYLES[v.verdict] || BADGE_STYLES.default;
 
-      const ico = document.getElementById('verdict-icon');
-      ico.textContent = v.emoji || '✓';
-      ico.style.background = s.iconBg;
+      // Show verdict panel
+      var vbar = document.getElementById('verdict-bar');
+      vbar.classList.add('visible');
 
-      const ht = document.getElementById('verdict-text');
-      ht.textContent = v.headline;
-      ht.style.color = s.headColor;
+      // Update badge
+      var badge = document.getElementById('verdict-badge');
+      badge.className = 'verdict-badge ' + bs.cls;
+      badge.textContent = bs.emoji + ' ' + (v.verdict || 'AI Verdict').replace(/_/g,' ').replace(/\w/g,c=>c.toUpperCase());
+      document.getElementById('verdict-badge-label').textContent = bs.label;
 
+      // Headline — big and clear
+      document.getElementById('verdict-text').textContent = v.headline || '';
+
+      // Rich body
+      var hasRich = v.pros && v.pros.length > 0;
+      var sub = document.getElementById('verdict-sub');
       if (hasRich) {
-        let richHTML = '';
-        if (v.pros?.length) richHTML += `
-          <div class="verdict-rich">
-            <div class="verdict-pcons">
-              <div class="verdict-col">
-                <div class="verdict-col-label">Pros</div>
-                ${v.pros.map(p => `<div class="verdict-item"><span class="verdict-item-icon" style="color:var(--green)">✓</span><span>${escapeHtml(p)}</span></div>`).join('')}
-              </div>
-              <div class="verdict-col">
-                <div class="verdict-col-label">Cons</div>
-                ${(v.cons||[]).map(c => `<div class="verdict-item"><span class="verdict-item-icon" style="color:var(--red)">✗</span><span>${escapeHtml(c)}</span></div>`).join('')}
-              </div>
-            </div>
-            ${v.buy_now ? `<div class="verdict-buynow"><b>Buy now?</b> ${escapeHtml(v.buy_now)}</div>` : ''}
-            ${v.alternative ? `<div class="verdict-alt">💡 <b>Alternative:</b> ${escapeHtml(v.alternative)}</div>` : ''}
-            ${v.personal_tip ? `<div class="verdict-alt" style="margin-top:6px">👤 <b>For you:</b> ${escapeHtml(v.personal_tip)}</div>` : ''}
-          </div>`;
-        document.getElementById('verdict-sub').innerHTML = richHTML;
+        sub.innerHTML =
+          '<div class="verdict-pcons">' +
+            '<div class="verdict-col">' +
+              '<div class="verdict-col-label label-pros">✅ Pros</div>' +
+              v.pros.map(function(p){ return '<div class="verdict-item"><span class="verdict-item-icon">✅</span><span>' + escapeHtml(p) + '</span></div>'; }).join('') +
+            '</div>' +
+            '<div class="verdict-col">' +
+              '<div class="verdict-col-label label-cons">❌ Cons</div>' +
+              (v.cons||[]).map(function(c){ return '<div class="verdict-item"><span class="verdict-item-icon">❌</span><span>' + escapeHtml(c) + '</span></div>'; }).join('') +
+            '</div>' +
+          '</div>' +
+          (v.buy_now ? '<div class="verdict-buynow"><b>Should you buy?</b> ' + escapeHtml(v.buy_now) + '</div>' : '') +
+          (v.alternative ? '<div class="verdict-alt">💡 <b>Alternative:</b> ' + escapeHtml(v.alternative) + '</div>' : '') +
+          (v.personal_tip ? '<div class="verdict-alt" style="margin-top:6px">👤 <b>Personal tip:</b> ' + escapeHtml(v.personal_tip) + '</div>' : '');
       } else {
-        document.getElementById('verdict-sub').textContent = v.buy_now || v.reason || '';
+        sub.textContent = v.buy_now || v.reason || '';
       }
-      document.getElementById('ai-badge').style.display = 'inline-flex';
-    } catch {
-      const best = prices[0];
-      if (best) setVerdict('✓', `Best price: $${best.price} at ${best.store_name}`, 'Lowest price found across NZ stores.', 'good_deal');
-      document.getElementById('ai-badge').style.display = 'none';
+
+      // Hide verdict button, show tracking card
+      var gvw = document.getElementById('get-verdict-wrap');
+      if (gvw) gvw.style.display = 'none';
+      var tcard = document.getElementById('track-card');
+      if (tcard) {
+        tcard.classList.add('visible');
+        var cheapest = (window._currentPrices && window._currentPrices[0]) ? window._currentPrices[0].price : null;
+        if (cheapest) {
+          document.getElementById('track-sub').textContent = 'Currently from $' + cheapest + ' NZD — alert me when it drops';
+          document.getElementById('track-price').placeholder = Math.round(cheapest * 0.9);
+          document.getElementById('track-price').value = '';
+        }
+      }
+    } catch(e) {
+      var vbar2 = document.getElementById('verdict-bar');
+      if (vbar2) vbar2.classList.add('visible');
+      var best = prices[0];
+      if (best) {
+        document.getElementById('verdict-text').textContent = 'Best price: $' + best.price + ' at ' + best.store_name;
+        document.getElementById('verdict-sub').textContent = 'Lowest verified price found across NZ stores.';
+      }
+      // Re-enable button
+      var btn2 = document.getElementById('get-verdict-btn');
+      var btnText2 = document.getElementById('verdict-btn-text');
+      var spinner2 = document.getElementById('verdict-spinner');
+      if (btn2) btn2.disabled = false;
+      if (btnText2) btnText2.textContent = 'Retry AI Verdict';
+      if (spinner2) spinner2.style.display = 'none';
     }
   }
 
@@ -1769,6 +1962,54 @@
   function starsHtml(r){const f=Math.floor(r),h=r%1>=0.5?1:0;return '★'.repeat(f)+(h?'½':'')+'☆'.repeat(5-f-h);}
   function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
   function timeAgo(d){const h=Math.floor((Date.now()-new Date(d).getTime())/3600000);return h<1?'just now':h<24?`${h}h ago`:`${Math.floor(h/24)}d ago`;}
+
+  // ── Price tracking ──────────────────────────────────────────────────────────
+  function openTrackForm() {
+    var user = JSON.parse(localStorage.getItem('twisti_user') || 'null');
+    if (!user) {
+      window.location.href = '/auth.html?redirect=' + encodeURIComponent(window.location.href);
+      return;
+    }
+    var form = document.getElementById('track-form');
+    var btn  = document.getElementById('track-btn');
+    form.classList.toggle('open');
+    btn.textContent = form.classList.contains('open') ? 'Cancel' : 'Set alert';
+  }
+
+  function submitTrackAlert() {
+    var user      = JSON.parse(localStorage.getItem('twisti_user') || 'null');
+    var price     = document.getElementById('track-price').value;
+    var freq      = document.getElementById('track-freq').value;
+    var product   = window._currentProductName || '';
+
+    if (!price || parseFloat(price) <= 0) {
+      alert('Please enter a target price');
+      return;
+    }
+    if (!user) {
+      window.location.href = '/auth.html';
+      return;
+    }
+
+    var token = localStorage.getItem('twisti_access');
+    fetch(API + '/api/alerts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({
+        product_name:   product,
+        target_price:   parseFloat(price),
+        frequency:      freq,
+        current_price:  window._currentPrices && window._currentPrices[0] ? window._currentPrices[0].price : null,
+      })
+    }).catch(function(){});
+
+    // Show success
+    document.getElementById('track-form').classList.remove('open');
+    document.getElementById('track-btn').style.display = 'none';
+    var success = document.getElementById('track-success');
+    document.getElementById('track-email').textContent = user.email || 'your email';
+    success.style.display = 'block';
+  }
 
   loadFlashDeals();
   initSession();

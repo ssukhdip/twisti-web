@@ -1,23 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-<script>
-  (function(){
-    var t = localStorage.getItem('twisti_theme') || 'light';
-    document.documentElement.setAttribute('data-theme', t);
-  })();
-</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — Twisti</title>
+  <script>(function(){var t=localStorage.getItem('twisti_theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    [data-theme="light"]{--bg:#f0f0ee;--bg-card:#ffffff;--text:#111;--text-2:#444;--text-muted:#888;--border:#e2e2e0;--green:#1a6b4a;--green-light:#dcfce7;}
-    [data-theme="dark"]{--bg:#141414;--bg-card:#1e1e1e;--text:#f0f0ee;--text-2:#b8b8b6;--text-muted:#666;--border:#2a2a2a;--green:#2dd4a0;--green-light:#0a2218;}
-    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);padding:40px 20px;line-height:1.6;}
-    .wrap{max-width:720px;margin:0 auto;background:var(--bg-card);border-radius:14px;padding:52px;border:1px solid var(--border);}
+    [data-theme="light"]{--bg:#f0f4f8;--bg-card:#ffffff;--text:#0f172a;--text-2:#334155;--text-muted:#64748b;--border:#dde3ea;--green:#1a6b4a;--green-light:#dcfce7;}
+    [data-theme="dark"]{--bg:#0f172a;--bg-card:#1e293b;--text:#f8fafc;--text-2:#94a3b8;--text-muted:#475569;--border:#334155;--green:#2dd4a0;--green-light:#0d2e1e;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);padding:40px 20px;line-height:1.6;transition:background 0.2s,color 0.2s;}
+    .wrap{max-width:740px;margin:0 auto;background:var(--bg-card);border-radius:14px;padding:52px;border:1px solid var(--border);}
     .logo-wrap{display:flex;align-items:center;gap:8px;text-decoration:none;margin-bottom:36px;}
     .logo-mark{width:28px;height:28px;border-radius:7px;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;}
     .logo-text{font-size:17px;font-weight:700;letter-spacing:-0.5px;color:var(--text);}
@@ -26,15 +21,17 @@
     .meta{font-size:13px;color:var(--text-muted);margin-bottom:8px;}
     .jurisdiction-note{font-size:12px;color:var(--text-muted);background:var(--green-light);border-left:3px solid var(--green);padding:10px 14px;border-radius:0 6px 6px 0;margin-bottom:32px;line-height:1.6;}
     h2{font-size:15px;font-weight:700;margin:32px 0 10px;color:var(--text);letter-spacing:-0.2px;}
+    h3{font-size:13px;font-weight:700;margin:18px 0 8px;color:var(--text);}
     p{font-size:14px;color:var(--text-2);line-height:1.8;margin-bottom:12px;}
     ul,ol{font-size:14px;color:var(--text-2);line-height:1.8;margin:0 0 12px 20px;}
     li{margin-bottom:4px;}
     a{color:var(--green);text-decoration:none;}
     a:hover{text-decoration:underline;}
     .back{display:inline-block;margin-top:36px;font-size:13px;color:var(--green);}
-    table{width:100%;border-collapse:collapse;margin-bottom:12px;font-size:13px;}
+    table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:13px;}
     th{text-align:left;padding:9px 12px;background:var(--bg);border:1px solid var(--border);font-weight:600;color:var(--text-muted);font-size:11px;letter-spacing:1px;text-transform:uppercase;}
     td{padding:9px 12px;border:1px solid var(--border);color:var(--text-2);vertical-align:top;}
+    .cookie-table th{background:var(--green-light);}
     @media(max-width:600px){.wrap{padding:28px 20px;}}
   </style>
 </head>
@@ -46,65 +43,98 @@
   </a>
 
   <h1>Privacy Policy</h1>
-  <p class="meta">Last updated: 30 June 2026 · Effective: 30 June 2026</p>
-  <p class="jurisdiction-note">This policy applies to users in New Zealand and Australia. It is written to comply with the <strong>New Zealand Privacy Act 2020</strong> and, where applicable, the <strong>Australian Privacy Act 1988</strong> (including the Australian Privacy Principles).</p>
+  <p class="meta">Last updated: 30 June 2026 · Effective: 30 June 2026 · Version 2.0</p>
+  <p class="jurisdiction-note">This policy applies to users in New Zealand and Australia. It complies with the <strong>New Zealand Privacy Act 2020</strong> and, where applicable, the <strong>Australian Privacy Act 1988</strong> (including the Australian Privacy Principles).</p>
 
-  <p>Twisti ("we", "us", "our") operates twisti.org, a free price comparison service. We are committed to protecting your privacy and handling your personal information responsibly and transparently.</p>
+  <p>Twisti ("we", "us", "our") operates twisti.org. We are committed to protecting your personal information and being transparent about how we use it.</p>
 
   <h2>1. Who We Are</h2>
-  <p>Twisti is a New Zealand-owned and operated service. Our primary contact for privacy matters is:</p>
-  <p>📧 <a href="mailto:hello@twisti.org">hello@twisti.org</a></p>
+  <p>Twisti is a New Zealand-owned and operated price comparison service.</p>
+  <p><strong>Twisti</strong><br>
+  Email: <a href="mailto:hello@twisti.org">hello@twisti.org</a><br>
+  Website: <a href="https://twisti.org">https://twisti.org</a></p>
 
   <h2>2. What Personal Information We Collect</h2>
-  <p>We collect personal information only where it is reasonably necessary for our service. The table below outlines what we collect, why, and how.</p>
   <table>
     <tr><th>Information</th><th>When collected</th><th>Why we need it</th></tr>
-    <tr><td>Email address, name</td><td>When you create an account</td><td>To identify your account and contact you about price alerts</td></tr>
-    <tr><td>Google profile (name, email, profile photo)</td><td>If you sign in with Google</td><td>To authenticate you via Google OAuth. We do not access any other Google account data.</td></tr>
-    <tr><td>Search history (products searched)</td><td>While you use Twisti</td><td>To personalise AI verdicts and improve recommendations over time</td></tr>
-    <tr><td>Saved products and price alerts</td><td>When you save or set an alert</td><td>To notify you when a price drops</td></tr>
-    <tr><td>Session ID (anonymous)</td><td>On every visit</td><td>To provide basic search personalisation without requiring an account</td></tr>
-    <tr><td>Page visit counts (Vercel Analytics)</td><td>On every visit</td><td>To understand traffic patterns. This data is aggregated and does not identify individuals.</td></tr>
+    <tr><td>Email address, name</td><td>When you create an account</td><td>To identify your account and send price alert notifications</td></tr>
+    <tr><td>Google profile (name, email, photo)</td><td>If you sign in with Google</td><td>Authentication via Google OAuth. We do not access any other Google account data.</td></tr>
+    <tr><td>Search history (products searched)</td><td>While you use Twisti</td><td>To personalise AI Verdicts and improve deal recommendations</td></tr>
+    <tr><td>Saved products and price alerts</td><td>When you save or set an alert</td><td>To notify you when a price drops below your target</td></tr>
+    <tr><td>Session ID (anonymous)</td><td>On every visit</td><td>Basic personalisation without requiring an account</td></tr>
+    <tr><td>Page visit data (Vercel Analytics)</td><td>On every visit</td><td>Aggregated traffic analysis. Does not identify individuals.</td></tr>
   </table>
-  <p>We do not collect sensitive information (as defined by the Australian Privacy Act 1988), including health information, financial credentials, government identifiers, or biometric data.</p>
+  <p>We do not collect sensitive information as defined by the Australian Privacy Act 1988, including health, financial credentials, government identifiers, or biometric data.</p>
 
   <h2>3. How We Collect Information</h2>
-  <p>We collect information directly from you when you register, sign in, or use the service. We also collect limited anonymous information automatically (session ID, page visits). We do not buy or obtain personal information from third-party data brokers.</p>
+  <p>We collect information directly from you when you register, sign in or use the Service. We also collect limited anonymous data automatically (session ID, page visits). We do not purchase personal information from third-party data brokers.</p>
 
   <h2>4. How We Use Your Information</h2>
-  <p>We use your personal information only for purposes you would reasonably expect, including:</p>
   <ul>
     <li>Creating and managing your account</li>
-    <li>Sending price drop notifications for products you are watching</li>
-    <li>Personalising AI buying verdicts based on your search history</li>
+    <li>Sending price drop notifications for products you are tracking</li>
+    <li>Sending confirmation emails when you set a price alert</li>
+    <li>Personalising AI Verdicts based on your search history and budget preferences</li>
     <li>Improving the accuracy and relevance of search results</li>
     <li>Responding to your enquiries or support requests</li>
-    <li>Sending our deals newsletter, if you have opted in (you can unsubscribe at any time)</li>
+    <li>Sending our weekly deals digest, if you have opted in (you can unsubscribe at any time)</li>
     <li>Complying with legal obligations</li>
   </ul>
-  <p>We do not use your personal information for automated profiling that produces legal or similarly significant effects.</p>
+  <p>We do not use your personal information for automated profiling that produces legal or similarly significant effects without your knowledge.</p>
 
-  <h2>5. Disclosure of Your Information</h2>
-  <p>We do not sell, rent, or trade your personal information. We may share information only in the following limited circumstances:</p>
+  <h2>5. Cookies, Local Storage and Tracking Technologies</h2>
+  <p>We use the following technologies to operate and improve Twisti:</p>
+
+  <h3>Essential (always active)</h3>
+  <table class="cookie-table">
+    <tr><th>Technology</th><th>Purpose</th><th>Duration</th></tr>
+    <tr><td>localStorage (twisti_access)</td><td>Stores your JWT login token on your device so you stay signed in</td><td>30 days or until you sign out</td></tr>
+    <tr><td>localStorage (twisti_theme)</td><td>Remembers your light/dark theme preference</td><td>Permanent until cleared</td></tr>
+    <tr><td>localStorage (twisti_session)</td><td>Anonymous session ID for basic personalisation without an account</td><td>Persistent</td></tr>
+    <tr><td>Authentication session</td><td>Maintains your signed-in state during a session</td><td>Session</td></tr>
+  </table>
+
+  <h3>Analytics</h3>
+  <table class="cookie-table">
+    <tr><th>Provider</th><th>Purpose</th><th>Data sent</th></tr>
+    <tr><td>Vercel Analytics</td><td>Privacy-preserving page view counting. No cookies set. No individual users identified.</td><td>Aggregated page views only</td></tr>
+  </table>
+
+  <h3>Infrastructure</h3>
+  <table class="cookie-table">
+    <tr><th>Provider</th><th>Purpose</th><th>Notes</th></tr>
+    <tr><td>Cloudflare</td><td>Content delivery, DDoS protection and security. Cloudflare may set technical cookies (e.g. __cf_bm) for bot detection.</td><td>See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a></td></tr>
+  </table>
+
+  <h3>What we do NOT use</h3>
   <ul>
-    <li><strong>Service providers:</strong> We use third-party services to operate Twisti, including Vercel (hosting, analytics), Neon (database, based in AWS Sydney), Upstash (caching), and Anthropic (AI verdict generation). These providers process data on our behalf and are bound by appropriate data processing obligations.</li>
-    <li><strong>Google OAuth:</strong> When you sign in with Google, authentication is handled by Google. We receive only your basic profile information. Google's privacy policy applies to that interaction.</li>
-    <li><strong>Affiliate links:</strong> When you click "Visit store", you are directed to a third-party retailer. We may earn a small commission on resulting purchases. The retailer's own privacy policy applies once you leave Twisti. We do not share your personal information with retailers.</li>
-    <li><strong>Legal requirements:</strong> We may disclose information if required by law, court order, or to protect the rights, property, or safety of Twisti, our users, or the public.</li>
+    <li>Google Analytics</li>
+    <li>Microsoft Clarity</li>
+    <li>Facebook Pixel or any social media tracking</li>
+    <li>Advertising cookies or third-party tracking pixels</li>
+    <li>Remarketing or behavioural advertising technologies</li>
   </ul>
 
-  <h2>6. Affiliate Links and Commissions</h2>
-  <p>Twisti is free to use. To sustain the service, we participate in affiliate programmes (including Commission Factory). If you purchase a product through a link on Twisti, we may receive a small commission from the retailer at no cost to you. This never affects how prices are ranked — the cheapest price is always shown first, regardless of affiliate relationships.</p>
+  <p>All localStorage data stays on your device and is not transmitted to third parties except as described above. You can clear it at any time by clearing your browser's site data.</p>
 
-  <h2>7. Cookies and Local Storage</h2>
-  <p>We use browser <strong>localStorage</strong> (not cookies) to store your login token and theme preference on your device. This data stays on your device and is not transmitted to any third party. Vercel Analytics uses a privacy-preserving page-view counter that does not set cookies and does not identify individual users.</p>
-  <p>We do not use advertising cookies or third-party tracking pixels.</p>
+  <h2>6. Disclosure of Your Information</h2>
+  <p>We do not sell, rent or trade your personal information. We may share information only in these limited circumstances:</p>
+  <ul>
+    <li><strong>Service providers:</strong> Vercel (hosting, analytics), Neon (database, AWS Sydney), Upstash (caching), Anthropic (AI Verdict generation). These providers process data on our behalf under appropriate data processing obligations.</li>
+    <li><strong>Google OAuth:</strong> When you sign in with Google, authentication is handled by Google. We receive only your basic profile. Google's privacy policy applies to that interaction.</li>
+    <li><strong>Affiliate links:</strong> When you click "Visit store", you are directed to a third-party Retailer. We may earn a commission on resulting purchases. We do not share your personal information with Retailers.</li>
+    <li><strong>Email delivery:</strong> Confirmation and alert emails are sent via Namecheap Private Email (hello@twisti.org). Your email address is used solely to send you emails you have requested.</li>
+    <li><strong>Legal requirements:</strong> We may disclose information if required by law, court order, or to protect the rights, property or safety of Twisti, our users or the public.</li>
+  </ul>
+
+  <h2>7. Affiliate Links and Commissions</h2>
+  <p>Twisti is free to use. We participate in affiliate programmes including Commission Factory. If you purchase through a link on Twisti, we may receive a commission from the Retailer. You pay nothing extra. The cheapest price is always shown first regardless of affiliate relationships.</p>
 
   <h2>8. Data Storage and Security</h2>
-  <p>Your data is stored on servers located in Sydney, Australia (Neon PostgreSQL on AWS ap-southeast-2). We use industry-standard security measures including encrypted connections (HTTPS/TLS), hashed passwords (bcrypt), and access controls. No system is perfectly secure — if you believe your account has been compromised, please contact us immediately at <a href="mailto:hello@twisti.org">hello@twisti.org</a>.</p>
+  <p>Your data is stored on servers located in Sydney, Australia (Neon PostgreSQL on AWS ap-southeast-2). We use HTTPS/TLS encryption, bcrypt password hashing, JWT authentication, and rate limiting. No system is perfectly secure — if you believe your account has been compromised, contact us immediately at <a href="mailto:hello@twisti.org">hello@twisti.org</a>.</p>
 
   <h2>9. Retention of Personal Information</h2>
-  <p>We retain your personal information for as long as your account is active or as needed to provide the service. If you delete your account, we will delete your personal information within 30 days, except where we are required by law to retain certain records.</p>
+  <p>We retain your personal information for as long as your account is active. If you delete your account, we will delete your personal information within 30 days, except where required by law to retain certain records.</p>
 
   <h2>10. Your Rights</h2>
   <p>Under the New Zealand Privacy Act 2020 and Australian Privacy Act 1988, you have the right to:</p>
@@ -112,25 +142,28 @@
     <li><strong>Access</strong> your personal information held by us</li>
     <li><strong>Correct</strong> inaccurate or outdated information</li>
     <li><strong>Request deletion</strong> of your account and associated data</li>
-    <li><strong>Withdraw consent</strong> for marketing emails at any time (unsubscribe link in every email)</li>
+    <li><strong>Withdraw consent</strong> for marketing emails (unsubscribe link in every email)</li>
     <li><strong>Make a complaint</strong> if you believe we have breached your privacy rights</li>
   </ul>
-  <p>To exercise any of these rights, email us at <a href="mailto:hello@twisti.org">hello@twisti.org</a>. We will respond within 20 working days as required under the NZ Privacy Act 2020.</p>
-  <p>If you are an Australian resident and are not satisfied with our response, you may contact the <strong>Office of the Australian Information Commissioner (OAIC)</strong> at <a href="https://www.oaic.gov.au" target="_blank" rel="noopener">oaic.gov.au</a>. If you are in New Zealand, you may contact the <strong>Office of the Privacy Commissioner</strong> at <a href="https://www.privacy.org.nz" target="_blank" rel="noopener">privacy.org.nz</a>.</p>
+  <p>To exercise any of these rights, email <a href="mailto:hello@twisti.org">hello@twisti.org</a>. We will respond within 20 working days as required under the NZ Privacy Act 2020.</p>
+  <p>If you are in New Zealand and not satisfied with our response, you may contact the <strong>Office of the Privacy Commissioner</strong> at <a href="https://www.privacy.org.nz" target="_blank" rel="noopener">privacy.org.nz</a>.</p>
+  <p>If you are in Australia, you may contact the <strong>Office of the Australian Information Commissioner (OAIC)</strong> at <a href="https://www.oaic.gov.au" target="_blank" rel="noopener">oaic.gov.au</a>.</p>
 
   <h2>11. Children's Privacy</h2>
   <p>Twisti is not directed at children under 16. We do not knowingly collect personal information from anyone under 16. If you believe a child has provided us with personal information, please contact us and we will delete it promptly.</p>
 
   <h2>12. Third-Party Websites</h2>
-  <p>Twisti contains links to third-party retailer websites. We are not responsible for the privacy practices of those websites. We encourage you to read their privacy policies before making a purchase.</p>
+  <p>Twisti contains links to third-party Retailer websites. We are not responsible for their privacy practices. We encourage you to read their privacy policies before making a purchase.</p>
 
   <h2>13. Changes to This Policy</h2>
-  <p>We may update this policy from time to time. When we do, we will update the "Last updated" date at the top of this page. If changes are material, we will notify registered users by email. Continued use of Twisti after any changes constitutes acceptance of the updated policy.</p>
+  <p>We may update this policy from time to time. When we do, we will update the "Last updated" date and version number. If changes are material, we will notify registered users by email. Continued use of Twisti after changes constitutes acceptance of the updated policy.</p>
 
   <h2>14. Contact and Complaints</h2>
-  <p>For any privacy questions, access requests, or complaints, please contact us:</p>
-  <p>📧 <a href="mailto:hello@twisti.org">hello@twisti.org</a><br>
-  We aim to acknowledge all privacy requests within 5 working days and resolve them within 20 working days.</p>
+  <p>For any privacy questions, access requests or complaints:</p>
+  <p><strong>Twisti</strong><br>
+  Email: <a href="mailto:hello@twisti.org">hello@twisti.org</a><br>
+  Website: <a href="https://twisti.org">https://twisti.org</a></p>
+  <p>We aim to acknowledge all privacy requests within 5 working days and resolve them within 20 working days.</p>
 
   <a href="/" class="back">← Back to Twisti</a>
 </div>

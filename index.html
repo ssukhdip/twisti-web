@@ -1783,7 +1783,7 @@
         <div class="price-cards" id="hidden-prices" style="display:none">${cardHTML(hidden, shown.length+1)}</div>` : ''}
       ${secondhandHTML}
       <div class="community-box">
-        <h3>Community price tips</h3>
+        <h3>Community price tips <span id="community-signin-note" style="font-size:11px;font-weight:400;color:var(--text-muted);">— <a href="/auth.html" style="color:var(--green)">sign in</a> to submit</span></h3>
         <div class="community-input-row">
           <input type="text" id="community-store" placeholder="Store name (e.g. Costco)" style="flex:1.2" />
           <input type="number" id="community-price-input" placeholder="Price $" min="1" style="flex:0.8;max-width:110px" />
@@ -1945,6 +1945,13 @@
 
   // ── Community ──
   async function submitCommunityPrice() {
+    // Require sign in
+    var user = JSON.parse(localStorage.getItem('twisti_user') || 'null');
+    if (!user) {
+      window.location.href = '/auth.html?redirect=' + encodeURIComponent(window.location.href);
+      return;
+    }
+
     var storeEl = document.getElementById('community-store');
     var priceEl = document.getElementById('community-price-input');
     var store = (storeEl ? storeEl.value : '').trim();
@@ -1986,8 +1993,14 @@
   function initSession() {
     const user = JSON.parse(localStorage.getItem('twisti_user') || 'null');
     const navAuth = document.getElementById('nav-auth');
-    if (user) navAuth.innerHTML = `<span style="color:var(--text);font-weight:500;font-size:13px">${escapeHtml(user.name||user.email)}</span>&nbsp;·&nbsp;<a href="#" onclick="signOut()" style="color:var(--text-muted);font-size:13px">Sign out</a>`;
-    else navAuth.innerHTML = '<a href="/auth.html" class="nav-btn">Sign in</a>';
+    if (user) {
+      navAuth.innerHTML = `<span style="color:var(--text);font-weight:500;font-size:13px">${escapeHtml(user.name||user.email)}</span>&nbsp;·&nbsp;<a href="#" onclick="signOut()" style="color:var(--text-muted);font-size:13px">Sign out</a>`;
+      // Hide sign-in note on community box
+      var note = document.getElementById('community-signin-note');
+      if (note) note.style.display = 'none';
+    } else {
+      navAuth.innerHTML = '<a href="/auth.html" class="nav-btn">Sign in</a>';
+    }
   }
   function signOut() { ['twisti_access','twisti_refresh','twisti_user'].forEach(k => localStorage.removeItem(k)); location.reload(); }
 
@@ -2094,27 +2107,91 @@
   }
 
   function showCompareView() {
-    var html = '<div style="overflow-x:auto;margin-bottom:16px">' +
-      '<table style="width:100%;border-collapse:collapse;font-size:13px">' +
-      '<thead><tr style="border-bottom:2px solid var(--border)">' +
-      '<th style="text-align:left;padding:10px 12px;color:var(--text-muted);font-size:11px;letter-spacing:1px;text-transform:uppercase">Product</th>' +
-      '<th style="padding:10px 12px;color:var(--text-muted);font-size:11px;letter-spacing:1px;text-transform:uppercase">Price</th>' +
-      '<th style="padding:10px 12px;color:var(--text-muted);font-size:11px;letter-spacing:1px;text-transform:uppercase">Store</th>' +
-      '<th style="padding:10px 12px"></th>' +
-      '</tr></thead><tbody>' +
-      compareList.map(function(p) {
-        return '<tr style="border-bottom:1px solid var(--border-subtle)">' +
-          '<td style="padding:12px;color:var(--text);font-weight:600;max-width:200px">' + escapeHtml(p.name) + '</td>' +
-          '<td style="padding:12px;text-align:center;color:var(--green);font-weight:700;font-size:16px">$' + (p.price || '—') + '</td>' +
-          '<td style="padding:12px;text-align:center;color:var(--text-2)">' + escapeHtml(p.store || '—') + '</td>' +
-          '<td style="padding:12px;text-align:center"><button onclick="searchFor(this.dataset.name)" data-name="' + escapeHtml(p.name) + '" style="padding:6px 12px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">View prices</button></td>' +
-          '</tr>';
-      }).join('') +
-      '</tbody></table></div>' +
-      '<button onclick="clearCompare()" style="font-size:12px;color:var(--text-muted);background:none;border:none;cursor:pointer;font-family:inherit">Clear comparison</button>';
-
+    // Show loading state
     document.getElementById('results-body').innerHTML =
-      '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">Comparing ' + compareList.length + ' products</div>' + html;
+      '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px">Comparing ' + compareList.length + ' products</div>' +
+      '<div style="font-size:13px;color:var(--text-muted);padding:20px 0">🤖 AI is gathering specs and features for each product...</div>';
+
+    // Fetch AI specs for each product in parallel
+    var fetchPromises = compareList.map(function(p) {
+      return fetch(API + '/api/verdict', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productName: p.name, prices: p.price ? [{ store_name: p.store || 'various', price: p.price }] : [], country: userCountry, sessionId: sessionId })
+      }).then(function(r) { return r.json(); }).then(function(v) {
+        return { name: p.name, price: p.price, store: p.store, verdict: v };
+      }).catch(function() {
+        return { name: p.name, price: p.price, store: p.store, verdict: null };
+      });
+    });
+
+    Promise.all(fetchPromises).then(function(results) {
+      var th = function(t) { return '<th style="padding:12px 14px;color:var(--text-muted);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-bottom:2px solid var(--border);background:var(--bg);text-align:left">' + t + '</th>'; };
+      var td = function(t, green) { return '<td style="padding:12px 14px;font-size:13px;color:' + (green ? 'var(--green)' : 'var(--text-2)') + ';border-bottom:1px solid var(--border-subtle);vertical-align:top">' + t + '</td>'; };
+
+      var rows = [
+        // Price row
+        '<tr>' + td('<strong style="color:var(--text-muted);font-size:11px;letter-spacing:1px;text-transform:uppercase">Price</strong>') +
+          results.map(function(r) { return td(r.price ? '<span style="font-size:18px;font-weight:800;color:var(--green)">$' + r.price + '</span><br><span style="font-size:11px;color:var(--text-muted)">' + escapeHtml(r.store||'various') + '</span>' : '—'); }).join('') +
+        '</tr>',
+        // Verdict row
+        '<tr>' + td('<strong style="color:var(--text-muted);font-size:11px;letter-spacing:1px;text-transform:uppercase">AI Verdict</strong>') +
+          results.map(function(r) {
+            if (!r.verdict || !r.verdict.headline) return td('—');
+            var badge = {'great_deal':'🟢','good_deal':'✅','fair_price':'💛','wait':'⏳','compare_more':'🔍'}[r.verdict.verdict] || '⚡';
+            return td(badge + ' ' + escapeHtml(r.verdict.headline));
+          }).join('') +
+        '</tr>',
+        // Price context row
+        '<tr>' + td('<strong style="color:var(--text-muted);font-size:11px;letter-spacing:1px;text-transform:uppercase">Price context</strong>') +
+          results.map(function(r) { return td(r.verdict && r.verdict.price_context ? escapeHtml(r.verdict.price_context) : '—'); }).join('') +
+        '</tr>',
+        // Pros row
+        '<tr>' + td('<strong style="color:var(--text-muted);font-size:11px;letter-spacing:1px;text-transform:uppercase">✅ Pros</strong>') +
+          results.map(function(r) {
+            if (!r.verdict || !r.verdict.pros || !r.verdict.pros.length) return td('—');
+            return td(r.verdict.pros.map(function(p) { return '• ' + escapeHtml(p); }).join('<br>'));
+          }).join('') +
+        '</tr>',
+        // Cons row
+        '<tr>' + td('<strong style="color:var(--text-muted);font-size:11px;letter-spacing:1px;text-transform:uppercase">❌ Cons</strong>') +
+          results.map(function(r) {
+            if (!r.verdict || !r.verdict.cons || !r.verdict.cons.length) return td('—');
+            return td(r.verdict.cons.map(function(c) { return '• ' + escapeHtml(c); }).join('<br>'));
+          }).join('') +
+        '</tr>',
+        // Timing row
+        '<tr>' + td('<strong style="color:var(--text-muted);font-size:11px;letter-spacing:1px;text-transform:uppercase">⏰ Timing</strong>') +
+          results.map(function(r) { return td(r.verdict && r.verdict.timing_tip ? escapeHtml(r.verdict.timing_tip) : '—'); }).join('') +
+        '</tr>',
+        // Alternative row
+        '<tr>' + td('<strong style="color:var(--text-muted);font-size:11px;letter-spacing:1px;text-transform:uppercase">💡 Alternative</strong>') +
+          results.map(function(r) { return td(r.verdict && r.verdict.alternative ? escapeHtml(r.verdict.alternative) : '—'); }).join('') +
+        '</tr>',
+        // View prices row
+        '<tr>' + td('') +
+          results.map(function(r) {
+            return '<td style="padding:12px 14px;border-bottom:1px solid var(--border-subtle)">' +
+              '<button onclick="searchFor(this.dataset.name)" data-name="' + escapeHtml(r.name) + '" style="padding:8px 14px;background:var(--green);color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;width:100%">View prices →</button>' +
+              '</td>';
+          }).join('') +
+        '</tr>',
+      ];
+
+      var productHeaders = '<tr><th style="padding:12px 14px;border-bottom:2px solid var(--border);background:var(--bg);min-width:120px"></th>' +
+        results.map(function(r) {
+          return '<th style="padding:12px 14px;border-bottom:2px solid var(--border);background:var(--bg);font-size:13px;font-weight:700;color:var(--text);text-align:left;min-width:160px">' + escapeHtml(r.name) + '</th>';
+        }).join('') + '</tr>';
+
+      document.getElementById('results-body').innerHTML =
+        '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px">Comparing ' + results.length + ' products</div>' +
+        '<div style="overflow-x:auto;margin-bottom:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden">' +
+        '<table style="width:100%;border-collapse:collapse">' +
+        '<thead>' + productHeaders + '</thead>' +
+        '<tbody>' + rows.join('') + '</tbody>' +
+        '</table></div>' +
+        '<button onclick="clearCompare()" style="font-size:12px;color:var(--text-muted);background:none;border:none;cursor:pointer;font-family:inherit">✕ Clear comparison</button>';
+    });
   }
 
   function clearCompare() {

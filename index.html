@@ -89,14 +89,15 @@
     }
     .logo-wrap{display:flex;align-items:center;gap:8px;text-decoration:none;}
     .logo-img{
-      width:44px;height:44px;border-radius:0;
+      width:44px;height:44px;border-radius:12px;
       object-fit:contain;flex-shrink:0;
-      /* Remove white background on dark mode */
-      mix-blend-mode:multiply;
+      background:#ffffff;
+      padding:3px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.15);
     }
     [data-theme="dark"] .logo-img{
-      mix-blend-mode:screen;
-      filter:brightness(1.1);
+      background:#ffffff;
+      box-shadow:0 2px 12px rgba(45,212,160,0.2);
     }
     .logo-icon{
       width:44px;height:44px;border-radius:12px;
@@ -117,10 +118,12 @@
     .nav-link:hover{color:var(--text);background:var(--border-subtle);}
     .theme-btn{
       background:none;border:1px solid var(--border);color:var(--text-muted);
-      padding:5px 10px;font-size:12px;cursor:pointer;border-radius:6px;
+      padding:6px 12px;font-size:12px;cursor:pointer;border-radius:8px;
       font-family:inherit;transition:all 0.15s;
+      display:flex;align-items:center;gap:6px;
     }
     .theme-btn:hover{border-color:var(--green);color:var(--green);}
+    #theme-label{font-weight:500;}
     .nav-btn{
       background:var(--green);color:#fff;
       padding:7px 16px;font-size:13px;border:none;
@@ -411,30 +414,46 @@
     }
 
     /* ── AI Verdict (REDESIGNED) ── */
-    /* ── Get AI Verdict button ── */
-    .get-verdict-wrap{margin-bottom:20px;}
-    .get-verdict-btn{
-      width:100%;padding:16px 24px;
-      background:linear-gradient(135deg,#1a6b4a,#2dd4a0);
-      color:#fff;border:none;border-radius:12px;
-      font-size:16px;font-weight:700;letter-spacing:-0.2px;
-      cursor:pointer;font-family:inherit;
-      display:flex;align-items:center;justify-content:center;gap:10px;
-      transition:all 0.2s;
-      box-shadow:0 4px 20px rgba(45,212,160,0.3);
+    /* ── Action bar (AI Verdict + Track price) ── */
+    .action-bar{
+      display:flex;gap:10px;margin-bottom:16px;
     }
-    .get-verdict-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(45,212,160,0.4);}
-    .get-verdict-btn:active{transform:translateY(0);}
-    .get-verdict-btn:disabled{opacity:0.7;cursor:not-allowed;transform:none;}
-    .get-verdict-btn .btn-icon{font-size:20px;}
-    .get-verdict-btn .btn-spinner{
-      width:18px;height:18px;border-radius:50%;
+    .action-btn{
+      flex:1;padding:13px 16px;border:none;border-radius:10px;
+      font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      transition:all 0.15s;
+    }
+    .action-verdict{
+      background:var(--green);color:#fff;
+      box-shadow:0 3px 12px var(--green-glow);
+    }
+    .action-verdict:hover{opacity:0.9;transform:translateY(-1px);}
+    .action-verdict:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+    .action-track{
+      background:var(--bg-card);color:var(--text);
+      border:1.5px solid var(--border);flex:0 0 auto;
+      padding:13px 20px;
+    }
+    .action-track:hover{border-color:var(--green);color:var(--green);}
+    .btn-spinner{
+      width:16px;height:16px;border-radius:50%;
       border:2px solid rgba(255,255,255,0.3);
       border-top-color:#fff;
       animation:spin 0.7s linear infinite;
-      display:none;
+      display:none;flex-shrink:0;
     }
     @keyframes spin{to{transform:rotate(360deg);}}
+
+    /* ── Compare pill ── */
+    .compare-pill{
+      margin-left:auto;flex-shrink:0;
+      padding:7px 14px;background:var(--bg);
+      border:1.5px solid var(--green);border-radius:20px;
+      color:var(--green);font-size:12px;font-weight:700;
+      cursor:pointer;font-family:inherit;transition:all 0.15s;
+    }
+    .compare-pill:hover{background:var(--green);color:#fff;}
 
     /* ── Verdict panel — bright, visible, easy to follow ── */
     .verdict-wrap{
@@ -515,48 +534,32 @@
 
     /* ── Price tracking card ── */
     .track-card{
-      background:var(--bg-card);
-      border:1.5px solid var(--border);
-      border-radius:12px;
-      padding:16px 20px;
-      margin-bottom:16px;
-      display:none;
+      background:var(--bg-card);border:1.5px solid var(--border);
+      border-radius:12px;padding:16px 20px;margin-bottom:16px;display:none;
     }
     .track-card.visible{display:block;}
-    .track-card-top{display:flex;align-items:center;gap:12px;margin-bottom:0;}
-    .track-icon{font-size:24px;flex-shrink:0;}
-    .track-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;}
+    .track-card-top{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+    .track-icon{font-size:20px;flex-shrink:0;}
+    .track-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:1px;}
     .track-sub{font-size:12px;color:var(--text-muted);}
-    .track-btn{
-      margin-left:auto;
-      padding:8px 16px;background:var(--green);color:#fff;
-      border:none;border-radius:8px;font-size:13px;font-weight:600;
-      cursor:pointer;font-family:inherit;white-space:nowrap;
-      transition:all 0.15s;flex-shrink:0;
-    }
-    .track-btn:hover{opacity:0.88;}
-    .track-form{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);display:none;}
+    .track-close{margin-left:auto;background:none;border:none;color:var(--text-muted);font-size:16px;cursor:pointer;padding:4px;}
+    .track-close:hover{color:var(--text);}
+    .track-form{display:none;}
     .track-form.open{display:block;}
     .track-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
     .track-field label{display:block;font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:5px;letter-spacing:0.5px;text-transform:uppercase;}
     .track-field input,.track-field select{
       width:100%;padding:9px 12px;border:1.5px solid var(--border);
       border-radius:8px;font-size:13px;font-family:inherit;
-      background:var(--bg);color:var(--text);outline:none;
-      transition:border-color 0.15s;
+      background:var(--bg);color:var(--text);outline:none;transition:border-color 0.15s;
     }
     .track-field input:focus,.track-field select:focus{border-color:var(--green);}
     .track-submit{
       width:100%;padding:11px;background:var(--green);color:#fff;
       border:none;border-radius:8px;font-size:14px;font-weight:700;
-      cursor:pointer;font-family:inherit;transition:all 0.15s;
+      cursor:pointer;font-family:inherit;
     }
-    .track-submit:hover{opacity:0.88;}
-    .track-success{
-      text-align:center;padding:16px;
-      font-size:14px;font-weight:600;color:var(--green);
-      display:none;
-    }
+    .track-success{text-align:center;padding:12px;font-size:14px;font-weight:600;color:var(--green);display:none;}
 
     /* ── Back bar ── */
     #back-bar{display:none;margin-bottom:16px;}
@@ -586,6 +589,17 @@
     .product-meta h2{font-size:16px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:4px;letter-spacing:-0.3px;}
     .stars{color:var(--green);font-size:13px;letter-spacing:1px;}
     .review-count{font-size:12px;color:var(--text-muted);margin-left:6px;}
+
+    /* ── Compare checkbox ── */
+    .compare-check{
+      display:flex;align-items:center;cursor:pointer;
+      font-size:14px;opacity:0.4;transition:opacity 0.15s;
+      flex-shrink:0;
+    }
+    .compare-check:hover{opacity:1;}
+    .compare-check input{display:none;}
+    .compare-check input:checked + span{opacity:1;}
+    .compare-check span{opacity:0.6;}
 
     /* ── Filter tabs ── */
     .filter-tabs{
@@ -770,6 +784,43 @@
     }
     @keyframes skel{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
 
+    /* ── Store logos banner ── */
+    .stores-banner{
+      padding:20px 40px;
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+      background:var(--bg-card);
+    }
+    .stores-banner-label{
+      font-size:10px;font-weight:700;letter-spacing:2.5px;
+      text-transform:uppercase;color:var(--text-muted);
+      text-align:center;margin-bottom:16px;
+    }
+    .stores-logos{
+      display:flex;align-items:center;justify-content:center;
+      gap:8px;flex-wrap:wrap;
+    }
+    .store-logo-chip{
+      display:flex;align-items:center;gap:7px;
+      padding:7px 14px;
+      background:var(--bg);border:1px solid var(--border);
+      border-radius:8px;text-decoration:none;
+      transition:all 0.15s;
+      font-size:12px;font-weight:600;color:var(--text-2);
+      white-space:nowrap;
+    }
+    .store-logo-chip:hover{
+      border-color:var(--green);color:var(--text);
+      transform:translateY(-1px);box-shadow:0 3px 12px var(--green-glow);
+    }
+    .store-logo-chip img{
+      width:20px;height:20px;object-fit:contain;border-radius:3px;
+    }
+    .store-logo-chip .store-dot{
+      width:8px;height:8px;border-radius:2px;flex-shrink:0;
+    }
+    @media(max-width:640px){.stores-banner{padding:16px 20px;}.stores-logos{gap:6px;}.store-logo-chip{padding:6px 10px;font-size:11px;}}
+
     /* ── Footer ── */
     footer{
       padding:48px 40px 32px;
@@ -858,7 +909,11 @@
   </a>
   <div class="nav-right">
     <a href="/about.html" class="nav-link">About</a>
-    <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">☀️ Light</button>
+    <a href="mailto:hello@twisti.org" class="nav-link">Contact</a>
+    <button class="theme-btn" onclick="toggleTheme()" id="theme-btn" title="Toggle theme">
+      <span id="theme-icon">☀️</span>
+      <span id="theme-label">Light mode</span>
+    </button>
     <span id="nav-auth"><a href="/auth.html" class="nav-btn">Sign in</a></span>
   </div>
 </nav>
@@ -905,13 +960,7 @@
   </div>
 </div>
 
-<!-- ── Stats bar ── -->
-<div class="stats-row" id="stats-row">
-  <div class="stat"><div class="stat-n">50,000+</div><div class="stat-l">Products tracked</div></div>
-  <div class="stat"><div class="stat-n">12</div><div class="stat-l">Major NZ stores</div></div>
-  <div class="stat"><div class="stat-n">6h</div><div class="stat-l">Price refresh</div></div>
-  <div class="stat"><div class="stat-n">$0</div><div class="stat-l">Always free</div></div>
-</div>
+<!-- stats bar removed -->
 
 <!-- ── Home content ── -->
 <div id="home-content">
@@ -929,102 +978,17 @@
       <div class="deal-card" onclick="searchFor('Sony WH-1000XM5', this)"><span class="d-flag f-red">−22% off</span><div class="d-name">Sony WH-1000XM5 Headphones</div><div><span class="d-price">$329</span><span class="d-was">$429</span></div><div class="d-store">JB Hi-Fi</div><div class="d-save">Save $100</div></div>
       <div class="deal-card" onclick="searchFor('Apple AirPods Pro', this)"><span class="d-flag f-grn">Cashback</span><div class="d-name">Apple AirPods Pro 2</div><div><span class="d-price">$349</span><span class="d-was">$399</span></div><div class="d-store">The Good Guys</div><div class="d-save">Save $50</div></div>
       <div class="deal-card" onclick="searchFor('Samsung 65 QLED TV', this)"><span class="d-flag f-pur">Coupon</span><div class="d-name">Samsung 65" QLED 4K TV</div><div><span class="d-price">$1,199</span><span class="d-was">$1,599</span></div><div class="d-store">Harvey Norman</div><div class="d-save">Save $400</div></div>
-      <div class="deal-card" onclick="searchFor('Dyson V15 vacuum', this)"><span class="d-flag f-red">−18% off</span><div class="d-name">Dyson V15 Detect Vacuum</div><div><span class="d-price">$849</span><span class="d-was">$999</span></div><div class="d-store">Mighty Ape</div><div class="d-save">Save $150</div></div>
+      <div class="deal-card" onclick="searchFor('Dyson V15 vacuum', this)"><span class="d-flag f-red">−18% off</span><div class="d-name">Dyson V15 Detect Vacuum</div><div><span class="d-price">$849</span><span class="d-was">$999</span></div><div class="d-store">Noel Leeming</div><div class="d-save">Save $150</div></div>
     </div>
   </div>
 
-  <!-- Video banner -->
-  <div class="video-banner">
-    <div class="video-banner-fallback">
-      <div class="grid-anim"></div>
-      <div class="video-overlay">
-        <div class="video-badge">
-          <span class="video-badge-dot"></span>
-          AI-Powered
-        </div>
-        <div class="video-headline">Stop overpaying.<br>Start <em>buying smart.</em></div>
-        <div class="video-sub">Twisti's AI scans 12 NZ stores in seconds and tells you exactly when to buy.</div>
-      </div>
-    </div>
-  </div>
+<!-- video banner removed -->
 
-  <!-- How it works -->
-  <div class="how-section">
-    <div class="how-inner">
-      <div class="how-label">How Twisti works</div>
-      <div class="how-grid">
-        <div class="how-item">
-          <div class="how-icon">🔍</div>
-          <div class="how-n">01 · Search</div>
-          <div class="how-t">Type anything</div>
-          <div class="how-d">Search any product and we scan prices across all major NZ retailers in seconds.</div>
-        </div>
-        <div class="how-item">
-          <div class="how-icon">📊</div>
-          <div class="how-n">02 · Compare</div>
-          <div class="how-t">See all prices</div>
-          <div class="how-d">Prices ranked cheapest to most expensive. Filter by in-store or online-only.</div>
-        </div>
-        <div class="how-item">
-          <div class="how-icon">🤖</div>
-          <div class="how-n">03 · Verdict</div>
-          <div class="how-t">AI tells you when to buy</div>
-          <div class="how-d">Our AI gives you pros, cons, a buy recommendation, and suggests alternatives.</div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- how it works moved to about page -->
 
-  <!-- Trust bar -->
-  <div class="trust-bar">
-    <div class="trust-item"><div class="trust-dot"></div>No hidden fees, ever</div>
-    <div class="trust-item"><div class="trust-dot"></div>Updated every 6 hours</div>
-    <div class="trust-item"><div class="trust-dot"></div>AI buying verdicts</div>
-    <div class="trust-item"><div class="trust-dot"></div>Community price tips</div>
-    <div class="trust-item"><div class="trust-dot"></div>NZ-owned & operated</div>
-  </div>
+<!-- trust bar removed -->
 
-  <!-- Trending -->
-  <div class="home-section">
-    <div class="sec-head">
-      <div class="sec-title">🔥 Trending now in NZ</div>
-      <span class="sec-sub">Updated weekly</span>
-    </div>
-    <div class="trending-grid" id="trending-grid">
-      <div class="trending-card" onclick="searchFor('Apple AirPods Pro 2', this)">
-        <div class="trending-rank">1</div>
-        <div class="trending-info"><div class="trending-badge badge-hot">🔥 Hot</div><div class="trending-name">Apple AirPods Pro 2</div><div class="trending-meta">from $349 · 5 stores</div></div>
-      </div>
-      <div class="trending-card" onclick="searchFor('Samsung Galaxy S25', this)">
-        <div class="trending-rank">2</div>
-        <div class="trending-info"><div class="trending-badge badge-new">✨ New</div><div class="trending-name">Samsung Galaxy S25</div><div class="trending-meta">from $1,299 · 6 stores</div></div>
-      </div>
-      <div class="trending-card" onclick="searchFor('Dyson V15 Detect', this)">
-        <div class="trending-rank">3</div>
-        <div class="trending-info"><div class="trending-badge badge-deal">💚 Deal</div><div class="trending-name">Dyson V15 Detect</div><div class="trending-meta">from $849 · 4 stores</div></div>
-      </div>
-      <div class="trending-card" onclick="searchFor('Apple MacBook Air M3', this)">
-        <div class="trending-rank">4</div>
-        <div class="trending-info"><div class="trending-badge badge-hot">🔥 Hot</div><div class="trending-name">Apple MacBook Air M3</div><div class="trending-meta">from $1,899 · 5 stores</div></div>
-      </div>
-      <div class="trending-card" onclick="searchFor('Sony WH-1000XM5', this)">
-        <div class="trending-rank">5</div>
-        <div class="trending-info"><div class="trending-badge badge-deal">💚 Deal</div><div class="trending-name">Sony WH-1000XM5</div><div class="trending-meta">from $329 · 6 stores</div></div>
-      </div>
-      <div class="trending-card" onclick="searchFor('LG C3 OLED TV', this)">
-        <div class="trending-rank">6</div>
-        <div class="trending-info"><div class="trending-badge badge-deal">💚 Deal</div><div class="trending-name">LG C3 OLED 65"</div><div class="trending-meta">from $2,199 · 4 stores</div></div>
-      </div>
-      <div class="trending-card" onclick="searchFor('iPhone 16 Pro', this)">
-        <div class="trending-rank">7</div>
-        <div class="trending-info"><div class="trending-badge badge-hot">🔥 Hot</div><div class="trending-name">iPhone 16 Pro</div><div class="trending-meta">from $1,799 · 6 stores</div></div>
-      </div>
-      <div class="trending-card" onclick="searchFor('Fisher Paykel washing machine', this)">
-        <div class="trending-rank">8</div>
-        <div class="trending-info"><div class="trending-badge badge-new">✨ New</div><div class="trending-name">Fisher & Paykel Washer</div><div class="trending-meta">from $999 · 5 stores</div></div>
-      </div>
-    </div>
-  </div>
+<!-- trending removed, keeping flash deals only -->
 
 </div><!-- /#home-content -->
 
@@ -1037,34 +1001,47 @@
     </button>
   </div>
 
-  <!-- Get AI Verdict button -->
-  <div class="get-verdict-wrap" id="get-verdict-wrap" style="display:none">
-    <button class="get-verdict-btn" id="get-verdict-btn" onclick="triggerVerdict()">
-      <span class="btn-icon">🤖</span>
-      <span id="verdict-btn-text">Get AI Verdict</span>
-      <div class="btn-spinner" id="verdict-spinner"></div>
+  <!-- Product header — clean, minimal -->
+  <div class="product-header" id="product-header" style="display:none">
+    <div class="product-img" id="product-img">📦</div>
+    <div class="product-meta">
+      <h2 id="product-name"></h2>
+      <div><span class="stars" id="product-stars"></span><span class="review-count" id="product-reviews"></span></div>
+    </div>
+    <!-- Compare button in header -->
+    <button class="compare-pill" id="compare-pill" onclick="toggleCompare()" style="display:none">
+      ⚖️ Compare <span id="compare-count">0</span>
     </button>
   </div>
 
-  <!-- AI Verdict panel -->
+  <!-- Action bar: AI Verdict + Track price — appears after prices load -->
+  <div class="action-bar" id="action-bar" style="display:none">
+    <button class="action-btn action-verdict" id="get-verdict-btn" onclick="triggerVerdict()">
+      <span id="verdict-btn-icon">🤖</span>
+      <span id="verdict-btn-text">Get AI Verdict</span>
+      <div class="btn-spinner" id="verdict-spinner"></div>
+    </button>
+    <button class="action-btn action-track" onclick="openTrackForm()">
+      🔔 Track price
+    </button>
+  </div>
+
+  <!-- AI Verdict panel — hidden until requested -->
   <div class="verdict-wrap" id="verdict-bar">
-    <!-- Badge strip -->
     <div class="verdict-badge-strip">
       <span class="verdict-badge badge-default" id="verdict-badge">⚡ AI Verdict</span>
       <span class="verdict-badge-label" id="verdict-badge-label"></span>
       <span class="ai-badge" id="ai-badge">AI</span>
     </div>
-    <!-- Headline -->
     <div class="verdict-headline-wrap">
       <div class="verdict-headline" id="verdict-text"></div>
     </div>
-    <!-- Body -->
     <div class="verdict-body">
       <span id="verdict-sub"></span>
     </div>
   </div>
 
-  <!-- Price tracking card -->
+  <!-- Track price form — hidden until clicked -->
   <div class="track-card" id="track-card">
     <div class="track-card-top">
       <div class="track-icon">🔔</div>
@@ -1072,18 +1049,18 @@
         <div class="track-title">Track this price</div>
         <div class="track-sub" id="track-sub">Get notified when the price drops</div>
       </div>
-      <button class="track-btn" id="track-btn" onclick="openTrackForm()">Set alert</button>
+      <button class="track-close" onclick="closeTrackForm()">✕</button>
     </div>
-    <div class="track-form" id="track-form">
+    <div class="track-form open" id="track-form">
       <div class="track-fields">
         <div class="track-field">
-          <label>Alert me when price drops below</label>
+          <label>Alert me when below</label>
           <input type="number" id="track-price" placeholder="e.g. 299" min="1" />
         </div>
         <div class="track-field">
-          <label>Check frequency</label>
+          <label>Frequency</label>
           <select id="track-freq">
-            <option value="instant">Instantly (when found)</option>
+            <option value="instant">Instantly</option>
             <option value="daily" selected>Daily</option>
             <option value="weekly">Weekly</option>
           </select>
@@ -1091,19 +1068,42 @@
       </div>
       <button class="track-submit" onclick="submitTrackAlert()">🔔 Start tracking</button>
     </div>
-    <div class="track-success" id="track-success">✅ Price alert set! We'll email you at <span id="track-email"></span></div>
-  </div>
-
-  <!-- Product header -->
-  <div class="product-header" id="product-header">
-    <div class="product-img" id="product-img">📦</div>
-    <div class="product-meta">
-      <h2 id="product-name"></h2>
-      <div><span class="stars" id="product-stars"></span><span class="review-count" id="product-reviews"></span></div>
-    </div>
+    <div class="track-success" id="track-success">✅ Alert set! We'll email <span id="track-email"></span></div>
   </div>
 
   <div id="results-body"></div>
+</div>
+
+<!-- ── Store logos banner ── -->
+<div class="stores-banner">
+  <div class="stores-banner-label">Prices compared across NZ's biggest stores</div>
+  <div class="stores-logos">
+    <a href="https://www.jbhifi.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
+      <div class="store-dot" style="background:#f6a800"></div>JB Hi-Fi
+    </a>
+    <a href="https://www.pbtech.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
+      <div class="store-dot" style="background:#cc0000"></div>PB Tech
+    </a>
+    <a href="https://www.noelleeming.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
+      <div class="store-dot" style="background:#e31837"></div>Noel Leeming
+    </a>
+    <a href="https://www.harveynorman.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
+      <div class="store-dot" style="background:#e30614"></div>Harvey Norman
+    </a>
+    <a href="https://www.thewarehouse.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
+      <div class="store-dot" style="background:#cc0000"></div>The Warehouse
+    </a>
+    <a href="https://www.farmers.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
+      <div class="store-dot" style="background:#00529b"></div>Farmers
+    </a>
+    <a href="https://www.heathcotes.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
+      <div class="store-dot" style="background:#004990"></div>Heathcotes
+    </a>
+    <a href="https://www.trademe.co.nz" target="_blank" rel="noopener" class="store-logo-chip">
+      <div class="store-dot" style="background:#4aa3da"></div>Trade Me
+    </a>
+  </div>
+  <p style="font-size:10px;color:var(--text-muted);text-align:center;margin-top:12px;">All brand names and logos are property of their respective owners and are used for identification purposes only.</p>
 </div>
 
 <!-- ── Footer ── -->
@@ -1137,6 +1137,7 @@
   </div>
   <div class="footer-bottom">
     <span>© 2026 Twisti · We may earn commission on purchases made through our links</span>
+    <span style="color:var(--text-muted);font-size:12px;">Made with ♥ in New Zealand</span>
     <span class="nz-tag">NZ Owned</span>
   </div>
 </footer>
@@ -1262,17 +1263,28 @@
 
   // ── Theme ──
   function toggleTheme() {
-    const html = document.documentElement;
-    const isDark = html.getAttribute('data-theme') === 'dark';
+    var html = document.documentElement;
+    var isDark = html.getAttribute('data-theme') === 'dark';
     html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    document.getElementById('theme-btn').textContent = isDark ? '🌙 Dark' : '☀️ Light';
+    updateThemeBtn(isDark ? 'light' : 'dark');
     localStorage.setItem('twisti_theme', isDark ? 'light' : 'dark');
   }
-  const savedTheme = localStorage.getItem('twisti_theme') || 'dark';
+  function updateThemeBtn(theme) {
+    var icon  = document.getElementById('theme-icon');
+    var label = document.getElementById('theme-label');
+    if (!icon || !label) return;
+    if (theme === 'dark') {
+      icon.textContent  = '☀️';
+      label.textContent = 'Light mode';
+    } else {
+      icon.textContent  = '🌙';
+      label.textContent = 'Dark mode';
+    }
+  }
+  var savedTheme = localStorage.getItem('twisti_theme') || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('theme-btn');
-    if (btn) btn.textContent = savedTheme === 'dark' ? '☀️ Light' : '🌙 Dark';
+  document.addEventListener('DOMContentLoaded', function() {
+    updateThemeBtn(savedTheme);
   });
 
   // ── Search ──
@@ -1287,8 +1299,7 @@
     activeFilter = 'all';
     // Push a history state so the browser back button fires popstate instead of leaving the site
     window.history.pushState({ twisti: 'results', q: raw }, '', '?q=' + encodeURIComponent(raw));
-    const statsRow = document.getElementById('stats-row');
-    if (statsRow) statsRow.style.display = 'none';
+    // stats row removed
     fetchResults(normaliseQuery(raw), forceProduct, userCountry);
   }
   function clearSearch() {
@@ -1300,19 +1311,18 @@
     currentProductId = null; allPrices = []; currentProduct = null;
     lastVariants = null; lastVariantQuery = '';
     hideSuggestions();
-    const statsRow = document.getElementById('stats-row');
-    if (statsRow) statsRow.style.display = 'grid';
+    // stats row removed
     document.getElementById('back-bar').style.display = 'none';
     document.querySelectorAll('.hcat,.cat-item').forEach(c => c.classList.remove('active'));
     // Clean up the URL without triggering popstate
     window.history.replaceState({ twisti: 'home' }, '', '/');
-    // Hide verdict + tracking
-    var gvw = document.getElementById('get-verdict-wrap');
-    if (gvw) gvw.style.display = 'none';
-    var vbar = document.getElementById('verdict-bar');
-    if (vbar) vbar.classList.remove('visible');
-    var tcard = document.getElementById('track-card');
-    if (tcard) tcard.classList.remove('visible');
+    // Hide action bar, verdict, tracking
+    var abar2 = document.getElementById('action-bar');
+    if (abar2) abar2.style.display = 'none';
+    var vbar3 = document.getElementById('verdict-bar');
+    if (vbar3) vbar3.classList.remove('visible');
+    var tcard2 = document.getElementById('track-card');
+    if (tcard2) { tcard2.classList.remove('visible'); tcard2.style.display = 'none'; }
   }
   function searchFor(name, catBtn) {
     searchInput.value = name;
@@ -1542,6 +1552,10 @@
                   </div>
                 </div>
                 ${v.lowest_price ? `<div class="variant-row-price">from $${v.lowest_price}</div>` : ''}
+                <label class="compare-check" onclick="event.stopPropagation()" title="Add to compare">
+                  <input type="checkbox" onchange="addToCompare('${escapeHtml(v.name)}', ${v.lowest_price||0}, 'various')" />
+                  <span>⚖️</span>
+                </label>
                 <div class="variant-row-arrow">→</div>
               </div>`).join('')}
           </div>
@@ -1591,25 +1605,25 @@
       imgEl.innerHTML = `<img src="${product.image_url}" alt="${escapeHtml(product.name)}" onerror="this.parentElement.textContent='📦'" />`;
     } else imgEl.textContent = '📦';
 
-    // Show verdict button & tracking card — verdict is on-demand
-    var gvw = document.getElementById('get-verdict-wrap');
-    var vbar = document.getElementById('verdict-bar');
-    var tcard = document.getElementById('track-card');
-    if (gvw) gvw.style.display = 'block';
-    if (vbar) { vbar.classList.remove('visible'); }
-    if (tcard) tcard.classList.remove('visible');
-
-    // Store product name for on-demand verdict
+    // Store for on-demand verdict
     window._currentProductName = product.name;
     window._currentPrices = allPrices;
+
+    // Show action bar, hide verdict panel + track card
+    var abar = document.getElementById('action-bar');
+    var vbar = document.getElementById('verdict-bar');
+    var tcard = document.getElementById('track-card');
+    if (abar) abar.style.display = 'flex';
+    if (vbar) vbar.classList.remove('visible');
+    if (tcard) { tcard.classList.remove('visible'); tcard.style.display = 'none'; }
 
     // Reset verdict button
     var btn = document.getElementById('get-verdict-btn');
     var btnText = document.getElementById('verdict-btn-text');
     var spinner = document.getElementById('verdict-spinner');
-    if (btn) { btn.disabled = false; }
-    if (btnText) { btnText.textContent = 'Get AI Verdict'; }
-    if (spinner) { spinner.style.display = 'none'; }
+    if (btn) btn.disabled = false;
+    if (btnText) btnText.textContent = 'Get AI Verdict';
+    if (spinner) spinner.style.display = 'none';
 
     renderPriceSection(allPrices, community_prices || [], secondhand_prices || []);
   }
@@ -1845,19 +1859,13 @@
         sub.textContent = v.buy_now || v.reason || '';
       }
 
-      // Hide verdict button, show tracking card
-      var gvw = document.getElementById('get-verdict-wrap');
-      if (gvw) gvw.style.display = 'none';
-      var tcard = document.getElementById('track-card');
-      if (tcard) {
-        tcard.classList.add('visible');
-        var cheapest = (window._currentPrices && window._currentPrices[0]) ? window._currentPrices[0].price : null;
-        if (cheapest) {
-          document.getElementById('track-sub').textContent = 'Currently from $' + cheapest + ' NZD — alert me when it drops';
-          document.getElementById('track-price').placeholder = Math.round(cheapest * 0.9);
-          document.getElementById('track-price').value = '';
-        }
-      }
+      // Change verdict button to "Refresh verdict" after shown
+      var btn3 = document.getElementById('get-verdict-btn');
+      var btnText3 = document.getElementById('verdict-btn-text');
+      var spinner3 = document.getElementById('verdict-spinner');
+      if (btn3) btn3.disabled = false;
+      if (btnText3) btnText3.textContent = 'Refresh verdict';
+      if (spinner3) spinner3.style.display = 'none';
     } catch(e) {
       var vbar2 = document.getElementById('verdict-bar');
       if (vbar2) vbar2.classList.add('visible');
@@ -1970,10 +1978,23 @@
       window.location.href = '/auth.html?redirect=' + encodeURIComponent(window.location.href);
       return;
     }
-    var form = document.getElementById('track-form');
-    var btn  = document.getElementById('track-btn');
-    form.classList.toggle('open');
-    btn.textContent = form.classList.contains('open') ? 'Cancel' : 'Set alert';
+    var tcard = document.getElementById('track-card');
+    var form  = document.getElementById('track-form');
+    var cheapest = (window._currentPrices && window._currentPrices[0]) ? window._currentPrices[0].price : null;
+    if (cheapest) {
+      document.getElementById('track-sub').textContent = 'Currently from $' + cheapest + ' NZD';
+      document.getElementById('track-price').placeholder = Math.round(cheapest * 0.9);
+    }
+    tcard.style.display = 'block';
+    tcard.classList.add('visible');
+    form.classList.add('open');
+    tcard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function closeTrackForm() {
+    var tcard = document.getElementById('track-card');
+    tcard.classList.remove('visible');
+    tcard.style.display = 'none';
   }
 
   function submitTrackAlert() {
@@ -2009,6 +2030,70 @@
     var success = document.getElementById('track-success');
     document.getElementById('track-email').textContent = user.email || 'your email';
     success.style.display = 'block';
+  }
+
+  // ── Compare feature ─────────────────────────────────────────────────────────
+  var compareList = [];
+
+  function toggleCompare() {
+    if (compareList.length < 2) {
+      alert('Select at least 2 products to compare. Tick the checkbox on each product row.');
+      return;
+    }
+    showCompareView();
+  }
+
+  function addToCompare(productName, price, store) {
+    if (compareList.find(function(p){ return p.name === productName; })) {
+      // Remove if already in list
+      compareList = compareList.filter(function(p){ return p.name !== productName; });
+    } else {
+      if (compareList.length >= 5) { alert('You can compare up to 5 products at once'); return; }
+      compareList.push({ name: productName, price: price, store: store });
+    }
+    updateComparePill();
+  }
+
+  function updateComparePill() {
+    var pill = document.getElementById('compare-pill');
+    var count = document.getElementById('compare-count');
+    if (!pill) return;
+    if (compareList.length > 0) {
+      pill.style.display = 'block';
+      count.textContent = compareList.length;
+    } else {
+      pill.style.display = 'none';
+    }
+  }
+
+  function showCompareView() {
+    var html = '<div style="overflow-x:auto;margin-bottom:16px">' +
+      '<table style="width:100%;border-collapse:collapse;font-size:13px">' +
+      '<thead><tr style="border-bottom:2px solid var(--border)">' +
+      '<th style="text-align:left;padding:10px 12px;color:var(--text-muted);font-size:11px;letter-spacing:1px;text-transform:uppercase">Product</th>' +
+      '<th style="padding:10px 12px;color:var(--text-muted);font-size:11px;letter-spacing:1px;text-transform:uppercase">Price</th>' +
+      '<th style="padding:10px 12px;color:var(--text-muted);font-size:11px;letter-spacing:1px;text-transform:uppercase">Store</th>' +
+      '<th style="padding:10px 12px"></th>' +
+      '</tr></thead><tbody>' +
+      compareList.map(function(p) {
+        return '<tr style="border-bottom:1px solid var(--border-subtle)">' +
+          '<td style="padding:12px;color:var(--text);font-weight:600;max-width:200px">' + escapeHtml(p.name) + '</td>' +
+          '<td style="padding:12px;text-align:center;color:var(--green);font-weight:700;font-size:16px">$' + (p.price || '—') + '</td>' +
+          '<td style="padding:12px;text-align:center;color:var(--text-2)">' + escapeHtml(p.store || '—') + '</td>' +
+          '<td style="padding:12px;text-align:center"><button onclick="searchFor('' + escapeHtml(p.name).replace(/'/g,"\'") + '')" style="padding:6px 12px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">View prices</button></td>' +
+          '</tr>';
+      }).join('') +
+      '</tbody></table></div>' +
+      '<button onclick="clearCompare()" style="font-size:12px;color:var(--text-muted);background:none;border:none;cursor:pointer;font-family:inherit">Clear comparison</button>';
+
+    document.getElementById('results-body').innerHTML =
+      '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">Comparing ' + compareList.length + ' products</div>' + html;
+  }
+
+  function clearCompare() {
+    compareList = [];
+    updateComparePill();
+    document.getElementById('results-body').innerHTML = '';
   }
 
   loadFlashDeals();

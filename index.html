@@ -207,31 +207,70 @@
     /* Categories dropdown */
     .nav-cats-wrap{position:relative;}
     .nav-cats-btn{
-      font-size:13px;font-weight:600;color:var(--text-muted);
-      background:none;border:1.5px solid var(--border);
-      padding:6px 14px;border-radius:8px;cursor:pointer;
+      font-size:13px;font-weight:700;color:var(--text);
+      background:var(--bg-card);border:1.5px solid var(--border);
+      padding:8px 16px;border-radius:8px;cursor:pointer;
       font-family:inherit;transition:all 0.15s;
-      display:flex;align-items:center;gap:4px;
+      display:flex;align-items:center;gap:6px;
+      box-shadow:var(--shadow-sm);
     }
-    .nav-cats-btn:hover,.nav-cats-btn.open{border-color:var(--green);color:var(--green);background:var(--green-light);}
+    .nav-cats-btn:hover,.nav-cats-btn.open{
+      border-color:var(--green);color:var(--green);
+      background:var(--green-light);box-shadow:0 2px 8px var(--green-glow);
+    }
+    /* Hot Deals button - special styling */
+    #nav-deals-btn{
+      background:linear-gradient(135deg,#d97706,#f59e0b);
+      color:#fff;border-color:transparent;
+      box-shadow:0 2px 8px rgba(217,119,6,0.4);
+    }
+    #nav-deals-btn:hover,#nav-deals-btn.open{
+      background:linear-gradient(135deg,#b45309,#d97706);
+      border-color:transparent;color:#fff;
+      box-shadow:0 4px 12px rgba(217,119,6,0.5);
+    }
     .nav-cats-menu{
-      display:none;position:absolute;top:calc(100% + 8px);left:0;
+      display:none;position:absolute;top:calc(100% + 10px);left:0;
       background:var(--bg-card);border:1px solid var(--border);
-      border-radius:12px;box-shadow:var(--shadow-lg);
-      z-index:300;overflow:hidden;min-width:280px;
-      padding:8px;
+      border-radius:14px;box-shadow:0 16px 48px rgba(0,0,0,0.2);
+      z-index:300;overflow:hidden;min-width:300px;
+      padding:0;
     }
-    .nav-cats-menu.open{display:block;}
-    .nav-cats-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+    .nav-cats-menu.open{display:block;animation:menuFadeIn 0.15s ease;}
+    @keyframes menuFadeIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+    .nav-cats-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:8px;}
     .nav-cat-item{
-      display:flex;align-items:center;gap:8px;
-      padding:9px 12px;border-radius:8px;
+      display:flex;align-items:center;gap:10px;
+      padding:10px 14px;border-radius:10px;
       background:none;border:none;cursor:pointer;
-      font-family:inherit;font-size:13px;font-weight:500;
+      font-family:inherit;font-size:13px;font-weight:600;
       color:var(--text-2);text-align:left;
       transition:all 0.12s;
     }
     .nav-cat-item:hover{background:var(--green-light);color:var(--green);}
+    .nav-cat-item .cat-emoji{font-size:18px;flex-shrink:0;}
+
+    /* Deal card in dropdown */
+    .nav-deal-card{
+      display:flex;align-items:center;gap:12px;
+      padding:10px 14px;border-radius:10px;
+      background:none;border:none;cursor:pointer;
+      font-family:inherit;text-align:left;width:100%;
+      transition:all 0.12s;border-bottom:1px solid var(--border-subtle);
+    }
+    .nav-deal-card:last-of-type{border-bottom:none;}
+    .nav-deal-card:hover{background:var(--green-light);}
+    .nav-deal-discount{
+      min-width:60px;text-align:center;
+      background:var(--green);color:#fff;
+      font-size:11px;font-weight:800;
+      padding:4px 8px;border-radius:6px;
+      flex-shrink:0;letter-spacing:0.3px;
+    }
+    .nav-deal-info{flex:1;min-width:0;}
+    .nav-deal-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .nav-deal-meta{font-size:11px;color:var(--text-muted);}
+    .nav-deal-price{font-size:14px;font-weight:800;color:var(--green);flex-shrink:0;}
     .nav-link:hover{color:var(--text);background:var(--border-subtle);}
     .theme-btn{
       background:none;border:1px solid var(--border);color:var(--text-muted);
@@ -1091,40 +1130,54 @@
     .upvote-btn{background:none;border:1px solid var(--border);padding:3px 8px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:11px;color:var(--text-muted);transition:all 0.15s;}
     .upvote-btn:hover{border-color:var(--green);color:var(--green);}
 
-    /* ── Giveaway banner — flashy gold ── */
-    .giveaway-banner{
-      background:linear-gradient(135deg,#78350f 0%,#b45309 25%,#d97706 55%,#fbbf24 80%,#fcd34d 100%);
-      border-top:3px solid #fef08a;
-      border-bottom:3px solid #d97706;
-      padding:20px 40px;
-      display:flex;align-items:center;justify-content:space-between;
-      gap:20px;flex-wrap:wrap;
-      position:relative;overflow:hidden;
-      box-shadow:0 4px 24px rgba(217,119,6,0.4),inset 0 1px 0 rgba(255,255,255,0.2);
+    /* ── Giveaway centered card ── */
+    .giveaway-wrap{
+      padding:32px 20px;
+      background:var(--bg);
+      border-bottom:1px solid var(--border);
+      display:flex;justify-content:center;
     }
-    .giveaway-banner::before{
-      content:'';position:absolute;inset:0;
-      background:
-        radial-gradient(ellipse 40% 100% at 0% 50%,rgba(255,255,255,0.1),transparent),
-        radial-gradient(ellipse 40% 100% at 100% 50%,rgba(0,0,0,0.1),transparent);
+    .giveaway-card{
+      position:relative;overflow:hidden;
+      background:linear-gradient(135deg,#78350f 0%,#b45309 25%,#d97706 60%,#fbbf24 85%,#fcd34d 100%);
+      border-radius:20px;
+      padding:36px 48px;
+      text-align:center;
+      max-width:600px;width:100%;
+      box-shadow:0 8px 40px rgba(217,119,6,0.45),0 2px 8px rgba(0,0,0,0.1);
+    }
+    .giveaway-card::before{
+      content:'';position:absolute;inset:0;border-radius:20px;
+      background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,255,255,0.18),transparent);
       pointer-events:none;
     }
-    [data-theme="light"] .giveaway-banner{
-      background:linear-gradient(135deg,#78350f 0%,#b45309 25%,#d97706 55%,#fbbf24 80%,#fcd34d 100%);
+    .gw-spark{
+      position:absolute;font-size:18px;
+      animation:float 4s ease-in-out infinite;
+      opacity:0.7;
     }
-    .giveaway-eyebrow{
-      font-size:10px;font-weight:800;letter-spacing:2px;
-      text-transform:uppercase;color:rgba(255,255,255,0.85);
-      margin-bottom:4px;
+    .gw-icon{font-size:52px;margin-bottom:12px;display:block;animation:float 3s ease-in-out infinite;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.2));}
+    .gw-eyebrow{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-bottom:10px;}
+    .gw-title{font-size:28px;font-weight:900;color:#fff;letter-spacing:-0.5px;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,0.2);line-height:1.1;}
+    .gw-sub{font-size:14px;color:rgba(255,255,255,0.9);line-height:1.6;max-width:420px;margin:0 auto 20px;}
+    .gw-meta{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:20px;flex-wrap:wrap;}
+    .gw-spots{display:flex;align-items:baseline;gap:5px;}
+    .gw-spots-n{font-size:32px;font-weight:900;color:#fff;letter-spacing:-1px;text-shadow:0 2px 4px rgba(0,0,0,0.2);}
+    .gw-spots-l{font-size:12px;color:rgba(255,255,255,0.8);font-weight:600;}
+    .gw-date{font-size:12px;color:rgba(255,255,255,0.8);background:rgba(0,0,0,0.15);padding:5px 12px;border-radius:20px;}
+    .gw-btn{
+      display:inline-block;
+      background:#fff;color:#92400e;
+      padding:14px 36px;border-radius:12px;
+      font-size:15px;font-weight:800;letter-spacing:-0.2px;
+      text-decoration:none;transition:all 0.15s;
+      box-shadow:0 4px 16px rgba(0,0,0,0.15);
+      margin-bottom:12px;
     }
-    .giveaway-right{display:flex;align-items:center;gap:16px;flex-shrink:0;}
-    .giveaway-counter-wrap{text-align:center;}
-    .giveaway-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-    .giveaway-prize-icon{
-      font-size:36px;flex-shrink:0;
-      animation:float 3s ease-in-out infinite;
-      filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-    }
+    .gw-btn:hover{background:#fef9c3;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2);}
+    .gw-note{font-size:11px;color:rgba(255,255,255,0.65);}
+    
+    
     .giveaway-text{}
     .giveaway-title{
       font-size:20px;font-weight:900;
@@ -1357,51 +1410,55 @@
       <button onclick="doNavSearch()" style="background:var(--green);color:#fff;border:none;padding:0 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;">Go</button>
     </div>
   </div>
-  <!-- Categories dropdown in nav -->
-  <div class="nav-cats-wrap" id="nav-cats-wrap">
-    <button class="nav-cats-btn" onclick="toggleCatsMenu()" id="nav-cats-btn">
-      Categories <span style="font-size:10px;margin-left:2px">▾</span>
-    </button>
-    <div class="nav-cats-menu" id="nav-cats-menu">
-      <div class="nav-cats-grid">
-        <button class="nav-cat-item" onclick="searchFor('smartphones');closeCatsMenu()">📱 Phones</button>
-        <button class="nav-cat-item" onclick="searchFor('laptop');closeCatsMenu()">💻 Laptops</button>
-        <button class="nav-cat-item" onclick="searchFor('television');closeCatsMenu()">📺 TVs</button>
-        <button class="nav-cat-item" onclick="searchFor('headphones');closeCatsMenu()">🎧 Headphones</button>
-        <button class="nav-cat-item" onclick="searchFor('tablet');closeCatsMenu()">📟 Tablets</button>
-        <button class="nav-cat-item" onclick="searchFor('camera');closeCatsMenu()">📷 Cameras</button>
-        <button class="nav-cat-item" onclick="searchFor('washing machine');closeCatsMenu()">🫧 Washers</button>
-        <button class="nav-cat-item" onclick="searchFor('vacuum cleaner');closeCatsMenu()">🌀 Vacuums</button>
-        <button class="nav-cat-item" onclick="searchFor('heat pump');closeCatsMenu()">❄️ Heat Pumps</button>
-        <button class="nav-cat-item" onclick="searchFor('gaming console');closeCatsMenu()">🎮 Gaming</button>
-        <button class="nav-cat-item" onclick="searchFor('speaker');closeCatsMenu()">🔊 Speakers</button>
-        <button class="nav-cat-item" onclick="searchFor('fridge');closeCatsMenu()">🧊 Fridges</button>
-      </div>
-    </div>
-  </div>
-  <!-- Deals dropdown in nav -->
-  <div class="nav-cats-wrap" id="nav-deals-wrap">
-    <button class="nav-cats-btn" onclick="toggleDealsMenu()" id="nav-deals-btn">
-      🔥 Deals <span style="font-size:10px;margin-left:2px">▾</span>
-    </button>
-    <div class="nav-cats-menu" id="nav-deals-menu" style="min-width:360px">
-      <div style="padding:10px 12px 8px;border-bottom:1px solid var(--border)">
-        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">Today's best prices</div>
-        <div style="font-size:11px;color:var(--text-muted)" id="deals-updated">Refreshed daily from NZ stores</div>
-      </div>
-      <div id="nav-deals-grid" style="padding:6px">
-        <!-- Populated by loadNavDeals() -->
-        <div style="padding:16px;text-align:center;color:var(--text-muted);font-size:13px">Loading deals...</div>
-      </div>
-      <div style="padding:8px;border-top:1px solid var(--border)">
-        <button onclick="window.location.href='/giveaway.html';closeDealsMenu()" style="width:100%;padding:9px;background:var(--green);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px">🎁 Win AirPods Pro 2 — Enter free giveaway</button>
-      </div>
-    </div>
-  </div>
-
   <div class="nav-right">
     <a href="/about.html" class="nav-link">About</a>
     <a href="mailto:hello@twisti.org" class="nav-link">Contact</a>
+
+    <!-- Categories dropdown -->
+    <div class="nav-cats-wrap" id="nav-cats-wrap">
+      <button class="nav-cats-btn" onclick="toggleCatsMenu()" id="nav-cats-btn">
+        Categories <span style="font-size:10px;margin-left:2px">▾</span>
+      </button>
+      <div class="nav-cats-menu" id="nav-cats-menu" style="right:0;left:auto">
+        <div style="padding:8px 12px 6px;border-bottom:1px solid var(--border)">
+          <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted)">Browse by category</div>
+        </div>
+        <div class="nav-cats-grid">
+          <button class="nav-cat-item" onclick="searchFor('smartphones');closeCatsMenu()"><span class="cat-emoji">📱</span>Phones</button>
+          <button class="nav-cat-item" onclick="searchFor('laptop');closeCatsMenu()"><span class="cat-emoji">💻</span>Laptops</button>
+          <button class="nav-cat-item" onclick="searchFor('television');closeCatsMenu()"><span class="cat-emoji">📺</span>TVs</button>
+          <button class="nav-cat-item" onclick="searchFor('headphones');closeCatsMenu()"><span class="cat-emoji">🎧</span>Headphones</button>
+          <button class="nav-cat-item" onclick="searchFor('tablet');closeCatsMenu()"><span class="cat-emoji">📟</span>Tablets</button>
+          <button class="nav-cat-item" onclick="searchFor('camera');closeCatsMenu()"><span class="cat-emoji">📷</span>Cameras</button>
+          <button class="nav-cat-item" onclick="searchFor('washing machine');closeCatsMenu()"><span class="cat-emoji">🫧</span>Washers</button>
+          <button class="nav-cat-item" onclick="searchFor('vacuum cleaner');closeCatsMenu()"><span class="cat-emoji">🌀</span>Vacuums</button>
+          <button class="nav-cat-item" onclick="searchFor('heat pump');closeCatsMenu()"><span class="cat-emoji">❄️</span>Heat Pumps</button>
+          <button class="nav-cat-item" onclick="searchFor('gaming console');closeCatsMenu()"><span class="cat-emoji">🎮</span>Gaming</button>
+          <button class="nav-cat-item" onclick="searchFor('speaker');closeCatsMenu()"><span class="cat-emoji">🔊</span>Speakers</button>
+          <button class="nav-cat-item" onclick="searchFor('fridge');closeCatsMenu()"><span class="cat-emoji">🧊</span>Fridges</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hot Deals dropdown -->
+    <div class="nav-cats-wrap" id="nav-deals-wrap">
+      <button class="nav-cats-btn" onclick="toggleDealsMenu()" id="nav-deals-btn">
+        🔥 Hot Deals <span style="font-size:10px;margin-left:2px">▾</span>
+      </button>
+      <div class="nav-cats-menu" id="nav-deals-menu" style="min-width:360px;right:0;left:auto">
+        <div style="padding:12px 14px 10px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#d97706,#f59e0b);border-radius:13px 13px 0 0">
+          <div style="font-size:12px;font-weight:800;letter-spacing:0.5px;color:#fff;margin-bottom:2px">🔥 Today's Hot Deals</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.8)">Best prices across NZ stores right now</div>
+        </div>
+        <div id="nav-deals-grid" style="padding:6px">
+          <div style="padding:16px;text-align:center;color:var(--text-muted);font-size:13px">Loading deals...</div>
+        </div>
+        <div style="padding:8px;border-top:1px solid var(--border)">
+          <button onclick="window.location.href='/giveaway.html';closeDealsMenu()" style="width:100%;padding:9px;background:var(--green);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px">🎁 Win AirPods Pro 2 — Enter free giveaway</button>
+        </div>
+      </div>
+    </div>
+
     <button class="theme-btn" onclick="toggleTheme()" id="theme-btn" title="Toggle theme">
       <span id="theme-icon">☀️</span>
       <span id="theme-label">Light mode</span>
@@ -1461,27 +1518,29 @@
 <!-- flash deals moved to Deals nav dropdown -->
 <div id="deals-grid" style="display:none"></div>
 
-<!-- ── Giveaway inline banner ── -->
-<div class="giveaway-banner" id="giveaway-banner">
-  <!-- Sparkle decorations -->
-  <div style="position:absolute;top:12px;left:60px;font-size:18px;opacity:0.6;animation:float 4s ease-in-out infinite">✨</div>
-  <div style="position:absolute;bottom:10px;left:180px;font-size:14px;opacity:0.4;animation:float 3s ease-in-out infinite 1s">⭐</div>
-  <div style="position:absolute;top:8px;right:320px;font-size:16px;opacity:0.5;animation:float 5s ease-in-out infinite 0.5s">✨</div>
+<!-- ── Giveaway centered card ── -->
+<div class="giveaway-wrap" id="giveaway-banner">
+  <div class="giveaway-card">
+    <!-- Floating sparkles -->
+    <div class="gw-spark" style="top:10px;left:20px;animation-delay:0s">✨</div>
+    <div class="gw-spark" style="top:14px;right:24px;animation-delay:1s">⭐</div>
+    <div class="gw-spark" style="bottom:12px;left:40%;animation-delay:0.5s">✨</div>
 
-  <div class="giveaway-left">
-    <div class="giveaway-prize-icon">🎧</div>
-    <div class="giveaway-text">
-      <div class="giveaway-eyebrow">🎁 FREE GIVEAWAY — LIMITED SPOTS</div>
-      <div class="giveaway-title">Win Apple AirPods Pro 2</div>
-      <div class="giveaway-sub">Create a free account — first 100 entries win a draw. No purchase needed. Winner announced on twisti.org, 1 August 2026.</div>
+    <div class="gw-icon">🎧</div>
+    <div class="gw-eyebrow">🎁 FREE GIVEAWAY · LIMITED SPOTS</div>
+    <div class="gw-title">Win Apple AirPods Pro 2</div>
+    <div class="gw-sub">Be one of the first 100 to create a free account — you are automatically entered. No purchase needed.</div>
+
+    <div class="gw-meta">
+      <div class="gw-spots">
+        <span class="gw-spots-n" id="giveaway-spots-n">100</span>
+        <span class="gw-spots-l">spots remaining</span>
+      </div>
+      <div class="gw-date">📅 Winner announced 1 August 2026</div>
     </div>
-  </div>
-  <div class="giveaway-right">
-    <div class="giveaway-counter-wrap">
-      <div class="giveaway-spots-n" id="giveaway-spots-n">100</div>
-      <div class="giveaway-spots-l">spots left</div>
-    </div>
-    <a href="/giveaway.html" class="giveaway-btn">Claim your spot →</a>
+
+    <a href="/giveaway.html" class="gw-btn">Claim your free spot →</a>
+    <div class="gw-note">Free to enter · No purchase necessary</div>
   </div>
 </div>
 
@@ -2993,12 +3052,15 @@
       { name: 'Samsung Galaxy S25', label: 'NZ launch price', price: '$1,299', store: 'Various' },
     ];
     grid.innerHTML = dailyDeals.map(function(d) {
-      var safeName = escapeHtml(d.name).replace(/"/g, '&quot;');
-      return "<div class=\"nav-cat-item\" onclick=\"searchFor('" + safeName + "');closeDealsMenu()\" style=\"flex-direction:column;align-items:flex-start;gap:2px\">" +
-        "<span style=\"font-size:11px;font-weight:700;color:var(--green)\">" + escapeHtml(d.label) + "</span>" +
-        "<span style=\"font-size:13px;font-weight:600;color:var(--text)\">" + escapeHtml(d.name) + "</span>" +
-        "<span style=\"font-size:11px;color:var(--text-muted)\">" + escapeHtml(d.price) + " · " + escapeHtml(d.store) + "</span>" +
-        "</div>";
+      var safeName = d.name.replace(/'/g, "\'");
+      return '<button class="nav-deal-card" onclick="searchFor(\'' + safeName + '\');closeDealsMenu()">' +
+        '<div class="nav-deal-discount">' + escapeHtml(d.label) + '</div>' +
+        '<div class="nav-deal-info">' +
+          '<div class="nav-deal-name">' + escapeHtml(d.name) + '</div>' +
+          '<div class="nav-deal-meta">' + escapeHtml(d.store) + '</div>' +
+        '</div>' +
+        '<div class="nav-deal-price">' + escapeHtml(d.price) + '</div>' +
+        '</button>';
     }).join("");
   }
 

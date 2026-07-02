@@ -1401,6 +1401,39 @@
     </div>
     <div class="logo-text">twi<em>sti</em></div>
   </a>
+  <!-- Hamburger for mobile -->
+  <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mob-section">Explore</div>
+    <button class="mob-link" onclick="searchFor('best deals NZ');closeMobileMenu()"><span class="mob-emoji">🤖</span>AI-curated deals</button>
+    <button class="mob-link" onclick="searchFor('trending NZ');closeMobileMenu()"><span class="mob-emoji">🔥</span>Trending now</button>
+    <button class="mob-link" onclick="openScanner();closeMobileMenu()"><span class="mob-emoji">📷</span>Scan barcode</button>
+
+    <div class="mob-divider"></div>
+    <div class="mob-section">Categories</div>
+    <button class="mob-link" onclick="searchFor('smartphones');closeMobileMenu()"><span class="mob-emoji">📱</span>Phones</button>
+    <button class="mob-link" onclick="searchFor('laptop');closeMobileMenu()"><span class="mob-emoji">💻</span>Laptops</button>
+    <button class="mob-link" onclick="searchFor('television');closeMobileMenu()"><span class="mob-emoji">📺</span>TVs</button>
+    <button class="mob-link" onclick="searchFor('headphones');closeMobileMenu()"><span class="mob-emoji">🎧</span>Headphones</button>
+    <button class="mob-link" onclick="searchFor('gaming console');closeMobileMenu()"><span class="mob-emoji">🎮</span>Gaming</button>
+    <button class="mob-link" onclick="searchFor('vacuum cleaner');closeMobileMenu()"><span class="mob-emoji">🌀</span>Vacuums</button>
+    <button class="mob-link" onclick="searchFor('washing machine');closeMobileMenu()"><span class="mob-emoji">🫧</span>Washers</button>
+    <button class="mob-link" onclick="searchFor('fridge');closeMobileMenu()"><span class="mob-emoji">🧊</span>Fridges</button>
+
+    <div class="mob-divider"></div>
+    <div class="mob-section">Account</div>
+    <a class="mob-link" href="/about.html" onclick="closeMobileMenu()"><span class="mob-emoji">ℹ️</span>About</a>
+    <a class="mob-link" href="mailto:hello@twisti.org" onclick="closeMobileMenu()"><span class="mob-emoji">✉️</span>Contact</a>
+    <button class="mob-link" onclick="toggleTheme();closeMobileMenu()"><span class="mob-emoji" id="mob-theme-icon">☀️</span><span id="mob-theme-label">Light mode</span></button>
+
+    <a href="/auth.html" class="mob-cta" onclick="closeMobileMenu()">Sign in / Create account</a>
+    <a href="/giveaway.html" class="mob-cta" style="background:linear-gradient(135deg,#d97706,#f59e0b);margin-top:8px" onclick="closeMobileMenu()">🎁 Win AirPods Pro 2 →</a>
+  </div>
+
   <!-- Inline nav search — visible when results are showing -->
   <div id="nav-search-wrap" style="display:none;flex:1;max-width:340px;margin:0 16px;">
     <div style="display:flex;border:1.5px solid var(--border);border-radius:8px;background:var(--bg-input);overflow:hidden;transition:border-color 0.2s;">
@@ -1862,6 +1895,28 @@
   });
 
   // ── Theme ──
+  // ── Mobile menu ─────────────────────────────────────────────────────────────
+  function toggleMobileMenu() {
+    var menu = document.getElementById('mobile-menu');
+    var btn  = document.getElementById('hamburger');
+    var isOpen = menu.classList.contains('open');
+    menu.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+    // Prevent body scroll when menu open
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('#mobile-menu') && !e.target.closest('#hamburger')) {
+      closeMobileMenu();
+    }
+  });
+
   function toggleTheme() {
     var html = document.documentElement;
     var isDark = html.getAttribute('data-theme') === 'dark';
@@ -1873,13 +1928,18 @@
   function updateThemeBtn(theme) {
     var icon  = document.getElementById('theme-icon');
     var label = document.getElementById('theme-label');
-    if (!icon || !label) return;
+    var mobIcon  = document.getElementById('mob-theme-icon');
+    var mobLabel = document.getElementById('mob-theme-label');
     if (theme === 'dark') {
-      icon.textContent  = '☀️';
-      label.textContent = 'Light mode';
+      if (icon) icon.textContent  = '☀️';
+      if (label) label.textContent = 'Light mode';
+      if (mobIcon) mobIcon.textContent  = '☀️';
+      if (mobLabel) mobLabel.textContent = 'Light mode';
     } else {
-      icon.textContent  = '🌙';
-      label.textContent = 'Dark mode';
+      if (icon) icon.textContent  = '🌙';
+      if (label) label.textContent = 'Dark mode';
+      if (mobIcon) mobIcon.textContent  = '🌙';
+      if (mobLabel) mobLabel.textContent = 'Dark mode';
     }
   }
   // Apply saved theme immediately before DOM loads to prevent flash
@@ -3043,25 +3103,26 @@
     var grid = document.getElementById('nav-deals-grid');
     if (!grid) return;
     // Daily curated NZ products — refreshed via Serper search
-    var dailyDeals = [
-      { name: 'Sony WH-1000XM5', label: '−22% off', price: '$329', store: 'JB Hi-Fi' },
-      { name: 'Apple AirPods Pro 2', label: 'Save $50', price: '$349', store: 'Noel Leeming' },
-      { name: 'Samsung 65" QLED 4K TV', label: '−25% off', price: '$1,199', store: 'Harvey Norman' },
-      { name: 'Dyson V15 Detect', label: '−18% off', price: '$849', store: 'Noel Leeming' },
-      { name: 'MacBook Air M3 13"', label: 'Best NZ price', price: '$1,899', store: 'PB Tech' },
-      { name: 'Samsung Galaxy S25', label: 'NZ launch price', price: '$1,299', store: 'Various' },
+    // Search popular NZ products for real prices
+    var popularSearches = [
+      { name: 'Apple AirPods Pro 2', emoji: '🎧' },
+      { name: 'Sony WH-1000XM5', emoji: '🎵' },
+      { name: 'Dyson V15 vacuum', emoji: '🌀' },
+      { name: 'Samsung 65 inch TV', emoji: '📺' },
+      { name: 'MacBook Air M3', emoji: '💻' },
+      { name: 'iPhone 16 Pro', emoji: '📱' },
     ];
-    grid.innerHTML = dailyDeals.map(function(d) {
-      var safeName = d.name.replace(/'/g, "\'");
-      return '<button class="nav-deal-card" onclick="searchFor(\'' + safeName + '\');closeDealsMenu()">' +
-        '<div class="nav-deal-discount">' + escapeHtml(d.label) + '</div>' +
-        '<div class="nav-deal-info">' +
-          '<div class="nav-deal-name">' + escapeHtml(d.name) + '</div>' +
-          '<div class="nav-deal-meta">' + escapeHtml(d.store) + '</div>' +
-        '</div>' +
-        '<div class="nav-deal-price">' + escapeHtml(d.price) + '</div>' +
-        '</button>';
-    }).join("");
+    grid.innerHTML = '<div style="padding:8px 4px 4px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted)">Popular searches</div>' +
+      popularSearches.map(function(d) {
+        var safeName = d.name.replace(/'/g, "\'");
+        return '<button class="nav-deal-card" onclick="searchFor(\'' + safeName + '\');closeDealsMenu()" style="border-bottom:1px solid var(--border-subtle)">' +
+          '<div style="font-size:20px">' + d.emoji + '</div>' +
+          '<div class="nav-deal-info">' +
+            '<div class="nav-deal-name">' + escapeHtml(d.name) + '</div>' +
+            '<div class="nav-deal-meta">Search NZ stores →</div>' +
+          '</div>' +
+          '</button>';
+      }).join("");
   }
 
   // ── Giveaway spots counter ──────────────────────────────────────────────────

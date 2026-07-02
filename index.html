@@ -254,25 +254,51 @@
     /* ── Hero ── */
     #hero{
       position:relative;overflow:hidden;
-      padding:72px 40px 56px;
+      padding:80px 40px 64px;
       text-align:center;
       border-bottom:1px solid var(--border);
       background:var(--bg);
       transition:padding 0.3s;
     }
+    /* Subtle radial glow behind hero */
+    #hero::after{
+      content:'';position:absolute;
+      top:-80px;left:50%;transform:translateX(-50%);
+      width:700px;height:400px;
+      background:radial-gradient(ellipse,var(--green-glow) 0%,transparent 70%);
+      pointer-events:none;z-index:0;
+    }
+    #hero > *{position:relative;z-index:1;}
     .hero-hint{
       font-size:13px;color:var(--text-muted);
-      margin-top:14px;display:flex;align-items:center;
-      justify-content:center;gap:6px;flex-wrap:wrap;
+      margin-top:16px;display:flex;align-items:center;
+      justify-content:center;gap:8px;flex-wrap:wrap;
     }
     #hero.compact .hero-hint{display:none;}
+    .hero-hint-sep{color:var(--border);font-size:16px;}
     .hero-hint-btn{
+      display:inline-flex;align-items:center;gap:5px;
       background:none;border:none;cursor:pointer;
       font-family:inherit;font-size:13px;
       color:var(--green);font-weight:600;padding:0;
       transition:opacity 0.15s;
     }
     .hero-hint-btn:hover{opacity:0.75;}
+
+    /* Hero stats row */
+    .hero-stats{
+      display:flex;align-items:center;justify-content:center;
+      gap:24px;margin-top:28px;flex-wrap:wrap;
+    }
+    #hero.compact .hero-stats{display:none;}
+    .hero-stat{
+      display:flex;align-items:center;gap:6px;
+      font-size:12px;color:var(--text-muted);font-weight:500;
+    }
+    .hero-stat-dot{
+      width:6px;height:6px;border-radius:50%;
+      background:var(--green);flex-shrink:0;
+    }
     /* Subtle animated gradient background */
     #hero::before{
       content:'';position:absolute;inset:0;
@@ -1067,26 +1093,32 @@
 
     /* ── Giveaway banner — flashy gold ── */
     .giveaway-banner{
-      background:linear-gradient(135deg,#92400e 0%,#b45309 30%,#d97706 60%,#f59e0b 100%);
-      border-bottom:none;
-      padding:16px 40px;
+      background:linear-gradient(135deg,#78350f 0%,#b45309 25%,#d97706 55%,#fbbf24 80%,#fcd34d 100%);
+      border-top:3px solid #fef08a;
+      border-bottom:3px solid #d97706;
+      padding:20px 40px;
       display:flex;align-items:center;justify-content:space-between;
-      gap:16px;flex-wrap:wrap;
+      gap:20px;flex-wrap:wrap;
       position:relative;overflow:hidden;
+      box-shadow:0 4px 24px rgba(217,119,6,0.4),inset 0 1px 0 rgba(255,255,255,0.2);
     }
     .giveaway-banner::before{
       content:'';position:absolute;inset:0;
-      background:radial-gradient(ellipse 50% 150% at 100% 50%,rgba(255,255,255,0.15),transparent);
+      background:
+        radial-gradient(ellipse 40% 100% at 0% 50%,rgba(255,255,255,0.1),transparent),
+        radial-gradient(ellipse 40% 100% at 100% 50%,rgba(0,0,0,0.1),transparent);
       pointer-events:none;
     }
-    .giveaway-banner::after{
-      content:'🎉';position:absolute;
-      right:200px;top:50%;transform:translateY(-50%);
-      font-size:48px;opacity:0.1;pointer-events:none;
-    }
     [data-theme="light"] .giveaway-banner{
-      background:linear-gradient(135deg,#92400e 0%,#b45309 30%,#d97706 60%,#f59e0b 100%);
+      background:linear-gradient(135deg,#78350f 0%,#b45309 25%,#d97706 55%,#fbbf24 80%,#fcd34d 100%);
     }
+    .giveaway-eyebrow{
+      font-size:10px;font-weight:800;letter-spacing:2px;
+      text-transform:uppercase;color:rgba(255,255,255,0.85);
+      margin-bottom:4px;
+    }
+    .giveaway-right{display:flex;align-items:center;gap:16px;flex-shrink:0;}
+    .giveaway-counter-wrap{text-align:center;}
     .giveaway-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
     .giveaway-prize-icon{
       font-size:36px;flex-shrink:0;
@@ -1095,9 +1127,10 @@
     }
     .giveaway-text{}
     .giveaway-title{
-      font-size:14px;font-weight:800;
-      color:#fff;letter-spacing:-0.3px;
-      margin-bottom:2px;text-shadow:0 1px 3px rgba(0,0,0,0.2);
+      font-size:20px;font-weight:900;
+      color:#fff;letter-spacing:-0.5px;
+      margin-bottom:4px;text-shadow:0 2px 4px rgba(0,0,0,0.25);
+      line-height:1.1;
     }
     .giveaway-sub{
       font-size:12px;color:rgba(255,255,255,0.9);
@@ -1384,11 +1417,13 @@
   <div class="hero-particle" style="width:50px;height:50px;top:30px;right:8%;animation-delay:3s;animation-duration:11s;opacity:0.04;"></div>
   <div class="hero-particle" style="width:36px;height:36px;bottom:10px;right:20%;animation-delay:6s;animation-duration:9s;opacity:0.04;"></div>
 
+  <div class="hero-kicker">New Zealand's first AI shopping verdict</div>
   <h1>Find the best <em>deal</em>,<br>not just the best price</h1>
+  <p class="sub">Compare prices across every major NZ store — then let AI tell you exactly when to buy.</p>
 
   <div class="search-outer">
     <div class="search-wrap">
-      <input type="text" id="search-input" placeholder='Search a product — or try "hot deals" or "trending"' autocomplete="off" />
+      <input type="text" id="search-input" placeholder='Search any product, brand or category...' autocomplete="off" />
       <button id="clear-btn" aria-label="Clear">×</button>
       <button id="search-btn">Search</button>
     </div>
@@ -1398,7 +1433,24 @@
     </div>
   </div>
 
-  <p class="hero-hint">Search any product and compare prices instantly — or <button class="hero-hint-btn" onclick="searchFor('best deals NZ today')">browse AI-curated deals</button> · <button class="hero-hint-btn hero-hint-cam" onclick="openScanner()" title="Scan barcode"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> Scan in-store</button></p>
+  <div class="hero-hint">
+    <span>Or explore:</span>
+    <button class="hero-hint-btn" onclick="searchFor('best deals NZ today')">🤖 AI-curated deals</button>
+    <span class="hero-hint-sep">·</span>
+    <button class="hero-hint-btn" onclick="searchFor('trending NZ')">🔥 Trending now</button>
+    <span class="hero-hint-sep">·</span>
+    <button class="hero-hint-btn" onclick="openScanner()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      Scan barcode
+    </button>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-dot"></div>12 major NZ stores</div>
+    <div class="hero-stat"><div class="hero-stat-dot"></div>AI verdict on every product</div>
+    <div class="hero-stat"><div class="hero-stat-dot"></div>Free — no sign up needed</div>
+    <div class="hero-stat"><div class="hero-stat-dot"></div>Price drop alerts</div>
+  </div>
 </div>
 
 <!-- stats bar removed -->
@@ -1411,24 +1463,26 @@
 
 <!-- ── Giveaway inline banner ── -->
 <div class="giveaway-banner" id="giveaway-banner">
+  <!-- Sparkle decorations -->
+  <div style="position:absolute;top:12px;left:60px;font-size:18px;opacity:0.6;animation:float 4s ease-in-out infinite">✨</div>
+  <div style="position:absolute;bottom:10px;left:180px;font-size:14px;opacity:0.4;animation:float 3s ease-in-out infinite 1s">⭐</div>
+  <div style="position:absolute;top:8px;right:320px;font-size:16px;opacity:0.5;animation:float 5s ease-in-out infinite 0.5s">✨</div>
+
   <div class="giveaway-left">
     <div class="giveaway-prize-icon">🎧</div>
     <div class="giveaway-text">
-      <div class="giveaway-title" style="color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.2)">🎁 Win Apple AirPods Pro 2 — Free Giveaway!</div>
-      <div class="giveaway-sub">Be one of the first 100 to create a free Twisti account and you are automatically entered. Winner announced 1 August 2026 on twisti.org.</div>
-      <div class="giveaway-meta">
-        <span class="giveaway-tag giveaway-tag-free"><span class="giveaway-pulse"></span> Free to enter</span>
-        <span class="giveaway-tag giveaway-tag-date">📅 Closes 1 August 2026</span>
-      </div>
+      <div class="giveaway-eyebrow">🎁 FREE GIVEAWAY — LIMITED SPOTS</div>
+      <div class="giveaway-title">Win Apple AirPods Pro 2</div>
+      <div class="giveaway-sub">Create a free account — first 100 entries win a draw. No purchase needed. Winner announced on twisti.org, 1 August 2026.</div>
     </div>
   </div>
-  <div class="giveaway-counter">
-    <div class="giveaway-spots">
+  <div class="giveaway-right">
+    <div class="giveaway-counter-wrap">
       <div class="giveaway-spots-n" id="giveaway-spots-n">100</div>
       <div class="giveaway-spots-l">spots left</div>
     </div>
+    <a href="/giveaway.html" class="giveaway-btn">Claim your spot →</a>
   </div>
-  <a href="/giveaway.html" class="giveaway-btn">Enter free →</a>
 </div>
 
 </div><!-- /#home-content -->

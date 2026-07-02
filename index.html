@@ -126,7 +126,7 @@
     }
     [data-theme="dark"]{
       --bg:#0f172a;
-      --bg-card:#1e293b;
+      --bg-card:#162032;
       --bg-input:#1e293b;
       --text:#f8fafc;
       --text-2:#94a3b8;
@@ -203,6 +203,36 @@
     .nav-right{display:flex;gap:6px;align-items:center;flex-shrink:0;}
     .nav-link{font-size:13px;color:var(--text-muted);text-decoration:none;padding:6px 12px;border-radius:6px;transition:all 0.15s;}
     .nav-link:hover{color:var(--text);background:var(--border-subtle);}
+
+    /* Categories dropdown */
+    .nav-cats-wrap{position:relative;}
+    .nav-cats-btn{
+      font-size:13px;font-weight:600;color:var(--text-muted);
+      background:none;border:1.5px solid var(--border);
+      padding:6px 14px;border-radius:8px;cursor:pointer;
+      font-family:inherit;transition:all 0.15s;
+      display:flex;align-items:center;gap:4px;
+    }
+    .nav-cats-btn:hover,.nav-cats-btn.open{border-color:var(--green);color:var(--green);background:var(--green-light);}
+    .nav-cats-menu{
+      display:none;position:absolute;top:calc(100% + 8px);left:0;
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:12px;box-shadow:var(--shadow-lg);
+      z-index:300;overflow:hidden;min-width:280px;
+      padding:8px;
+    }
+    .nav-cats-menu.open{display:block;}
+    .nav-cats-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+    .nav-cat-item{
+      display:flex;align-items:center;gap:8px;
+      padding:9px 12px;border-radius:8px;
+      background:none;border:none;cursor:pointer;
+      font-family:inherit;font-size:13px;font-weight:500;
+      color:var(--text-2);text-align:left;
+      transition:all 0.12s;
+    }
+    .nav-cat-item:hover{background:var(--green-light);color:var(--green);}
+    .nav-link:hover{color:var(--text);background:var(--border-subtle);}
     .theme-btn{
       background:none;border:1px solid var(--border);color:var(--text-muted);
       padding:6px 12px;font-size:12px;cursor:pointer;border-radius:8px;
@@ -224,12 +254,25 @@
     /* ── Hero ── */
     #hero{
       position:relative;overflow:hidden;
-      padding:80px 40px 72px;
+      padding:72px 40px 56px;
       text-align:center;
       border-bottom:1px solid var(--border);
       background:var(--bg);
       transition:padding 0.3s;
     }
+    .hero-hint{
+      font-size:13px;color:var(--text-muted);
+      margin-top:14px;display:flex;align-items:center;
+      justify-content:center;gap:6px;flex-wrap:wrap;
+    }
+    #hero.compact .hero-hint{display:none;}
+    .hero-hint-btn{
+      background:none;border:none;cursor:pointer;
+      font-family:inherit;font-size:13px;
+      color:var(--green);font-weight:600;padding:0;
+      transition:opacity 0.15s;
+    }
+    .hero-hint-btn:hover{opacity:0.75;}
     /* Subtle animated gradient background */
     #hero::before{
       content:'';position:absolute;inset:0;
@@ -254,6 +297,22 @@
       content:'';display:inline-block;width:20px;height:1px;background:var(--green);opacity:0.5;
     }
     #hero.compact .hero-kicker{font-size:0;margin:0;opacity:0;}
+    .hero-example{
+      display:inline-flex;align-items:center;gap:8px;
+      margin:0 auto 20px;padding:10px 18px;
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:24px;font-size:13px;color:var(--text-2);
+      cursor:pointer;transition:all 0.15s;
+      max-width:580px;
+    }
+    .hero-example:hover{border-color:var(--green);color:var(--text);}
+    .hero-example-tag{
+      font-size:9px;font-weight:700;letter-spacing:1.5px;
+      text-transform:uppercase;color:var(--green);
+      background:var(--green-light);padding:3px 8px;border-radius:10px;
+      white-space:nowrap;flex-shrink:0;
+    }
+    #hero.compact .hero-example{display:none;}
     #hero h1{
       font-size:clamp(32px,5vw,56px);
       font-weight:700;line-height:1.1;
@@ -396,6 +455,28 @@
       transition:background 0.15s;white-space:nowrap;
     }
     #search-btn:hover{background:var(--green-dark);}
+
+    /* ── Hero pills ── */
+    .hero-pills{
+      display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+      max-width:580px;margin:16px auto 0;
+      transition:all 0.25s;
+    }
+    #hero.compact .hero-pills{display:none;}
+    .hero-pill{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:8px 16px;border-radius:20px;
+      background:var(--bg-card);border:1.5px solid var(--border);
+      font-size:13px;font-weight:500;color:var(--text-2);
+      cursor:pointer;font-family:inherit;
+      transition:all 0.15s;white-space:nowrap;
+    }
+    .hero-pill:hover{border-color:var(--green);color:var(--green);background:var(--green-light);transform:translateY(-1px);}
+    .hero-pill-ai{
+      background:linear-gradient(135deg,var(--green-light),var(--bg-card));
+      border-color:var(--green);color:var(--green);font-weight:700;
+    }
+    .hero-pill-ai:hover{background:var(--green);color:#fff;}
 
     /* ── Category grid ── */
     .hero-cats{max-width:580px;margin:28px auto 0;transition:all 0.25s;}
@@ -984,6 +1065,87 @@
     .upvote-btn{background:none;border:1px solid var(--border);padding:3px 8px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:11px;color:var(--text-muted);transition:all 0.15s;}
     .upvote-btn:hover{border-color:var(--green);color:var(--green);}
 
+    /* ── Giveaway banner — flashy gold ── */
+    .giveaway-banner{
+      background:linear-gradient(135deg,#92400e 0%,#b45309 30%,#d97706 60%,#f59e0b 100%);
+      border-bottom:none;
+      padding:16px 40px;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:16px;flex-wrap:wrap;
+      position:relative;overflow:hidden;
+    }
+    .giveaway-banner::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse 50% 150% at 100% 50%,rgba(255,255,255,0.15),transparent);
+      pointer-events:none;
+    }
+    .giveaway-banner::after{
+      content:'🎉';position:absolute;
+      right:200px;top:50%;transform:translateY(-50%);
+      font-size:48px;opacity:0.1;pointer-events:none;
+    }
+    [data-theme="light"] .giveaway-banner{
+      background:linear-gradient(135deg,#92400e 0%,#b45309 30%,#d97706 60%,#f59e0b 100%);
+    }
+    .giveaway-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+    .giveaway-prize-icon{
+      font-size:36px;flex-shrink:0;
+      animation:float 3s ease-in-out infinite;
+      filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+    .giveaway-text{}
+    .giveaway-title{
+      font-size:14px;font-weight:800;
+      color:#fff;letter-spacing:-0.3px;
+      margin-bottom:2px;text-shadow:0 1px 3px rgba(0,0,0,0.2);
+    }
+    .giveaway-sub{
+      font-size:12px;color:rgba(255,255,255,0.9);
+      line-height:1.4;
+    }
+    .giveaway-meta{
+      display:flex;align-items:center;gap:8px;margin-top:4px;flex-wrap:wrap;
+    }
+    .giveaway-tag{
+      display:inline-flex;align-items:center;gap:4px;
+      font-size:10px;font-weight:700;letter-spacing:1px;
+      text-transform:uppercase;padding:3px 8px;border-radius:10px;
+    }
+    .giveaway-tag-free{background:rgba(255,255,255,0.25);color:#fff;border:1px solid rgba(255,255,255,0.4);}
+    .giveaway-tag-date{background:rgba(0,0,0,0.15);color:rgba(255,255,255,0.85);}
+    .giveaway-counter{
+      display:flex;align-items:center;gap:8px;flex-shrink:0;
+    }
+    .giveaway-spots{
+      text-align:center;
+    }
+    .giveaway-spots-n{
+      font-size:22px;font-weight:900;color:#fff;
+      letter-spacing:-1px;line-height:1;text-shadow:0 1px 3px rgba(0,0,0,0.2);
+    }
+    .giveaway-spots-l{font-size:10px;color:rgba(255,255,255,0.8);font-weight:500;}
+    .giveaway-btn{
+      background:#ffffff;color:#92400e;
+      border:none;border-radius:8px;
+      padding:10px 20px;font-size:13px;font-weight:800;
+      cursor:pointer;font-family:inherit;
+      white-space:nowrap;flex-shrink:0;
+      transition:all 0.15s;letter-spacing:-0.2px;
+      text-decoration:none;display:inline-block;
+    }
+    .giveaway-btn:hover{background:#fef9c3;transform:translateY(-1px);}
+    
+    .giveaway-pulse{
+      width:8px;height:8px;border-radius:50%;
+      background:#2dd4a0;flex-shrink:0;
+      animation:pulse 2s ease infinite;
+    }
+    @media(max-width:640px){
+      .giveaway-banner{padding:14px 20px;}
+      .giveaway-counter{display:none;}
+      .giveaway-btn{padding:8px 16px;font-size:12px;}
+    }
+
     /* ── Secondhand (Trade Me) section ── */
     .secondhand-section{margin-bottom:16px;}
     .secondhand-toggle{
@@ -1162,6 +1324,48 @@
       <button onclick="doNavSearch()" style="background:var(--green);color:#fff;border:none;padding:0 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;">Go</button>
     </div>
   </div>
+  <!-- Categories dropdown in nav -->
+  <div class="nav-cats-wrap" id="nav-cats-wrap">
+    <button class="nav-cats-btn" onclick="toggleCatsMenu()" id="nav-cats-btn">
+      Categories <span style="font-size:10px;margin-left:2px">▾</span>
+    </button>
+    <div class="nav-cats-menu" id="nav-cats-menu">
+      <div class="nav-cats-grid">
+        <button class="nav-cat-item" onclick="searchFor('smartphones');closeCatsMenu()">📱 Phones</button>
+        <button class="nav-cat-item" onclick="searchFor('laptop');closeCatsMenu()">💻 Laptops</button>
+        <button class="nav-cat-item" onclick="searchFor('television');closeCatsMenu()">📺 TVs</button>
+        <button class="nav-cat-item" onclick="searchFor('headphones');closeCatsMenu()">🎧 Headphones</button>
+        <button class="nav-cat-item" onclick="searchFor('tablet');closeCatsMenu()">📟 Tablets</button>
+        <button class="nav-cat-item" onclick="searchFor('camera');closeCatsMenu()">📷 Cameras</button>
+        <button class="nav-cat-item" onclick="searchFor('washing machine');closeCatsMenu()">🫧 Washers</button>
+        <button class="nav-cat-item" onclick="searchFor('vacuum cleaner');closeCatsMenu()">🌀 Vacuums</button>
+        <button class="nav-cat-item" onclick="searchFor('heat pump');closeCatsMenu()">❄️ Heat Pumps</button>
+        <button class="nav-cat-item" onclick="searchFor('gaming console');closeCatsMenu()">🎮 Gaming</button>
+        <button class="nav-cat-item" onclick="searchFor('speaker');closeCatsMenu()">🔊 Speakers</button>
+        <button class="nav-cat-item" onclick="searchFor('fridge');closeCatsMenu()">🧊 Fridges</button>
+      </div>
+    </div>
+  </div>
+  <!-- Deals dropdown in nav -->
+  <div class="nav-cats-wrap" id="nav-deals-wrap">
+    <button class="nav-cats-btn" onclick="toggleDealsMenu()" id="nav-deals-btn">
+      🔥 Deals <span style="font-size:10px;margin-left:2px">▾</span>
+    </button>
+    <div class="nav-cats-menu" id="nav-deals-menu" style="min-width:360px">
+      <div style="padding:10px 12px 8px;border-bottom:1px solid var(--border)">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">Today's best prices</div>
+        <div style="font-size:11px;color:var(--text-muted)" id="deals-updated">Refreshed daily from NZ stores</div>
+      </div>
+      <div id="nav-deals-grid" style="padding:6px">
+        <!-- Populated by loadNavDeals() -->
+        <div style="padding:16px;text-align:center;color:var(--text-muted);font-size:13px">Loading deals...</div>
+      </div>
+      <div style="padding:8px;border-top:1px solid var(--border)">
+        <button onclick="window.location.href='/giveaway.html';closeDealsMenu()" style="width:100%;padding:9px;background:var(--green);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px">🎁 Win AirPods Pro 2 — Enter free giveaway</button>
+      </div>
+    </div>
+  </div>
+
   <div class="nav-right">
     <a href="/about.html" class="nav-link">About</a>
     <a href="mailto:hello@twisti.org" class="nav-link">Contact</a>
@@ -1180,13 +1384,11 @@
   <div class="hero-particle" style="width:50px;height:50px;top:30px;right:8%;animation-delay:3s;animation-duration:11s;opacity:0.04;"></div>
   <div class="hero-particle" style="width:36px;height:36px;bottom:10px;right:20%;animation-delay:6s;animation-duration:9s;opacity:0.04;"></div>
 
-  <div class="hero-kicker">New Zealand's smartest price comparison</div>
   <h1>Find the best <em>deal</em>,<br>not just the best price</h1>
-  <p class="sub">Compare prices across JB Hi-Fi, Harvey Norman, PB Tech, Noel Leeming and more — then let AI tell you if it's a good deal.</p>
 
   <div class="search-outer">
     <div class="search-wrap">
-      <input type="text" id="search-input" placeholder='Try "Dyson V15" or "Samsung Galaxy S25"' autocomplete="off" />
+      <input type="text" id="search-input" placeholder='Search a product — or try "hot deals" or "trending"' autocomplete="off" />
       <button id="clear-btn" aria-label="Clear">×</button>
       <button id="search-btn">Search</button>
     </div>
@@ -1196,34 +1398,7 @@
     </div>
   </div>
 
-  <button class="scan-btn" onclick="openScanner()" id="scan-btn">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
-      <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/>
-      <path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
-      <line x1="7" y1="12" x2="17" y2="12"/>
-      <line x1="7" y1="9" x2="7" y2="15"/><line x1="10" y1="9" x2="10" y2="15"/>
-      <line x1="13" y1="9" x2="13" y2="15"/><line x1="17" y1="9" x2="17" y2="15"/>
-    </svg>
-    Scan barcode in-store
-  </button>
-
-  <div class="hero-cats" id="hero-cats">
-    <div class="hero-cats-label">Browse by category</div>
-    <div class="hero-cats-grid">
-      <button class="hcat" onclick="searchFor('smartphones', this)"><span class="hcat-icon">📱</span><span class="hcat-name">Phones</span></button>
-      <button class="hcat" onclick="searchFor('laptop', this)"><span class="hcat-icon">💻</span><span class="hcat-name">Laptops</span></button>
-      <button class="hcat" onclick="searchFor('television', this)"><span class="hcat-icon">📺</span><span class="hcat-name">TVs</span></button>
-      <button class="hcat" onclick="searchFor('headphones', this)"><span class="hcat-icon">🎧</span><span class="hcat-name">Headphones</span></button>
-      <button class="hcat" onclick="searchFor('tablet', this)"><span class="hcat-icon">📟</span><span class="hcat-name">Tablets</span></button>
-      <button class="hcat" onclick="searchFor('camera', this)"><span class="hcat-icon">📷</span><span class="hcat-name">Cameras</span></button>
-      <button class="hcat" onclick="searchFor('washing machine', this)"><span class="hcat-icon">🫧</span><span class="hcat-name">Washers</span></button>
-      <button class="hcat" onclick="searchFor('vacuum cleaner', this)"><span class="hcat-icon">🌀</span><span class="hcat-name">Vacuums</span></button>
-      <button class="hcat" onclick="searchFor('heat pump', this)"><span class="hcat-icon">❄️</span><span class="hcat-name">Heat Pumps</span></button>
-      <button class="hcat" onclick="searchFor('gaming console', this)"><span class="hcat-icon">🎮</span><span class="hcat-name">Gaming</span></button>
-      <button class="hcat" onclick="searchFor('speaker', this)"><span class="hcat-icon">🔊</span><span class="hcat-name">Speakers</span></button>
-      <button class="hcat" onclick="searchFor('fridge', this)"><span class="hcat-icon">🧊</span><span class="hcat-name">Fridges</span></button>
-    </div>
-  </div>
+  <p class="hero-hint">Search any product and compare prices instantly — or <button class="hero-hint-btn" onclick="searchFor('best deals NZ today')">browse AI-curated deals</button> · <button class="hero-hint-btn hero-hint-cam" onclick="openScanner()" title="Scan barcode"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> Scan in-store</button></p>
 </div>
 
 <!-- stats bar removed -->
@@ -1231,30 +1406,30 @@
 <!-- ── Home content ── -->
 <div id="home-content">
 
-  <!-- Flash deals -->
-  <div class="home-section">
-    <div class="sec-head">
-      <div class="sec-title">
-        <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 2s ease infinite"></span>
-        Flash deals right now
+<!-- flash deals moved to Deals nav dropdown -->
+<div id="deals-grid" style="display:none"></div>
+
+<!-- ── Giveaway inline banner ── -->
+<div class="giveaway-banner" id="giveaway-banner">
+  <div class="giveaway-left">
+    <div class="giveaway-prize-icon">🎧</div>
+    <div class="giveaway-text">
+      <div class="giveaway-title" style="color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.2)">🎁 Win Apple AirPods Pro 2 — Free Giveaway!</div>
+      <div class="giveaway-sub">Be one of the first 100 to create a free Twisti account and you are automatically entered. Winner announced 1 August 2026 on twisti.org.</div>
+      <div class="giveaway-meta">
+        <span class="giveaway-tag giveaway-tag-free"><span class="giveaway-pulse"></span> Free to enter</span>
+        <span class="giveaway-tag giveaway-tag-date">📅 Closes 1 August 2026</span>
       </div>
-      <button class="see-all">View all</button>
-    </div>
-    <div class="deals-grid" id="deals-grid">
-      <div class="deal-card" onclick="searchFor('Sony WH-1000XM5', this)"><span class="d-flag f-red">−22% off</span><div class="d-name">Sony WH-1000XM5 Headphones</div><div><span class="d-price">$329</span><span class="d-was">$429</span></div><div class="d-store">JB Hi-Fi</div><div class="d-save">Save $100</div></div>
-      <div class="deal-card" onclick="searchFor('Apple AirPods Pro', this)"><span class="d-flag f-grn">Cashback</span><div class="d-name">Apple AirPods Pro 2</div><div><span class="d-price">$349</span><span class="d-was">$399</span></div><div class="d-store">The Good Guys</div><div class="d-save">Save $50</div></div>
-      <div class="deal-card" onclick="searchFor('Samsung 65 QLED TV', this)"><span class="d-flag f-pur">Coupon</span><div class="d-name">Samsung 65" QLED 4K TV</div><div><span class="d-price">$1,199</span><span class="d-was">$1,599</span></div><div class="d-store">Harvey Norman</div><div class="d-save">Save $400</div></div>
-      <div class="deal-card" onclick="searchFor('Dyson V15 vacuum', this)"><span class="d-flag f-red">−18% off</span><div class="d-name">Dyson V15 Detect Vacuum</div><div><span class="d-price">$849</span><span class="d-was">$999</span></div><div class="d-store">Noel Leeming</div><div class="d-save">Save $150</div></div>
     </div>
   </div>
-
-<!-- video banner removed -->
-
-<!-- how it works moved to about page -->
-
-<!-- trust bar removed -->
-
-<!-- trending removed, keeping flash deals only -->
+  <div class="giveaway-counter">
+    <div class="giveaway-spots">
+      <div class="giveaway-spots-n" id="giveaway-spots-n">100</div>
+      <div class="giveaway-spots-l">spots left</div>
+    </div>
+  </div>
+  <a href="/giveaway.html" class="giveaway-btn">Enter free →</a>
+</div>
 
 </div><!-- /#home-content -->
 
@@ -2711,9 +2886,114 @@
     doSearch();
   }
 
+  // ── Categories dropdown ──────────────────────────────────────────────────────
+  function toggleCatsMenu() {
+    var menu = document.getElementById('nav-cats-menu');
+    var btn  = document.getElementById('nav-cats-btn');
+    var isOpen = menu.classList.contains('open');
+    menu.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+    closeDealsMenu();
+  }
+  function closeCatsMenu() {
+    document.getElementById('nav-cats-menu').classList.remove('open');
+    document.getElementById('nav-cats-btn').classList.remove('open');
+  }
+
+  // ── Deals dropdown ────────────────────────────────────────────────────────────
+  function toggleDealsMenu() {
+    var menu = document.getElementById('nav-deals-menu');
+    var btn  = document.getElementById('nav-deals-btn');
+    var isOpen = menu.classList.contains('open');
+    menu.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+    closeCatsMenu();
+  }
+  function closeDealsMenu() {
+    var m = document.getElementById('nav-deals-menu');
+    var b = document.getElementById('nav-deals-btn');
+    if (m) m.classList.remove('open');
+    if (b) b.classList.remove('open');
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-cats-wrap')) { closeCatsMenu(); closeDealsMenu(); }
+  });
+
   loadFlashDeals();
+  loadNavDeals();
   initSession();
   detectCountry();
+
+  // ── Load deals into nav dropdown ──────────────────────────────────────────────
+  function loadNavDeals() {
+    var grid = document.getElementById('nav-deals-grid');
+    if (!grid) return;
+    // Daily curated NZ products — refreshed via Serper search
+    var dailyDeals = [
+      { name: 'Sony WH-1000XM5', label: '−22% off', price: '$329', store: 'JB Hi-Fi' },
+      { name: 'Apple AirPods Pro 2', label: 'Save $50', price: '$349', store: 'Noel Leeming' },
+      { name: 'Samsung 65" QLED 4K TV', label: '−25% off', price: '$1,199', store: 'Harvey Norman' },
+      { name: 'Dyson V15 Detect', label: '−18% off', price: '$849', store: 'Noel Leeming' },
+      { name: 'MacBook Air M3 13"', label: 'Best NZ price', price: '$1,899', store: 'PB Tech' },
+      { name: 'Samsung Galaxy S25', label: 'NZ launch price', price: '$1,299', store: 'Various' },
+    ];
+    grid.innerHTML = dailyDeals.map(function(d) {
+      var safeName = escapeHtml(d.name).replace(/"/g, '&quot;');
+      return "<div class=\"nav-cat-item\" onclick=\"searchFor('" + safeName + "');closeDealsMenu()\" style=\"flex-direction:column;align-items:flex-start;gap:2px\">" +
+        "<span style=\"font-size:11px;font-weight:700;color:var(--green)\">" + escapeHtml(d.label) + "</span>" +
+        "<span style=\"font-size:13px;font-weight:600;color:var(--text)\">" + escapeHtml(d.name) + "</span>" +
+        "<span style=\"font-size:11px;color:var(--text-muted)\">" + escapeHtml(d.price) + " · " + escapeHtml(d.store) + "</span>" +
+        "</div>";
+    }).join("");
+  }
+
+  // ── Giveaway spots counter ──────────────────────────────────────────────────
+  function updateGiveawaySpots() {
+    fetch(API + '/api/giveaway/spots')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var left = Math.max(0, 100 - (data.count || 0));
+        var el = document.getElementById('giveaway-spots-n');
+        if (el) {
+          el.textContent = left;
+          if (left === 0) {
+            el.textContent = '🎉';
+            var banner = document.getElementById('giveaway-banner');
+            if (banner) {
+              banner.querySelector('.giveaway-sub').textContent = 'All 100 spots filled! Winner announced 1 August 2026 on twisti.org.';
+              var btn = banner.querySelector('.giveaway-btn');
+              if (btn) { btn.textContent = 'See results'; btn.href = '/about.html'; }
+            }
+          }
+        }
+      }).catch(function(){});
+  }
+  updateGiveawaySpots();
+
+  // Auto-focus search bar on homepage load
+  if (!searchInput.value) {
+    setTimeout(function() { searchInput.focus(); }, 300);
+  }
+
+  // Animated placeholder cycling through popular NZ searches
+  var placeholders = [
+    'Try "Dyson V15 vacuum"...',
+    'Try "iPhone 16 Pro"...',
+    'Try "Samsung 65 inch TV"...',
+    'Try "Sony WH-1000XM5"...',
+    'Try "MacBook Air M3"...',
+    'Try "AirPods Pro 2"...',
+    'Try "Fisher Paykel washing machine"...',
+    'Try "Nintendo Switch 2"...',
+  ];
+  var placeholderIdx = 0;
+  setInterval(function() {
+    if (document.activeElement !== searchInput && !searchInput.value) {
+      placeholderIdx = (placeholderIdx + 1) % placeholders.length;
+      searchInput.placeholder = placeholders[placeholderIdx];
+    }
+  }, 2500);
 
   // ── Geo detection ──
   async function detectCountry() {

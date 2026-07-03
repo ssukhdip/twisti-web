@@ -1,8 +1,6 @@
 {
   "version": 2,
   "routes": [
-    { "src": "/auth.html", "dest": "/auth.html" },
-    { "src": "/index.html", "dest": "/index.html" },
-    { "src": "/", "dest": "/index.html" }
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }

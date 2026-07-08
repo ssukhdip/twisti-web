@@ -65,7 +65,7 @@
     font-family:'Space Grotesk', sans-serif;
     font-weight:700; font-size:22px; letter-spacing:-0.02em;
   }
-  .logo svg{flex-shrink:0;}
+  .logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
   .nav-links{
     display:flex; align-items:center; gap:36px;
     font-size:15px; font-weight:500; color:var(--text-dim);
@@ -111,11 +111,34 @@
     font-size:17px; color:var(--text-dim); max-width:480px;
     margin-bottom:32px; line-height:1.55;
   }
-  .search-wrap{position:relative; max-width:560px;}
-  .mascot{
-    position:absolute; right:36px; top:-78px; z-index:2;
-    filter:drop-shadow(0 6px 10px rgba(20,33,27,0.15));
+  .search-wrap{position:relative; max-width:560px; margin-top:130px;}
+  .mascot-wrap{
+    position:absolute; right:4px; top:-118px; width:132px; z-index:3;
+    pointer-events:none;
   }
+  .mascot-wrap img{
+    width:100%; height:auto; display:block;
+    filter:drop-shadow(0 10px 14px rgba(20,33,27,0.18));
+    transform-origin:70% 85%;
+    transition:transform .25s ease;
+  }
+  .mascot-wrap.searching img{
+    animation:mascotSearch 0.85s ease-in-out infinite;
+  }
+  @keyframes mascotSearch{
+    0%,100%{transform:rotate(0deg) translateY(0);}
+    25%{transform:rotate(-4deg) translateY(-3px);}
+    75%{transform:rotate(4deg) translateY(-1px);}
+  }
+  .mascot-bubble{
+    position:absolute; top:-6px; left:-96px; max-width:150px;
+    background:var(--text); color:var(--bg);
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:12.5px;
+    padding:8px 12px; border-radius:12px 12px 12px 4px;
+    opacity:0; transform:translateY(6px) scale(.9);
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .mascot-wrap.searching .mascot-bubble{opacity:1; transform:translateY(0) scale(1);}
   .search-box{
     display:flex; align-items:center; gap:10px;
     background:var(--surface); border:1.5px solid var(--border);
@@ -251,11 +274,12 @@
   .c-name{font-size:11.5px; color:var(--text-dim); margin-top:3px;}
 
   /* Footer */
-  footer{
-    border-top:1px solid var(--border); padding:32px 0; margin-top:20px;
-    display:flex; align-items:center; justify-content:space-between;
-    font-size:13px; color:var(--text-dim);
-  }
+  footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:40px;}
+  .footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+  .footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+  .footer-links a{transition:color .15s ease;}
+  .footer-links a:hover{color:var(--accent);}
+  .footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
 
   /* Responsive */
   @media (max-width:960px){
@@ -272,7 +296,11 @@
     .clearance-row{grid-template-columns:repeat(2,1fr);}
     h1{font-size:32px;}
     .search-btn span{display:none;}
-    .mascot{width:64px; height:90px; right:14px; top:-56px;}
+    .mascot-wrap{width:96px; top:-84px; right:0;}
+    .mascot-bubble{left:-84px; font-size:11px; padding:6px 10px;}
+    .search-wrap{margin-top:96px;}
+    .footer-inner{flex-direction:column; align-items:flex-start;}
+    .footer-links{flex-wrap:wrap; gap:16px;}
   }
 </style>
 </head>
@@ -281,22 +309,13 @@
 <nav>
   <div class="nav-inner">
     <a href="/" class="logo">
-      <svg width="28" height="28" viewBox="0 0 100 100" fill="none">
-        <ellipse cx="50" cy="56" rx="38" ry="34" fill="var(--accent)"/>
-        <circle cx="30" cy="24" r="7" fill="var(--accent)"/>
-        <circle cx="50" cy="17" r="8" fill="var(--accent)"/>
-        <circle cx="70" cy="24" r="7" fill="var(--accent)"/>
-        <circle cx="52" cy="54" r="17" fill="var(--bg)"/>
-        <circle cx="57" cy="54" r="8" fill="#14211b"/>
-        <circle cx="60" cy="50" r="2.5" fill="#fff"/>
-        <path d="M39 66c4 5 18 5 22 0" stroke="var(--bg)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-      </svg>
+      <img src="assets/logo.png" alt="Twisti" class="logo-mark">
       twisti
     </a>
     <div class="nav-links">
-      <a href="#categories">Categories</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#picks">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </div>
     <div class="nav-right">
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
@@ -308,32 +327,16 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow">NZ &amp; AU · AI shopping copilot</div>
+      <div class="eyebrow">NZ · AI shopping copilot</div>
       <h1>Find the best price<br>before you <span>buy</span>.</h1>
       <p class="hero-sub">Twisti scans every major NZ retailer in seconds and gives you a straight AI verdict — buy now, wait, or compare — so you never overpay again.</p>
-      <div class="search-wrap" style="margin-top:56px;">
-        <svg class="mascot" width="92" height="128" viewBox="0 0 100 140" fill="none" aria-hidden="true">
-          <!-- legs, dangling over the front rim -->
-          <path d="M40 88c-2 14-2 26 2 36" stroke="var(--accent)" stroke-width="9" stroke-linecap="round" fill="none"/>
-          <path d="M62 88c2 14 2 26-2 36" stroke="var(--accent)" stroke-width="9" stroke-linecap="round" fill="none"/>
-          <ellipse cx="40" cy="127" rx="9" ry="6" fill="var(--accent)"/>
-          <ellipse cx="62" cy="127" rx="9" ry="6" fill="var(--accent)"/>
-          <!-- body -->
-          <ellipse cx="50" cy="56" rx="38" ry="34" fill="var(--accent)"/>
-          <circle cx="30" cy="24" r="7" fill="var(--accent)"/>
-          <circle cx="50" cy="17" r="8" fill="var(--accent)"/>
-          <circle cx="70" cy="24" r="7" fill="var(--accent)"/>
-          <!-- arms gripping the rim -->
-          <path d="M18 66c-6 8-8 16-6 24" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" fill="none"/>
-          <path d="M82 66c6 8 8 16 6 24" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" fill="none"/>
-          <!-- face -->
-          <circle cx="52" cy="54" r="17" fill="var(--surface)"/>
-          <circle cx="57" cy="54" r="8" fill="#14211b"/>
-          <circle cx="60" cy="50" r="2.5" fill="#fff"/>
-          <path d="M39 66c4 5 18 5 22 0" stroke="var(--surface)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-        </svg>
-        <form class="search-box" role="search">
-          <input type="text" placeholder="Search any product — e.g. iPhone 16 Pro, PS5, Dyson V15…" aria-label="Search for a product">
+      <div class="search-wrap" id="searchWrap">
+        <div class="mascot-wrap" id="mascotWrap">
+          <div class="mascot-bubble" id="mascotBubble">Looking for the best price…</div>
+          <img src="assets/logo.png" alt="" class="mascot" id="mascotImg" aria-hidden="true">
+        </div>
+        <form class="search-box" role="search" id="searchForm">
+          <input type="text" placeholder="Search any product — e.g. iPhone 16 Pro, PS5, Dyson V15…" aria-label="Search for a product" id="searchInput">
           <button type="submit" class="search-btn">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
             <span>Search</span>
@@ -469,9 +472,21 @@
   </section>
 </main>
 
-<footer class="wrap">
-  <span>Made with ♥ in New Zealand</span>
-  <span>© 2026 Twisti</span>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta">
+      <span>Made with ♥ in New Zealand</span>
+      <span>·</span>
+      <span>© 2026 Twisti</span>
+    </div>
+  </div>
 </footer>
 
 <script>
@@ -491,6 +506,29 @@
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
     });
+  });
+
+  // Mascot "looking for products" behaviour on search
+  const searchForm = document.getElementById('searchForm');
+  const mascotWrap = document.getElementById('mascotWrap');
+  const mascotBubble = document.getElementById('mascotBubble');
+  const searchInput = document.getElementById('searchInput');
+
+  searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    if(!query) return;
+
+    mascotBubble.textContent = 'Looking for the best price…';
+    mascotWrap.classList.add('searching');
+
+    // Swap in the actual search call here — this just times the mascot animation.
+    setTimeout(() => {
+      mascotBubble.textContent = 'Found it! 🎉';
+      setTimeout(() => {
+        mascotWrap.classList.remove('searching');
+      }, 1200);
+    }, 1500);
   });
 </script>
 </body>

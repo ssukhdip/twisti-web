@@ -284,6 +284,7 @@
   [data-theme="dark"] .clearance-head{background:var(--accent); color:#0d1410;}
   .clearance-row{display:grid; grid-template-columns:repeat(6,1fr); gap:14px;}
   .c-card{
+    display:block;
     background:var(--surface); border:1px solid var(--border);
     border-radius:12px; padding:12px; text-align:center;
     box-shadow:var(--shadow); cursor:pointer;
@@ -296,6 +297,7 @@
   }
   .c-thumb svg{opacity:.4;}
   .c-off{font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:700; color:var(--down);}
+  .c-price{font-family:'IBM Plex Mono', monospace; font-size:12.5px; font-weight:700; color:var(--text); margin-top:2px;}
   .c-name{font-size:11.5px; color:var(--text-dim); margin-top:3px;}
 
   /* Footer */
@@ -369,12 +371,12 @@
         </form>
       </div>
       <div class="chips">
-        <div class="chip">Phones</div>
-        <div class="chip">Laptops</div>
-        <div class="chip">TVs</div>
-        <div class="chip">Gaming</div>
-        <div class="chip">Audio</div>
-        <div class="chip">Appliances</div>
+        <div class="chip" data-query="phones">Phones</div>
+        <div class="chip" data-query="laptops">Laptops</div>
+        <div class="chip" data-query="TVs">TVs</div>
+        <div class="chip" data-query="gaming">Gaming</div>
+        <div class="chip" data-query="audio">Audio</div>
+        <div class="chip" data-query="appliances">Appliances</div>
       </div>
     </div>
 
@@ -383,25 +385,19 @@
         <span class="title">Trending deals</span>
         <span class="live-dot"></span>
       </div>
-      <div class="ticker-row down">
-        <div><div class="ti-name">iPhone 16 Pro 128GB</div><div class="ti-store">JB Hi-Fi</div></div>
-        <div class="ti-right"><div class="ti-price">$1,899</div><div class="ti-delta down">▼ 4.2%</div></div>
-      </div>
-      <div class="ticker-row down">
-        <div><div class="ti-name">PS5 Slim Disc</div><div class="ti-store">Noel Leeming</div></div>
-        <div class="ti-right"><div class="ti-price">$649</div><div class="ti-delta down">▼ 2.1%</div></div>
-      </div>
-      <div class="ticker-row down">
-        <div><div class="ti-name">MacBook Air M3</div><div class="ti-store">PB Tech</div></div>
-        <div class="ti-right"><div class="ti-price">$1,749</div><div class="ti-delta down">▼ 6.0%</div></div>
-      </div>
-      <div class="ticker-row flat">
-        <div><div class="ti-name">Dyson V15 Detect</div><div class="ti-store">Harvey Norman</div></div>
-        <div class="ti-right"><div class="ti-price">$799</div><div class="ti-delta flat">— steady</div></div>
-      </div>
-      <div class="ticker-row down">
-        <div><div class="ti-name">AirPods Pro 2</div><div class="ti-store">Mighty Ape</div></div>
-        <div class="ti-right"><div class="ti-price">$349</div><div class="ti-delta down">▼ 3.4%</div></div>
+      <div id="tickerBody">
+        <div class="ticker-row down">
+          <div><div class="ti-name">iPhone 16 Pro 128GB</div><div class="ti-store">JB Hi-Fi</div></div>
+          <div class="ti-right"><div class="ti-price">$1,899</div><div class="ti-delta down">loading…</div></div>
+        </div>
+        <div class="ticker-row down">
+          <div><div class="ti-name">PS5 Slim Disc</div><div class="ti-store">Noel Leeming</div></div>
+          <div class="ti-right"><div class="ti-price">$649</div><div class="ti-delta down">loading…</div></div>
+        </div>
+        <div class="ticker-row down">
+          <div><div class="ti-name">MacBook Air M3</div><div class="ti-store">PB Tech</div></div>
+          <div class="ti-right"><div class="ti-price">$1,749</div><div class="ti-delta down">loading…</div></div>
+        </div>
       </div>
     </aside>
   </div>
@@ -433,7 +429,7 @@
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="19" x2="14" y2="19"/></svg>
         </div>
         <div class="p-name">iPhone 16 Pro 128GB</div>
-        <div class="p-store">JB Hi-Fi · Noel Leeming +3</div>
+        <div class="p-store">JB Hi-Fi · Noel Leeming · PB Tech</div>
         <div class="p-price-row"><span class="p-price">$1,899</span><span class="p-was">$2,159</span></div>
       </article>
       <article class="p-card" data-query="MacBook Air 13&quot; M3">
@@ -449,7 +445,7 @@
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="4" y="3" width="16" height="14" rx="1.5"/><path d="M2 20h20"/></svg>
         </div>
         <div class="p-name">Samsung 65" QLED TV</div>
-        <div class="p-store">Harvey Norman</div>
+        <div class="p-store">PB Tech</div>
         <div class="p-price-row"><span class="p-price">$1,299</span><span class="p-was">$1,429</span></div>
       </article>
       <article class="p-card" data-query="PS5 Slim Disc Edition">
@@ -457,7 +453,7 @@
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="5" y="5" width="14" height="14" rx="3"/></svg>
         </div>
         <div class="p-name">PS5 Slim Disc Edition</div>
-        <div class="p-store">Noel Leeming · TWH +2</div>
+        <div class="p-store">Noel Leeming · JB Hi-Fi</div>
         <div class="p-price-row"><span class="p-price">$649</span><span class="p-was">$679</span></div>
       </article>
       <article class="p-card" data-query="Sony WH-1000XM5">
@@ -473,7 +469,7 @@
 
   <section class="section" id="clearance">
     <div class="clearance-head">🔥 Clearance</div>
-    <div class="clearance-row">
+    <div class="clearance-row" id="clearanceRow">
       <div class="c-card" data-query="iPhone 14">
         <div class="c-thumb"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="2"/></svg></div>
         <div class="c-off">−28%</div>
@@ -599,16 +595,16 @@
     const store = p.store_name || 'Store';
     const price = fmtPrice(p.price);
     const url = (p.affiliate_url && p.affiliate_url !== '#') ? p.affiliate_url : null;
-    const label = p.secondhand ? 'Secondhand · Trade Me' : (p.store_type || '');
+    const label = p.secondhand ? 'Secondhand · Trade Me' : '';
 
     return `
       <a class="p-card" ${url ? `href="${url}" target="_blank" rel="noopener"` : `href="#" onclick="return false;" style="opacity:.6; cursor:default;"`}>
         <div class="p-thumb">
-          ${p.is_best_deal ? `<span class="drop-tag">Best deal</span>` : ''}
+          ${p.is_best_deal ? `<span class="drop-tag">Best price</span>` : ''}
           ${p.image_url ? `<img src="${p.image_url}" alt="" style="width:100%;height:100%;object-fit:contain;">` : thumbIcon}
         </div>
         <div class="p-name">${store}</div>
-        <div class="p-store">${label}${url ? '' : ' · link unavailable'}</div>
+        <div class="p-store">${label}${url ? '' : (label ? ' · link unavailable' : 'link unavailable')}</div>
         <div class="p-price-row">${price ? `<span class="p-price">${price}</span>` : ''}</div>
       </a>`;
   }
@@ -742,6 +738,13 @@
 
   // Demo cards (Price drops / Top picks / Clearance) aren't wired to real listings —
   // clicking one runs a real search for that product name instead.
+  document.querySelector('.chips').addEventListener('click', (e) => {
+    const chip = e.target.closest('[data-query]');
+    if (!chip) return;
+    runSearch(chip.dataset.query);
+    document.getElementById('picks').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
   mockCardRow.addEventListener('click', (e) => {
     const card = e.target.closest('[data-query]');
     if (!card) return;
@@ -750,13 +753,74 @@
     document.getElementById('picks').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  document.querySelector('.clearance-row').addEventListener('click', (e) => {
+  const clearanceRowEl = document.getElementById('clearanceRow');
+  clearanceRowEl.addEventListener('click', (e) => {
     const card = e.target.closest('[data-query]');
     if (!card) return;
     e.preventDefault();
     runSearch(card.dataset.query);
     document.getElementById('picks').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+
+  // ── Real Trending data ──────────────────────────────────────────────────
+  async function loadTrending(){
+    const tickerBody = document.getElementById('tickerBody');
+    try {
+      const res = await fetch(`${API_BASE}/api/trending?country=nz`);
+      if (!res.ok) throw new Error(`Trending failed (${res.status})`);
+      const data = await res.json();
+      const trending = Array.isArray(data.trending) ? data.trending : [];
+      if (!trending.length) return; // leave the loading-state placeholders as-is on empty
+
+      tickerBody.innerHTML = trending.slice(0, 6).map(t => {
+        const name = (t.name || 'Unknown product').replace(/"/g, '&quot;');
+        const price = fmtPrice(t.price);
+        const store = t.store || '';
+        const url = t.url;
+        const inner = `
+          <div><div class="ti-name">${name}</div><div class="ti-store">${store}</div></div>
+          <div class="ti-right"><div class="ti-price">${price || ''}</div></div>`;
+        return url
+          ? `<a class="ticker-row" href="${url}" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">${inner}</a>`
+          : `<div class="ticker-row">${inner}</div>`;
+      }).join('');
+    } catch (err) {
+      console.error('Twisti trending error:', err);
+      // leave existing placeholder rows in place rather than showing a broken empty panel
+    }
+  }
+
+  // ── Real Clearance data ─────────────────────────────────────────────────
+  async function loadClearance(){
+    try {
+      const res = await fetch(`${API_BASE}/api/deals?country=nz`);
+      if (!res.ok) throw new Error(`Deals failed (${res.status})`);
+      const data = await res.json();
+      const deals = Array.isArray(data.deals) ? data.deals : [];
+      if (!deals.length) return; // leave mock clearance cards as-is on empty
+
+      clearanceRowEl.innerHTML = deals.slice(0, 12).map(d => {
+        const name = (d.name || 'Unknown product').replace(/"/g, '&quot;');
+        const price = fmtPrice(d.price);
+        const url = d.url;
+        const img = d.image_url
+          ? `<img src="${d.image_url}" alt="" style="width:100%;height:100%;object-fit:contain;">`
+          : `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="2"/></svg>`;
+        return `
+          <a class="c-card" ${url ? `href="${url}" target="_blank" rel="noopener"` : `href="#" onclick="return false;"`}>
+            <div class="c-thumb">${img}</div>
+            <div class="c-name">${name}</div>
+            ${price ? `<div class="c-price">${price}</div>` : ''}
+          </a>`;
+      }).join('');
+    } catch (err) {
+      console.error('Twisti clearance error:', err);
+      // leave existing mock clearance cards in place rather than showing a broken empty panel
+    }
+  }
+
+  loadTrending();
+  loadClearance();
 </script>
 </body>
 </html>

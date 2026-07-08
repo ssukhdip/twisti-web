@@ -582,11 +582,26 @@
     const price = fmtPrice(item.price ?? item.current_price ?? item.lowest_price);
     const was = fmtPrice(item.was_price ?? item.original_price ?? item.rrp);
     const dropPct = item.drop_percent ?? item.discount_percent ?? null;
-    const url = item.url || item.link || item.product_url || item.buy_url || null;
+
+    // Widened guesses for whatever field name the backend uses for the product link.
+    const url = item.url || item.link || item.product_url || item.productUrl
+      || item.buy_url || item.buyUrl || item.product_link || item.productLink
+      || item.offer_url || item.offerUrl || item.merchant_url || item.merchantUrl
+      || item.redirect_url || item.click_url || item.storeUrl || item.retailerUrl
+      || item.offers?.[0]?.link || item.offers?.[0]?.url
+      || null;
+
+    // Guaranteed fallback so a card is never a dead click, even if the backend
+    // doesn't return a direct product link — opens a Google Shopping search instead.
+    const fallbackUrl = `https://www.google.com/search?tbm=shop&q=${encodeURIComponent(name + (store ? ' ' + store : ''))}`;
+    const finalUrl = url || fallbackUrl;
     const escName = name.replace(/"/g, '&quot;');
 
+    // Debug aid — remove once you've confirmed the real field name and can hardcode it above.
+    if (!url) console.log('Twisti: no product URL field found on result item — check the shape below and tell Claude the field name:', item);
+
     return `
-      <a class="p-card" ${url ? `href="${url}" target="_blank" rel="noopener"` : `href="#" onclick="return false;"`}>
+      <a class="p-card" href="${finalUrl}" target="_blank" rel="noopener">
         <div class="p-thumb">
           ${dropPct ? `<span class="drop-tag">▼ ${Math.round(dropPct)}%</span>` : ''}
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="19" x2="14" y2="19"/></svg>

@@ -393,14 +393,22 @@
 
 <main class="wrap">
   <section class="section" id="picks">
-    <div class="section-head">
+    <div class="section-head" id="picksHead">
       <div class="tabs">
         <button class="tab active" data-tab="drops">Price drops</button>
         <button class="tab" data-tab="picks">Top picks</button>
       </div>
       <a href="#" class="see-all">See all →</a>
     </div>
-    <div class="card-row">
+    <div class="section-head" id="resultsHead" style="display:none;">
+      <span class="display" id="resultsTitle" style="font-weight:600; font-size:15px;"></span>
+      <a href="#" class="see-all" id="clearSearch">Clear search ✕</a>
+    </div>
+    <p id="searchStatus" style="display:none; font-size:13.5px; color:var(--text-dim); margin:-10px 0 18px;"></p>
+
+    <div class="card-row" id="cardRow" style="display:none;"></div>
+
+    <div class="card-row" id="mockCardRow">
       <article class="p-card">
         <div class="p-thumb"><span class="drop-tag">▼ 12%</span>
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="19" x2="14" y2="19"/></svg>
@@ -517,13 +525,96 @@
     });
   });
 
-  // Mascot "looking for products" behaviour on search
+  // Search — calls the real Twisti backend
   const searchForm = document.getElementById('searchForm');
   const mascotWrap = document.getElementById('mascotWrap');
   const mascotBubble = document.getElementById('mascotBubble');
   const searchInput = document.getElementById('searchInput');
 
-  searchForm.addEventListener('submit', (e) => {
+  const picksHead = document.getElementById('picksHead');
+  const resultsHead = document.getElementById('resultsHead');
+  const resultsTitle = document.getElementById('resultsTitle');
+  const clearSearch = document.getElementById('clearSearch');
+  const searchStatus = document.getElementById('searchStatus');
+  const cardRow = document.getElementById('cardRow');
+  const mockCardRow = document.getElementById('mockCardRow');
+
+  const API_BASE = 'https://twisti-backend-production.up.railway.app';
+  // NOTE: adjust this path/params if your real route differs from GET /api/search?q=&country=
+  const SEARCH_ENDPOINT = (q) => `${API_BASE}/api/search?q=${encodeURIComponent(q)}&country=nz`;
+
+  function fmtPrice(n){
+    if (n === null || n === undefined || n === '') return null;
+    const num = typeof n === 'number' ? n : parseFloat(String(n).replace(/[^0-9.]/g, ''));
+    if (isNaN(num)) return null;
+    return '$' + num.toLocaleString('en-NZ', { maximumFractionDigits: 0 });
+  }
+
+  // Normalises whatever shape the backend returns into a flat array of products.
+  function extractResults(data){
+    if (Array.isArray(data)) return data;
+    if (Array.isArray(data?.results)) return data.results;
+    if (Array.isArray(data?.products)) return data.products;
+    if (Array.isArray(data?.items)) return data.items;
+    if (Array.isArray(data?.data)) return data.data;
+    return [];
+  }
+
+  function productCardHTML(item){
+    const name = item.name || item.title || item.product_name || 'Unknown product';
+    const store = item.store || item.retailer || item.source || item.seller || '';
+    const price = fmtPrice(item.price ?? item.current_price ?? item.lowest_price);
+    const was = fmtPrice(item.was_price ?? item.original_price ?? item.rrp);
+    const dropPct = item.drop_percent ?? item.discount_percent ?? null;
+
+    return `
+      <article class="p-card">
+        <div class="p-thumb">
+          ${dropPct ? `<span class="drop-tag">▼ ${Math.round(dropPct)}%</span>` : ''}
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="19" x2="14" y2="19"/></svg>
+        </div>
+        <div class="p-name">${name}</div>
+        <div class="p-store">${store}</div>
+        <div class="p-price-row">
+          ${price ? `<span class="p-price">${price}</span>` : ''}
+          ${was ? `<span class="p-was">${was}</span>` : ''}
+        </div>
+      </article>`;
+  }
+
+  function showMock(){
+    picksHead.style.display = '';
+    resultsHead.style.display = 'none';
+    searchStatus.style.display = 'none';
+    cardRow.style.display = 'none';
+    mockCardRow.style.display = '';
+    cardRow.innerHTML = '';
+  }
+
+  function showResults(query, items){
+    picksHead.style.display = 'none';
+    resultsHead.style.display = 'flex';
+    mockCardRow.style.display = 'none';
+    resultsTitle.textContent = `Results for "${query}"`;
+
+    if (!items.length){
+      searchStatus.style.display = 'block';
+      searchStatus.textContent = `No results found for "${query}" yet — try a different search term.`;
+      cardRow.style.display = 'none';
+      return;
+    }
+    searchStatus.style.display = 'none';
+    cardRow.style.display = '';
+    cardRow.innerHTML = items.slice(0, 10).map(productCardHTML).join('');
+  }
+
+  clearSearch.addEventListener('click', (e) => {
+    e.preventDefault();
+    searchInput.value = '';
+    showMock();
+  });
+
+  searchForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const query = searchInput.value.trim();
     if(!query) return;
@@ -531,13 +622,29 @@
     mascotBubble.textContent = 'Looking for the best price…';
     mascotWrap.classList.add('searching');
 
-    // Swap in the actual search call here — this just times the mascot animation.
-    setTimeout(() => {
-      mascotBubble.textContent = 'Found it! 🎉';
+    try {
+      const res = await fetch(SEARCH_ENDPOINT(query));
+      if (!res.ok) throw new Error(`Search failed (${res.status})`);
+      const data = await res.json();
+      const items = extractResults(data);
+
+      mascotBubble.textContent = items.length ? 'Found it! 🎉' : 'No luck this time…';
+      showResults(query, items);
+    } catch (err) {
+      console.error('Twisti search error:', err);
+      mascotBubble.textContent = 'Couldn\u2019t reach the server';
+      picksHead.style.display = 'none';
+      resultsHead.style.display = 'flex';
+      resultsTitle.textContent = `Results for "${query}"`;
+      mockCardRow.style.display = 'none';
+      cardRow.style.display = 'none';
+      searchStatus.style.display = 'block';
+      searchStatus.textContent = 'Search is temporarily unavailable — check the console for details (this is often a CORS setting on the backend when testing outside twisti.org).';
+    } finally {
       setTimeout(() => {
         mascotWrap.classList.remove('searching');
       }, 1200);
-    }, 1500);
+    }
   });
 </script>
 </body>

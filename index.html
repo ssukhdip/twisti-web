@@ -140,14 +140,29 @@
     75%{transform:rotate(4deg) translateY(-1px);}
   }
   .mascot-bubble{
-    position:absolute; top:-6px; left:-96px; max-width:150px;
-    background:var(--text); color:var(--bg);
-    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:12.5px;
-    padding:8px 12px; border-radius:12px 12px 12px 4px;
-    opacity:0; transform:translateY(6px) scale(.9);
-    transition:opacity .2s ease, transform .2s ease;
+    position:absolute; top:-60px; left:50%;
+    transform:translateX(-50%) translateY(8px) scale(.9);
+    width:max-content; min-width:120px; max-width:210px;
+    background:var(--surface); color:var(--text);
+    border:1.5px solid var(--border);
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:13.5px;
+    line-height:1.35; text-align:center;
+    padding:11px 16px; border-radius:16px;
+    box-shadow:0 10px 24px rgba(20,33,27,0.16), 0 2px 8px rgba(20,33,27,0.08);
+    opacity:0; pointer-events:none;
+    transition:opacity .28s cubic-bezier(.34,1.56,.64,1), transform .28s cubic-bezier(.34,1.56,.64,1);
   }
-  .mascot-wrap.searching .mascot-bubble{opacity:1; transform:translateY(0) scale(1);}
+  .mascot-bubble::after{
+    content:""; position:absolute; bottom:-7px; left:50%;
+    width:13px; height:13px;
+    background:var(--surface);
+    border-right:1.5px solid var(--border);
+    border-bottom:1.5px solid var(--border);
+    transform:translateX(-50%) rotate(45deg);
+  }
+  .mascot-wrap.searching .mascot-bubble{
+    opacity:1; transform:translateX(-50%) translateY(0) scale(1);
+  }
   .search-box{
     display:flex; align-items:center; gap:10px;
     background:var(--surface); border:1.5px solid var(--border);
@@ -233,6 +248,7 @@
     display:grid; grid-template-columns:repeat(5, 1fr); gap:16px;
   }
   .p-card{
+    display:block;
     background:var(--surface); border:1px solid var(--border);
     border-radius:var(--radius); padding:16px; box-shadow:var(--shadow);
     transition:transform .15s ease, border-color .15s ease;
@@ -306,7 +322,7 @@
     h1{font-size:32px;}
     .search-btn span{display:none;}
     .mascot-wrap{width:104px; top:-76px; right:4px;}
-    .mascot-bubble{left:-84px; font-size:11px; padding:6px 10px;}
+    .mascot-bubble{font-size:12px; padding:9px 13px; max-width:160px; top:-50px;}
     .search-wrap{margin-top:88px;}
     .footer-inner{flex-direction:column; align-items:flex-start;}
     .footer-links{flex-wrap:wrap; gap:16px;}
@@ -409,7 +425,7 @@
     <div class="card-row" id="cardRow" style="display:none;"></div>
 
     <div class="card-row" id="mockCardRow">
-      <article class="p-card">
+      <article class="p-card" data-query="iPhone 16 Pro 128GB">
         <div class="p-thumb"><span class="drop-tag">▼ 12%</span>
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="19" x2="14" y2="19"/></svg>
         </div>
@@ -417,7 +433,7 @@
         <div class="p-store">JB Hi-Fi · Noel Leeming +3</div>
         <div class="p-price-row"><span class="p-price">$1,899</span><span class="p-was">$2,159</span></div>
       </article>
-      <article class="p-card">
+      <article class="p-card" data-query="MacBook Air 13&quot; M3">
         <div class="p-thumb"><span class="drop-tag">▼ 6%</span>
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg>
         </div>
@@ -425,7 +441,7 @@
         <div class="p-store">PB Tech</div>
         <div class="p-price-row"><span class="p-price">$1,749</span><span class="p-was">$1,899</span></div>
       </article>
-      <article class="p-card">
+      <article class="p-card" data-query="Samsung 65&quot; QLED TV">
         <div class="p-thumb"><span class="drop-tag">▼ 9%</span>
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="4" y="3" width="16" height="14" rx="1.5"/><path d="M2 20h20"/></svg>
         </div>
@@ -433,7 +449,7 @@
         <div class="p-store">Harvey Norman</div>
         <div class="p-price-row"><span class="p-price">$1,299</span><span class="p-was">$1,429</span></div>
       </article>
-      <article class="p-card">
+      <article class="p-card" data-query="PS5 Slim Disc Edition">
         <div class="p-thumb"><span class="drop-tag">▼ 4%</span>
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="5" y="5" width="14" height="14" rx="3"/></svg>
         </div>
@@ -441,7 +457,7 @@
         <div class="p-store">Noel Leeming · TWH +2</div>
         <div class="p-price-row"><span class="p-price">$649</span><span class="p-was">$679</span></div>
       </article>
-      <article class="p-card">
+      <article class="p-card" data-query="Sony WH-1000XM5">
         <div class="p-thumb"><span class="drop-tag">▼ 15%</span>
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
@@ -455,32 +471,32 @@
   <section class="section" id="clearance">
     <div class="clearance-head">🔥 Clearance</div>
     <div class="clearance-row">
-      <div class="c-card">
+      <div class="c-card" data-query="iPhone 14">
         <div class="c-thumb"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="2"/></svg></div>
         <div class="c-off">−28%</div>
         <div class="c-name">iPhone 14</div>
       </div>
-      <div class="c-card">
+      <div class="c-card" data-query="LG 55&quot; TV">
         <div class="c-thumb"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="1.5"/></svg></div>
         <div class="c-off">−22%</div>
         <div class="c-name">LG 55" TV</div>
       </div>
-      <div class="c-card">
+      <div class="c-card" data-query="Bose Soundbar">
         <div class="c-thumb"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="7" width="16" height="10" rx="2"/></svg></div>
         <div class="c-off">−35%</div>
         <div class="c-name">Bose Soundbar</div>
       </div>
-      <div class="c-card">
+      <div class="c-card" data-query="Fitbit Charge 6">
         <div class="c-thumb"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div>
         <div class="c-off">−18%</div>
         <div class="c-name">Fitbit Charge 6</div>
       </div>
-      <div class="c-card">
+      <div class="c-card" data-query="Xbox Series S">
         <div class="c-thumb"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="5" width="14" height="14" rx="3"/></svg></div>
         <div class="c-off">−30%</div>
         <div class="c-name">Xbox Series S</div>
       </div>
-      <div class="c-card">
+      <div class="c-card" data-query="iPad 10th Gen">
         <div class="c-thumb"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="2" width="10" height="20" rx="2"/></svg></div>
         <div class="c-off">−25%</div>
         <div class="c-name">iPad 10th Gen</div>
@@ -566,20 +582,22 @@
     const price = fmtPrice(item.price ?? item.current_price ?? item.lowest_price);
     const was = fmtPrice(item.was_price ?? item.original_price ?? item.rrp);
     const dropPct = item.drop_percent ?? item.discount_percent ?? null;
+    const url = item.url || item.link || item.product_url || item.buy_url || null;
+    const escName = name.replace(/"/g, '&quot;');
 
     return `
-      <article class="p-card">
+      <a class="p-card" ${url ? `href="${url}" target="_blank" rel="noopener"` : `href="#" onclick="return false;"`}>
         <div class="p-thumb">
           ${dropPct ? `<span class="drop-tag">▼ ${Math.round(dropPct)}%</span>` : ''}
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="19" x2="14" y2="19"/></svg>
         </div>
-        <div class="p-name">${name}</div>
+        <div class="p-name">${escName}</div>
         <div class="p-store">${store}</div>
         <div class="p-price-row">
           ${price ? `<span class="p-price">${price}</span>` : ''}
           ${was ? `<span class="p-was">${was}</span>` : ''}
         </div>
-      </article>`;
+      </a>`;
   }
 
   function showMock(){
@@ -614,12 +632,16 @@
     showMock();
   });
 
-  searchForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const query = searchInput.value.trim();
-    if(!query) return;
+  function truncateQuery(q, max = 24){
+    return q.length > max ? q.slice(0, max - 1) + '…' : q;
+  }
 
-    mascotBubble.textContent = 'Looking for the best price…';
+  async function runSearch(query){
+    if(!query) return;
+    searchInput.value = query;
+    const shortQuery = truncateQuery(query);
+
+    mascotBubble.textContent = `Looking for "${shortQuery}"…`;
     mascotWrap.classList.add('searching');
 
     try {
@@ -628,11 +650,13 @@
       const data = await res.json();
       const items = extractResults(data);
 
-      mascotBubble.textContent = items.length ? 'Found it! 🎉' : 'No luck this time…';
+      mascotBubble.textContent = items.length
+        ? `Found ${items.length} deal${items.length > 1 ? 's' : ''} for you! 🎉`
+        : `No matches for "${shortQuery}" yet`;
       showResults(query, items);
     } catch (err) {
       console.error('Twisti search error:', err);
-      mascotBubble.textContent = 'Couldn\u2019t reach the server';
+      mascotBubble.textContent = 'Couldn\u2019t reach the server 😕';
       picksHead.style.display = 'none';
       resultsHead.style.display = 'flex';
       resultsTitle.textContent = `Results for "${query}"`;
@@ -643,8 +667,31 @@
     } finally {
       setTimeout(() => {
         mascotWrap.classList.remove('searching');
-      }, 1200);
+      }, 2000);
     }
+  }
+
+  searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    runSearch(searchInput.value.trim());
+  });
+
+  // Demo cards (Price drops / Top picks / Clearance) aren't wired to real listings —
+  // clicking one runs a real search for that product name instead.
+  mockCardRow.addEventListener('click', (e) => {
+    const card = e.target.closest('[data-query]');
+    if (!card) return;
+    e.preventDefault();
+    runSearch(card.dataset.query);
+    document.getElementById('picks').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  document.querySelector('.clearance-row').addEventListener('click', (e) => {
+    const card = e.target.closest('[data-query]');
+    if (!card) return;
+    e.preventDefault();
+    runSearch(card.dataset.query);
+    document.getElementById('picks').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 </script>
 </body>

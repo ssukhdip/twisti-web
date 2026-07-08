@@ -346,7 +346,7 @@
     </div>
     <div class="nav-right">
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
-      <button class="btn-login">Log in</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
     </div>
   </div>
 </nav>
@@ -539,6 +539,31 @@
       tab.classList.add('active');
     });
   });
+
+  // Reflect real signed-in state — reads the same localStorage keys
+  // auth.html (auth_v2.html) writes on successful login/signup.
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return; // not signed in — leave the default "Log in" link as-is
+
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
 
   // Search — calls the real Twisti backend
   const searchForm = document.getElementById('searchForm');

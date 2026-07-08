@@ -371,12 +371,12 @@
         </form>
       </div>
       <div class="chips">
-        <div class="chip" data-query="phones">Phones</div>
-        <div class="chip" data-query="laptops">Laptops</div>
-        <div class="chip" data-query="TVs">TVs</div>
-        <div class="chip" data-query="gaming">Gaming</div>
-        <div class="chip" data-query="audio">Audio</div>
-        <div class="chip" data-query="appliances">Appliances</div>
+        <div class="chip" data-query="iPhone">Phones</div>
+        <div class="chip" data-query="MacBook">Laptops</div>
+        <div class="chip" data-query="Samsung TV">TVs</div>
+        <div class="chip" data-query="PS5">Gaming</div>
+        <div class="chip" data-query="AirPods">Audio</div>
+        <div class="chip" data-query="Dyson">Appliances</div>
       </div>
     </div>
 
@@ -602,17 +602,31 @@
       ? `★ ${item.avg_rating}${item.review_count ? ` · ${item.review_count.toLocaleString()}` : ''}`
       : '';
     const escName = name.replace(/"/g, '&quot;');
+    const escStore = store.replace(/"/g, '&quot;');
     const img = item.image_url
       ? `<img src="${item.image_url}" alt="" style="width:100%;height:100%;object-fit:contain;">`
       : thumbIcon;
 
     return `
-      <a class="p-card" href="#" data-variant-name="${escName}">
+      <a class="p-card" href="#" data-variant-name="${escName}" data-variant-store="${escStore}" data-variant-price="${item.lowest_price || ''}">
         <div class="p-thumb">${img}</div>
         <div class="p-name">${name}</div>
         <div class="p-store">${store}${rating ? ' · ' + rating : ''}</div>
         <div class="p-price-row">${price ? `<span class="p-price">from ${price}</span>` : ''}</div>
       </a>`;
+  }
+
+  // Mirrors the backend's allowed-store search URLs, for the guaranteed
+  // fallback below when a drill-in search genuinely finds nothing.
+  const STORE_SEARCH_URLS = {
+    jbhifi:      q => `https://www.jbhifi.co.nz/search?query=${encodeURIComponent(q)}`,
+    noelleeming: q => `https://www.noelleeming.co.nz/search?q=${encodeURIComponent(q)}`,
+    pbtech:      q => `https://www.pbtech.co.nz/search?sf=${encodeURIComponent(q)}`,
+  };
+  function getStoreSearchUrl(storeName, query){
+    const n = (storeName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    for (const key in STORE_SEARCH_URLS) if (n.includes(key)) return STORE_SEARCH_URLS[key](query);
+    return null;
   }
 
   // "prices[]" mode: one specific product, each entry is a real store with a real link.
@@ -662,9 +676,19 @@
     if (data.source === 'category' && data.category){
       resultsTitle.textContent = `"${query}"`;
       searchStatus.style.display = 'block';
-      searchStatus.textContent = data.category.tip
+
+      const brands = Array.isArray(data.category.brands) ? data.category.brands : [];
+      const brandNames = brands.map(b => (typeof b === 'string' ? b : b?.name)).filter(Boolean);
+      const tipText = data.category.tip
         ? `That's a broad search — ${data.category.tip}`
         : 'Try a more specific search, like a brand or model.';
+
+      searchStatus.innerHTML = brandNames.length
+        ? `${tipText}<div id="brandSuggestions" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;">
+             ${brandNames.map(b => `<span class="chip" data-query="${b.replace(/"/g, '&quot;')}" style="font-size:12.5px; padding:7px 14px;">${b}</span>`).join('')}
+           </div>`
+        : tipText;
+
       cardRow.style.display = 'none';
       return { mode: 'category', count: 0 };
     }
@@ -710,7 +734,7 @@
     return q.length > max ? q.slice(0, max - 1) + '…' : q;
   }
 
-  async function runSearch(query, forceProduct = false){
+  async function runSearch(query, forceProduct = false, fallbackVariant = null){
     if(!query) return;
     searchInput.value = query;
     const shortQuery = truncateQuery(query);
@@ -723,7 +747,26 @@
       if (!res.ok) throw new Error(`Search failed (${res.status})`);
       const data = await res.json();
 
-      const { mode, count } = renderResultsFromData(query, data, forceProduct);
+      let { mode, count } = renderResultsFromData(query, data, forceProduct);
+
+      // Guaranteed fallback: if a drill-in from a known variant came back empty,
+      // don't dead-end — show what we already knew about it a moment ago.
+      if (mode === 'empty' && fallbackVariant && fallbackVariant.store){
+        const url = getStoreSearchUrl(fallbackVariant.store, fallbackVariant.name);
+        resultsTitle.textContent = fallbackVariant.name;
+        searchStatus.style.display = 'block';
+        searchStatus.textContent = `We couldn't re-confirm this live, but it was available moments ago:`;
+        cardRow.style.display = '';
+        cardRow.innerHTML = storeCardHTML({
+          store_name: fallbackVariant.store,
+          price: fallbackVariant.price,
+          affiliate_url: url,
+          is_best_deal: true,
+        });
+        mode = 'product';
+        count = 1;
+      }
+
       mascotBubble.textContent =
         mode === 'variants' ? `Found ${count} option${count > 1 ? 's' : ''}! Pick one 👇` :
         mode === 'product'  ? `Found ${count} store${count > 1 ? 's' : ''} for you! 🎉` :
@@ -757,7 +800,12 @@
     const variantCard = e.target.closest('[data-variant-name]');
     if (!variantCard) return;
     e.preventDefault();
-    runSearch(variantCard.dataset.variantName, true);
+    const fallback = {
+      name: variantCard.dataset.variantName,
+      store: variantCard.dataset.variantStore,
+      price: variantCard.dataset.variantPrice ? parseFloat(variantCard.dataset.variantPrice) : null,
+    };
+    runSearch(variantCard.dataset.variantName, true, fallback);
     document.getElementById('picks').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
@@ -768,6 +816,13 @@
     if (!chip) return;
     runSearch(chip.dataset.query);
     document.getElementById('picks').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Brand suggestion chips rendered inside a category tip (dynamically injected)
+  searchStatus.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip[data-query]');
+    if (!chip) return;
+    runSearch(chip.dataset.query);
   });
 
   mockCardRow.addEventListener('click', (e) => {

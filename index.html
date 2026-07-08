@@ -111,6 +111,11 @@
     font-size:17px; color:var(--text-dim); max-width:480px;
     margin-bottom:32px; line-height:1.55;
   }
+  .search-wrap{position:relative; max-width:560px;}
+  .mascot{
+    position:absolute; right:36px; top:-78px; z-index:2;
+    filter:drop-shadow(0 6px 10px rgba(20,33,27,0.15));
+  }
   .search-box{
     display:flex; align-items:center; gap:10px;
     background:var(--surface); border:1.5px solid var(--border);
@@ -267,6 +272,7 @@
     .clearance-row{grid-template-columns:repeat(2,1fr);}
     h1{font-size:32px;}
     .search-btn span{display:none;}
+    .mascot{width:64px; height:90px; right:14px; top:-56px;}
   }
 </style>
 </head>
@@ -275,9 +281,15 @@
 <nav>
   <div class="nav-inner">
     <a href="/" class="logo">
-      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-        <path d="M13 2C8 6 5 10 5 15a8 8 0 0 0 16 0c0-5-3-9-8-13Z" fill="var(--accent)"/>
-        <path d="M13 6c-3 3-5 6-5 9a5 5 0 0 0 10 0c0-3-2-6-5-9Z" fill="var(--bg)"/>
+      <svg width="28" height="28" viewBox="0 0 100 100" fill="none">
+        <ellipse cx="50" cy="56" rx="38" ry="34" fill="var(--accent)"/>
+        <circle cx="30" cy="24" r="7" fill="var(--accent)"/>
+        <circle cx="50" cy="17" r="8" fill="var(--accent)"/>
+        <circle cx="70" cy="24" r="7" fill="var(--accent)"/>
+        <circle cx="52" cy="54" r="17" fill="var(--bg)"/>
+        <circle cx="57" cy="54" r="8" fill="#14211b"/>
+        <circle cx="60" cy="50" r="2.5" fill="#fff"/>
+        <path d="M39 66c4 5 18 5 22 0" stroke="var(--bg)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
       </svg>
       twisti
     </a>
@@ -299,13 +311,35 @@
       <div class="eyebrow">NZ &amp; AU · AI shopping copilot</div>
       <h1>Find the best price<br>before you <span>buy</span>.</h1>
       <p class="hero-sub">Twisti scans every major NZ retailer in seconds and gives you a straight AI verdict — buy now, wait, or compare — so you never overpay again.</p>
-      <form class="search-box" role="search">
-        <input type="text" placeholder="Search any product — e.g. iPhone 16 Pro, PS5, Dyson V15…" aria-label="Search for a product">
-        <button type="submit" class="search-btn">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-          <span>Search</span>
-        </button>
-      </form>
+      <div class="search-wrap" style="margin-top:56px;">
+        <svg class="mascot" width="92" height="128" viewBox="0 0 100 140" fill="none" aria-hidden="true">
+          <!-- legs, dangling over the front rim -->
+          <path d="M40 88c-2 14-2 26 2 36" stroke="var(--accent)" stroke-width="9" stroke-linecap="round" fill="none"/>
+          <path d="M62 88c2 14 2 26-2 36" stroke="var(--accent)" stroke-width="9" stroke-linecap="round" fill="none"/>
+          <ellipse cx="40" cy="127" rx="9" ry="6" fill="var(--accent)"/>
+          <ellipse cx="62" cy="127" rx="9" ry="6" fill="var(--accent)"/>
+          <!-- body -->
+          <ellipse cx="50" cy="56" rx="38" ry="34" fill="var(--accent)"/>
+          <circle cx="30" cy="24" r="7" fill="var(--accent)"/>
+          <circle cx="50" cy="17" r="8" fill="var(--accent)"/>
+          <circle cx="70" cy="24" r="7" fill="var(--accent)"/>
+          <!-- arms gripping the rim -->
+          <path d="M18 66c-6 8-8 16-6 24" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" fill="none"/>
+          <path d="M82 66c6 8 8 16 6 24" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" fill="none"/>
+          <!-- face -->
+          <circle cx="52" cy="54" r="17" fill="var(--surface)"/>
+          <circle cx="57" cy="54" r="8" fill="#14211b"/>
+          <circle cx="60" cy="50" r="2.5" fill="#fff"/>
+          <path d="M39 66c4 5 18 5 22 0" stroke="var(--surface)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <form class="search-box" role="search">
+          <input type="text" placeholder="Search any product — e.g. iPhone 16 Pro, PS5, Dyson V15…" aria-label="Search for a product">
+          <button type="submit" class="search-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <span>Search</span>
+          </button>
+        </form>
+      </div>
       <div class="chips">
         <div class="chip">Phones</div>
         <div class="chip">Laptops</div>

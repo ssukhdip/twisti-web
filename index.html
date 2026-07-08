@@ -236,6 +236,76 @@
     margin-bottom:24px; border-top:1px solid var(--border); padding-top:44px;
   }
   .tabs{display:flex; gap:4px; background:var(--surface-2); padding:4px; border-radius:100px;}
+
+  /* AI Verdict — on-demand button */
+  .verdict-btn{
+    display:inline-flex; align-items:center; gap:9px;
+    background:var(--text); color:var(--bg);
+    border:none; border-radius:100px; padding:12px 22px;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:14px;
+    cursor:pointer; transition:opacity .15s ease;
+  }
+  [data-theme="dark"] .verdict-btn{background:var(--accent); color:#0d1410;}
+  .verdict-btn:hover{opacity:.88;}
+  .verdict-btn:disabled{opacity:.6; cursor:default;}
+  .verdict-spinner{
+    width:13px; height:13px; border-radius:50%;
+    border:2px solid rgba(255,255,255,0.35); border-top-color:#fff;
+    animation:spin .7s linear infinite; display:inline-block;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* AI Verdict — result panel */
+  .verdict-panel{
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius); box-shadow:var(--shadow);
+    margin-bottom:20px; overflow:hidden;
+  }
+  .verdict-strip{padding:14px 20px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .verdict-pill{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:6px 14px; border-radius:100px;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; font-weight:700;
+    letter-spacing:.06em; text-transform:uppercase; color:#fff;
+  }
+  .verdict-pill.buy{background:var(--up);}
+  .verdict-pill.wait{background:#d97706;}
+  .verdict-pill.compare{background:#2563eb;}
+  .verdict-pill.default{background:var(--accent);}
+  .verdict-pill-label{font-size:12.5px; color:var(--text-dim); font-weight:500;}
+  .verdict-ai-tag{
+    margin-left:auto; background:var(--accent); color:#fff;
+    font-family:'IBM Plex Mono', monospace; font-size:9px; font-weight:700;
+    letter-spacing:.1em; text-transform:uppercase; padding:4px 10px; border-radius:4px;
+  }
+  [data-theme="dark"] .verdict-ai-tag{color:#0d1410;}
+  .verdict-headline-wrap{padding:0 20px 16px; border-bottom:1px solid var(--border);}
+  .verdict-headline{font-family:'Space Grotesk', sans-serif; font-size:19px; font-weight:700; line-height:1.3; letter-spacing:-0.02em;}
+  .verdict-body{padding:16px 20px;}
+  .verdict-price-ctx{
+    font-size:13px; font-weight:600; color:var(--accent);
+    background:var(--accent-tint); border-radius:8px; padding:9px 13px; margin-bottom:14px;
+  }
+  .verdict-pcons{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:16px;}
+  .verdict-col-label{
+    font-family:'IBM Plex Mono', monospace; font-size:10px; font-weight:700;
+    letter-spacing:.12em; text-transform:uppercase; margin-bottom:10px;
+    display:flex; align-items:center; gap:6px;
+  }
+  .verdict-col-label.pros{color:var(--up);}
+  .verdict-col-label.cons{color:var(--down);}
+  .verdict-item{font-size:13px; color:var(--text-dim); display:flex; gap:8px; margin-bottom:8px; line-height:1.5;}
+  .verdict-item-icon{flex-shrink:0; font-size:13px; margin-top:1px;}
+  .verdict-buynow{
+    background:var(--accent-tint); border:1px solid var(--border);
+    border-radius:10px; padding:13px 15px; font-size:13px; color:var(--text-dim);
+    line-height:1.6; margin-bottom:10px;
+  }
+  .verdict-buynow b{color:var(--text); font-weight:700;}
+  .verdict-alt{font-size:13px; color:var(--text-dim); line-height:1.6; margin-top:8px;}
+  .verdict-alt b{color:var(--text); font-weight:600;}
+  @media (max-width:640px){ .verdict-pcons{grid-template-columns:1fr;} }
+
   .tab{
     padding:8px 18px; border-radius:100px; font-size:13.5px; font-weight:600;
     cursor:pointer; color:var(--text-dim); border:none; background:transparent;
@@ -406,10 +476,7 @@
 <main class="wrap">
   <section class="section" id="picks">
     <div class="section-head" id="picksHead">
-      <div class="tabs">
-        <button class="tab active" data-tab="drops">Price drops</button>
-        <button class="tab" data-tab="picks">Top picks</button>
-      </div>
+      <span class="display" style="font-weight:600; font-size:15px;">Price drops</span>
       <a href="#" class="see-all">See all →</a>
     </div>
     <div class="section-head" id="resultsHead" style="display:none;">
@@ -420,6 +487,14 @@
       </div>
     </div>
     <p id="searchStatus" style="display:none; font-size:13.5px; color:var(--text-dim); margin:-10px 0 18px;"></p>
+    <div id="verdictActions" style="display:none; margin-bottom:16px;">
+      <button class="verdict-btn" id="getVerdictBtn">
+        <span id="verdictBtnIcon">🤖</span>
+        <span id="verdictBtnText">Get AI Verdict</span>
+        <span class="verdict-spinner" id="verdictSpinner" style="display:none;"></span>
+      </button>
+    </div>
+    <div id="verdictPanel" class="verdict-panel" style="display:none;"></div>
 
     <div class="card-row" id="cardRow" style="display:none;"></div>
 
@@ -533,13 +608,6 @@
     localStorage.setItem('twisti-theme', next);
   });
 
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-    });
-  });
-
   // Reflect real signed-in state — reads the same localStorage keys
   // auth.html (auth_v2.html) writes on successful login/signup.
   (function initAuthState(){
@@ -577,6 +645,12 @@
   const clearSearch = document.getElementById('clearSearch');
   const backResults = document.getElementById('backResults');
   const searchStatus = document.getElementById('searchStatus');
+  const verdictActions = document.getElementById('verdictActions');
+  const getVerdictBtn = document.getElementById('getVerdictBtn');
+  const verdictBtnText = document.getElementById('verdictBtnText');
+  const verdictBtnIcon = document.getElementById('verdictBtnIcon');
+  const verdictSpinner = document.getElementById('verdictSpinner');
+  const verdictPanel = document.getElementById('verdictPanel');
   const cardRow = document.getElementById('cardRow');
   const mockCardRow = document.getElementById('mockCardRow');
 
@@ -648,6 +722,119 @@
       </a>`;
   }
 
+  let currentProductName = null;
+  let currentProductPrices = null;
+
+  const VERDICT_STYLES = {
+    great_deal:   { pill: 'buy',     label: 'Great deal — buy now' },
+    good_deal:    { pill: 'buy',     label: 'Good price' },
+    fair_price:   { pill: 'default', label: 'Fair price' },
+    wait:         { pill: 'wait',    label: 'Wait for a better deal' },
+    compare_more: { pill: 'compare', label: 'Compare more options' },
+  };
+
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str == null ? '' : String(str);
+    return div.innerHTML;
+  }
+
+  function showVerdictButton(productName, prices){
+    currentProductName = productName;
+    currentProductPrices = prices;
+    verdictActions.style.display = 'block';
+    verdictPanel.style.display = 'none';
+    verdictPanel.innerHTML = '';
+    getVerdictBtn.disabled = false;
+    verdictBtnText.textContent = 'Get AI Verdict';
+    verdictBtnIcon.textContent = '🤖';
+    verdictSpinner.style.display = 'none';
+  }
+
+  function hideVerdict(){
+    verdictActions.style.display = 'none';
+    verdictPanel.style.display = 'none';
+    verdictPanel.innerHTML = '';
+    currentProductName = null;
+    currentProductPrices = null;
+  }
+
+  async function fetchVerdict(){
+    if (!currentProductName || !currentProductPrices) return;
+
+    getVerdictBtn.disabled = true;
+    verdictBtnText.textContent = 'Analysing with AI…';
+    verdictSpinner.style.display = 'inline-block';
+
+    try {
+      const res = await fetch(`${API_BASE}/api/verdict`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          productName: currentProductName,
+          prices: currentProductPrices.map(p => ({ store_name: p.store_name, price: p.price })),
+          country: 'NZ',
+        }),
+      });
+      if (!res.ok) throw new Error(`Verdict failed (${res.status})`);
+      const v = await res.json();
+      if (v.error) throw new Error(v.error);
+
+      const style = VERDICT_STYLES[v.verdict] || { pill: 'default', label: 'AI Analysis' };
+      const hasRich = Array.isArray(v.pros) && v.pros.length > 0;
+
+      verdictPanel.innerHTML = `
+        <div class="verdict-strip">
+          <span class="verdict-pill ${style.pill}">${escapeHtml(v.emoji || '⚡')} ${escapeHtml((v.verdict || 'verdict').replace(/_/g, ' '))}</span>
+          <span class="verdict-pill-label">${escapeHtml(style.label)}</span>
+          <span class="verdict-ai-tag">⚡ AI</span>
+        </div>
+        <div class="verdict-headline-wrap">
+          <div class="verdict-headline">${escapeHtml(v.headline || '')}</div>
+        </div>
+        <div class="verdict-body">
+          ${v.price_context ? `<div class="verdict-price-ctx">📊 ${escapeHtml(v.price_context)}</div>` : ''}
+          ${hasRich ? `
+            <div class="verdict-pcons">
+              <div>
+                <div class="verdict-col-label pros">✅ Pros</div>
+                ${v.pros.map(p => `<div class="verdict-item"><span class="verdict-item-icon">✅</span><span>${escapeHtml(p)}</span></div>`).join('')}
+              </div>
+              <div>
+                <div class="verdict-col-label cons">❌ Cons</div>
+                ${(v.cons || []).map(c => `<div class="verdict-item"><span class="verdict-item-icon">❌</span><span>${escapeHtml(c)}</span></div>`).join('')}
+              </div>
+            </div>` : ''}
+          ${v.buy_now ? `<div class="verdict-buynow"><b>Buy now or wait?</b> ${escapeHtml(v.buy_now)}</div>` : ''}
+          ${v.timing_tip ? `<div class="verdict-alt">⏰ <b>Timing:</b> ${escapeHtml(v.timing_tip)}</div>` : ''}
+          ${v.alternative ? `<div class="verdict-alt">💡 <b>Alternative:</b> ${escapeHtml(v.alternative)}</div>` : ''}
+          ${v.personal_tip ? `<div class="verdict-alt" style="margin-top:6px">👤 <b>For you:</b> ${escapeHtml(v.personal_tip)}</div>` : ''}
+        </div>`;
+      verdictPanel.style.display = 'block';
+
+      verdictBtnText.textContent = 'Refresh verdict';
+      verdictBtnIcon.textContent = '🔄';
+    } catch (err) {
+      console.error('Twisti verdict error:', err);
+      // Fall back to a best-price statement rather than leaving the button dead
+      const best = [...currentProductPrices].sort((a, b) => a.price - b.price)[0];
+      verdictPanel.innerHTML = `
+        <div class="verdict-headline-wrap" style="border-bottom:none;">
+          <div class="verdict-headline">${best ? `Best price: ${fmtPrice(best.price)} at ${escapeHtml(best.store_name)}` : 'Verdict unavailable right now'}</div>
+        </div>
+        <div class="verdict-body" style="padding-top:0;">
+          <div class="verdict-alt">Lowest verified price found across NZ stores — AI analysis couldn't be reached.</div>
+        </div>`;
+      verdictPanel.style.display = 'block';
+      verdictBtnText.textContent = 'Retry AI Verdict';
+    } finally {
+      getVerdictBtn.disabled = false;
+      verdictSpinner.style.display = 'none';
+    }
+  }
+
+  getVerdictBtn.addEventListener('click', fetchVerdict);
+
   let lastVariantsQuery = null;
   let lastVariantsData = null;
 
@@ -659,6 +846,7 @@
     cardRow.style.display = 'none';
     mockCardRow.style.display = '';
     cardRow.innerHTML = '';
+    hideVerdict();
     lastVariantsQuery = null;
     lastVariantsData = null;
   }
@@ -670,6 +858,7 @@
     mockCardRow.style.display = 'none';
     cardRow.style.display = '';
     backResults.style.display = (forceProduct && lastVariantsData) ? '' : 'none';
+    hideVerdict();
 
     const results = Array.isArray(data.results) ? data.results : [];
 
@@ -707,9 +896,11 @@
       resultsTitle.textContent = product.name || query;
       searchStatus.style.display = 'none';
       cardRow.innerHTML = product.prices.slice(0, 10).map(storeCardHTML).join('');
+      showVerdictButton(product.name || query, product.prices);
       return { mode: 'product', count: product.prices.length };
     }
 
+    hideVerdict();
     resultsTitle.textContent = `Results for "${query}"`;
     searchStatus.style.display = 'block';
     searchStatus.textContent = `No results found for "${query}" yet — try a different search term.`;
@@ -809,7 +1000,7 @@
     document.getElementById('picks').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  // Demo cards (Price drops / Top picks / Clearance) aren't wired to real listings —
+  // Demo cards (Price drops / Clearance) aren't wired to real listings —
   // clicking one runs a real search for that product name instead.
   document.querySelector('.chips').addEventListener('click', (e) => {
     const chip = e.target.closest('[data-query]');
@@ -835,6 +1026,16 @@
 
   const clearanceRowEl = document.getElementById('clearanceRow');
   clearanceRowEl.addEventListener('click', (e) => {
+    const variantCard = e.target.closest('[data-variant-name]');
+    if (variantCard) {
+      e.preventDefault();
+      // Real clearance deals already know their name — drill straight into
+      // the product view (forceProduct=true) rather than treating it as a
+      // fresh ambiguous search.
+      runSearch(variantCard.dataset.variantName, true);
+      document.getElementById('picks').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
     const card = e.target.closest('[data-query]');
     if (!card) return;
     e.preventDefault();
@@ -881,16 +1082,21 @@
 
       clearanceRowEl.innerHTML = deals.slice(0, 12).map(d => {
         const name = (d.name || 'Unknown product').replace(/"/g, '&quot;');
-        const price = fmtPrice(d.price);
-        const url = d.url;
+        const lowest = fmtPrice(d.lowest_price);
+        const save = fmtPrice(d.spread_dollars);
+        const cheapestStore = (d.stores || []).find(s => s.is_best_deal)?.store_name || '';
         const img = d.image_url
           ? `<img src="${d.image_url}" alt="" style="width:100%;height:100%;object-fit:contain;">`
           : `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="2"/></svg>`;
+
+        // Clicking drills into the same multi-store product view as everywhere
+        // else on the site — no separate product page needed, it's the same UI.
         return `
-          <a class="c-card" ${url ? `href="${url}" target="_blank" rel="noopener"` : `href="#" onclick="return false;"`}>
+          <a class="c-card" href="#" data-variant-name="${name}">
             <div class="c-thumb">${img}</div>
             <div class="c-name">${name}</div>
-            ${price ? `<div class="c-price">${price}</div>` : ''}
+            ${lowest ? `<div class="c-price">from ${lowest}</div>` : ''}
+            ${save ? `<div class="c-off" style="color:var(--accent);">Save ${save}${cheapestStore ? ` at ${cheapestStore}` : ''}</div>` : ''}
           </a>`;
       }).join('');
     } catch (err) {

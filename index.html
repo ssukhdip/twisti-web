@@ -994,6 +994,7 @@
   searchForm.addEventListener('submit', (e) => {
     e.preventDefault();
     runSearch(searchInput.value.trim());
+    document.getElementById('picks').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   // Clicking a variant card (no direct link yet) drills into real store prices.
@@ -1027,6 +1028,17 @@
   });
 
   mockCardRow.addEventListener('click', (e) => {
+    const priceDropCard = e.target.closest('[data-pricedrop-index]');
+    if (priceDropCard) {
+      e.preventDefault();
+      const deal = priceDropDeals[parseInt(priceDropCard.dataset.pricedropIndex, 10)];
+      if (!deal) return;
+      renderProductView(deal.name, deal.stores);
+      backResults.style.display = 'none';
+      mascotBubble.textContent = `${deal.stores.length} stores for you! 🎉`;
+      document.getElementById('picks').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
     const card = e.target.closest('[data-query]');
     if (!card) return;
     e.preventDefault();
@@ -1120,8 +1132,53 @@
     }
   }
 
+  // ── Real Price Drops data ────────────────────────────────────────────────
+  let priceDropDeals = [];
+
+  async function loadPriceDrops(){
+    try {
+      const res = await fetch(`${API_BASE}/api/price-drops?country=nz`);
+      if (!res.ok) throw new Error(`Price drops failed (${res.status})`);
+      const data = await res.json();
+      const deals = Array.isArray(data.deals) ? data.deals : [];
+      if (!deals.length) return; // leave mock price-drop cards as-is on empty
+
+      priceDropDeals = deals.slice(0, 10);
+
+      mockCardRow.innerHTML = priceDropDeals.map((d, i) => {
+        const name = (d.name || 'Unknown product').replace(/"/g, '&quot;');
+        const lowest = fmtPrice(d.lowest_price);
+        const was = fmtPrice(d.highest_price);
+        const storeNames = (d.stores || []).map(s => s.store_name).join(' · ');
+        const img = d.image_url
+          ? `<img src="${d.image_url}" alt="" style="width:100%;height:100%;object-fit:contain;">`
+          : thumbIcon;
+
+        // Renders directly from the deal's own already-verified store data —
+        // no re-search on click, so it can't fail from query-phrasing mismatches.
+        return `
+          <a class="p-card" href="#" data-pricedrop-index="${i}">
+            <div class="p-thumb">
+              ${d.spread_percent ? `<span class="drop-tag">▼ ${d.spread_percent}%</span>` : ''}
+              ${img}
+            </div>
+            <div class="p-name">${name}</div>
+            <div class="p-store">${storeNames}</div>
+            <div class="p-price-row">
+              ${lowest ? `<span class="p-price">${lowest}</span>` : ''}
+              ${was ? `<span class="p-was">${was}</span>` : ''}
+            </div>
+          </a>`;
+      }).join('');
+    } catch (err) {
+      console.error('Twisti price drops error:', err);
+      // leave existing mock price-drop cards in place rather than showing a broken empty panel
+    }
+  }
+
   loadTrending();
   loadClearance();
+  loadPriceDrops();
 </script>
 </body>
 </html>

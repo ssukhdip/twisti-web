@@ -43,6 +43,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://twisti.org/iphone-18-rumours.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://twisti.org/privacy.html</loc>
     <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>

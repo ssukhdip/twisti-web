@@ -6,12 +6,20 @@
 const API = 'https://twisti-backend-production.up.railway.app';
 
 const SLUG_MAP = {
-  'airpods-pro-2':  { query: 'Apple AirPods Pro 2',  title: 'Apple AirPods Pro 2' },
-  'sony-wh1000xm5': { query: 'Sony WH-1000XM5',       title: 'Sony WH-1000XM5 Headphones' },
-  'dyson-v15':      { query: 'Dyson V15 vacuum',      title: 'Dyson V15 Vacuum' },
-  'samsung-65-tv':  { query: 'Samsung 65 inch TV',    title: 'Samsung 65" TV' },
-  'macbook-air-m3': { query: 'MacBook Air M3',        title: 'MacBook Air M3' },
-  'iphone-16-pro':  { query: 'iPhone 16 Pro',         title: 'iPhone 16 Pro' },
+  'airpods-pro-2':   { query: 'Apple AirPods Pro 2',   title: 'Apple AirPods Pro 2' },
+  'sony-wh1000xm5':  { query: 'Sony WH-1000XM5',        title: 'Sony WH-1000XM5 Headphones' },
+  'dyson-v15':       { query: 'Dyson V15 vacuum',       title: 'Dyson V15 Vacuum' },
+  'samsung-65-tv':   { query: 'Samsung 65 inch TV',     title: 'Samsung 65" TV' },
+  'macbook-air-m3':  { query: 'MacBook Air M3',         title: 'MacBook Air M3' },
+  'iphone-16-pro':   { query: 'iPhone 16 Pro',          title: 'iPhone 16 Pro' },
+  'ps5-slim':        { query: 'PlayStation 5 Slim',     title: 'PlayStation 5 Slim' },
+  'iphone-15':       { query: 'Apple iPhone 15',        title: 'Apple iPhone 15' },
+  'xbox-series-s':   { query: 'Xbox Series S',          title: 'Xbox Series S' },
+  'ipad-10th-gen':   { query: 'iPad 10th Gen',          title: 'iPad 10th Gen' },
+  'switch-oled':     { query: 'Nintendo Switch OLED',   title: 'Nintendo Switch OLED' },
+  'apple-watch-se':  { query: 'Apple Watch SE',         title: 'Apple Watch SE' },
+  'galaxy-s24':      { query: 'Samsung Galaxy S24',     title: 'Samsung Galaxy S24' },
+  'lg-oled-c4':      { query: 'LG OLED C4',             title: 'LG OLED C4 TV' },
 };
 
 function esc(s) {
@@ -90,8 +98,8 @@ module.exports = async (req, res) => {
     : `${entry.title} — Compare NZ Prices | Twisti`;
 
   const description = cheapestPrice
-    ? `Compare ${entry.title} prices across NZ stores. Cheapest right now: $${Number(cheapestPrice).toFixed(2)} at ${cheapestStore}. Live pricing from JB Hi-Fi, PB Tech, Noel Leeming, Harvey Norman and more.`
-    : `Compare ${entry.title} prices across NZ's biggest stores with Twisti, NZ's AI-powered price comparison site.`;
+    ? `Compare ${entry.title} prices across JB Hi-Fi, Noel Leeming and PB Tech. Cheapest right now: $${Number(cheapestPrice).toFixed(2)} at ${cheapestStore}.`
+    : `Compare ${entry.title} prices across JB Hi-Fi, Noel Leeming and PB Tech with Twisti, NZ's AI-powered price comparison site.`;
 
   const canonical = `https://twisti.org/deals/${slug}`;
 

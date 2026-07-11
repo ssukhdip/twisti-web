@@ -13,6 +13,36 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://twisti.org/contact.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/blog.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/blog-store-comparison.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/blog-best-time-to-buy.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/deals-macbook-air.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://twisti.org/privacy.html</loc>
     <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -29,40 +59,5 @@
     <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
-  </url><url>
-    <loc>https://twisti.org/deals/airpods-pro-2</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://twisti.org/deals/sony-wh1000xm5</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://twisti.org/deals/dyson-v15</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://twisti.org/deals/samsung-65-tv</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://twisti.org/deals/macbook-air-m3</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://twisti.org/deals/iphone-16-pro</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
 </urlset>

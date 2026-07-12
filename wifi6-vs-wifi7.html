@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wi-Fi 6 vs Wi-Fi 7: Is Upgrading Actually Worth It | Twisti</title>
+<meta name="description" content="Wi-Fi 6 vs Wi-Fi 7 compared directly - real speed and latency differences, device support in 2026, NZ router pricing, and whether to upgrade now.">
+<link rel="canonical" href="https://twisti.org/wifi6-vs-wifi7.html">
+<meta property="og:title" content="Wi-Fi 6 vs Wi-Fi 7: Is Upgrading Actually Worth It">
+<meta property="og:description" content="Wi-Fi 6 vs Wi-Fi 7 compared directly - real speed and latency differences, device support in 2026, NZ router pricing, and whether to upgrade now.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/wifi6-vs-wifi7.html">
+<meta property="og:site_name" content="Twisti">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Wi-Fi 6 vs Wi-Fi 7: Is Upgrading Actually Worth It",
+  "description": "Wi-Fi 6 vs Wi-Fi 7 compared directly - real speed and latency differences, device support in 2026, NZ router pricing, and whether to upgrade now.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-07-12",
+  "dateModified": "2026-07-12",
+  "mainEntityOfPage": "https://twisti.org/wifi6-vs-wifi7.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 2, "name": "Wi-Fi 6 vs Wi-Fi 7", "item": "https://twisti.org/wifi6-vs-wifi7.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / Wi-Fi 6 vs Wi-Fi 7</div>
+  <div class="page-eyebrow">COMPARISON</div>
+  <h1>Wi-Fi 6 vs Wi-Fi 7: Is Upgrading Actually Worth It</h1>
+  <p class="lede">Wi-Fi 7 is faster and lower-latency on paper, but almost none of it shows up unless your devices support it too - here's the honest, numbers-first breakdown.</p>
+  <span class="byline">Twisti guides · Updated July 2026</span>
+
+
+  <h2>What actually changed between the two generations</h2>
+  <p>We've already covered what Wi-Fi 7 brings to the table in our <a href="wifi7-guide.html">Wi-Fi 7 explainer</a> - this post is specifically about the jump from Wi-Fi 6/6E to Wi-Fi 7, and whether it's worth paying the premium to upgrade now rather than later. Short version: the improvements are real and measurable, but almost none of them show up unless your phone, laptop or console also supports Wi-Fi 7 - and most devices still don't in mid-2026.</p>
+
+  <div class="compare-card">
+    <h3>Wi-Fi 6 / 6E</h3>
+    <ul>
+      <li>Up to 160MHz channel width, OFDMA for better multi-device efficiency, theoretical max around 9.6Gbps (rarely hit in practice)</li>
+      <li>Real-world throughput on a busy home network: roughly 2-3Gbps on a strong connection</li>
+      <li>Combined wireless + network latency typically 25-35ms under normal load</li>
+      <li>6E added the 6GHz band for less-congested spectrum, but device support for 6GHz is still patchy</li>
+      <li>Mature, cheap, and every current phone/laptop supports at least Wi-Fi 6</li>
+    </ul>
+  </div>
+
+  <div class="compare-card">
+    <h3>Wi-Fi 7</h3>
+    <ul>
+      <li>320MHz channels on 6GHz, higher-order 4K-QAM modulation, theoretical max around 46Gbps (again, a lab number, not a real one)</li>
+      <li>Real-world throughput on multi-gig internet: roughly 4-5Gbps - about 30-50% faster than Wi-Fi 6 in congested, device-heavy homes</li>
+      <li>Multi-Link Operation (MLO): the standout new feature - a device can use multiple bands simultaneously instead of switching between them, which is what actually drives the latency win</li>
+      <li>Latency drops to roughly 15-22ms typically, and 99th-percentile latency spikes shrink from ~45ms down to ~12ms with MLO active - this is the number that matters for gaming and video calls</li>
+      <li>Requires a Wi-Fi 7 router AND a Wi-Fi 7 client device on both ends to get any of the above - a Wi-Fi 7 router talking to a Wi-Fi 6 phone just runs at Wi-Fi 6 speeds</li>
+    </ul>
+  </div>
+
+  <h2>Do the numbers actually matter for you?</h2>
+  <p>If your internet plan is under a gigabit - which covers most NZ fibre plans outside the top-tier UFB options - Wi-Fi 6/6E was never your bottleneck, and Wi-Fi 7 won't change your day-to-day browsing, streaming or video call experience at all. The generational jump is genuinely about two things: households with multi-gig fibre trying to actually use that bandwidth wirelessly, and latency-sensitive use cases like competitive online gaming or wireless VR, where MLO's steadier, lower-spike latency is a real, felt improvement rather than a spec-sheet number.</p>
+
+  <h2>Device support in mid-2026 - the honest state of play</h2>
+  <p>Wi-Fi 7 client support has grown a lot since 2024, but it's still far from universal. Flagship phones from the last two years (recent iPhones, Samsung Galaxy S25/S26-class, Pixel 9/10) mostly support it, and higher-end 2025-2026 laptops are increasingly shipping with Wi-Fi 7 chips. But mid-range and budget phones, most older laptops, smart TVs, streaming boxes, and the vast majority of smart home gear (plugs, cameras, sensors) are still Wi-Fi 5 or 6. A Wi-Fi 7 router in a typical NZ household today is mostly serving Wi-Fi 6/6E speeds to most of its connected devices, with maybe one or two devices actually taking advantage of the new standard.</p>
+
+  <h2>Cost difference in NZ right now</h2>
+  <p>A solid Wi-Fi 6E mesh or router system typically runs $300-600 NZD depending on coverage needs. Wi-Fi 7 routers and mesh systems currently sit at a premium - roughly $500-1,200+ NZD for a comparable setup - though that gap has been narrowing steadily as more Wi-Fi 7 chipsets ship at volume. That premium is the real question: is it worth $200-600 extra today for a feature set most of your devices can't use yet?</p>
+
+  <h2>Should you upgrade now, or wait?</h2>
+  <ul>
+    <li><strong>Upgrade to Wi-Fi 7 now if:</strong> you're on a gigabit+ fibre plan, you own two or more Wi-Fi 7 capable devices already, you live in a large or device-dense household, or you're a serious online gamer who wants the lowest possible latency spikes.</li>
+    <li><strong>Stick with Wi-Fi 6/6E if:</strong> your current router works fine, your internet plan is sub-gigabit, and most of your devices are more than 18 months old. You genuinely won't notice the difference day-to-day.</li>
+    <li><strong>Buy Wi-Fi 7 anyway if:</strong> you're replacing a router that's dying regardless and don't want to do this again in two years - future-proofing is a reasonable argument even without the immediate benefit, as long as the price premium doesn't bother you.</li>
+  </ul>
+
+  <div class="note-card">
+    <strong>Mythbusting:</strong> "Wi-Fi 7 doesn't matter unless you have compatible devices" is mostly true, but not completely - even with all Wi-Fi 6 clients, a Wi-Fi 7 router still tends to ship with a more modern chipset overall (better antennas, newer processing, more simultaneous connections handled cleanly), so you can see mild real-world improvements in device-dense homes even before any client device speaks Wi-Fi 7. Don't expect the headline numbers, but "zero benefit at all" oversells the myth in the other direction.
+  </div>
+
+  <h2>The verdict</h2>
+  <p>For the large majority of NZ households in 2026, <strong>a good Wi-Fi 6E router or mesh system remains the smarter buy</strong> - it costs less, and your actual devices won't be leaving meaningful performance on the table. Wi-Fi 7 is a genuine, measurable step up in throughput and especially latency, but it needs matching client hardware to show it, and that hardware is still a minority of what's in most homes.</p>
+  <p>The exception: if you've already got multi-gig fibre and at least a couple of newer Wi-Fi 7 devices, or gaming latency is something you actively care about and will pay for, go ahead and upgrade now - you'll feel the difference immediately on those devices, and the rest of the house will simply run at Wi-Fi 6E speeds until it catches up.</p>
+  <p>Want the deeper technical breakdown of what Wi-Fi 7 changes under the hood? Our <a href="wifi7-guide.html">Wi-Fi 7 explained guide</a> covers MLO and the wider spec in more depth.</p>
+
+  <div class="cta-box">
+    <h3>Compare live NZ prices before you buy</h3>
+    <p>Search any Wi-Fi 6E or Wi-Fi 7 router or mesh system on Twisti and see JB Hi-Fi, Noel Leeming and PB Tech side by side, plus an AI verdict on whether now's a good time to buy.</p>
+    <a href="index.html" class="cta-btn">Compare prices now →</a>
+  </div>
+
+</article>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

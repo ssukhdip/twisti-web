@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RTX 5070 vs RTX 5080 | Twisti</title>
+<meta name="description" content="RTX 5070 vs RTX 5080 compared on CUDA cores, VRAM, real-world 1440p/4K performance and NZ pricing, with a clear buying verdict for 2026.">
+<link rel="canonical" href="https://twisti.org/rtx-5070-vs-5080.html">
+<meta property="og:title" content="RTX 5070 vs RTX 5080">
+<meta property="og:description" content="RTX 5070 vs RTX 5080 compared on CUDA cores, VRAM, real-world 1440p/4K performance and NZ pricing, with a clear buying verdict for 2026.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/rtx-5070-vs-5080.html">
+<meta property="og:site_name" content="Twisti">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RTX 5070 vs RTX 5080",
+  "description": "RTX 5070 vs RTX 5080 compared on CUDA cores, VRAM, real-world 1440p/4K performance and NZ pricing, with a clear buying verdict for 2026.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-07-12",
+  "dateModified": "2026-07-12",
+  "mainEntityOfPage": "https://twisti.org/rtx-5070-vs-5080.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 2, "name": "RTX 5070 vs RTX 5080", "item": "https://twisti.org/rtx-5070-vs-5080.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / RTX 5070 vs RTX 5080</div>
+  <div class="page-eyebrow">COMPARISON</div>
+  <h1>RTX 5070 vs RTX 5080</h1>
+  <p class="lede">One card is built for 1440p and value, the other for 4K headroom you'll pay handsomely for. Here's the honest gap between them, with real NZ pricing.</p>
+  <span class="byline">Twisti guides · Updated July 2026</span>
+
+
+<h2>The mainstream 1440p card against the true high-end</h2>
+<p>The RTX 5070 and RTX 5080 sit either side of the biggest practical fork in NVIDIA's 50-series stack: one is built for 1440p gaming at a price most people can actually justify, the other is built for 4K and pushes into genuinely premium pricing. On paper the gap looks modest — in practice, and in your wallet, it isn't.</p>
+
+<h2>Specs, side by side</h2>
+<div class="compare-card">
+<h3>RTX 5070</h3>
+<p><strong>6,144 CUDA cores</strong>, <strong>12GB GDDR7</strong> memory, <strong>250W</strong> TDP. Launch MSRP was US$549, though real-world street pricing has run higher — expect to pay roughly <strong>$1,100-$1,250 NZD</strong> at NZ retailers including PB Tech once local pricing, GST and margin are factored in.</p>
+</div>
+<div class="compare-card">
+<h3>RTX 5080</h3>
+<p><strong>10,752 CUDA cores</strong>, <strong>16GB GDDR7</strong> memory, <strong>360W</strong> TDP. Launch MSRP was US$999, with NZ retail typically landing around <strong>$2,500-$2,800 NZD</strong> — PB Tech has listed it from roughly $2,529.</p>
+</div>
+
+<h2>Performance gap</h2>
+<p>The 5080 has 75% more CUDA cores and a third more VRAM, and that shows up as roughly a <strong>20-30% real-world performance lead</strong>, with the gap widening at 4K where the 5070's 12GB of VRAM and narrower memory bus start to become the limiting factor rather than raw shader throughput. At 1440p, the 5070 is comfortably capable of high frame rates in almost every current game at high-to-ultra settings, with DLSS 4's Multi Frame Generation available on both cards to push frame rates higher again in supported titles.</p>
+
+<h2>Price-to-performance</h2>
+<p>This is the part that actually matters for most buyers. At roughly double the price for 20-30% more performance, the RTX 5080 is objectively the worse deal on a pure dollars-per-frame basis. That's normal for a tier jump — the 5070 is, and is meant to be, the significantly better value card. The 5080 earns its price only if you specifically need what the extra VRAM and shader count unlock: consistent 4K gaming, or heavier content-creation/AI workloads where 16GB of VRAM avoids running out of headroom mid-project.</p>
+
+<h2>VRAM — the detail that actually bites</h2>
+<p>12GB is enough for 1440p gaming today and for the next couple of years in most titles, but some recent releases with high-resolution texture packs and ray tracing enabled are already pushing past 10-11GB at 1440p with everything maxed. It won't cripple the 5070, but it does mean dropping a texture setting a notch sooner than a 5080 owner would need to. If you also do any GPU-accelerated creative work — Premiere, DaVinci Resolve, Stable Diffusion/local AI image or video generation — the 5080's extra 4GB buys real headroom, not just a bragging-rights number.</p>
+
+<h2>Power and thermals</h2>
+<p>The 5070's 250W TDP means it runs happily in a wider range of existing PC cases and power supplies (a solid 650-750W PSU is plenty). The 5080's 360W draw wants a beefier PSU (850W+ recommended once you account for a modern CPU alongside it) and a case with genuinely good airflow — not a dealbreaker, but a real line-item cost if your current PC doesn't already meet that spec.</p>
+
+<div class="note-card"><strong>Myth worth killing:</strong> 'You need the 5080 to be futureproof.' For 1440p gaming specifically, the 5070 with DLSS 4 will comfortably handle new releases for years — GPU generations move fast enough that neither card will feel current forever, and overpaying now for 4K headroom you won't use at 1440p doesn't actually buy you more useful years out of the card.</div>
+
+<h2>Verdict</h2>
+<p><strong>Buy the RTX 5070 if:</strong> you're gaming at 1440p (or 1080p at very high frame rates), you want the best price-to-performance in NVIDIA's current lineup, and you don't do VRAM-hungry creative or AI work.</p>
+<p><strong>Buy the RTX 5080 if:</strong> you're gaming at 4K, you want meaningful headroom for the next few years of increasingly VRAM-hungry games, or you do serious content creation/local AI work where 16GB genuinely changes what you can run without hitting a wall.</p>
+<p>Our honest take: for the vast majority of NZ gamers running a 1440p monitor, the RTX 5070 is the smarter buy — it's not close on value. Only step up to the 5080 if you specifically own or plan to own a 4K display, or your workload actually uses the extra VRAM.</p>
+
+<div class="cta-box">
+<h3>Comparing GPU prices before you buy?</h3>
+<p>Twisti tracks live NZ pricing on the RTX 50-series across PB Tech, Noel Leeming and JB Hi-Fi.</p>
+<a href="index.html" class="cta-btn">Compare prices now →</a>
+</div>
+
+</article>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

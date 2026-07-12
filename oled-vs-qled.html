@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OLED vs QLED | Twisti</title>
+<meta name="description" content="OLED and QLED are not the same tech with different price tags - one lights each pixel itself, the other backlights an LCD panel. Here is the honest 2026 breakdown for NZ buyers.">
+<link rel="canonical" href="https://twisti.org/oled-vs-qled.html">
+<meta property="og:title" content="OLED vs QLED">
+<meta property="og:description" content="OLED and QLED are not the same tech with different price tags - one lights each pixel itself, the other backlights an LCD panel. Here is the honest 2026 breakdown for NZ buyers.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/oled-vs-qled.html">
+<meta property="og:site_name" content="Twisti">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OLED vs QLED",
+  "description": "OLED and QLED are not the same tech with different price tags - one lights each pixel itself, the other backlights an LCD panel. Here is the honest 2026 breakdown for NZ buyers.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-07-12",
+  "dateModified": "2026-07-12",
+  "mainEntityOfPage": "https://twisti.org/oled-vs-qled.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 2, "name": "OLED vs QLED", "item": "https://twisti.org/oled-vs-qled.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / OLED vs QLED</div>
+  <div class="page-eyebrow">COMPARISON</div>
+  <h1>OLED vs QLED: Which TV Technology Should You Actually Buy?</h1>
+  <p class="lede">They get lumped together on every TV box in the shop, but OLED and QLED are fundamentally different technologies with different strengths. Here is what actually matters once you get it home.</p>
+  <span class="byline">Twisti guides · Updated July 2026</span>
+
+
+<p>Every TV shelf at Noel Leeming and JB Hi-Fi now has both words plastered across the top corner of the box, and they get thrown around like they mean the same thing. They do not. OLED and QLED are two genuinely different ways of making a picture, and which one suits you comes down to your room, not just your budget. Here is the straight version, no marketing gloss.</p>
+
+<h2>How they actually work</h2>
+
+<div class="compare-card">
+  <h3>OLED: every pixel makes its own light</h3>
+  <p>OLED stands for organic light-emitting diode. Each of the millions of sub-pixels lights itself up and dims itself down independently, with no backlight sitting behind the panel at all. Want true black in one corner of the screen while the rest is blazing white? Just switch those pixels off completely. That is why OLED contrast is often described as infinite - it is not marketing spin, it is just how the tech works. In 2026 the two OLED families you will see are WOLED (LGs white-subpixel approach, also used by Panasonic and Philips) and QD-OLED (Samsung and Sony, which pairs the self-emissive layer with quantum dots for punchier colour).</p>
+</div>
+
+<div class="compare-card">
+  <h3>QLED: an LED backlight with a quantum dot filter</h3>
+  <p>QLED is not a self-emissive technology at all - it is a regular LCD panel with an LED backlight, and a layer of quantum dots sitting in front of it to boost colour volume and brightness. The dots do not produce their own light either; they get excited by the backlight and re-emit sharper, more saturated colour than a plain LED TV. Because the backlight still has to shine through a layer of liquid crystal to create black, QLED can never get pixel-level darkness the way OLED does - it dims in zones instead, and how many zones a set has (from a few dozen to a few thousand) determines how good its blacks look in practice.</p>
+</div>
+
+<div class="note-card">
+  <strong>Myth to kill:</strong> "QLED is just a cheaper OLED." It is not a lesser version of the same thing - it is a completely different panel type (backlit LCD vs self-emissive), and Samsung deliberately chose the name because it sounds like OLED. A high-end QLED and a mid-range OLED can cost about the same in NZ right now; you are choosing a technology, not a tier.
+</div>
+
+<h2>Picture quality, head to head</h2>
+
+<h3>Black levels and contrast</h3>
+<p>This is OLEDs home turf and nothing on the QLED side genuinely matches it. Because each pixel switches off individually, there is no halo or glow around bright objects on a dark background - a star field, the credits on a black screen, a night-time scene in a film all look the way the director intended. The best QLEDs with thousands of local dimming zones get impressively close, but you can still catch a faint bloom around bright objects if you know what to look for.</p>
+
+<h3>Peak brightness</h3>
+<p>This is where QLED still wins outright, and it is not close. A good QLED will push 1,800 to 2,000+ nits of peak brightness, because an LED backlight can simply be driven harder without damaging anything. OLED has been catching up fast - LGs 2026 flagship G6 panel is rated around 4,500 nits in its brightest lab mode and roughly 2,500 nits in accurate picture modes you would actually watch on - but OLED panels still throttle brightness during full-screen bright content to protect the organic layer from heat. In a sun-drenched living room with the curtains open, QLEDs brute-force brightness is genuinely easier to see.</p>
+
+<h3>Colour and viewing angles</h3>
+<p>QD-OLED currently produces the most vivid, accurate colour of any consumer display technology, full stop - it is why so many colour-grading monitors now use the same panel type. WOLED is close behind. QLED colour has improved massively with better quantum dot formulations, but standard LCD panels still lose contrast and colour accuracy when you sit off to the side of the screen, because you are looking through a stack of layers rather than at a self-emitting pixel. OLED holds its picture almost perfectly from a sharp angle, which matters a lot if you regularly have more than two or three people on the couch.</p>
+
+<h2>Gaming</h2>
+<p>OLED has become something of a gaming darling for good reason. Response times are near-instant (a fraction of a millisecond), which means zero motion blur during fast panning or quick camera whips, and every current OLED worth buying supports 120Hz+ refresh, VRR and HDMI 2.1 at 4K. QLED has closed the response-time gap a lot with newer panel driving, but it still is not quite as crisp in fast motion, and the deep blacks in a dark dungeon-crawler or horror game will simply look better on OLED. If gaming is the priority and you play a lot at night, OLED is the easy pick. If you play mostly in a bright room during the day, the brightness of a good QLED still counts for plenty.</p>
+
+<h2>Burn-in: real risk, or overblown?</h2>
+<p>This is the myth that will not die, so lets actually address it. Burn-in is permanent image retention caused by the same static element - a channel logo, a news ticker, a scoreboard - being displayed at high brightness for extremely long, repeated stretches. It is a genuine phenomenon on OLED because the organic material wears unevenly with use. But for 2026 panels running normal, varied content - Netflix, YouTube, sport, gaming, mixed viewing - it is a solved problem for all practical purposes. Every current OLED runs automatic pixel-refresh cycles, logo dimming, and pixel-shifting in the background specifically to prevent it. The people who actually need to think twice are those running one static channel (a stock ticker, a security camera feed, a fixed scoreboard) at high brightness for eight-plus hours a day, every day, for years. A household that watches a mix of streaming, sport and gaming is not in meaningful danger. QLED, being a standard LCD, has zero burn-in risk of any kind - which is a fair advantage if your use case genuinely is static-heavy.</p>
+
+<h2>Price in NZ right now</h2>
+<p>The gap has narrowed a lot since OLEDs early years. A 55-inch mid-range WOLED (think LGs B-series or similar) now starts from around $1,400-$1,600 in New Zealand, putting it within reach of a QLED at the same size and tier. Step up to QD-OLED or LGs higher G-series and you are back into $2,500-plus territory, while a genuinely excellent QLED with strong local dimming - Samsungs QN90-class sets - sits comfortably in the $1,800-$2,800 range depending on size. At the very top end, flagship QLED and Mini LED sets pushing 4,000+ nits still command a premium over mainstream OLED. Broadly: entry and mid-tier OLED is now price-competitive with QLED, but the priciest OLED and priciest QLED sets both sit well above $3,000.</p>
+
+<h2>Which room are you actually putting this in?</h2>
+<ul>
+  <li><strong>Dark or dim home theatre room, curtains usually drawn:</strong> OLED, no contest. This is the exact environment its strengths (perfect black, no blooming, wide viewing angle) are built for, and its one real weakness (limited peak brightness) barely matters.</li>
+  <li><strong>Bright, sunny living room, TV facing a window:</strong> QLED. Its brightness will simply be visible in conditions where even a very good OLED starts to look washed out.</li>
+  <li><strong>Mixed-use family room, some day, some night viewing:</strong> this is the genuinely close call. A high-end QLED with excellent local dimming gets you 90% of OLEDs contrast with better daytime visibility and no burn-in anxiety; a mid-range OLED gets you better night-time picture and gaming for similar money.</li>
+</ul>
+
+<h2>Our verdict</h2>
+<p><strong>Buy OLED if:</strong> you watch primarily at night or in a room you can dim, you care about movies and cinematic picture quality above all else, you game a lot and want the sharpest motion clarity, or more than two people regularly sit off-centre on the couch.</p>
+<p><strong>Buy QLED if:</strong> your room gets serious daylight and you cannot control it, you want the single brightest, punchiest picture possible for sport and daytime viewing, you run static content for long stretches (a news channel, a fixed dashboard), or you just do not want to think about burn-in at all, however small the real-world risk.</p>
+<p>If you are still not sure, ask yourself one question: do you usually watch with the curtains open or closed? Open, most of the day - go QLED. Closed, or you watch mostly in the evening - go OLED. That single habit predicts satisfaction better than any spec sheet.</p>
+
+<div class="cta-box">
+  <h3>Compare live NZ prices before you buy</h3>
+  <p>Search any OLED or QLED model on Twisti and see JB Hi-Fi, Noel Leeming and PB Tech side by side, plus an AI verdict on whether now is a good time to buy.</p>
+  <a href="index.html" class="cta-btn">Compare TV prices now →</a>
+</div>
+
+</article>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

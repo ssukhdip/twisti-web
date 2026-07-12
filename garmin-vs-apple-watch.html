@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garmin vs Apple Watch | Twisti</title>
+<meta name="description" content="Garmin vs Apple Watch compared honestly: battery life, GPS accuracy, health tracking depth and ecosystem lock-in, with a clear verdict for runners vs iPhone owners.">
+<link rel="canonical" href="https://twisti.org/garmin-vs-apple-watch.html">
+<meta property="og:title" content="Garmin vs Apple Watch">
+<meta property="og:description" content="Garmin vs Apple Watch compared honestly: battery life, GPS accuracy, health tracking depth and ecosystem lock-in, with a clear verdict for runners vs iPhone owners.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/garmin-vs-apple-watch.html">
+<meta property="og:site_name" content="Twisti">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Garmin vs Apple Watch",
+  "description": "Garmin vs Apple Watch compared honestly: battery life, GPS accuracy, health tracking depth and ecosystem lock-in, with a clear verdict for runners vs iPhone owners.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-07-12",
+  "dateModified": "2026-07-12",
+  "mainEntityOfPage": "https://twisti.org/garmin-vs-apple-watch.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 2, "name": "Garmin vs Apple Watch", "item": "https://twisti.org/garmin-vs-apple-watch.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / Garmin vs Apple Watch</div>
+  <div class="page-eyebrow">COMPARISON</div>
+  <h1>Garmin vs Apple Watch: which smartwatch actually earns its keep</h1>
+  <p class="lede">One charges weekly and trains you like a coach. The other charges nightly and disappears into your iPhone life. Here's who should actually buy which.</p>
+  <span class="byline">Twisti guides · Updated July 2026</span>
+
+
+<h2>The short version</h2>
+<p>This is the smartwatch comparison where the answer depends almost entirely on what phone is in your pocket and how seriously you train. A mid-range <strong>Garmin Venu 4</strong> runs <strong>$897-$1,099 NZD</strong> depending on size, while the <strong>Apple Watch Series 11</strong> starts around <strong>$749 NZD</strong>. Garmin costs more at this tier and only works properly if you actually use its fitness depth — otherwise you're overpaying for a watch face.</p>
+
+<h2>Battery life: it isn't close</h2>
+<p>Garmin wins this category outright and it isn't subtle. Depending on the model, Garmin watches run anywhere from <strong>11 to 28 days</strong> on a charge in smartwatch mode, versus <strong>18 to 36 hours</strong> for the Apple Watch Series 11 (with the newer low-power mode). That's the difference between charging roughly weekly versus charging every single night. For anyone who's ever forgotten to charge their Apple Watch before a big run, that alone might settle the decision.</p>
+
+<div class="compare-card">
+<h3>GPS accuracy</h3>
+<p>Garmin's mid-range and premium watches use multi-band GPS with SatIQ technology — purpose-built for accurate route tracking in tricky conditions like forest trails or city canyons with tall buildings. In independent half-marathon testing, a Garmin watch logged 13.15 miles against an official 13.1-mile course, while an Apple Watch logged 13.22 miles on the same run — Garmin was marginally closer to the real distance. Apple's Watch Ultra 3 has closed the gap significantly with dual-frequency GPS, but standard Series 11 models still trail Garmin's dedicated sports hardware slightly. For casual walks and everyday tracking, both are close enough that you won't notice.</p>
+</div>
+
+<h2>Health tracking depth and accuracy</h2>
+<p>Apple has pushed hard into clinical-grade features: next-gen optical heart sensors, deeper sleep staging, blood oxygen tracking (region-dependent), and tight integration with the Health app that most iPhone owners already check daily. It's polished, easy to understand, and backed by genuine medical research partnerships.</p>
+<p>Garmin goes deeper on sports-specific metrics: training load, recovery time, running dynamics, VO2 max estimates, and long-term trend data built for people who actually structure their training around numbers. If you're a serious runner, cyclist or triathlete, Garmin's data is more actionable — it tells you when to back off, not just what your heart rate was.</p>
+
+<h2>Ecosystem lock-in: the deciding factor for most people</h2>
+<ul>
+<li><strong>Apple Watch</strong> only pairs with an iPhone — full stop. No iPhone, no Apple Watch. If you're an iPhone owner, the integration (notifications, Messages, Find My, unlocking your Mac) is seamless in a way no other watch can match.</li>
+<li><strong>Garmin</strong> works with both iOS and Android, with near-identical functionality on either. If you're on Android, or you switch phones between platforms, or you simply don't want your watch tied to one ecosystem, Garmin is the only serious option between these two.</li>
+</ul>
+
+<div class="note-card">
+<strong>Mythbusting: Garmin's advertised battery life is a best-case number.</strong> Garmin's up to 28 days ratings are measured in smartwatch mode with GPS, always-on display and most sensors dialled back or off. Turn on always-on display, use GPS for training sessions regularly, and leave notifications flowing, and real-world battery life typically drops by 25-40% from the marketing figure. A Venu 4 rated for 11 days might realistically deliver 7-8 days of normal mixed use — still miles ahead of Apple, but don't expect the number on the box.
+</div>
+
+<h2>The verdict</h2>
+<p>If you're an iPhone owner who wants deep integration with your existing Apple devices, cleaner everyday notifications, and don't mind nightly charging — <strong>get the Apple Watch Series 11</strong>. It's also the cheaper entry point at this comparison's tier.</p>
+<p>If you're a serious runner, cyclist or multi-sport athlete who wants a watch that survives a week of training without a charger, works on any phone, and gives you data you'll actually use to train smarter — <strong>get the Garmin</strong>. Venu 4 for a smartwatch-first experience with strong fitness chops, or step up to a Forerunner or Fenix if running or multisport is genuinely your main focus.</p>
+<p>Don't buy Garmin just for the battery life bragging rights if you're not going to touch the training features — at that point the Apple Watch's software polish and ecosystem integration make more sense for less money.</p>
+
+<div class="cta-box">
+<h3>Compare live prices before you buy</h3>
+<p>Twisti tracks pricing across PB Tech, Noel Leeming, JB Hi-Fi and Harvey Norman so you know exactly who's cheapest today.</p>
+<a href="index.html" class="cta-btn">Compare prices now</a>
+</div>
+
+</article>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

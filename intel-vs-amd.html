@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intel vs AMD | Twisti</title>
+<meta name="description" content="Intel Core Ultra vs AMD Ryzen compared honestly across laptops and desktops for 2026 - performance, power draw, gaming and price, with a clear verdict.">
+<link rel="canonical" href="https://twisti.org/intel-vs-amd.html">
+<meta property="og:title" content="Intel vs AMD">
+<meta property="og:description" content="Intel Core Ultra vs AMD Ryzen compared honestly across laptops and desktops for 2026 - performance, power draw, gaming and price, with a clear verdict.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/intel-vs-amd.html">
+<meta property="og:site_name" content="Twisti">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Intel vs AMD",
+  "description": "Intel Core Ultra vs AMD Ryzen compared honestly across laptops and desktops for 2026 - performance, power draw, gaming and price, with a clear verdict.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-07-12",
+  "dateModified": "2026-07-12",
+  "mainEntityOfPage": "https://twisti.org/intel-vs-amd.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 2, "name": "Intel vs AMD", "item": "https://twisti.org/intel-vs-amd.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / Intel vs AMD</div>
+  <div class="page-eyebrow">COMPARISON</div>
+  <h1>Intel vs AMD</h1>
+  <p class="lede">Panther Lake against Ryzen AI 400 on laptops, X3D against Core Ultra 200S on desktop - here's who actually wins each use case in 2026.</p>
+  <span class="byline">Twisti guides · Updated July 2026</span>
+
+
+<h2>Two very different answers to the same problem, in both laptops and desktops</h2>
+<p>'Intel vs AMD' isn't one comparison anymore, it's at least two: laptop chips (Intel Core Ultra Series 3 'Panther Lake' vs AMD Ryzen AI 400) and desktop chips (Intel Core Ultra 200S vs AMD's Ryzen 9000 series, including the gaming-favourite X3D models). We'll cover both, because the honest answer genuinely differs between them.</p>
+
+<h2>Laptops: Core Ultra Series 3 vs Ryzen AI 400</h2>
+<div class="compare-card">
+<h3>Intel Core Ultra Series 3 ('Panther Lake')</h3>
+<p>Built on Intel's new 18A process node, with Lion Cove P-cores giving it a real single-threaded performance and IPC lead over AMD's current mobile chips. The top Core Ultra X9 388H pairs with a full Arc B390 integrated GPU (up to 12 Xe3 cores, up to 122 combined TOPS for AI workloads) — the strongest integrated graphics Intel has ever shipped, enough for genuinely playable 1080p gaming without a discrete GPU. Independent power-draw testing shows Panther Lake pulling significantly less SoC power than the equivalent Ryzen chip in efficiency-focused workloads.</p>
+</div>
+<div class="compare-card">
+<h3>AMD Ryzen AI 400</h3>
+<p>Zen 5 cores paired with RDNA 3.5 graphics and AMD's XDNA 2 NPU (up to 60 TOPS on its own). AMD's real advantage here is multi-threaded throughput — up to 30% faster in heavily threaded workloads like Cinebench and Blender renders in AMD's own benchmarks — plus a larger 24MB L3 cache and support for far more system memory (up to 256GB vs Intel's 96-128GB ceiling), which matters if you're running local AI models or heavy virtualisation on a laptop.</p>
+</div>
+<p>In short: Intel wins single-core snappiness, integrated graphics, and idle/light-use power efficiency. AMD wins sustained multi-core content-creation throughput and memory ceiling. Neither is a bad choice in 2026 — pick based on whether your workload is bursty single-thread (browsing, everyday apps, light gaming) or sustained multi-thread (exports, renders, compiling).</p>
+
+<h2>Desktops: the gaming and productivity split</h2>
+<p>On desktop, the calculus flips somewhat. AMD's Ryzen 9000 X3D chips (with 3D V-Cache stacked on top of the compute die) remain the clear gaming performance leader — the extra cache dramatically reduces memory-latency stalls in game engines, and it shows up directly in frame rates, particularly at 1080p and 1440p where the CPU is more likely to be the bottleneck rather than the GPU. Intel's Core Ultra 200S desktop chips are competitive in productivity and multi-threaded work and generally cheaper for a given core count, but they don't beat the X3D chips in gaming benchmarks.</p>
+<ul>
+<li><strong>Buy AMD X3D on desktop if:</strong> gaming frame rates are your priority, especially paired with a high-end GPU like an RTX 5080/5090 where you don't want the CPU holding back the card.</li>
+<li><strong>Buy Intel on desktop if:</strong> you're doing mixed productivity and content creation work, want strong single-thread performance for everyday responsiveness, or your motherboard/platform budget favours Intel's current socket pricing.</li>
+</ul>
+
+<h2>Power draw and thermals</h2>
+<p>This is where the two companies' strategies diverge most. Intel has spent this generation chasing efficiency — both Panther Lake on laptops and its desktop refresh run cooler and pull less power than their predecessors for similar performance. AMD's X3D desktop chips run hot under sustained all-core load (the extra cache generates real heat) and need a genuinely good cooler to hold boost clocks; its mobile Ryzen AI chips are efficient but still trail Intel's absolute best idle/light-load numbers.</p>
+
+<h2>Price and platform cost</h2>
+<p>AMD's AM5 desktop platform has been around long enough that motherboards are cheap and plentiful across every price tier. Intel's current desktop socket is newer and its motherboards, particularly higher-end boards, tend to cost more for equivalent features. On laptops, pricing is driven far more by the laptop maker's overall configuration than the chip brand — you'll find both Intel and AMD options at nearly every price point.</p>
+
+<div class="note-card"><strong>Myth worth killing:</strong> 'AMD is always the value pick, Intel is always for gamers.' It's now backwards from where it was five years ago in some cases — AMD's X3D chips are the premium gaming choice on desktop and often cost more than Intel's equivalent-tier chip, while Intel's Panther Lake laptop chips are winning on efficiency, a category AMD used to dominate. Check current generation specs, don't assume last decade's reputation still holds.</div>
+
+<h2>Verdict</h2>
+<p><strong>Buy Intel if:</strong> you want a laptop with the best integrated graphics and light-use battery efficiency, or a desktop CPU for mixed productivity work where single-thread responsiveness and per-dollar core count matter more than peak gaming frame rates.</p>
+<p><strong>Buy AMD if:</strong> you're building or buying a gaming desktop and want the highest frame rates available (X3D chips, full stop), or you need a laptop chip that chews through sustained multi-threaded content creation work and want the largest memory ceiling for local AI or virtualisation.</p>
+<p>Our honest take: for a gaming desktop in 2026, AMD's X3D lineup is still the correct default answer. For a laptop, it's genuinely close and workload-dependent — Intel edges efficiency and graphics, AMD edges sustained throughput. Don't buy on brand loyalty; check the specific chip's benchmarks for your actual use case.</p>
+
+<div class="cta-box">
+<h3>Comparing CPU and PC prices?</h3>
+<p>Twisti tracks live NZ pricing across PB Tech, Noel Leeming and JB Hi-Fi so you can see what a given chip actually costs today, not last year's number.</p>
+<a href="index.html" class="cta-btn">Compare prices now →</a>
+</div>
+
+</article>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

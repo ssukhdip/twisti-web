@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fake Discounts Explained | Twisti</title>
+<meta name="description" content="The actual tactics behind was-price inflation, drip pricing and fake urgency - and the tells that give a fake discount away.">
+<link rel="canonical" href="https://twisti.org/fake-discounts-explained.html">
+<meta property="og:title" content="Fake Discounts Explained">
+<meta property="og:description" content="The actual tactics behind was-price inflation, drip pricing and fake urgency - and the tells that give a fake discount away.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/fake-discounts-explained.html">
+<meta property="og:site_name" content="Twisti">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Fake Discounts Explained",
+  "description": "The actual tactics behind was-price inflation, drip pricing and fake urgency - and the tells that give a fake discount away.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-07-12",
+  "dateModified": "2026-07-12",
+  "mainEntityOfPage": "https://twisti.org/fake-discounts-explained.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 2, "name": "Fake discounts explained", "item": "https://twisti.org/fake-discounts-explained.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / Fake discounts explained</div>
+  <div class="page-eyebrow">MONEY-SAVING GUIDE</div>
+  <h1>Fake Discounts Explained</h1>
+  <p class="lede">A 30% off sticker means nothing if the was price was invented three weeks ago. Here is exactly how the tactic works and how to catch it in the wild.</p>
+  <span class="byline">Twisti guides · Updated July 2026</span>
+
+
+  <h2>The core trick: inflate, then discount</h2>
+  <p>The mechanics are almost always the same. A retailer sells an item at $899 for most of the year. A few weeks before a sale event, the listed price quietly jumps to $1099. The sale banner then applies 20% off that inflated number, landing back around $879 - a price barely different from where it started, dressed up as a bargain.</p>
+  <p>This works because most shoppers anchor on the percentage, not the actual dollar figure. Seeing 20% off feels like a win regardless of what the original number actually was, and almost nobody has the previous price memorised to check.</p>
+
+  <h2>The tactics to know</h2>
+  <ul>
+    <li><strong>Was-price inflation:</strong> quietly raising the reference price shortly before a sale so the discount looks bigger than it is.</li>
+    <li><strong>Permanent sale mode:</strong> a product that is always "on sale" against a was price nobody ever actually paid - so there is no real reference point at all.</li>
+    <li><strong>Drip pricing:</strong> advertising a low headline price, then adding delivery, service fees, or a compulsory add-on only at checkout, after you have mentally committed to the purchase.</li>
+    <li><strong>Fake urgency:</strong> countdown timers, "only 2 left" banners, and "ends tonight" sales that reappear the following week with the same stock levels.</li>
+    <li><strong>Bundling to mask price:</strong> chucking in a "free" accessory worth an inflated RRP to make the headline deal look bigger than the actual cash saving.</li>
+  </ul>
+
+  <div class="compare-card">
+    <h3>Real discount vs fake discount, side by side</h3>
+    <p><strong>Real discount:</strong> price has genuinely sat around $899 for months, then drops to $749 for a clearance or stock reason you can identify (new model incoming, end of range, genuine overstock).</p>
+    <p><strong>Fake discount:</strong> price sat at $899 for months, jumped to $1099 two weeks before the sale, then "discounted" to $879 - barely below where it always was, just wearing a bigger percentage.</p>
+  </div>
+
+  <h2>New Zealand law is catching up</h2>
+  <p>The Fair Trading Act already bans misleading pricing, and Commerce Commission enforcement has been getting louder. In 2025 the government moved to sharply increase penalties for misleading and deceptive conduct - lifting the maximum from $200,000 for an individual and $600,000 for a company to the greater of $1 million, three times the commercial gain, or the value of the transactions involved. The Fair Trading Amendment Bill introduced in 2026 is aimed squarely at unfair conduct including this kind of pricing theatre. None of that stops it happening in real time on the page in front of you, though - the law punishes it after the fact, it does not warn you before you click buy.</p>
+
+  <h2>How to actually check a was price</h2>
+  <p>The only reliable way to know if a discount is real is to see the price history yourself, rather than trust the retailer's own banner. If a "was" price only existed for three days right before the sale started, that is not a discount, that is a set-up. This is exactly the gap that price-history tracking is built to close - Twisti's <a href="price-tracking.html">price tracking guide</a> walks through how to see months of real price movement for an item before you decide the current number is actually good.</p>
+  <ul>
+    <li>Check the price 60-90 days back, not just the last week.</li>
+    <li>Look for a price that spikes right before the "sale" starts - that spike is the tell.</li>
+    <li>Compare the current "discounted" price across two or three retailers, not just the one running the promotion.</li>
+    <li>Add up the total at checkout before getting excited about the headline number - drip-priced fees can eat most of the saving.</li>
+  </ul>
+
+  <div class="note-card">
+    <strong>Common trap:</strong> a genuinely good deal and a fake discount can display the exact same badge, same percentage, same colour banner. The badge tells you nothing - it is marketing copy, not a fact. Only the actual price history tells you whether you are getting a deal or just a story.
+  </div>
+
+  <h2>What to actually do</h2>
+  <p>Before buying anything marked down, spend thirty seconds checking where the price has actually been over the last couple of months. If it has genuinely fallen, buy with confidence. If the was price only appeared right before the sale, treat the discount as noise and judge the actual dollar figure on its own merits instead.</p>
+
+  <div class="cta-box">
+    <h3>See the real price history before you buy</h3>
+    <p>Twisti tracks price movement across NZ retailers so you can tell a genuine drop from an inflated was price at a glance.</p>
+    <a href="index.html" class="cta-btn">Compare prices now →</a>
+  </div>
+
+</article>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

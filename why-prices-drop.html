@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Prices Suddenly Drop | Twisti</title>
+<meta name="description" content="The legitimate reasons electronics prices genuinely fall - component costs, model refresh cycles, clearance and overstock explained.">
+<link rel="canonical" href="https://twisti.org/why-prices-drop.html">
+<meta property="og:title" content="Why Prices Suddenly Drop">
+<meta property="og:description" content="The legitimate reasons electronics prices genuinely fall - component costs, model refresh cycles, clearance and overstock explained.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/why-prices-drop.html">
+<meta property="og:site_name" content="Twisti">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Prices Suddenly Drop",
+  "description": "The legitimate reasons electronics prices genuinely fall - component costs, model refresh cycles, clearance and overstock explained.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-07-12",
+  "dateModified": "2026-07-12",
+  "mainEntityOfPage": "https://twisti.org/why-prices-drop.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 2, "name": "Why prices suddenly drop", "item": "https://twisti.org/why-prices-drop.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / Why prices suddenly drop</div>
+  <div class="page-eyebrow">MONEY-SAVING GUIDE</div>
+  <h1>Why Prices Suddenly Drop</h1>
+  <p class="lede">Not every price drop is a trick. Plenty are completely genuine - here is what actually drives real, sustained falls in electronics pricing.</p>
+  <span class="byline">Twisti guides · Updated July 2026</span>
+
+
+  <h2>This is not about fake discounts</h2>
+  <p>There is a separate, murkier story about retailers inflating a was price to fake a discount - if that is what you are after, our <a href="fake-discounts-explained.html">fake discounts guide</a> covers the tactics and how to spot them. This post is the opposite angle: the real, structural reasons a product's price can genuinely fall over time, no marketing trick involved.</p>
+
+  <h2>Component costs fall over time</h2>
+  <p>Almost everything electronic is built from components - display panels, memory chips, processors, batteries - that get cheaper to manufacture as production scales up and yields improve. A TV panel that cost a manufacturer $250 to produce eighteen months ago might cost $180 today simply because the factory has gotten better at making it. That saving eventually flows through to shelf price, especially once a few competitors are manufacturing the same panel size.</p>
+
+  <h2>Model refresh cycles</h2>
+  <p>Most categories run on a predictable annual or biennial cycle. When a manufacturer is about to release a new model, the outgoing one has to make room - both on the shelf and in the warehouse. Retailers know the new model is coming and start discounting the old one weeks or months ahead of the announcement, because they would rather sell it at a reduced margin than have it sitting in a warehouse once the replacement lands. This is genuinely predictable: TVs, laptops, and phones all have well-documented cycles, covered in more depth in our category-specific guides on the <a href="best-months-to-buy-tvs.html">best months to buy TVs</a>, <a href="best-months-to-buy-laptops.html">best months to buy laptops</a>, and <a href="best-months-to-buy-iphones.html">best months to buy iPhones</a>.</p>
+
+  <h2>Genuine clearance and overstock</h2>
+  <ul>
+    <li><strong>Discontinued lines:</strong> a retailer stops carrying a model or brand and needs to clear remaining stock before it stops being worth shelf space.</li>
+    <li><strong>Overstock from a bad forecast:</strong> a retailer or distributor ordered more than actually sold, and needs cash flow back rather than warehouse space tied up in unsold units.</li>
+    <li><strong>Warehouse and floor-stock clearances:</strong> ex-display units, returns, and open-box stock get discounted because they cannot be sold as brand new, even if functionally identical.</li>
+    <li><strong>End of financial year:</strong> NZ's financial year ends 31 March, and some retailers run genuine March clearance sales to move stock off the books before balance date.</li>
+  </ul>
+
+  <div class="compare-card">
+    <h3>Genuine drop vs seasonal calendar sale</h3>
+    <p>Our general <a href="blog-best-time-to-buy.html">seasonal sale calendar</a> covers when the big calendar events land - Black Friday, Boxing Day, back-to-school. This page is about the underlying reasons prices move at all, independent of any calendar date - a genuine component cost fall or model refresh can happen in the middle of March with zero sale event attached to it.</p>
+  </div>
+
+  <h2>Competitive pressure</h2>
+  <p>When two or three NZ retailers stock the same product, and one drops price to win a sale, the others usually follow within days to stay competitive on comparison sites. This price-matching behaviour is one of the most reliable, fastest-moving reasons a price falls - and it has nothing to do with sale calendars at all, it is just retailers reacting to each other in real time.</p>
+
+  <div class="note-card">
+    <strong>Common misconception:</strong> a lot of shoppers assume any price drop must mean something is wrong with the product, or that it is about to be discontinued and unsupported. In reality most drops are just cost structure catching up, competitive matching, or a scheduled refresh - completely unrelated to product quality.
+  </div>
+
+  <h2>What to actually do</h2>
+  <p>If you see a genuine, sustained price drop rather than a sale-event spike, it is usually safe to buy - especially if it lines up with a known refresh cycle or a component cost story you can independently verify. Use price-history tracking to confirm the drop is real and holding, not a one-day blip, before pulling the trigger.</p>
+
+  <div class="cta-box">
+    <h3>Track real price movement, not marketing banners</h3>
+    <p>Twisti shows genuine price history across NZ retailers so you can tell a real drop from a sale-event gimmick.</p>
+    <a href="index.html" class="cta-btn">Compare prices now →</a>
+  </div>
+
+</article>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

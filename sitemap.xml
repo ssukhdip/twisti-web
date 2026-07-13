@@ -612,6 +612,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+    <url>
+          <loc>https://twisti.org/refurbished-vs-new-electronics.html</loc>
+          <lastmod>2026-07-14</lastmod>
+          <changefreq>monthly</changefreq>
+          <priority>0.7</priority>
+    </url>
   <url>
     <loc>https://twisti.org/best-months-to-buy-tvs.html</loc>
     <lastmod>2026-07-12</lastmod>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Doorbells Explained | Twisti</title>
+<meta name="description" content="How video doorbells work, subscription models explained, and why doorbell wiring in older NZ homes is the detail most people overlook.">
+<link rel="canonical" href="https://twisti.org/smart-doorbells-guide.html">
+<meta property="og:title" content="Smart Doorbells Explained">
+<meta property="og:description" content="How video doorbells work, subscription models explained, and why doorbell wiring in older NZ homes is the detail most people overlook.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/smart-doorbells-guide.html">
+<meta property="og:site_name" content="Twisti">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Smart Doorbells Explained",
+  "description": "How video doorbells work, subscription models explained, and why doorbell wiring in older NZ homes is the detail most people overlook.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-07-12",
+  "dateModified": "2026-07-12",
+  "mainEntityOfPage": "https://twisti.org/smart-doorbells-guide.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 2, "name": "Smart doorbells explained", "item": "https://twisti.org/smart-doorbells-guide.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / Smart doorbells explained</div>
+  <div class="page-eyebrow">GUIDE</div>
+  <h1>Smart Doorbells Explained</h1>
+  <p class="lede">A video doorbell is one of the easiest smart home upgrades to justify — but the install path in a New Zealand home depends heavily on something most buyers never check: whether your existing doorbell wiring can actually power one.</p>
+  <span class="byline">Twisti guides · Updated July 2026</span>
+
+
+  <h2>What a smart doorbell does</h2>
+  <p>A smart video doorbell replaces (or sits alongside) your existing doorbell button with a camera, microphone, speaker and motion sensor. When someone approaches or presses it, you get a live video call to your phone wherever you are, plus a recorded clip. It's essentially a dedicated smart camera pointed permanently at your front door, with two-way talk built in so you can tell a courier where to leave a parcel without opening the door.</p>
+
+  <h2>Wired vs battery — the real NZ consideration</h2>
+  <p>This is where doorbells diverge sharply from most other smart home gear, because power is genuinely the deciding factor rather than a preference.</p>
+  <ul>
+    <li><strong>Wired doorbells:</strong> connect to your existing low-voltage doorbell wiring and transformer, giving constant power, no charging, and instant response. The catch: many NZ homes — especially older villas and bungalows — either don't have doorbell wiring at all, or have an old transformer (often rated for a simple mechanical chime) that can't supply enough current for a modern doorbell's Wi-Fi radio, camera and processor. Underpowered transformers are a common cause of a wired video doorbell working intermittently or rebooting randomly.</li>
+    <li><strong>Battery doorbells:</strong> self-contained, install in minutes with just a screwdriver, and work in any home regardless of existing wiring. The tradeoff is periodic recharging (typically every one to three months depending on activity and weather), and if the battery dies you temporarily lose doorbell function unless you swap in a spare.</li>
+    <li><strong>Hybrid:</strong> several battery doorbells can also be hardwired to existing low-voltage wiring for a trickle charge, effectively giving near-constant power without needing a full rewire — a good middle ground if you already have some doorbell wiring but aren't sure of its capacity.</li>
+  </ul>
+  <p>If you're not sure what you've got, an electrician can quickly confirm your transformer's voltage and current rating — worth doing before committing to a wired model, since NZ wiring work at the transformer end should be done by a licensed electrician anyway.</p>
+
+  <div class="note-card">
+    <strong>Common gotcha:</strong> a lot of older Kiwi homes simply have no doorbell wiring run to the front door at all — just a bell push wired straight to a chime, or nothing beyond a knocker. Don't assume "wired" is an option until you've actually checked; battery models exist specifically to sidestep this, and are the default sensible choice for many NZ properties.
+  </div>
+
+  <h2>Subscriptions: what you get free vs what costs</h2>
+  <p>Nearly every video doorbell brand gates recorded clip history and cloud storage behind a monthly subscription (roughly NZ$5-15/month, sometimes bundled with other cameras on the same account). Without a subscription, most doorbells still give you live view and real-time alerts for free — you just can't scroll back through a history of past events, which matters if you want to review something after the fact (a missed delivery, a dispute at the door). Some brands offer local storage options (microSD or a home base station) as a subscription-free alternative, trading convenience for a bit more setup.</p>
+
+  <h2>Video quality, field of view and false alerts</h2>
+  <p>Most smart doorbells now shoot in 1080p to 2K, with a wider vertical field of view than a standard camera so you can see packages left at your feet, not just faces. AI person detection has become standard, cutting down on false alerts from passing cars or the postie's shadow — though placement still matters: a doorbell facing a busy footpath will always generate more alerts than one facing a quiet driveway, subscription or not.</p>
+
+  <h2>Do you actually need one?</h2>
+  <p>If you regularly miss deliveries, want to screen visitors before opening the door, or simply want visibility on your front entry without running a full camera system, a doorbell is a low-effort, high-value upgrade. If your front door already has good visibility from inside (a window, a peephole you actually use) and you're not fussed about remote alerts, it's a nice-to-have rather than essential. It's also worth checking whether a wider camera at the front of the property might cover more ground than a doorbell alone — see our <a href="smart-cameras-guide.html">smart cameras explainer</a> for that comparison.</p>
+
+  <div class="compare-card">
+    <h3>Before you buy, check</h3>
+    <ul>
+      <li>Whether you have existing doorbell wiring, and if so, get the transformer's rating checked.</li>
+      <li>Whether the subscription-free tier gives you enough (live view only, or clip history too).</li>
+      <li>Field of view — wider angles see more of your porch and any packages.</li>
+      <li>For named-model picks, see our <a href="ring-vs-eufy.html">Ring vs Eufy comparison</a>, which covers doorbell models from both brands.</li>
+    </ul>
+  </div>
+
+  <div class="cta-box">
+    <h3>Ready to compare actual doorbells?</h3>
+    <p>Compare live NZ prices on Twisti across JB Hi-Fi, Noel Leeming and PB Tech, plus an AI verdict on whether now's a good time to buy.</p>
+    <a href="index.html" class="cta-btn">Compare prices now →</a>
+  </div>
+
+</article>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

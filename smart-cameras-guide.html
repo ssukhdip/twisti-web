@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Cameras Explained | Twisti</title>
+<meta name="description" content="How smart security cameras actually work, cloud vs local storage, AI detection, and what to check before buying one for a NZ home.">
+<link rel="canonical" href="https://twisti.org/smart-cameras-guide.html">
+<meta property="og:title" content="Smart Cameras Explained">
+<meta property="og:description" content="How smart security cameras actually work, cloud vs local storage, AI detection, and what to check before buying one for a NZ home.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/smart-cameras-guide.html">
+<meta property="og:site_name" content="Twisti">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Smart Cameras Explained",
+  "description": "How smart security cameras actually work, cloud vs local storage, AI detection, and what to check before buying one for a NZ home.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-07-12",
+  "dateModified": "2026-07-12",
+  "mainEntityOfPage": "https://twisti.org/smart-cameras-guide.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 2, "name": "Smart cameras explained", "item": "https://twisti.org/smart-cameras-guide.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / Smart cameras explained</div>
+  <div class="page-eyebrow">GUIDE</div>
+  <h1>Smart Cameras Explained</h1>
+  <p class="lede">Before you pick a specific model, it helps to understand what a smart camera is actually doing behind the scenes — because that's what decides your ongoing costs and your privacy exposure, not the spec sheet.</p>
+  <span class="byline">Twisti guides · Updated July 2026</span>
+
+
+  <h2>What makes a camera smart</h2>
+  <p>A smart camera is a Wi-Fi (or occasionally wired ethernet) camera that streams footage to an app, and increasingly, runs some form of on-device or cloud-based AI to work out what it's actually looking at. That's the real shift from old-school CCTV: instead of just recording everything and hoping you never need to scrub through twelve hours of footage, a smart camera tries to tell you a person walked up your driveway, a package was left, or a car pulled in — and only bother you for the events that matter.</p>
+  <p>Under the hood there are two jobs happening: capturing and storing the video, and analysing it. Some cameras do both locally, some ship raw footage to the cloud and do the thinking there, and most sit somewhere in between.</p>
+
+  <h2>Cloud storage vs local storage</h2>
+  <p>This is the single biggest thing that determines your ongoing cost and how much you trust the setup.</p>
+  <ul>
+    <li><strong>Cloud storage:</strong> footage uploads to the manufacturer's servers, usually behind a monthly subscription (think NZ$5-15/month per camera, sometimes with a whole-home plan). You get remote clip access from anywhere, easy sharing, and footage survives if the camera or SD card is stolen. Downsides: recurring cost forever, and your footage lives on someone else's servers.</li>
+    <li><strong>Local storage:</strong> footage saves to a microSD card in the camera, a base station's built-in storage, or a NAS on your network. No subscription required for basic recording. Downsides: if someone steals the camera, your evidence usually goes with it (unless it's uploaded to a base station indoors), and remote viewing of stored clips can be clunkier.</li>
+    <li><strong>Hybrid:</strong> increasingly common — local recording plus optional cloud backup, or a base station (like Eufy's) that stores locally but still gives you remote live view over the internet.</li>
+  </ul>
+  <p>If ongoing cost matters to you, local-storage-first brands are worth prioritising. If you want zero-fuss remote access and don't mind the subscription, cloud-first brands like Ring lean into that model.</p>
+
+  <h2>How the AI detection actually works</h2>
+  <p>Motion detection alone is the old way, and it's annoying — a moving tree branch or a passing car triggers the same alert as a person at your door. Modern smart cameras add a layer of object recognition on top:</p>
+  <ul>
+    <li><strong>Person detection:</strong> distinguishes a human shape from other movement, cutting down false alerts significantly.</li>
+    <li><strong>Package detection:</strong> flags something being placed and left, useful for delivery tracking.</li>
+    <li><strong>Vehicle and animal detection:</strong> lets you filter alerts so the cat walking past the lens doesn't wake you up.</li>
+    <li><strong>Facial recognition / familiar faces:</strong> higher-end models can learn to recognise regular visitors or household members, though this is usually a paid-tier feature and raises its own privacy questions.</li>
+  </ul>
+  <p>Some of this runs on-device (better for privacy and works without internet), some is processed in the cloud (needs a live connection, and the footage frame gets sent off to do it). Check which approach a camera uses if that distinction matters to you.</p>
+
+  <h2>Night vision and power</h2>
+  <p>Most smart cameras switch to infrared black-and-white night vision in the dark, which works well for detecting movement but won't show colour or fine detail. Higher-end models add a spotlight or use larger sensors for colour night vision, which is genuinely useful for identifying faces or vehicle colour in outdoor use, at the cost of being more visible (the light itself) and drawing more power.</p>
+  <p>Power is a real decision point for NZ homes: wired cameras (mains or PoE) give constant power and reliable uptime but need an electrician or existing wiring; battery cameras install anywhere in minutes but need recharging every one to six months depending on usage, and cold Kiwi winters do reduce battery life somewhat versus manufacturer estimates.</p>
+
+  <div class="note-card">
+    <strong>Common gotcha:</strong> a camera's advertised resolution or AI features often depend on an active subscription — some brands cap free-tier storage to a few hours of clips, or only enable person/package detection on a paid plan. Always check what the camera does with zero subscription before assuming that's what you're buying.
+  </div>
+
+  <h2>Privacy considerations for NZ homes</h2>
+  <p>Under NZ's Privacy Act, footage of identifiable people is personal information, and how you use it matters. A few practical points: avoid pointing cameras into a neighbour's yard or windows (this is a common and genuine dispute trigger), be upfront with regular visitors or flatmates that cameras are recording, and check where footage is actually stored and processed — some cloud providers keep data on overseas servers, which is worth knowing if that concerns you.</p>
+
+  <h2>Do you actually need one?</h2>
+  <p>If you've had package theft, live somewhere with driveway or entry blind spots, or just want peace of mind when you're away, a camera earns its keep. If your main concern is a single front door, a smart doorbell (see our <a href="smart-doorbells-guide.html">smart doorbells explainer</a>) might cover it without a separate camera. And if you're weighing broader home security upgrades, our <a href="smart-home-security.html">smart home security roundup</a> covers where cameras fit into the bigger picture.</p>
+
+  <div class="compare-card">
+    <h3>Quick decision guide</h3>
+    <ul>
+      <li><strong>Want zero subscription:</strong> look for local storage with a microSD slot or a base-station system.</li>
+      <li><strong>Want remote clip sharing and cloud backup:</strong> a subscription-based cloud model is more convenient.</li>
+      <li><strong>No power wiring outside:</strong> go battery, and budget for a recharge routine.</li>
+      <li><strong>Ready to pick an actual model:</strong> read our <a href="best-security-camera-nz.html">best security cameras in NZ</a> guide, or see how the two biggest names stack up in <a href="ring-vs-eufy.html">Ring vs Eufy</a>.</li>
+    </ul>
+  </div>
+
+  <div class="cta-box">
+    <h3>Ready to compare actual cameras?</h3>
+    <p>Compare live NZ prices across JB Hi-Fi, Noel Leeming and PB Tech, plus an AI verdict on whether now's a good time to buy.</p>
+    <a href="index.html" class="cta-btn">Compare prices now →</a>
+  </div>
+
+</article>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

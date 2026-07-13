@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Sensors Explained | Twisti</title>
+<meta name="description" content="What motion, door/window, water leak and temperature sensors actually do, Zigbee vs Wi-Fi battery tradeoffs, and the insurance angle worth knowing.">
+<link rel="canonical" href="https://twisti.org/smart-sensors-guide.html">
+<meta property="og:title" content="Smart Sensors Explained">
+<meta property="og:description" content="What motion, door/window, water leak and temperature sensors actually do, Zigbee vs Wi-Fi battery tradeoffs, and the insurance angle worth knowing.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/smart-sensors-guide.html">
+<meta property="og:site_name" content="Twisti">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Smart Sensors Explained",
+  "description": "What motion, door/window, water leak and temperature sensors actually do, Zigbee vs Wi-Fi battery tradeoffs, and the insurance angle worth knowing.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-07-12",
+  "dateModified": "2026-07-12",
+  "mainEntityOfPage": "https://twisti.org/smart-sensors-guide.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 2, "name": "Smart sensors explained", "item": "https://twisti.org/smart-sensors-guide.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / Smart sensors explained</div>
+  <div class="page-eyebrow">GUIDE</div>
+  <h1>Smart Sensors Explained</h1>
+  <p class="lede">Sensors are the quiet workhorses of a smart home — cheap, unglamorous, and often the thing that actually makes automations and security useful, rather than the bulbs and cameras that get all the attention.</p>
+  <span class="byline">Twisti guides · Updated July 2026</span>
+
+
+  <h2>The four sensors that matter most</h2>
+  <ul>
+    <li><strong>Motion sensors:</strong> detect movement in a room or area using passive infrared (PIR), the same tech in old-school alarm systems. Used to trigger lights automatically, feed security automations, or alert you to movement in a room while you're away.</li>
+    <li><strong>Door/window sensors:</strong> a small two-part magnetic switch — one part on the door or window, one on the frame — that reports open or closed. The backbone of DIY smart security and also handy for non-security automations, like turning off the heat pump when a door's left open.</li>
+    <li><strong>Water leak sensors:</strong> small pucks placed on the floor near a hot water cylinder, washing machine, dishwasher or under a sink, that detect moisture and send an immediate alert — often before a slow leak becomes an expensive one.</li>
+    <li><strong>Temperature (and humidity) sensors:</strong> monitor a room's conditions, useful for automating heating/cooling, tracking whether a hot water cylinder cupboard is getting damp, or just keeping an eye on a nursery or a wine fridge.</li>
+  </ul>
+
+  <h2>What sensors actually enable</h2>
+  <p>On their own, a sensor just reports a state — motion detected, door open, water present, 18 degrees. The value comes from what you connect it to: an automation ("turn on the hallway light when motion is detected after dark"), a security alert ("notify me if the back door opens after 11pm"), or a genuinely protective trigger ("alert me immediately if moisture is detected near the hot water cylinder"). Sensors are the input layer of a smart home — cameras and voice assistants get the attention, but sensors are often doing more of the actual automation work behind the scenes.</p>
+
+  <h2>The insurance angle</h2>
+  <p>Water damage is one of the most common and expensive home insurance claims in New Zealand, and a leak caught early by a $30-50 sensor can be the difference between a quick mop-up and a burst-pipe claim running into tens of thousands of dollars for flooring, walls and possibly mould remediation. While most NZ insurers don't currently offer direct premium discounts for leak sensors the way some overseas insurers do, preventing the damage in the first place is the real financial upside — placing sensors near cylinders, dishwashers, washing machines and under sinks is one of the cheapest, highest-value smart home purchases you can make, sensor-hype aside.</p>
+
+  <h2>Zigbee vs Wi-Fi for sensors — battery life is the whole story</h2>
+  <p>This is where the underlying wireless protocol matters more for sensors than for almost any other device category, because sensors are almost always battery-powered and you want to touch them as rarely as possible.</p>
+  <ul>
+    <li><strong>Zigbee sensors:</strong> typically last 1-2+ years on a small coin-cell battery, because Zigbee radios sip power and only transmit briefly when a state actually changes. Require a Zigbee hub (see our <a href="zigbee-explained.html">Zigbee explainer</a>), but that hub usually also runs your bulbs and plugs, so it's rarely a sensor-specific cost.</li>
+    <li><strong>Wi-Fi sensors:</strong> no hub needed, simpler initial setup, but the Wi-Fi radio's constant higher power draw means noticeably shorter battery life — often a matter of months rather than years — and more frequent battery swaps become a genuine chore once you have a dozen sensors around the house.</li>
+  </ul>
+  <p>For a one-off single sensor, Wi-Fi's no-hub simplicity might win. For a house with six, eight, ten sensors covering doors, windows and leak points, Zigbee's battery life advantage compounds quickly — swapping batteries in ten Wi-Fi sensors every few months gets old fast.</p>
+
+  <div class="note-card">
+    <strong>Common gotcha:</strong> people buy a single Wi-Fi motion sensor because it's the easy no-hub option, then later add Zigbee sensors for a bigger rollout and end up needing a hub anyway — at which point it would have made more sense to standardise on Zigbee from the start. If you think you'll eventually want more than two or three sensors, it's worth planning for a hub upfront rather than mixing protocols piecemeal.
+  </div>
+
+  <h2>Do you actually need sensors?</h2>
+  <p>Not every room needs one. The highest-value placements are genuinely practical: a leak sensor near the hot water cylinder and under the kitchen sink, a door sensor on external entry points if you want basic DIY security without a full monitored alarm, and a motion sensor in an entryway to trigger lighting automatically. Beyond that, sensors on every internal door or in every room quickly become more setup and battery maintenance than value delivered — start with the two or three placements that solve an actual problem you have, rather than sensor-ing the whole house at once.</p>
+
+  <div class="compare-card">
+    <h3>Where to start</h3>
+    <ul>
+      <li><strong>Biggest bang for buck:</strong> a water leak sensor near your hot water cylinder.</li>
+      <li><strong>Best security basic:</strong> door/window sensors on external entry points.</li>
+      <li><strong>Most satisfying automation:</strong> a motion sensor triggering entryway or hallway lighting.</li>
+      <li><strong>Planning more than a couple:</strong> go Zigbee and budget for one hub rather than mixing Wi-Fi sensors.</li>
+    </ul>
+  </div>
+
+  <div class="cta-box">
+    <h3>Ready to compare actual sensors?</h3>
+    <p>Compare live NZ prices on Twisti across JB Hi-Fi, Noel Leeming and PB Tech, plus an AI verdict on whether now's a good time to buy.</p>
+    <a href="index.html" class="cta-btn">Compare prices now →</a>
+  </div>
+
+</article>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

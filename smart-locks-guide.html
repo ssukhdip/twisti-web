@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Locks Explained | Twisti</title>
+<meta name="description" content="How smart locks work, why many US models don't fit NZ doors, and what to check on battery life, backup access and insurance before buying.">
+<link rel="canonical" href="https://twisti.org/smart-locks-guide.html">
+<meta property="og:title" content="Smart Locks Explained">
+<meta property="og:description" content="How smart locks work, why many US models don't fit NZ doors, and what to check on battery life, backup access and insurance before buying.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/smart-locks-guide.html">
+<meta property="og:site_name" content="Twisti">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Smart Locks Explained",
+  "description": "How smart locks work, why many US models don't fit NZ doors, and what to check on battery life, backup access and insurance before buying.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-07-12",
+  "dateModified": "2026-07-12",
+  "mainEntityOfPage": "https://twisti.org/smart-locks-guide.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 2, "name": "Smart locks explained", "item": "https://twisti.org/smart-locks-guide.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / Smart locks explained</div>
+  <div class="page-eyebrow">GUIDE</div>
+  <h1>Smart Locks Explained</h1>
+  <p class="lede">Smart locks solve a real problem - fumbling for keys, giving a tradesperson temporary access, never re-keying after a flatmate moves out. But the single most important thing to check before buying one has nothing to do with features: it's whether it physically fits your door.</p>
+  <span class="byline">Twisti guides · Updated July 2026</span>
+
+
+  <h2>What a smart lock actually replaces</h2>
+  <p>Most smart locks on the market don't replace your whole door lock — they replace or retrofit onto your existing deadbolt, adding a motor that turns the bolt electronically. You unlock it with a code on a keypad, a tap in an app over Bluetooth or Wi-Fi, a fingerprint on models with a scanner, or a physical key kept as backup for when the battery dies or the electronics fail. Almost every reputable smart lock keeps a mechanical key override for exactly that reason — don't buy one that doesn't.</p>
+
+  <h2>The unlocking methods, honestly assessed</h2>
+  <ul>
+    <li><strong>Keypad code:</strong> reliable, no phone needed, good for giving temporary codes to cleaners or guests. Downside: codes can be shoulder-surfed, and battery-powered keypads eventually need new batteries.</li>
+    <li><strong>App / Bluetooth / Wi-Fi:</strong> convenient once set up, lets you lock remotely and see access logs. Downside: adds a dependency on your phone being charged and in range, and Wi-Fi locks add another device to your home network's attack surface.</li>
+    <li><strong>Fingerprint:</strong> fast and doesn't need you to carry anything. Downside: can be finicky with wet or dirty hands, and adds cost.</li>
+    <li><strong>Physical key backup:</strong> the fallback that should always exist. Treat any smart lock without one as a liability.</li>
+  </ul>
+
+  <div class="note-card">
+    <strong>The gotcha most people miss:</strong> a large share of popular smart locks (particularly US brands like August and Schlage's US-market models) are designed around American single-cylinder deadbolt standards — specific bore hole sizes, backset measurements, and door thickness ranges (typically around 35-57mm). Plenty of older NZ homes have thicker doors, different lock body styles, or hardware that simply doesn't match. Always check a lock's compatibility list against your actual door and existing deadbolt hardware — ideally by measuring your door thickness and bore hole — before ordering, and favour models explicitly sold and supported for the NZ/AU market.
+  </div>
+
+  <h2>Retrofit vs full replacement</h2>
+  <p>Two broad approaches exist. Retrofit locks (like August-style models) clip onto your existing deadbolt from the inside, leaving the outside of your door untouched — simplest install, but limited by your existing hardware's compatibility. Full-replacement smart locks swap out the entire lock body, keypad and all, giving more design flexibility but usually needing more precise fitting and sometimes professional installation. In New Zealand, full-replacement smart deadbolts sized for local door standards (from brands with proper AU/NZ distribution) are generally the safer bet than assuming a US import will drop straight in.</p>
+
+  <h2>Battery life and what happens when it dies</h2>
+  <p>Most smart locks run on standard AA or coin-cell batteries and last anywhere from four months to a year depending on usage and whether Wi-Fi is built in (Wi-Fi radios drain batteries noticeably faster than Bluetooth-only or Zigbee-bridged models). Nearly all give a low-battery warning through the app or an audible alert well before they die, and the mechanical key backup means a dead battery is an inconvenience, not a lockout — provided you haven't lost the physical key.</p>
+
+  <h2>Security: can they be hacked?</h2>
+  <p>It's a fair question, and the honest answer is: any networked device has a theoretically larger attack surface than a plain mechanical lock, but in practice, reputable smart locks with proper encryption are not an easy target for a random burglar — physical attacks (kicking the door, attacking the frame, or simply picking a low-quality mechanical cylinder) remain far more common break-in methods than anything digital. The bigger practical risk is usually user error: sharing codes carelessly, or leaving default settings unchanged. Buy from established brands with a track record of security updates, keep firmware current, and don't rely on a smart lock as your only security measure — pair it with good door and frame hardware.</p>
+
+  <h2>Do insurers care?</h2>
+  <p>Most NZ home insurers don't specifically require or reward smart locks the way some insurers overseas do with monitored alarm systems — check your policy wording, but a smart lock generally needs to meet the same "adequate lock" standard as a normal deadbolt to satisfy security clauses, not more. If your insurer has minimum lock standards (common for older villas with weak original hardware), confirm your chosen smart lock meets them before relying on it for a claim.</p>
+
+  <h2>Do you actually need one?</h2>
+  <p>If you're constantly juggling keys for family, cleaners, or short-term guests, or you like the idea of remote access logs and temporary codes, a smart lock is genuinely useful. If you live alone, rarely have visitors needing access, and your current deadbolt works fine, it's a nice-to-have rather than a must-have — the main practical win (remote code management) only pays off when multiple people need varying access.</p>
+
+  <div class="compare-card">
+    <h3>Before you buy, check</h3>
+    <ul>
+      <li>Your door thickness and existing deadbolt bore/backset measurements against the lock's compatibility list.</li>
+      <li>Whether the model has a mechanical key override.</li>
+      <li>Battery type and expected life, and whether it has a low-battery alert.</li>
+      <li>Whether it needs a bridge/hub for remote access, or works standalone over Bluetooth.</li>
+    </ul>
+  </div>
+
+  <div class="cta-box">
+    <h3>Weighing up your options?</h3>
+    <p>Compare live NZ prices on Twisti across JB Hi-Fi, Noel Leeming and PB Tech, plus an AI verdict on whether now's a good time to buy.</p>
+    <a href="index.html" class="cta-btn">Compare prices now →</a>
+  </div>
+
+</article>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

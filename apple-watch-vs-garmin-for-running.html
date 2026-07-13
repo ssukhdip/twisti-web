@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apple Watch vs Garmin for Running | Twisti</title>
+<meta name="description" content="Apple Watch vs Garmin for running compared honestly: GPS accuracy, training metrics, race-day battery life and app ecosystem, for runners deciding between the two.">
+<link rel="canonical" href="https://twisti.org/apple-watch-vs-garmin-for-running.html">
+<meta property="og:title" content="Apple Watch vs Garmin for Running">
+<meta property="og:description" content="Apple Watch vs Garmin for running compared honestly: GPS accuracy, training metrics, race-day battery life and app ecosystem, for runners deciding between the two.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/apple-watch-vs-garmin-for-running.html">
+<meta property="og:site_name" content="Twisti">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Apple Watch vs Garmin for Running",
+  "description": "Apple Watch vs Garmin for running compared honestly: GPS accuracy, training metrics, race-day battery life and app ecosystem, for runners deciding between the two.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-07-13",
+  "dateModified": "2026-07-13",
+  "mainEntityOfPage": "https://twisti.org/apple-watch-vs-garmin-for-running.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 2, "name": "Apple Watch vs Garmin for Running", "item": "https://twisti.org/apple-watch-vs-garmin-for-running.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / Apple Watch vs Garmin for Running</div>
+  <div class="page-eyebrow">COMPARISON</div>
+  <h1>Apple Watch vs Garmin for running: which one actually makes you faster</h1>
+  <p class="lede">Not "which watch is better" — which one gives a runner the data and reliability that matters on race day. Here's the honest breakdown.</p>
+  <span class="byline">Twisti guides · Updated July 2026</span>
+
+<h2>The short version</h2>
+<p>For casual and social runners who already live in the Apple ecosystem, <strong>Apple Watch Series 11</strong> covers the basics well and integrates beautifully with your iPhone. For anyone training seriously — chasing a marathon PB, following a structured plan, or racing multisport — <strong>Garmin</strong> (Forerunner or Fenix, depending on budget) is built specifically for this and it shows in the depth of the data.</p>
+
+<h2>GPS accuracy on the run</h2>
+<p>In independent half-marathon testing, a Garmin watch logged 13.15 miles against an official 13.1-mile course, while an Apple Watch logged 13.22 miles on the same run — Garmin was marginally more accurate. Garmin's mid-range and premium running watches use multi-band GPS with SatIQ, purpose-built to hold a satellite lock through forest cover, urban canyons and tunnels. Apple Watch Ultra 3 closes the gap with dual-frequency GPS, but the standard Series 11 lags slightly behind Garmin's dedicated running hardware. For a weekly park run, you won't notice the difference. For a trail race through dense bush, you probably will.</p>
+
+<div class="compare-card">
+<h3>Training metrics that actually change what you do next</h3>
+<p>This is Garmin's biggest advantage for serious runners: training load, recovery time advisor, race predictor, VO2 max trends, and running dynamics like ground contact time and vertical oscillation — all designed to tell you whether to push hard tomorrow or take a rest day. Apple Watch's Training Load feature (introduced more recently) is a genuine step forward, but it's still a simpler, single-number view compared to Garmin's layered training science. If you follow a structured plan from Garmin Coach, a certified coach's TrainingPeaks account, or just like nerding out on your own data, Garmin gives you more to work with.</p>
+</div>
+
+<h2>Race-day battery life</h2>
+<p>A marathon plus travel and warm-up time can easily eat 6-8 hours of battery. Apple Watch Series 11's 24-hour rating handles that fine for most people, but if you're doing an ultramarathon or multi-day stage race, its battery simply won't last — this is squarely Garmin territory, where even mid-range watches run for days in GPS mode and premium models stretch into a week or more with battery-saving satellite settings.</p>
+
+<h2>Running app ecosystem</h2>
+<ul>
+<li><strong>Apple Watch</strong> — native support for Strava, Nike Run Club and other third-party apps, tight Health app integration, and Workout Buddy (powered by Apple Intelligence) for in-ear coaching cues during a run.</li>
+<li><strong>Garmin</strong> — Garmin Connect is purpose-built around structured training: custom workout builder, adaptive training plans, race predictor, and Strava sync as standard. The Connect IQ app store adds data fields and watch faces built specifically for runners.</li>
+</ul>
+
+<div class="note-card">
+<strong>The real decision point isn't the watch — it's whether you'll actually use the extra data.</strong> Garmin's training metrics are only valuable if you look at them and adjust your training. If you just want a Strava-friendly pace and distance tracker with great everyday smartwatch features, Apple Watch Series 11 does that job well and you won't miss what you're not using.
+</div>
+
+<h2>The verdict</h2>
+<p>If you're a casual-to-committed runner who's already an iPhone owner and wants one watch for running, notifications and daily life — <strong>get the Apple Watch Series 11</strong>. It's genuinely good for running now, not just an afterthought.</p>
+<p>If you're training for something specific — a marathon block, a triathlon, an ultra — and want data that actually informs your training decisions, plus the battery life to survive long events — <strong>get a Garmin</strong>. A Forerunner is the running-focused sweet spot; step up to Fenix if you also want rugged multisport and navigation features.</p>
+
+<div class="cta-box">
+<h3>Compare live prices before you buy</h3>
+<p>Twisti tracks pricing across PB Tech, Noel Leeming, JB Hi-Fi and Harvey Norman so you know exactly who's cheapest today.</p>
+<a href="index.html" class="cta-btn">Compare prices now</a>
+</div>
+
+</article>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

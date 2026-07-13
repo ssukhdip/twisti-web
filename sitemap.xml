@@ -20,7 +20,7 @@
   </url>
   <url>
     <loc>https://twisti.org/blog.html</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -547,6 +547,36 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://twisti.org/apple-watch-ultra-3-vs-garmin-fenix-8.html</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/apple-watch-se-3-vs-garmin-instinct-3.html</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/apple-watch-vs-garmin-for-running.html</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/apple-watch-vs-garmin-battery-life.html</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/apple-watch-vs-garmin-sleep-health-tracking.html</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://twisti.org/ring-vs-eufy.html</loc>
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
@@ -600,12 +630,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-    <url>
-      <loc>https://twisti.org/best-months-to-buy-gaming-consoles.html</loc>
-      <lastmod>2026-07-13</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-    </url>
+  <url>
+    <loc>https://twisti.org/best-months-to-buy-gaming-consoles.html</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://twisti.org/save-on-internet-bills.html</loc>
     <lastmod>2026-07-12</lastmod>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Price Match Guarantees at JB Hi-Fi, Noel Leeming & PB Tech | Twisti</title>
+<meta name="description" content="How the price match policies at JB Hi-Fi, Noel Leeming and PB Tech actually work in NZ, what gets excluded, and why Noel Leeming's Price Promise ended up in court.">
+<link rel="canonical" href="https://twisti.org/price-match-guarantees-nz.html">
+<meta property="og:title" content="Price Match Guarantees at JB Hi-Fi, Noel Leeming & PB Tech">
+<meta property="og:description" content="How the price match policies at JB Hi-Fi, Noel Leeming and PB Tech actually work in NZ, what gets excluded, and why Noel Leeming's Price Promise ended up in court.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/price-match-guarantees-nz.html">
+<meta property="og:site_name" content="Twisti">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+--accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+--radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+--bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+--accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+--shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Article",
+"headline": "Price Match Guarantees at JB Hi-Fi, Noel Leeming and PB Tech: What They Actually Cover",
+"description": "How the price match policies at JB Hi-Fi, Noel Leeming and PB Tech actually work in NZ, what gets excluded, and why Noel Leeming's Price Promise ended up in court.",
+"author": { "@type": "Organization", "name": "Twisti" },
+"publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+"datePublished": "2026-07-14",
+"dateModified": "2026-07-14",
+"mainEntityOfPage": "https://twisti.org/price-match-guarantees-nz.html"
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": [
+{ "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+{ "@type": "ListItem", "position": 2, "name": "Price match guarantees explained", "item": "https://twisti.org/price-match-guarantees-nz.html" }
+]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+<div class="nav-inner">
+<a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+<div class="nav-links">
+<a href="index.html#picks">Categories</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="nav-right">
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+<a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+</div>
+</div>
+</nav>
+
+<article class="page wrap">
+<div class="breadcrumb"><a href="blog.html">Blog</a> / Price match guarantees explained</div>
+<div class="page-eyebrow">RETAILER GUIDE</div>
+<h1>Price Match Guarantees at JB Hi-Fi, Noel Leeming and PB Tech</h1>
+<p class="lede">All three big NZ electronics retailers advertise a price match promise. None of them work quite the way the in-store signage implies, and one of them is currently before the courts over exactly that gap. Here's what each policy actually covers.</p>
+<span class="byline">Twisti guides · Updated July 2026</span>
+
+<h2>The shared rulebook</h2>
+<p>Before comparing the three, it helps to know the conditions almost every NZ price match policy shares, because these are what trip people up in-store far more often than the headline promise does.</p>
+<ul>
+<li><strong>Identical stock only:</strong> same brand, model and often colour, and the competitor has to have it physically in stock right now - not backordered, not "usually in stock."</li>
+<li><strong>NZ retailers only:</strong> a lower price on an Australian or US site doesn't count, and grey-import or direct-import listings are excluded even if they're technically cheaper.</li>
+<li><strong>Proof required:</strong> a screenshot, live webpage, or in-store quote the retailer can verify on the spot - a forum post or a price you remember isn't enough.</li>
+<li><strong>Clearance and bundle deals excluded:</strong> if the competitor's price includes a bonus item, cashback, or is a run-out clearance, it's usually off the table.</li>
+<li><strong>Match, not beat:</strong> all three will match the lower price, not undercut it further, unlike some overseas "beat it by X%" guarantees.</li>
+</ul>
+
+<h2>How each retailer's policy actually works</h2>
+
+<div class="compare-card">
+<h3>JB Hi-Fi</h3>
+<p>JB Hi-Fi calls it a "JB Deal" - staff can match an identically stocked competitor product on the spot, and online comparisons must include delivery cost in the total. Exclusions cover duty-free sales, cashback and store-credit offers, bundled or coupon promotions, grey-import stock, refurbished items, commercial orders, and competitor pricing errors or clearance lines with limited quantities.</p>
+</div>
+
+<div class="compare-card">
+<h3>Noel Leeming</h3>
+<p>Branded as the "Price Promise," you present a qualifying competitor price in-store or via online chat and staff verify it before applying a matching discount code. The comparison retailer must be NZ-based, and some categories require the competitor to have both a physical and an online store. In practice, this is the policy that has drawn the most scrutiny - see below.</p>
+</div>
+
+<div class="compare-card">
+<h3>PB Tech</h3>
+<p>PB Tech's Price Match Request requires the competitor item to be brand new, physically in stock in New Zealand (not drop-shipped from a distributor), and identical down to model and colour. Requests can be made in-store or online, but online orders need the match request submitted within 24 hours of purchase. Every request is discretionary - PB Tech can decline it even if it technically meets the listed criteria, and auction-site prices are never eligible.</p>
+</div>
+
+<h2>Why Noel Leeming's Price Promise ended up in court</h2>
+<p>In July 2025 the Commerce Commission filed criminal charges against Noel Leeming in the Auckland District Court, alleging breaches of the Fair Trading Act connected to how its Price Promise was advertised and applied. The Commission's concern was that the policy carried enough hidden limitations and conditions that customers who reasonably believed they qualified were, in practice, regularly turned down. It's a useful reminder that a "we'll match any price" banner is marketing copy first and a binding guarantee second - the exclusions in the fine print are where these policies are actually decided.</p>
+
+<div class="note-card">
+<strong>Practical tip:</strong> none of this means price matching is worthless - it just means treat the in-store banner as an opening offer, not a promise. Screenshot the competitor listing (including the price, stock status, and URL) before you walk in, and be ready for the request to be declined on a technicality even when the price genuinely is lower elsewhere.
+</div>
+
+<h2>How to actually get a match approved</h2>
+<ul>
+<li>Check the competitor item is showing as in stock, not just listed, at the moment you make the request.</li>
+<li>Screenshot the full page - price, stock status, and delivery cost if it's an online comparison - before you go in.</li>
+<li>Ask in-store rather than relying on online chat if the item is time-sensitive; verification is usually faster face to face.</li>
+<li>Don't lead with a clearance, bundle, or cashback-inclusive price - all three retailers exclude these, and it burns goodwill for no result.</li>
+<li>If it's declined, compare the live price across retailers yourself rather than relying on any one store's internal check.</li>
+</ul>
+
+<p>That last point is really the honest takeaway. A price match policy only ever compares you against one competitor, verified by the retailer you're standing in. Checking live prices across JB Hi-Fi, Noel Leeming and PB Tech yourself before you ever ask for a match tells you the real floor price - no discount code, no staff discretion, no fine print required.</p>
+
+<div class="cta-box">
+<h3>Skip the price match request entirely</h3>
+<p>Twisti compares live prices across JB Hi-Fi, Noel Leeming and PB Tech at once, so you already know who's cheapest before you walk in.</p>
+<a href="index.html" class="cta-btn">Compare prices now →</a>
+</div>
+
+</article>
+
+<footer class="site-footer">
+<div class="wrap footer-inner">
+<div class="footer-links">
+<a href="about.html">About</a>
+<a href="blog.html">Blog</a>
+<a href="contact.html">Contact</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+<a href="mailto:hello@twisti.org">hello@twisti.org</a>
+</div>
+<div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+</div>
+</footer>
+
+<script>
+const toggle = document.getElementById('themeToggle');
+const body = document.body;
+const saved = localStorage.getItem('twisti-theme');
+if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+toggle.addEventListener('click', () => {
+const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+body.setAttribute('data-theme', next);
+toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+localStorage.setItem('twisti-theme', next);
+});
+(function initAuthState(){
+const loginBtn = document.getElementById('loginBtn');
+const token = localStorage.getItem('twisti_access');
+const userRaw = localStorage.getItem('twisti_user');
+if (!token || !userRaw) return;
+let user;
+try { user = JSON.parse(userRaw); } catch { return; }
+const label = (user.name || user.email || 'Account').split(' ')[0];
+loginBtn.textContent = label;
+loginBtn.href = '#';
+loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+loginBtn.addEventListener('click', (e) => {
+e.preventDefault();
+if (confirm('Sign out of Twisti?')) {
+localStorage.removeItem('twisti_access');
+localStorage.removeItem('twisti_user');
+window.location.reload();
+}
+});
+})();
+</script>
+</body>
+</html>

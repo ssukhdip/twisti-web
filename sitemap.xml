@@ -20,8 +20,128 @@
   </url>
   <url>
     <loc>https://twisti.org/blog.html</loc>
-    <lastmod>2026-07-13</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/iphone-17-pro-nz-hub.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/ps5-pro-nz-hub.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/macbook-air-m4-nz-hub.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/galaxy-s26-nz-hub.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/dyson-gen5detect-nz-hub.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/apple-nz-buying-guide.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/samsung-nz-buying-guide.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/dyson-nz-buying-guide.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/sony-nz-buying-guide.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/garmin-nz-buying-guide.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/jb-hifi-nz-guide.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/noel-leeming-nz-guide.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/pb-tech-nz-guide.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/black-friday-nz-guide.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/boxing-day-nz-guide.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/how-to-spot-a-genuine-deal.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/how-price-history-charts-work.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/best-free-price-tracking-tools-nz.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/ps6-rumours.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://twisti.org/iphone-fold-rumours.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
@@ -612,12 +732,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-    <url>
-          <loc>https://twisti.org/refurbished-vs-new-electronics.html</loc>
-          <lastmod>2026-07-14</lastmod>
-          <changefreq>monthly</changefreq>
-          <priority>0.7</priority>
-    </url>
   <url>
     <loc>https://twisti.org/best-months-to-buy-tvs.html</loc>
     <lastmod>2026-07-12</lastmod>
@@ -708,11 +822,4 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-<url>
-  <loc>https://twisti.org/price-match-guarantees-nz.html</loc>
-  <lastmod>2026-07-14</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
-</url>
-
 </urlset>

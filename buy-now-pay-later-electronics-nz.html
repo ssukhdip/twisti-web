@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buy Now, Pay Later for Tech in NZ: Afterpay vs Laybuy vs Zip | Twisti</title>
+<meta name="description" content="How Afterpay, Laybuy, Zip and Genoapay actually work for electronics purchases in New Zealand, what they cost when a payment is missed, and when splitting the price is a good idea versus just saving up.">
+<link rel="canonical" href="https://twisti.org/buy-now-pay-later-electronics-nz.html">
+<meta property="og:title" content="Buy Now, Pay Later for Tech in NZ: Afterpay vs Laybuy vs Zip">
+<meta property="og:description" content="How BNPL actually works for electronics purchases in NZ, what it costs when a payment is missed, and when splitting the price beats saving up.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/buy-now-pay-later-electronics-nz.html">
+<meta property="og:site_name" content="Twisti">
+<meta property="og:image" content="https://twisti.org/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Buy Now, Pay Later for Tech in NZ: Afterpay vs Laybuy vs Zip">
+<meta name="twitter:description" content="How BNPL actually works for electronics purchases in NZ, and when splitting the price beats saving up.">
+<meta name="twitter:image" content="https://twisti.org/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+--accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+--radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+--bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+--accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+--shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Article",
+"headline": "Buy Now, Pay Later for Tech in NZ: Afterpay vs Laybuy vs Zip",
+"description": "How Afterpay, Laybuy, Zip and Genoapay actually work for electronics purchases in New Zealand, what they cost when a payment is missed, and when splitting the price is a good idea versus just saving up.",
+"author": { "@type": "Organization", "name": "Twisti" },
+"publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+"datePublished": "2026-07-15",
+"dateModified": "2026-07-15",
+"mainEntityOfPage": "https://twisti.org/buy-now-pay-later-electronics-nz.html"
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": [
+{ "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+{ "@type": "ListItem", "position": 2, "name": "Buy now pay later for tech in NZ", "item": "https://twisti.org/buy-now-pay-later-electronics-nz.html" }
+]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+<div class="nav-inner">
+<a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+<div class="nav-links">
+<a href="index.html#picks">Categories</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="nav-right">
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+<a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+</div>
+</div>
+</nav>
+
+<article class="page wrap">
+<div class="breadcrumb"><a href="blog.html">Blog</a> / Buy now pay later for tech in NZ</div>
+<div class="page-eyebrow">MONEY-SAVING GUIDE</div>
+<h1>Buy Now, Pay Later for Tech in NZ: Afterpay vs Laybuy vs Zip</h1>
+<p class="lede">Splitting a laptop or phone into four payments feels harmless at checkout. Here's how Afterpay, Laybuy, Zip and Genoapay actually work, what they cost when something goes wrong, and when it's genuinely a smarter way to buy electronics.</p>
+<span class="byline">Twisti guides · Updated July 2026</span>
+
+<h2>How buy now, pay later actually works</h2>
+<p>Buy now, pay later (BNPL) services let you take a product home today and split the cost - usually into four to six instalments spread over six to eight weeks, or in some cases longer for bigger-ticket items. The provider pays the retailer in full upfront, then collects your instalments directly. Most NZ providers run a soft credit check that doesn't affect your credit score, which is a big part of why BNPL has become so common at checkout for phones, laptops, TVs and gaming consoles.</p>
+<p>The pitch is straightforward: no interest if you pay on time, and the money leaves your account in smaller, more manageable chunks. That's true as far as it goes - the real cost of BNPL almost always comes from what happens when a payment is missed, not from interest on the plan itself.</p>
+
+<div class="compare-card">
+<h3>The main players in NZ</h3>
+<p><strong>Afterpay</strong> splits purchases into four fortnightly instalments and is accepted at most large NZ electronics retailers. Missing a payment brings a late fee - typically starting around $10 for the first missed payment and further charges if it stays unpaid - capped as a percentage of the order value. <strong>Laybuy</strong> works on a similar six-weekly-instalment model, also interest-free, with its own late fee structure and cap. <strong>Zip</strong> offers both a pay-in-instalments option and a revolving Zip Money-style account for larger purchases, which can carry an account fee and interest outside promotional periods. <strong>Genoapay</strong> (from Latitude) is aimed more squarely at bigger purchases and typically spreads repayments over a longer term. Exact fees, caps and merchant availability change from time to time, so it's worth checking each provider's current terms at checkout rather than relying on last year's numbers.</p>
+</div>
+
+<h2>Where it can genuinely help</h2>
+<ul>
+<li><strong>Smoothing a necessary purchase:</strong> a work laptop dies unexpectedly and you need a replacement this week, not after three pay cycles of saving.</li>
+<li><strong>Cash-flow timing:</strong> you have the money coming in, just not all in your account on the day you need to buy.</li>
+<li><strong>No interest when paid on time:</strong> unlike a credit card carrying a balance, an on-time BNPL plan for a fixed amount doesn't quietly compound.</li>
+</ul>
+
+<h2>Where it quietly costs more than it looks</h2>
+<p>The risk with BNPL isn't the plan you intend to follow - it's the one you don't. Late fees are typically flat dollar amounts rather than a percentage, which means they hit hardest on smaller purchases. A missed $10 fee on a $150 pair of earbuds is a much bigger effective cost than the same fee on a $2,000 laptop. Miss more than one instalment, or run several BNPL plans at once across different providers, and the fees and the mental overhead of tracking due dates both add up fast.</p>
+<p>There's also a well-documented behavioural effect: splitting a price into smaller numbers makes a purchase feel more affordable than it is, which can nudge people toward buying a pricier model than they'd have chosen if paying the full amount upfront. That's not a criticism of anyone who uses BNPL sensibly - it's just the reason retailers are keen to offer it at checkout.</p>
+
+<div class="note-card">
+<strong>A simple gut check before you tap "pay in 4":</strong> if you wouldn't be comfortable buying the item outright today, using BNPL to make the number feel smaller doesn't change whether you can actually afford it - it just moves the decision four fortnights down the track, with a penalty attached if your circumstances change in the meantime.
+</div>
+
+<h2>BNPL vs a credit card vs just saving up</h2>
+<p>For a fixed, one-off purchase paid off on schedule, BNPL and an interest-free credit card period can land in a similar place cost-wise - both effectively give you the item now and let you pay later without interest, provided you don't miss a due date. The difference is what happens if you slip: a missed BNPL instalment usually means a fixed late fee, while a credit card balance left unpaid starts accruing interest on the whole balance, which is typically the more expensive mistake to make if you're likely to miss a date.</p>
+<p>Saving up first avoids both risks entirely and means you're never paying a cent more than the sticker price - but it only works if the purchase can actually wait. Combining that with price tracking is often the best of both: watch the price on the model you want, buy outright when it drops, and skip the instalment machinery altogether.</p>
+
+<h2>Before you check out with a BNPL plan</h2>
+<ul>
+<li>Check the exact instalment dates against your pay cycle, not just the total number of payments.</li>
+<li>Confirm the late fee amount and cap for that specific provider before you commit.</li>
+<li>Avoid running two or three BNPL plans simultaneously across different retailers - it's easy to lose track of which payment is due when.</li>
+<li>Check whether the retailer's price is actually the best one available before splitting it - BNPL doesn't fix an inflated sticker price.</li>
+</ul>
+
+<div class="cta-box">
+<h3>Get the price right before you split it</h3>
+<p>Whichever way you pay, make sure you're comparing the same model across JB Hi-Fi, Noel Leeming and PB Tech first.</p>
+<a href="index.html" class="cta-btn">Compare prices now →</a>
+</div>
+
+</article>
+
+<footer class="site-footer">
+<div class="wrap footer-inner">
+<div class="footer-links">
+<a href="about.html">About</a>
+<a href="blog.html">Blog</a>
+<a href="contact.html">Contact</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+<a href="mailto:hello@twisti.org">hello@twisti.org</a>
+</div>
+<div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+</div>
+</footer>
+
+<script>
+const toggle = document.getElementById('themeToggle');
+const body = document.body;
+const saved = localStorage.getItem('twisti-theme');
+if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+toggle.addEventListener('click', () => {
+const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+body.setAttribute('data-theme', next);
+toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+localStorage.setItem('twisti-theme', next);
+});
+(function initAuthState(){
+const loginBtn = document.getElementById('loginBtn');
+const token = localStorage.getItem('twisti_access');
+const userRaw = localStorage.getItem('twisti_user');
+if (!token || !userRaw) return;
+let user;
+try { user = JSON.parse(userRaw); } catch { return; }
+const label = (user.name || user.email || 'Account').split(' ')[0];
+loginBtn.textContent = label;
+loginBtn.href = '#';
+loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+loginBtn.addEventListener('click', (e) => {
+e.preventDefault();
+if (confirm('Sign out of Twisti?')) {
+localStorage.removeItem('twisti_access');
+localStorage.removeItem('twisti_user');
+window.location.reload();
+}
+});
+})();
+</script>
+</body>
+</html>

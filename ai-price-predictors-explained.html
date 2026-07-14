@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How AI Price Predictors Actually Work | Twisti</title>
+<meta name="description" content="AI price prediction tools promise to tell you when to buy. Here's what's really happening under the hood, and how much to trust the forecast.">
+<link rel="canonical" href="https://twisti.org/ai-price-predictors-explained.html">
+<meta property="og:title" content="How AI Price Predictors Actually Work">
+<meta property="og:description" content="AI price prediction tools promise to tell you when to buy. Here's what's really happening under the hood, and how much to trust the forecast.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/ai-price-predictors-explained.html">
+<meta property="og:site_name" content="Twisti">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How AI Price Predictors Actually Work",
+  "description": "AI price prediction tools promise to tell you when to buy. Here's what's really happening under the hood, and how much to trust the forecast.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-07-16",
+  "dateModified": "2026-07-16",
+  "mainEntityOfPage": "https://twisti.org/ai-price-predictors-explained.html"
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / AI Price Predictors</div>
+  <div class="page-eyebrow">AI SHOPPING</div>
+  <h1>How AI price predictors actually work (and where they fall short)</h1>
+  <p class="lede">"Buy now" or "wait" — AI-powered price tools make the call sound simple. The reality underneath is a lot more statistical, and a lot less certain, than the confident little badge on screen suggests.</p>
+  <span class="byline">Twisti guides · Updated July 2026</span>
+
+<h2>What's actually happening behind the prediction</h2>
+<p>Most "AI price predictor" features aren't running some bespoke intelligence that understands the electronics market. They're typically applying standard machine learning models — often gradient boosting or simple regression — to historical price data for that specific product or category. The model looks at how prices have moved in the past (weekly cycles, seasonal sales, time since launch) and extrapolates a probability that the price will drop, hold, or rise over the next days or weeks.</p>
+<p>The word "AI" gets applied loosely here. Some tools genuinely use trained models with reasonable statistical grounding. Others are closer to rule-based systems — "this item hasn't discounted in 60 days, a discount is due" — dressed up with AI branding because it sells better. Without knowing which one you're looking at, treat any single prediction as an educated guess, not a fact.</p>
+
+<h2>What the model is actually trained on</h2>
+<p>Price history is the main input, but useful predictors also weigh in things like:</p>
+<ul>
+<li>How long the product has been on the market (older stock tends to discount more readily)</li>
+<li>Proximity to known NZ sales periods — Black Friday, Boxing Day, EOFY</li>
+<li>Stock and inventory signals, where retailers expose them</li>
+<li>Competitor pricing shifts, which can trigger price-matching</li>
+</ul>
+<p>The quality of any prediction is only as good as the quality and length of that historical data. A brand-new product with three weeks of price history simply doesn't have enough signal for a model to say anything meaningful, no matter how confident the interface looks.</p>
+
+<div class="compare-card">
+<h3>Rule-based vs. genuine ML prediction</h3>
+<p>A rule-based tool says "average discount cycle is 45 days, it's day 44, so wait." A proper ML-based tool weighs dozens of variables and expresses a probability, like "62% chance of a price drop within 14 days." Both can be useful, but only the second is really doing prediction — the first is pattern-matching dressed up as forecasting.</p>
+</div>
+
+<h2>Why NZ pricing is harder to predict than US pricing</h2>
+<p>Most of the flashy price-prediction case studies you'll read about come from huge US retail datasets with years of consistent pricing behaviour across millions of SKUs. New Zealand's electronics market is tiny by comparison, spread across a handful of major retailers (PB Tech, Noel Leeming, JB Hi-Fi, Harvey Norman), with pricing that can shift for local reasons — freight costs, exchange rate movements, small allocation of stock — that a model trained mostly on offshore patterns won't necessarily capture well.</p>
+<p>That doesn't make AI predictions useless here. It means the confidence interval should be wider than the tool might imply, and predictions are more reliable for high-volume categories (phones, laptops, TVs) than niche or recently-released gear.</p>
+
+<h2>How to use these tools sensibly</h2>
+<p>Treat an AI price prediction as one input, not a verdict. Combine it with a look at the actual price history chart — most comparison sites, including Twisti, show you the raw trend so you can sanity-check what the algorithm is telling you. If a prediction says "wait" but the price has been flat for four months with no sale on the horizon, use your own judgement.</p>
+
+<div class="note-card">
+<strong>Worth remembering:</strong> No predictor can see genuinely new information — a surprise supplier deal, a clearance event, a new model announcement that pushes old stock down fast. Treat every forecast as probabilistic, not guaranteed, and always check current pricing before you commit.
+</div>
+
+<h2>The bottom line</h2>
+<p>AI price predictors are a useful nudge, not a crystal ball. They're built on the same kind of historical trend analysis a careful shopper could do manually, just automated and scaled up. Used alongside a real price-history chart and a bit of common sense about NZ sales calendars, they can genuinely help you time a purchase better. Used as a standalone oracle, they'll occasionally make you wait for a discount that never comes.</p>
+
+<div class="cta-box">
+<h3>Compare live prices before you buy</h3>
+<p>Twisti tracks pricing across PB Tech, Noel Leeming, JB Hi-Fi and Harvey Norman so you know exactly who's cheapest today.</p>
+<a href="index.html" class="cta-btn">Compare prices now</a>
+</div>
+
+</article>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

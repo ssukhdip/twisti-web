@@ -46,6 +46,8 @@
 <meta name="twitter:image" content="https://twisti.org/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://twisti-backend-production.up.railway.app">
+<link rel="dns-prefetch" href="https://twisti-backend-production.up.railway.app">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
   :root{
     --bg:#f2f2f0;
@@ -737,6 +739,29 @@
   const mockCardRow = document.getElementById('mockCardRow');
 
   const API_BASE = 'https://twisti-backend-production.up.railway.app';
+  // Short-lived client-side cache so repeating the exact same search (e.g. re-typing
+  // the same query, or navigating back) resolves instantly instead of re-hitting the API.
+  const SEARCH_CACHE_TTL_MS = 2 * 60 * 1000;
+  const searchCache = new Map();
+  function getCachedSearch(query){
+    const key = query.trim().toLowerCase();
+    const hit = searchCache.get(key);
+    if (hit && (Date.now() - hit.ts) < SEARCH_CACHE_TTL_MS) return hit.data;
+    try {
+      const raw = sessionStorage.getItem('twisti_search_' + key);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if ((Date.now() - parsed.ts) < SEARCH_CACHE_TTL_MS) return parsed.data;
+      }
+    } catch (e) { /* sessionStorage unavailable or full — ignore, just skip cache */ }
+    return null;
+  }
+  function setCachedSearch(query, data){
+    const key = query.trim().toLowerCase();
+    const entry = { ts: Date.now(), data };
+    searchCache.set(key, entry);
+    try { sessionStorage.setItem('twisti_search_' + key, JSON.stringify(entry)); } catch (e) { /* ignore quota errors */ }
+  }
   const SEARCH_ENDPOINT = (q) => `${API_BASE}/api/search?q=${encodeURIComponent(q)}&country=nz`;
 
   function fmtPrice(n){
@@ -1024,13 +1049,28 @@
     searchInput.value = query;
     const shortQuery = truncateQuery(query);
 
-    mascotBubble.textContent = `Looking for "${shortQuery}"…`;
     mascotWrap.classList.add('searching');
+
+    const cached = getCachedSearch(query);
+    if (cached) {
+      // Instant path: identical search within the last 2 minutes, skip the network round-trip.
+      let { mode, count } = renderResultsFromData(query, cached, forceProduct);
+      mascotBubble.textContent =
+        mode === 'variants' ? `Found ${count} option${count > 1 ? 's' : ''}! Pick one 👇` :
+        mode === 'product'  ? `Found ${count} store${count > 1 ? 's' : ''} for you! 🎉` :
+        mode === 'category' ? `That's a broad one 🤔` :
+        `No matches for "${shortQuery}" yet`;
+      setTimeout(() => { mascotWrap.classList.remove('searching'); }, 300);
+      return;
+    }
+
+    mascotBubble.textContent = `Looking for "${shortQuery}"…`;
 
     try {
       const res = await fetch(SEARCH_ENDPOINT(query));
       if (!res.ok) throw new Error(`Search failed (${res.status})`);
       const data = await res.json();
+      setCachedSearch(query, data);
 
       let { mode, count } = renderResultsFromData(query, data, forceProduct);
 

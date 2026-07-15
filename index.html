@@ -1121,17 +1121,44 @@
     document.getElementById('picks').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  // Clicking a variant card (no direct link yet) drills into real store prices.
+  // Clicking a variant card shows the price/store we already fetched a moment ago,
+  // immediately — no second network round-trip. The list it came from was just
+  // pulled live, so this data is already fresh; re-confirming it added a multi-second
+  // wait and often failed anyway, leaving a confusing "couldn't reconfirm" message.
   cardRow.addEventListener('click', (e) => {
     const variantCard = e.target.closest('[data-variant-name]');
     if (!variantCard) return;
     e.preventDefault();
-    const fallback = {
-      name: variantCard.dataset.variantName,
-      store: variantCard.dataset.variantStore,
-      price: variantCard.dataset.variantPrice ? parseFloat(variantCard.dataset.variantPrice) : null,
-    };
-    runSearch(variantCard.dataset.variantName, true, fallback);
+    const name = variantCard.dataset.variantName;
+    const store = variantCard.dataset.variantStore;
+    const price = variantCard.dataset.variantPrice ? parseFloat(variantCard.dataset.variantPrice) : null;
+
+    picksHead.style.display = 'none';
+    resultsHead.style.display = 'flex';
+    mockCardRow.style.display = 'none';
+    cardRow.style.display = '';
+    backResults.style.display = lastVariantsData ? '' : 'none';
+    hideVerdict();
+
+    resultsTitle.textContent = name;
+
+    if (store) {
+      searchStatus.style.display = 'none';
+      const url = getStoreSearchUrl(store, name);
+      cardRow.innerHTML = storeCardHTML({
+        store_name: store,
+        price: price,
+        affiliate_url: url,
+        is_best_deal: true,
+      });
+      mascotBubble.textContent = `Found it at ${store}! 🎉`;
+    } else {
+      cardRow.style.display = 'none';
+      searchStatus.style.display = 'block';
+      searchStatus.textContent = `No stored price available for "${name}".`;
+      mascotBubble.textContent = `No stores found for "${truncateQuery(name)}"`;
+    }
+
     document.getElementById('picks').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 

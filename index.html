@@ -1129,7 +1129,7 @@
   // pulled live, so this data is already fresh; re-confirming it added a multi-second
   // wait and often failed anyway, leaving a confusing "couldn't reconfirm" message.
   cardRow.addEventListener('click', (e) => {
-    const variantCard = e.target.closest('[data-variant-name]');
+    const variantCard = e.target.closest('[data-variant-name]'); if (variantCard) { e.preventDefault(); const vStore = variantCard.dataset.variantStore; if (vStore) { window.open(getStoreSearchUrl(vStore, variantCard.dataset.variantName), '_blank', 'noopener'); } return; }
     if (!variantCard) return;
     e.preventDefault();
     const name = variantCard.dataset.variantName;

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Set Up a Mesh Network in NZ (Updated July 2026) | Twisti</title>
+<meta name="description" content="Step-by-step guide to setting up mesh wifi in a New Zealand home, including node placement and how to handle Spark, One NZ and 2degrees modems correctly.">
+<link rel="canonical" href="https://twisti.org/how-to-set-up-a-mesh-network-nz.html">
+<meta property="og:title" content="How to Set Up a Mesh Network in NZ">
+<meta property="og:description" content="Step-by-step guide to setting up mesh wifi in an NZ home, including node placement and ISP router conflicts.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/how-to-set-up-a-mesh-network-nz.html">
+<meta property="og:site_name" content="Twisti">
+<meta property="og:image" content="https://twisti.org/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to Set Up a Mesh Network in NZ">
+<meta name="twitter:description" content="Step-by-step guide to setting up mesh wifi in an NZ home.">
+<meta name="twitter:image" content="https://twisti.org/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "Article", "headline": "How to Set Up a Mesh Network in NZ", "description": "Step-by-step guide to setting up mesh wifi in a New Zealand home, including node placement and how to handle Spark, One NZ and 2degrees modems correctly.", "author": { "@type": "Organization", "name": "Twisti" }, "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } }, "datePublished": "2026-07-19", "dateModified": "2026-07-19", "mainEntityOfPage": "https://twisti.org/how-to-set-up-a-mesh-network-nz.html" }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" }, { "@type": "ListItem", "position": 2, "name": "How to Set Up a Mesh Network in NZ", "item": "https://twisti.org/how-to-set-up-a-mesh-network-nz.html" } ] }
+</script>
+<style>
+:root{ --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64; --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545; --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05); --confirmed:#1a6b4a; --reported:#b45309; --opinion:#2563eb; }
+[data-theme="dark"]{ --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d; --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f; --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35); }
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:32px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:32px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:21px; font-weight:700; margin:36px 0 12px;}
+p{font-size:15px; line-height:1.75; color:var(--text-dim); margin-bottom:14px;}
+ul{margin:0 0 14px 20px; color:var(--text-dim); font-size:15px; line-height:1.75;}
+li{margin-bottom:6px;}
+strong{color:var(--text); font-weight:600;}
+.disclosure{background:var(--surface); border:1.5px solid var(--accent); border-radius:var(--radius); padding:18px 22px; margin-bottom:32px; font-size:14px; line-height:1.6; color:var(--text-dim);}
+.disclosure strong{color:var(--accent);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:26px 28px; margin:36px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{margin-top:0; font-family:'Space Grotesk', sans-serif; font-size:17px;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:16px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:11px 24px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+.sources{font-size:12px; color:var(--text-dim); border-top:1px solid var(--border); padding-top:16px; margin-top:36px; line-height:1.7;}
+.sources a{color:var(--accent);}
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+</head>
+<body data-theme="light">
+<nav>
+<div class="nav-inner">
+<a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+<div class="nav-links">
+<a href="index.html#picks">Categories</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="nav-right">
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+<a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+</div>
+</div>
+</nav>
+<article class="page wrap">
+<div class="breadcrumb"><a href="blog.html">Blog</a> / How to Set Up a Mesh Network in NZ</div>
+<div class="page-eyebrow">How-to guide</div>
+<h1>How to Set Up a Mesh Network in Your NZ Home</h1>
+<p class="lede">Mesh wifi fixes dead zones better than a single router ever will — but NZ's fibre modems have quirks that trip people up. Here's how to do it properly the first time.</p>
+<span class="byline">Twisti guides · Updated July 2026</span>
+<div class="disclosure"><strong>Before you start:</strong> Most NZ mesh headaches come from having two devices both trying to run wifi and DHCP at once. Fixing that is 80% of this guide.</div>
+
+<h2>Step 1: Work out what your ISP modem is doing</h2>
+<p>Spark, One NZ and 2degrees all supply a modem/router combo with UFB fibre — Spark's Smart Modem 2/3 or Smart Mesh, 2degrees' quickstart modems, and One NZ's equivalent. All of these broadcast their own wifi by default. If you add a mesh system on top without changing anything, you'll end up with two overlapping wifi networks fighting each other, which is the single most common cause of "my mesh isn't working properly" complaints in NZ.</p>
+<p>You have two options: put the ISP modem into bridge mode (it stops routing and broadcasting wifi, just passes the internet connection through) and let your mesh system run the network entirely, or turn off the ISP modem's wifi radios and keep it as your router while the mesh nodes act purely as access points. For most households, bridge mode plus a proper mesh system (like Spark's own Smart Mesh, or a third-party system such as TP-Link Deco or Google Nest Wifi) gives the cleanest result.</p>
+
+<h2>Step 2: Check compatibility with your ISP</h2>
+<p>If you're on Spark and using Spark's own Smart Mesh hardware, setup is straightforward — pair the mesh node to the Smart Modem via ethernet cable or the WPS button, and the Spark app walks you through it. If you're bringing your own mesh system (not Spark-branded) or you're on 2degrees or One NZ, you'll generally need to access your modem's admin settings and enable bridge mode manually — on 2degrees this is done through their quickstart modem guides, and Spark's NETGEAR-compatible bridge setup requires setting VLAN ID to 10 with priority 0 under "Enable VLAN/Bridge Setup."</p>
+
+<h2>Step 3: Choose your mesh hardware</h2>
+<p>For a typical 3-4 bedroom NZ house, a 2-3 node mesh kit is usually enough. Popular options sold locally include TP-Link Deco (budget-friendly, widely stocked at Noel Leeming and PB Tech), Google Nest Wifi, and Spark's own Smart Mesh for Spark customers who want the simplest setup path. If your home has thick concrete or brick walls (common in older Wellington and Dunedin villas), lean toward a 3-node kit rather than 2, since mesh signal degrades noticeably through masonry.</p>
+
+<h2>Step 4: Place your nodes correctly</h2>
+<ul>
+<li><strong>Node 1</strong> connects via ethernet to your modem/ONT — this is your primary node and should sit near the fibre entry point.</li>
+<li><strong>Additional nodes</strong> should be placed roughly halfway between the primary node and the dead zone you're trying to fix — not right at the edge of the dead zone, since each node needs a strong signal from its neighbour to relay properly.</li>
+<li>Keep nodes off the floor and away from metal appliances, fish tanks, and thick walls where possible. Elevated, open placement (a shelf or side table) beats a cabinet every time.</li>
+<li>As a rule of thumb, if your existing wifi drops below 2 bars in a room, that's roughly where your next node needs to sit — not further away.</li>
+</ul>
+
+<h2>Step 5: Set one wifi name across the whole house</h2>
+<p>Use a single SSID (network name) and password across all nodes rather than separate names per node. This lets your phone and laptop roam seamlessly between nodes as you move through the house instead of manually reconnecting. Nearly every mesh system sold in NZ does this by default during setup — just don't rename individual nodes differently.</p>
+
+<h2>Step 6: Test and fine-tune</h2>
+<p>Once set up, walk through your home with your phone open on a speed test app and check signal strength room by room. If one area is still weak, that's usually a sign you need to reposition a node closer to that space rather than add another one. Most mesh apps (Spark app, Deco app, Google Home app) show a live map of node signal strength, which makes this much easier than guessing.</p>
+
+<div class="cta-box"><h3>Ready to buy a mesh kit?</h3><p>Compare real-time NZ pricing on TP-Link Deco, Google Nest Wifi and other mesh systems.</p><a href="index.html" class="cta-btn">Compare prices</a></div>
+<div class="sources">Sources: <a href="https://www.spark.co.nz/help/internet/set-up/set-up-smart-mesh-2/" target="_blank" rel="noopener">Spark NZ — Set up Smart Mesh 2</a>, <a href="https://kb.netgear.com/30947/How-do-I-set-up-my-NETGEAR-router-if-I-have-Spark-NZ-Fibre-or-UFB" target="_blank" rel="noopener">NETGEAR — Spark NZ fibre bridge setup</a>, <a href="https://www.2degrees.nz/help/broadband-help/modem-settings/quickstart-modem-guides" target="_blank" rel="noopener">2degrees — Quickstart modem guides</a>. Checked July 2026 — details may change.</div>
+</article>
+<footer class="site-footer">
+<div class="wrap footer-inner">
+<div class="footer-links"><a href="about.html">About</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:hello@twisti.org">hello@twisti.org</a></div>
+<div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+</div>
+</footer>
+<script>
+const toggle = document.getElementById('themeToggle'); const body = document.body; const saved = localStorage.getItem('twisti-theme'); if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; } toggle.addEventListener('click', () => { const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; body.setAttribute('data-theme', next); toggle.textContent = next === 'dark' ? '☀️' : '🌙'; localStorage.setItem('twisti-theme', next); }); (function initAuthState(){ const loginBtn = document.getElementById('loginBtn'); const token = localStorage.getItem('twisti_access'); const userRaw = localStorage.getItem('twisti_user'); if (!token || !userRaw) return; let user; try { user = JSON.parse(userRaw); } catch { return; } const label = (user.name || user.email || 'Account').split(' ')[0]; loginBtn.textContent = label; loginBtn.href = '#'; loginBtn.addEventListener('click', (e) => { e.preventDefault(); if (confirm('Sign out of Twisti?')) { localStorage.removeItem('twisti_access'); localStorage.removeItem('twisti_user'); window.location.reload(); } }); })();
+</script>
+</body>
+</html>

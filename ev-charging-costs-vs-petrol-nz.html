@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EV Charging Costs vs Petrol in NZ | Twisti</title>
+<meta name="description" content="A real-number comparison of home EV charging costs against petrol in New Zealand, with weekly and annual running cost examples for typical commutes.">
+<link rel="canonical" href="https://twisti.org/ev-charging-costs-vs-petrol-nz.html">
+<meta property="og:title" content="EV Charging Costs vs Petrol in NZ">
+<meta property="og:description" content="A real-number comparison of home EV charging costs against petrol in New Zealand, with weekly and annual running cost examples for typical commutes.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/ev-charging-costs-vs-petrol-nz.html">
+<meta property="og:site_name" content="Twisti">
+<meta property="og:image" content="https://twisti.org/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EV Charging Costs vs Petrol in NZ">
+<meta name="twitter:description" content="A real-number comparison of home EV charging costs against petrol in New Zealand, with weekly and annual running cost examples for typical commutes.">
+<meta name="twitter:image" content="https://twisti.org/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Article",
+"headline": "EV Charging Costs vs Petrol in NZ",
+"description": "A real-number comparison of home EV charging costs against petrol in New Zealand, with weekly and annual running cost examples for typical commutes.",
+"author": { "@type": "Organization", "name": "Twisti" },
+"publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+"datePublished": "2026-07-19",
+"dateModified": "2026-07-19",
+"mainEntityOfPage": "https://twisti.org/ev-charging-costs-vs-petrol-nz.html"
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": [
+{ "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+{ "@type": "ListItem", "position": 2, "name": "EV Charging Costs vs Petrol in NZ", "item": "https://twisti.org/ev-charging-costs-vs-petrol-nz.html" }
+]
+}
+</script>
+<style>
+:root{
+--bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+--accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+--radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+--confirmed:#1a6b4a; --reported:#b45309; --opinion:#2563eb;
+}
+[data-theme="dark"]{
+--bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+--accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+--shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:32px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:32px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:21px; font-weight:700; margin:36px 0 12px;}
+p{font-size:15px; line-height:1.75; color:var(--text-dim); margin-bottom:14px;}
+ul{margin:0 0 14px 20px; color:var(--text-dim); font-size:15px; line-height:1.75;}
+li{margin-bottom:6px;}
+strong{color:var(--text); font-weight:600;}
+.disclosure{background:var(--surface); border:1.5px solid var(--accent); border-radius:var(--radius); padding:18px 22px; margin-bottom:32px; font-size:14px; line-height:1.6; color:var(--text-dim);}
+.disclosure strong{color:var(--accent);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:26px 28px; margin:36px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{margin-top:0; font-family:'Space Grotesk', sans-serif; font-size:17px;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:16px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:11px 24px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+.sources{font-size:12px; color:var(--text-dim); border-top:1px solid var(--border); padding-top:16px; margin-top:36px; line-height:1.7;}
+.sources a{color:var(--accent);}
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+</head>
+<body data-theme="light">
+<nav>
+<div class="nav-inner">
+<a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+<div class="nav-links">
+<a href="index.html#picks">Categories</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="nav-right">
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+<a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+</div>
+</div>
+</nav>
+<article class="page wrap">
+<div class="breadcrumb"><a href="blog.html">Blog</a> / EV Charging Costs vs Petrol in NZ</div>
+<div class="page-eyebrow">Money-saving</div>
+<h1>EV Charging Costs vs Petrol in NZ</h1>
+<p class="lede">Home charging an EV can cost a fraction of running a petrol car in New Zealand — but the gap depends heavily on your power plan and how much you drive.</p>
+<span class="byline">Twisti guides · Updated July 2026</span>
+<div class="disclosure"><strong>How we picked these:</strong> Figures are based on current NZ average electricity and petrol prices, EECA running-cost guidance, and typical efficiency figures for popular EV and petrol models.</div>
+
+<h2>The basic maths</h2>
+<p>A typical mid-size EV uses roughly <strong>15–18kWh per 100km</strong>. With home electricity averaging around <strong>28–32 cents per kWh</strong> on a standard plan, that works out to about <strong>$4.50–$5.50 per 100km</strong>. A comparable petrol car averaging <strong>7–8 litres per 100km</strong> at around <strong>$2.75 per litre</strong> costs roughly <strong>$19–$22 per 100km</strong>. That's the headline gap: EVs typically cost around a <strong>quarter to a third</strong> as much per kilometre to run on fuel alone, before servicing differences.</p>
+
+<h2>A weekly example</h2>
+<p>For a commuter doing <strong>300km a week</strong> — a fairly typical Auckland or Wellington commute plus weekend driving — the numbers look like this: an EV charged at home costs roughly <strong>$13–$17 a week</strong> in electricity, while the equivalent petrol car costs roughly <strong>$57–$66 a week</strong> in fuel. Over a year, that's a difference of somewhere around <strong>$2,300–$2,500</strong> in fuel/power costs alone.</p>
+
+<h2>Off-peak plans make the gap bigger</h2>
+<p>Several NZ retailers offer <strong>EV-specific or time-of-use electricity plans</strong> with cheap overnight rates, sometimes as low as <strong>12–15 cents per kWh</strong> between roughly midnight and 6am. Charging overnight on one of these plans can push the cost per 100km down to around <strong>$2–$3</strong>, widening the annual saving versus petrol to well over <strong>$3,000</strong> for a typical commuter, depending on the specific plan and provider.</p>
+
+<h2>Public charging changes the picture</h2>
+<p>Home charging is where the savings are biggest. Public DC fast chargers from networks like <strong>ChargeNet</strong> and <strong>BP Pulse</strong> charge per kWh at rates often <strong>2–3 times</strong> the price of home off-peak power, sometimes landing close to petrol-equivalent cost per kilometre for drivers who rely heavily on public charging rather than plugging in at home overnight. If you can't charge at home — renting, no driveway, apartment living — the EV cost advantage shrinks considerably, which is worth factoring in before assuming the savings will be as large as the headline numbers suggest.</p>
+
+<h2>Don't forget the other running costs</h2>
+<ul>
+<li><strong>Servicing</strong> — EVs have fewer moving parts (no oil changes, timing belts, or exhaust systems), typically saving a few hundred dollars a year in scheduled maintenance.</li>
+<li><strong>Road User Charges (RUCs)</strong> — light EVs in NZ now pay RUCs similar in structure to diesel vehicles, which partially offsets the fuel savings and should be included in any real comparison.</li>
+<li><strong>Tyres</strong> — EVs are heavier and can wear tyres slightly faster, a smaller but real ongoing cost.</li>
+</ul>
+
+<h2>Bottom line</h2>
+<p>For a household that can charge at home overnight and drives a typical weekly distance, an EV will usually cost somewhere between <strong>a third and a quarter</strong> of the fuel cost of an equivalent petrol car, even after accounting for RUCs. The savings shrink significantly for anyone relying mostly on public fast charging, so home charging access is the single biggest factor in whether the switch pays off financially.</p>
+
+<div class="cta-box">
+<h3>Thinking about a home EV charger?</h3>
+<p>Twisti compares prices on home EV chargers and accessories across NZ retailers.</p>
+<a href="index.html" class="cta-btn">Compare prices</a>
+</div>
+<div class="sources">Sources: EECA vehicle running-cost guidance, NZTA Road User Charges schedules, ChargeNet and BP Pulse pricing pages, retailer EV charger listings. Checked July 2026 — prices may change.</div>
+</article>
+<footer class="site-footer">
+<div class="wrap footer-inner">
+<div class="footer-links">
+<a href="about.html">About</a>
+<a href="blog.html">Blog</a>
+<a href="contact.html">Contact</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+<a href="mailto:hello@twisti.org">hello@twisti.org</a>
+</div>
+<div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+</div>
+</footer>
+<script>
+const toggle = document.getElementById('themeToggle');
+const body = document.body;
+const saved = localStorage.getItem('twisti-theme');
+if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+toggle.addEventListener('click', () => {
+const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+body.setAttribute('data-theme', next);
+toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+localStorage.setItem('twisti-theme', next);
+});
+(function initAuthState(){
+const loginBtn = document.getElementById('loginBtn');
+const token = localStorage.getItem('twisti_access');
+const userRaw = localStorage.getItem('twisti_user');
+if (!token || !userRaw) return;
+let user;
+try { user = JSON.parse(userRaw); } catch { return; }
+const label = (user.name || user.email || 'Account').split(' ')[0];
+loginBtn.textContent = label;
+loginBtn.href = '#';
+loginBtn.addEventListener('click', (e) => {
+e.preventDefault();
+if (confirm('Sign out of Twisti?')) {
+localStorage.removeItem('twisti_access');
+localStorage.removeItem('twisti_user');
+window.location.reload();
+}
+});
+})();
+</script>
+</body>
+</html>

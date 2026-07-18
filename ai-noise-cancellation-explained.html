@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How AI Noise Cancellation Works | Twisti</title>
+<meta name="description" content="Adaptive AI noise cancellation reacts to your surroundings in real time. Here's how it differs from older fixed ANC and which earbud brands do it best.">
+<link rel="canonical" href="https://twisti.org/ai-noise-cancellation-explained.html">
+<meta property="og:title" content="How AI Noise Cancellation Works">
+<meta property="og:description" content="Adaptive AI noise cancellation reacts to your surroundings in real time. Here's how it differs from older fixed ANC and which earbud brands do it best.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/ai-noise-cancellation-explained.html">
+<meta property="og:site_name" content="Twisti">
+<meta property="og:image" content="https://twisti.org/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How AI Noise Cancellation Works">
+<meta name="twitter:description" content="Adaptive AI noise cancellation reacts to your surroundings in real time. Here's how it differs from older fixed ANC and which earbud brands do it best.">
+<meta name="twitter:image" content="https://twisti.org/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Article",
+"headline": "How AI Noise Cancellation Works",
+"description": "Adaptive AI noise cancellation reacts to your surroundings in real time. Here's how it differs from older fixed ANC and which earbud brands do it best.",
+"author": { "@type": "Organization", "name": "Twisti" },
+"publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+"datePublished": "2026-07-19",
+"dateModified": "2026-07-19",
+"mainEntityOfPage": "https://twisti.org/ai-noise-cancellation-explained.html"
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": [
+{ "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+{ "@type": "ListItem", "position": 2, "name": "How AI Noise Cancellation Works", "item": "https://twisti.org/ai-noise-cancellation-explained.html" }
+]
+}
+</script>
+<style>
+:root{
+--bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+--accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+--radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+--confirmed:#1a6b4a; --reported:#b45309; --opinion:#2563eb;
+}
+[data-theme="dark"]{
+--bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+--accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+--shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:32px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:32px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:21px; font-weight:700; margin:36px 0 12px;}
+p{font-size:15px; line-height:1.75; color:var(--text-dim); margin-bottom:14px;}
+ul{margin:0 0 14px 20px; color:var(--text-dim); font-size:15px; line-height:1.75;}
+li{margin-bottom:6px;}
+strong{color:var(--text); font-weight:600;}
+.disclosure{background:var(--surface); border:1.5px solid var(--accent); border-radius:var(--radius); padding:18px 22px; margin-bottom:32px; font-size:14px; line-height:1.6; color:var(--text-dim);}
+.disclosure strong{color:var(--accent);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:26px 28px; margin:36px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{margin-top:0; font-family:'Space Grotesk', sans-serif; font-size:17px;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:16px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:11px 24px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+.sources{font-size:12px; color:var(--text-dim); border-top:1px solid var(--border); padding-top:16px; margin-top:36px; line-height:1.7;}
+.sources a{color:var(--accent);}
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+</head>
+<body data-theme="light">
+<nav>
+<div class="nav-inner">
+<a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+<div class="nav-links">
+<a href="index.html#picks">Categories</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="nav-right">
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+<a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+</div>
+</div>
+</nav>
+<article class="page wrap">
+<div class="breadcrumb"><a href="blog.html">Blog</a> / How AI Noise Cancellation Works</div>
+<div class="page-eyebrow">Explainer</div>
+<h1>How AI Noise Cancellation Works</h1>
+<p class="lede">Modern earbuds don't just block a fixed hum anymore — they listen and adapt hundreds of times a second. Here's what's actually different about AI-driven ANC.</p>
+<span class="byline">Twisti guides · Updated July 2026</span>
+<div class="disclosure"><strong>How we picked these:</strong> Performance claims are based on RTINGS lab measurements, manufacturer technical documentation, and aggregated owner feedback through mid-2026.</div>
+
+<h2>Fixed ANC vs adaptive AI-driven ANC</h2>
+<p>Traditional active noise cancellation (ANC) uses microphones to sample ambient sound and generates an inverted sound wave to cancel it out — effective against constant, low-frequency noise like an aircraft engine or air conditioning hum, but it's tuned once and applies the same cancellation profile regardless of what's actually happening around you.</p>
+<p><strong>Adaptive AI-driven noise cancellation</strong> goes a step further: it continuously analyses incoming sound thousands of times per second, classifies it (wind, chatter, traffic, a barking dog), and adjusts the cancellation profile in real time. Some systems can also detect when you start speaking and automatically reduce cancellation or engage transparency mode so you're not shouting over your own earbuds.</p>
+
+<h2>How the "AI" part actually works</h2>
+<p>Under the hood, most adaptive ANC systems run a small machine-learning model directly on the earbud's chip, trained to recognise sound categories rather than just amplitude. This on-device processing matters because it needs to react in milliseconds — sending audio to the cloud and back would introduce noticeable lag. The model adjusts the phase and strength of the cancellation signal dynamically, rather than applying one static curve to everything picked up by the microphones.</p>
+<p>Wind noise is a good example of where this shows up clearly: older ANC earbuds often produced a whooshing artifact in windy conditions because the cancellation algorithm fought against turbulent, chaotic air movement. AI-driven systems increasingly detect wind specifically and dial back cancellation in that frequency range rather than trying to fight it.</p>
+
+<h2>Brands doing it well</h2>
+<p><strong>Sony's WF-1000XM5</strong> uses a dedicated integrated processor (the V2) alongside its HD Noise Cancelling Processor QN2e to handle adaptive cancellation, and it remains a benchmark for real-world commuting noise. <strong>Apple's AirPods Pro 2</strong> added Adaptive Audio and Personalized Volume, which blend ANC and transparency mode dynamically based on your environment rather than forcing an on/off toggle. <strong>Bose's QuietComfort Ultra</strong> uses what Bose calls "CustomTune" to calibrate to your ear shape and adjust cancellation accordingly.</p>
+<p>In NZ, all three are readily available through <strong>JB Hi-Fi</strong>, <strong>Noel Leeming</strong>, and <strong>Harvey Norman</strong>, generally priced from around <strong>$399</strong> for the AirPods Pro 2 up to <strong>$479–$549</strong> for the Sony and Bose flagships, with frequent sales around Black Friday and Boxing Day dropping them meaningfully lower.</p>
+
+<h2>Does it actually make a difference day to day</h2>
+<p>For a plane cabin or a quiet office, fixed ANC and adaptive ANC perform similarly — the noise is constant enough that a static profile works fine. The gap shows up in messier, variable environments: a busy street, a cafe with clattering cups, an open-plan office with sporadic conversation. That's where adaptive systems noticeably outperform older fixed designs, because they're not applying a single compromise setting to a constantly changing soundscape.</p>
+
+<h2>What to check before buying</h2>
+<ul>
+<li>Look for <strong>"adaptive"</strong> or <strong>"personalized"</strong> ANC branding specifically — plain "ANC" on a spec sheet can still mean the older fixed approach.</li>
+<li>Battery life with ANC on is usually shorter than the headline number — check the ANC-specific rating, not the total.</li>
+<li>Fit matters as much as software — a poor seal undermines even the best adaptive algorithm.</li>
+</ul>
+
+<div class="cta-box">
+<h3>Looking for the best ANC earbuds deal?</h3>
+<p>Twisti tracks prices across NZ retailers so you don't overpay for last year's model.</p>
+<a href="index.html" class="cta-btn">Compare prices</a>
+</div>
+<div class="sources">Sources: RTINGS headphone test methodology, Sony and Apple technical product pages, Bose CustomTune documentation, retailer category pages (JB Hi-Fi, Noel Leeming). Checked July 2026 — prices may change.</div>
+</article>
+<footer class="site-footer">
+<div class="wrap footer-inner">
+<div class="footer-links">
+<a href="about.html">About</a>
+<a href="blog.html">Blog</a>
+<a href="contact.html">Contact</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+<a href="mailto:hello@twisti.org">hello@twisti.org</a>
+</div>
+<div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+</div>
+</footer>
+<script>
+const toggle = document.getElementById('themeToggle');
+const body = document.body;
+const saved = localStorage.getItem('twisti-theme');
+if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+toggle.addEventListener('click', () => {
+const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+body.setAttribute('data-theme', next);
+toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+localStorage.setItem('twisti-theme', next);
+});
+(function initAuthState(){
+const loginBtn = document.getElementById('loginBtn');
+const token = localStorage.getItem('twisti_access');
+const userRaw = localStorage.getItem('twisti_user');
+if (!token || !userRaw) return;
+let user;
+try { user = JSON.parse(userRaw); } catch { return; }
+const label = (user.name || user.email || 'Account').split(' ')[0];
+loginBtn.textContent = label;
+loginBtn.href = '#';
+loginBtn.addEventListener('click', (e) => {
+e.preventDefault();
+if (confirm('Sign out of Twisti?')) {
+localStorage.removeItem('twisti_access');
+localStorage.removeItem('twisti_user');
+window.location.reload();
+}
+});
+})();
+</script>
+</body>
+</html>

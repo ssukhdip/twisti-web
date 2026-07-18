@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Livestream with a Webcam Setup (Updated July 2026) | Twisti</title>
+<meta name="description" content="A practical guide to building a livestreaming setup — webcam, lighting, microphone and OBS software — with real product examples and NZ pricing.">
+<link rel="canonical" href="https://twisti.org/how-to-livestream-with-a-webcam.html">
+<meta property="og:title" content="How to Livestream with a Webcam Setup">
+<meta property="og:description" content="A practical guide to building a livestreaming setup with real product examples and NZ pricing.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/how-to-livestream-with-a-webcam.html">
+<meta property="og:site_name" content="Twisti">
+<meta property="og:image" content="https://twisti.org/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to Livestream with a Webcam Setup">
+<meta name="twitter:description" content="Webcam, lighting, mic and OBS — a practical livestreaming setup guide.">
+<meta name="twitter:image" content="https://twisti.org/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "Article", "headline": "How to Livestream with a Webcam Setup", "description": "A practical guide to building a livestreaming setup — webcam, lighting, microphone and OBS software — with real product examples and NZ pricing.", "author": { "@type": "Organization", "name": "Twisti" }, "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } }, "datePublished": "2026-07-19", "dateModified": "2026-07-19", "mainEntityOfPage": "https://twisti.org/how-to-livestream-with-a-webcam.html" }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" }, { "@type": "ListItem", "position": 2, "name": "How to Livestream with a Webcam Setup", "item": "https://twisti.org/how-to-livestream-with-a-webcam.html" } ] }
+</script>
+<style>
+:root{ --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64; --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545; --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05); --confirmed:#1a6b4a; --reported:#b45309; --opinion:#2563eb; }
+[data-theme="dark"]{ --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d; --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f; --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35); }
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:32px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:32px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:21px; font-weight:700; margin:36px 0 12px;}
+p{font-size:15px; line-height:1.75; color:var(--text-dim); margin-bottom:14px;}
+ul{margin:0 0 14px 20px; color:var(--text-dim); font-size:15px; line-height:1.75;}
+li{margin-bottom:6px;}
+strong{color:var(--text); font-weight:600;}
+.disclosure{background:var(--surface); border:1.5px solid var(--accent); border-radius:var(--radius); padding:18px 22px; margin-bottom:32px; font-size:14px; line-height:1.6; color:var(--text-dim);}
+.disclosure strong{color:var(--accent);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:26px 28px; margin:36px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{margin-top:0; font-family:'Space Grotesk', sans-serif; font-size:17px;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:16px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:11px 24px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+.sources{font-size:12px; color:var(--text-dim); border-top:1px solid var(--border); padding-top:16px; margin-top:36px; line-height:1.7;}
+.sources a{color:var(--accent);}
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+</head>
+<body data-theme="light">
+<nav>
+<div class="nav-inner">
+<a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+<div class="nav-links">
+<a href="index.html#picks">Categories</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="nav-right">
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+<a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+</div>
+</div>
+</nav>
+<article class="page wrap">
+<div class="breadcrumb"><a href="blog.html">Blog</a> / How to Livestream with a Webcam Setup</div>
+<div class="page-eyebrow">How-to guide</div>
+<h1>How to Livestream with a Webcam Setup</h1>
+<p class="lede">You don't need a $5,000 studio to start livestreaming well. A webcam, one light, a decent mic and free software will get you most of the way there — here's exactly what to buy and how to set it up.</p>
+<span class="byline">Twisti guides · Updated July 2026</span>
+<div class="disclosure"><strong>Priority order matters:</strong> Audio quality affects viewer retention more than video quality. If your budget is tight, spend on the mic before the camera.</div>
+
+<h2>Step 1: Pick your webcam</h2>
+<p>A dedicated streaming webcam beats a laptop's built-in camera in every case — better low-light performance, wider field of view, and proper autofocus. The Logitech StreamCam is built specifically for OBS and other streaming software, shooting 1080p at 60fps with a glass lens and 78-degree field of view, and is a popular starting point. If you want to go further, a mirrorless camera with an HDMI capture card (like an Elgato Cam Link) gives noticeably better image quality but adds cost and complexity — worth it only once you're streaming regularly.</p>
+
+<h2>Step 2: Get one proper light</h2>
+<p>Lighting matters more than most beginners expect — even a good camera looks average in bad light. A single ring light (18-inch models are common and typically run $30–$60) placed just behind your camera, angled slightly down at your face, fixes most of the problem instantly. If you want a cleaner look, two small LED panels either side of your desk (key light and fill light) avoid the flat "ring light catchlight in the eyes" look that's become an obvious streaming tell.</p>
+
+<h2>Step 3: Choose a microphone</h2>
+<p>Built-in laptop or webcam mics pick up room echo and background noise badly. A USB condenser or dynamic mic fixes this immediately. Budget dynamic USB mics like the Samson Q2U or Audio-Technica AT2005USB reject background noise well and typically cost $60–$100 — a big step up from any built-in mic. If your budget allows, a Blue Yeti or similar USB condenser mic gives richer sound for voice-focused streams, though it's more sensitive to room echo, so pair it with a basic acoustic setup (rugs, curtains, soft furnishings) if your room is bare.</p>
+
+<h2>Step 4: Set up OBS Studio</h2>
+<p>OBS (Open Broadcaster Software) is free, works on Windows and Mac, and is the standard tool for streaming to Twitch, YouTube, or recording locally. Basic setup steps:</p>
+<ul>
+<li>Download OBS Studio from obsproject.com and run through its auto-configuration wizard, which sets sensible defaults for your hardware.</li>
+<li>Add a "Video Capture Device" source and select your webcam.</li>
+<li>Add an "Audio Input Capture" source and select your USB mic — mute the "Desktop Audio" source's mic contribution if it's picking up your webcam's built-in mic too.</li>
+<li>Use the built-in Auto Config Wizard under Tools to set your output resolution and bitrate based on your internet upload speed — most NZ residential fibre connections handle 1080p60 streaming comfortably, but check your actual upload speed with a speed test first.</li>
+<li>Set up scenes (e.g. "Starting Soon," "Live," "Break") so you can switch cleanly between different layouts during a stream.</li>
+</ul>
+
+<h2>Step 5: Test your upload speed before going live</h2>
+<p>Streaming needs sustained upload bandwidth, not just download speed. Most NZ ISPs (Spark, One NZ, 2degrees) publish upload speeds separately from download on UFB fibre plans — for smooth 1080p streaming, aim for at least 5-6 Mbps of consistently available upload bandwidth, with more headroom if others in the house are also online.</p>
+
+<h2>A realistic starter budget</h2>
+<p>A capable first setup — Logitech StreamCam or similar webcam, one ring light, a USB dynamic mic, and free OBS software — typically lands under NZ$700 all-in when bought from NZ retailers, and covers genuinely professional-looking output for Twitch, YouTube, or work video calls alike.</p>
+
+<div class="cta-box"><h3>Building a streaming setup?</h3><p>Compare NZ prices on webcams, microphones and lighting before you buy.</p><a href="index.html" class="cta-btn">Compare prices</a></div>
+<div class="sources">Sources: <a href="https://www.logitech.com/en-nz/shop/p/streamcam.960-001299" target="_blank" rel="noopener">Logitech NZ — StreamCam</a>, <a href="https://ruahcreativehouse.org/blog/streaming-setup-guide/" target="_blank" rel="noopener">Ruah Creative House — Complete Streaming Setup Guide 2026</a>, <a href="https://www.dacast.com/blog/live-streaming-equipment/" target="_blank" rel="noopener">Dacast — Live Streaming Equipment Guide 2026</a>. Checked July 2026 — details may change.</div>
+</article>
+<footer class="site-footer">
+<div class="wrap footer-inner">
+<div class="footer-links"><a href="about.html">About</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:hello@twisti.org">hello@twisti.org</a></div>
+<div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+</div>
+</footer>
+<script>
+const toggle = document.getElementById('themeToggle'); const body = document.body; const saved = localStorage.getItem('twisti-theme'); if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; } toggle.addEventListener('click', () => { const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; body.setAttribute('data-theme', next); toggle.textContent = next === 'dark' ? '☀️' : '🌙'; localStorage.setItem('twisti-theme', next); }); (function initAuthState(){ const loginBtn = document.getElementById('loginBtn'); const token = localStorage.getItem('twisti_access'); const userRaw = localStorage.getItem('twisti_user'); if (!token || !userRaw) return; let user; try { user = JSON.parse(userRaw); } catch { return; } const label = (user.name || user.email || 'Account').split(' ')[0]; loginBtn.textContent = label; loginBtn.href = '#'; loginBtn.addEventListener('click', (e) => { e.preventDefault(); if (confirm('Sign out of Twisti?')) { localStorage.removeItem('twisti_access'); localStorage.removeItem('twisti_user'); window.location.reload(); } }); })();
+</script>
+</body>
+</html>

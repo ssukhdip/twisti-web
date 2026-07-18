@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Pick the Right Power Bank Capacity (Updated July 2026) | Twisti</title>
+<meta name="description" content="A practical guide to power bank mAh and Wh ratings, real device charging math, and the airline carry-on rules that apply on NZ flights in 2026.">
+<link rel="canonical" href="https://twisti.org/how-to-pick-right-power-bank-capacity.html">
+<meta property="og:title" content="How to Pick the Right Power Bank Capacity">
+<meta property="og:description" content="mAh/Wh capacity explained, device charging math, and airline carry-on rules for NZ flights.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/how-to-pick-right-power-bank-capacity.html">
+<meta property="og:site_name" content="Twisti">
+<meta property="og:image" content="https://twisti.org/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to Pick the Right Power Bank Capacity">
+<meta name="twitter:description" content="mAh/Wh capacity, charging math, and NZ flight rules explained.">
+<meta name="twitter:image" content="https://twisti.org/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "Article", "headline": "How to Pick the Right Power Bank Capacity", "description": "A practical guide to power bank mAh and Wh ratings, real device charging math, and the airline carry-on rules that apply on NZ flights in 2026.", "author": { "@type": "Organization", "name": "Twisti" }, "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } }, "datePublished": "2026-07-19", "dateModified": "2026-07-19", "mainEntityOfPage": "https://twisti.org/how-to-pick-right-power-bank-capacity.html" }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" }, { "@type": "ListItem", "position": 2, "name": "How to Pick the Right Power Bank Capacity", "item": "https://twisti.org/how-to-pick-right-power-bank-capacity.html" } ] }
+</script>
+<style>
+:root{ --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64; --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545; --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05); --confirmed:#1a6b4a; --reported:#b45309; --opinion:#2563eb; }
+[data-theme="dark"]{ --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d; --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f; --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35); }
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:32px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:32px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:21px; font-weight:700; margin:36px 0 12px;}
+p{font-size:15px; line-height:1.75; color:var(--text-dim); margin-bottom:14px;}
+ul{margin:0 0 14px 20px; color:var(--text-dim); font-size:15px; line-height:1.75;}
+li{margin-bottom:6px;}
+strong{color:var(--text); font-weight:600;}
+.disclosure{background:var(--surface); border:1.5px solid var(--accent); border-radius:var(--radius); padding:18px 22px; margin-bottom:32px; font-size:14px; line-height:1.6; color:var(--text-dim);}
+.disclosure strong{color:var(--accent);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:26px 28px; margin:36px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{margin-top:0; font-family:'Space Grotesk', sans-serif; font-size:17px;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:16px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:11px 24px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+.sources{font-size:12px; color:var(--text-dim); border-top:1px solid var(--border); padding-top:16px; margin-top:36px; line-height:1.7;}
+.sources a{color:var(--accent);}
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+</head>
+<body data-theme="light">
+<nav>
+<div class="nav-inner">
+<a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+<div class="nav-links">
+<a href="index.html#picks">Categories</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="nav-right">
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+<a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+</div>
+</div>
+</nav>
+<article class="page wrap">
+<div class="breadcrumb"><a href="blog.html">Blog</a> / How to Pick the Right Power Bank Capacity</div>
+<div class="page-eyebrow">How-to guide</div>
+<h1>How to Pick the Right Power Bank Capacity</h1>
+<p class="lede">mAh numbers on power bank packaging are almost always bigger than what you actually get in real device charges — and NZ airlines now enforce strict Wh limits on what you can even carry. Here's how to size a power bank properly.</p>
+<span class="byline">Twisti guides · Updated July 2026</span>
+<div class="disclosure"><strong>Key number to remember:</strong> To convert mAh to Wh, multiply by voltage (usually 3.7V) and divide by 1000. A 10,000mAh bank is about 37Wh; a 27,000mAh bank is about 100Wh — right at most airlines' limit.</div>
+
+<h2>Why mAh on the box overstates real-world charges</h2>
+<p>Power banks lose energy converting their internal battery voltage (usually 3.7V) up to the 5V or higher output your phone needs, plus further losses through the cable and charging circuitry. In practice, expect to get roughly 60-70% of the rated mAh capacity as usable charge in your device — so a "10,000mAh" power bank realistically delivers more like 6,000-7,000mAh to your phone, not the full number printed on the box.</p>
+
+<h2>Matching capacity to your devices</h2>
+<ul>
+<li><strong>iPhone (battery roughly 3,200-4,400mAh depending on model):</strong> A 10,000mAh power bank gives roughly 1.5-2 full charges after conversion losses — a solid everyday-carry size.</li>
+<li><strong>Android flagship phones (battery roughly 4,500-5,500mAh):</strong> Similar 10,000mAh bank gives around 1-1.5 full charges.</li>
+<li><strong>Tablets and larger devices:</strong> A tablet battery can be 7,000-10,000mAh on its own, so a small power bank barely gets you one partial charge — you'll want 20,000mAh or more if you're regularly charging a tablet or tablet-sized device on the go.</li>
+<li><strong>Laptops via USB-C PD:</strong> Laptop batteries are commonly 50-90Wh, so you'll want a high-capacity 20,000-27,000mAh power bank with USB-C Power Delivery output rated at 60W+ to meaningfully top up a laptop, and even then expect only a partial charge.</li>
+</ul>
+
+<h2>The airline rules that now limit your choice</h2>
+<p>As of December 2025, Air New Zealand allows a maximum of two power banks per person in carry-on baggage, each capped at 100Wh, and power banks cannot be used or charged during taxi, take-off or landing, and must stay in the cabin (not in checked baggage or an overhead locker) — kept with you or in your seat area. Jetstar has gone further, banning the use and in-flight charging of power banks entirely on all its flights from December 2025, while still allowing up to two in carry-on baggage that simply can't be used onboard.</p>
+<p>Practically, this means: check the Wh rating printed on any power bank you plan to fly with (not just the mAh figure), and if it's not clearly labelled in Wh, do the maths yourself — a 27,000mAh bank at 3.7V comes out to roughly 99.9Wh, technically under the 100Wh cap but close enough that airline staff may scrutinise it if the label isn't clear.</p>
+
+<h2>Our practical recommendation</h2>
+<ul>
+<li><strong>Everyday phone-only use:</strong> A 10,000mAh bank is enough for most people and easily clears airline limits with room to spare.</li>
+<li><strong>Frequent flyer who also wants tablet/laptop backup:</strong> Stay under the 100Wh line — a 20,000mAh (roughly 74Wh) bank is a good upper-limit choice that still flies without issue.</li>
+<li><strong>Avoid anything above 27,000mAh/100Wh</strong> if you fly regularly — some banks in this range require airline approval or are outright refused at the gate, and it's not worth the hassle for occasional extra capacity.</li>
+</ul>
+
+<div class="cta-box"><h3>Shopping for a power bank?</h3><p>Compare NZ prices on power banks across capacities before you buy.</p><a href="index.html" class="cta-btn">Compare prices</a></div>
+<div class="sources">Sources: <a href="https://www.rnz.co.nz/news/national/580999/air-new-zealand-updates-rules-of-portable-power-bank-usage-on-flights" target="_blank" rel="noopener">RNZ — Air New Zealand updates power bank rules</a>, <a href="https://www.airnewzealand.com/en-nz/travel-info/baggage/travelling-with-batteries-devices" target="_blank" rel="noopener">Air New Zealand — Travelling with batteries and devices</a>, <a href="https://www.stuff.co.nz/travel/360895163/jetstar-flights-ban-use-portable-power-banks-all-flights-air-new-zealand-looking-it" target="_blank" rel="noopener">Stuff — Jetstar bans power bank use on all flights</a>. Checked July 2026 — airline rules may change; confirm current policy before flying.</div>
+</article>
+<footer class="site-footer">
+<div class="wrap footer-inner">
+<div class="footer-links"><a href="about.html">About</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:hello@twisti.org">hello@twisti.org</a></div>
+<div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+</div>
+</footer>
+<script>
+const toggle = document.getElementById('themeToggle'); const body = document.body; const saved = localStorage.getItem('twisti-theme'); if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; } toggle.addEventListener('click', () => { const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; body.setAttribute('data-theme', next); toggle.textContent = next === 'dark' ? '☀️' : '🌙'; localStorage.setItem('twisti-theme', next); }); (function initAuthState(){ const loginBtn = document.getElementById('loginBtn'); const token = localStorage.getItem('twisti_access'); const userRaw = localStorage.getItem('twisti_user'); if (!token || !userRaw) return; let user; try { user = JSON.parse(userRaw); } catch { return; } const label = (user.name || user.email || 'Account').split(' ')[0]; loginBtn.textContent = label; loginBtn.href = '#'; loginBtn.addEventListener('click', (e) => { e.preventDefault(); if (confirm('Sign out of Twisti?')) { localStorage.removeItem('twisti_access'); localStorage.removeItem('twisti_user'); window.location.reload(); } }); })();
+</script>
+</body>
+</html>

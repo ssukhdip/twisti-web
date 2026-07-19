@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USB4 vs Thunderbolt 5 Compared | Twisti</title>
+<meta name="description" content="USB4 v2 and Thunderbolt 5 both promise huge speeds, but they're not the same thing. Here's what each supports, and whether it actually matters for you.">
+<link rel="canonical" href="https://twisti.org/usb4-vs-thunderbolt-5.html">
+<meta property="og:title" content="USB4 vs Thunderbolt 5 Compared">
+<meta property="og:description" content="USB4 v2 and Thunderbolt 5 both promise huge speeds, but they're not the same thing. Here's what each supports, and whether it actually matters for you.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/usb4-vs-thunderbolt-5.html">
+<meta property="og:site_name" content="Twisti">
+<meta property="og:image" content="https://twisti.org/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="USB4 vs Thunderbolt 5 Compared">
+<meta name="twitter:description" content="USB4 v2 and Thunderbolt 5 both promise huge speeds, but they're not the same thing. Here's what each supports, and whether it actually matters for you.">
+<meta name="twitter:image" content="https://twisti.org/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Article",
+"headline": "USB4 vs Thunderbolt 5 Compared",
+"description": "USB4 v2 and Thunderbolt 5 both promise huge speeds, but they're not the same thing. Here's what each supports, and whether it actually matters for you.",
+"author": { "@type": "Organization", "name": "Twisti" },
+"publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+"datePublished": "2026-07-19",
+"dateModified": "2026-07-19",
+"mainEntityOfPage": "https://twisti.org/usb4-vs-thunderbolt-5.html"
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": [
+{ "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://twisti.org/blog.html" },
+{ "@type": "ListItem", "position": 2, "name": "USB4 vs Thunderbolt 5 Compared", "item": "https://twisti.org/usb4-vs-thunderbolt-5.html" }
+]
+}
+</script>
+<style>
+:root{
+--bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+--accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+--radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+--confirmed:#1a6b4a; --reported:#b45309; --opinion:#2563eb;
+}
+[data-theme="dark"]{
+--bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+--accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+--shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:32px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:32px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:21px; font-weight:700; margin:36px 0 12px;}
+p{font-size:15px; line-height:1.75; color:var(--text-dim); margin-bottom:14px;}
+ul{margin:0 0 14px 20px; color:var(--text-dim); font-size:15px; line-height:1.75;}
+li{margin-bottom:6px;}
+strong{color:var(--text); font-weight:600;}
+.disclosure{background:var(--surface); border:1.5px solid var(--accent); border-radius:var(--radius); padding:18px 22px; margin-bottom:32px; font-size:14px; line-height:1.6; color:var(--text-dim);}
+.disclosure strong{color:var(--accent);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:26px 28px; margin:36px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{margin-top:0; font-family:'Space Grotesk', sans-serif; font-size:17px;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:16px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:11px 24px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+.sources{font-size:12px; color:var(--text-dim); border-top:1px solid var(--border); padding-top:16px; margin-top:36px; line-height:1.7;}
+.sources a{color:var(--accent);}
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+</head>
+<body data-theme="light">
+<nav>
+<div class="nav-inner">
+<a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+<div class="nav-links">
+<a href="index.html#picks">Categories</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="nav-right">
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+<a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+</div>
+</div>
+</nav>
+<article class="page wrap">
+<div class="breadcrumb"><a href="blog.html">Blog</a> / USB4 vs Thunderbolt 5 Compared</div>
+<div class="page-eyebrow">Comparison</div>
+<h1>USB4 vs Thunderbolt 5 Compared</h1>
+<p class="lede">Two cable standards, two sets of speed claims, and a lot of overlapping ports that look identical. Here's what actually separates them.</p>
+<span class="byline">Twisti guides · Updated July 2026</span>
+<div class="disclosure"><strong>How we picked these:</strong> Speed and compatibility specs are drawn from the USB Implementers Forum and Intel's published Thunderbolt 5 documentation, cross-checked against current NZ retailer laptop listings.</div>
+
+<h2>The short version</h2>
+<p><strong>USB4 Version 2.0</strong> and <strong>Thunderbolt 5</strong> are closely related standards that both use the same USB-C connector and both top out at similar headline speeds, but Thunderbolt 5 is a stricter, certified specification with guaranteed minimums, while USB4 v2 is a looser spec that manufacturers can implement at different tiers. In practice, a "USB4" port on a budget laptop may run meaningfully slower than a Thunderbolt 5 port on a premium one, even though both use the same cable.</p>
+
+<h2>Speed and bandwidth</h2>
+<p><strong>Thunderbolt 5</strong> supports up to <strong>80Gbps bi-directional</strong>, with a boost mode pushing up to <strong>120Gbps</strong> for display-heavy tasks by borrowing bandwidth from the return channel. <strong>USB4 v2</strong> also specifies up to 80Gbps, but many real-world USB4 v2 implementations ship at lower tiers — 40Gbps is common — because the spec allows manufacturers to implement a subset rather than the full ceiling.</p>
+<p>For everyday tasks like transferring photos or backing up a phone, both standards are already far beyond what you'll notice. The gap shows up with external SSDs rated for sequential speeds above 2,000MB/s, multiple 4K/8K displays, or eGPU setups — Thunderbolt 5's guaranteed minimums make it the safer bet for those workloads.</p>
+
+<h2>Certification and guarantees</h2>
+<p>This is the biggest practical difference. Every <strong>Thunderbolt</strong> port and cable must pass Intel's certification program, which guarantees a specific minimum performance and full compatibility with Thunderbolt docks, eGPUs, and daisy-chained displays. <strong>USB4</strong> ports don't require the same certification, so two devices both labelled "USB4" can behave differently — one might not support external GPU pass-through, or might drop to USB 3.2 speeds when running two displays at once.</p>
+<p>If you're buying a dock, external monitor, or eGPU enclosure and want it to "just work" across different laptops, Thunderbolt certification is the more predictable choice.</p>
+
+<h2>Which NZ laptops support each</h2>
+<p><strong>MacBook Pro and MacBook Air</strong> models (M-series chips) use Thunderbolt, with recent Pro models supporting Thunderbolt 5. On the Windows side, <strong>Dell XPS</strong>, <strong>HP Spectre/EliteBook</strong>, and <strong>Lenovo ThinkPad</strong> ranges increasingly ship Thunderbolt 5 or Thunderbolt 4 ports on higher-end configurations, while more budget-focused laptops from the same brands often list "USB4" or even plain USB-C 3.2 instead. Retailers like <strong>PB Tech</strong>, <strong>Noel Leeming</strong>, and <strong>Harvey Norman</strong> list the specific port standard in the spec sheet — worth checking line by line rather than assuming from the connector shape alone.</p>
+
+<h2>Do most buyers need to care</h2>
+<p>For general use — browsing, office work, streaming, charging — the difference between USB4 and Thunderbolt 5 is invisible. It matters if you're a video editor working off external SSDs, someone running multiple high-refresh external monitors from a single cable, or connecting an eGPU. For those users, paying extra for a laptop with confirmed <strong>Thunderbolt</strong> support (not just "USB-C" or unlabelled "USB4") avoids compatibility headaches down the track.</p>
+
+<h2>Buying tips</h2>
+<ul>
+<li>Check for the literal words <strong>"Thunderbolt 4"</strong> or <strong>"Thunderbolt 5"</strong> on the spec sheet — "USB-C" alone tells you nothing about speed.</li>
+<li>Cables matter too — a passive USB-C cable rated for charging won't hit either standard's top speeds; you need a certified 80Gbps-rated cable.</li>
+<li>Docks and hubs bought for Thunderbolt 5 will generally work fine on USB4 ports too, just at reduced speed.</li>
+</ul>
+
+<div class="cta-box">
+<h3>Shopping for a new laptop or dock?</h3>
+<p>Twisti compares prices across NZ retailers so you can find the right spec without overpaying.</p>
+<a href="index.html" class="cta-btn">Compare prices</a>
+</div>
+<div class="sources">Sources: USB Implementers Forum USB4 specification, Intel Thunderbolt 5 technical brief, retailer laptop spec pages (PB Tech, Noel Leeming). Checked July 2026 — prices may change.</div>
+</article>
+<footer class="site-footer">
+<div class="wrap footer-inner">
+<div class="footer-links">
+<a href="about.html">About</a>
+<a href="blog.html">Blog</a>
+<a href="contact.html">Contact</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+<a href="mailto:hello@twisti.org">hello@twisti.org</a>
+</div>
+<div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+</div>
+</footer>
+<script>
+const toggle = document.getElementById('themeToggle');
+const body = document.body;
+const saved = localStorage.getItem('twisti-theme');
+if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+toggle.addEventListener('click', () => {
+const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+body.setAttribute('data-theme', next);
+toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+localStorage.setItem('twisti-theme', next);
+});
+(function initAuthState(){
+const loginBtn = document.getElementById('loginBtn');
+const token = localStorage.getItem('twisti_access');
+const userRaw = localStorage.getItem('twisti_user');
+if (!token || !userRaw) return;
+let user;
+try { user = JSON.parse(userRaw); } catch { return; }
+const label = (user.name || user.email || 'Account').split(' ')[0];
+loginBtn.textContent = label;
+loginBtn.href = '#';
+loginBtn.addEventListener('click', (e) => {
+e.preventDefault();
+if (confirm('Sign out of Twisti?')) {
+localStorage.removeItem('twisti_access');
+localStorage.removeItem('twisti_user');
+window.location.reload();
+}
+});
+})();
+</script>
+</body>
+</html>

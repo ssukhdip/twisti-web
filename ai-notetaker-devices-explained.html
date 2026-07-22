@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Notetaker Devices Explained | Twisti</title>
+<meta name="description" content="How Plaud, Limitless and similar AI notetakers actually work, what they cost beyond hardware, the privacy issues with recording others, and who needs one.">
+<link rel="canonical" href="https://twisti.org/ai-notetaker-devices-explained.html">
+<meta property="og:title" content="AI Notetakers: Plaud, Limitless & Others Explained">
+<meta property="og:description" content="How Plaud, Limitless and similar AI notetakers actually work, what they cost beyond hardware, the privacy issues with recording others, and who needs one.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/ai-notetaker-devices-explained.html">
+<meta property="og:site_name" content="Twisti">
+<meta property="og:image" content="https://twisti.org/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI Notetakers: Plaud, Limitless & Others Explained">
+<meta name="twitter:description" content="How Plaud, Limitless and similar AI notetakers actually work, what they cost beyond hardware, the privacy issues with recording others, and who needs one.">
+<meta name="twitter:image" content="https://twisti.org/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Notetakers: Plaud, Limitless & Others Explained",
+  "description": "How Plaud, Limitless and similar AI notetakers actually work, what they cost beyond hardware, the privacy issues with recording others, and who needs one.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-07-22",
+  "dateModified": "2026-07-22",
+  "mainEntityOfPage": "https://twisti.org/ai-notetaker-devices-explained.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://twisti.org/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "AI Notetakers", "item": "https://twisti.org/ai-notetaker-devices-explained.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / AI Notetakers</div>
+  <div class="page-eyebrow">AI SHOPPING</div>
+  <h1>AI Notetakers: Plaud, Limitless & Others Explained</h1>
+  <p class="lede">Pocket and wearable devices that record and summarise your conversations are having a moment. Here's what they do, what they cost long-term, and the privacy questions worth thinking through first.</p>
+  <span class="byline">Twisti guides · Updated July 2026</span>
+
+  <h2>What these devices actually are</h2>
+  <p>Products like the <strong>Plaud Note</strong> (a credit-card-sized recorder that clips to your phone case) and the <strong>Limitless pendant</strong> (a small wearable you clip to a shirt or lanyard) are built to do one job: capture audio from meetings, calls, or conversations, then run it through an AI model to produce a transcript and a summary. Some, like Plaud, can also record phone calls directly by sitting against the back of your phone during a call. The pitch is simple — stop taking notes, let the device remember for you, and get a searchable, summarised record afterwards.</p>
+
+  <h2>How they actually work</h2>
+  <p>The hardware itself is just a microphone and some onboard storage or Bluetooth streaming to your phone. The real product is the software: recordings sync to an app, get transcribed, and are then processed by a large language model to pull out summaries, action items, and key points. That processing mostly happens in the cloud, not on the device, which is where a lot of the ongoing subscription cost — and privacy consideration — comes from.</p>
+
+  <div class="compare-card">
+    <h3>The subscription is the real cost</h3>
+    <p>The hardware for these devices is often the smaller expense. Most rely on a monthly or annual subscription for the transcription and AI summary features, and without it you're often left with raw audio and limited functionality. Before buying, check exactly what's included in any free tier (usually a monthly cap on transcription minutes) versus what pushes you into a paid plan, and whether that plan is billed in USD, which affects the actual NZD cost with currency conversion and card fees.</p>
+  </div>
+
+  <h2>The privacy and consent problem</h2>
+  <p>This is the part that gets glossed over in most marketing. Recording other people without their knowledge or consent raises real legal and ethical issues, and the rules vary by context — a work meeting is different to a casual coffee catchup, and different again if you're recording a phone call with someone in another country. In New Zealand, it's generally advisable to let people know they're being recorded, both as a matter of courtesy and to avoid disputes later. A device that's small and easy to forget is being worn doesn't remove that obligation — if anything it makes disclosure more important, not less.</p>
+
+  <ul>
+    <li><strong>Tell people you're recording</strong> before a meeting or conversation starts, even briefly.</li>
+    <li><strong>Check where your data is stored</strong> — most of these platforms process and store audio on overseas servers.</li>
+    <li><strong>Understand the deletion policy</strong> — ask whether raw audio is kept after transcription or discarded.</li>
+    <li><strong>Be cautious recording sensitive conversations</strong> — HR discussions, medical appointments, or legal matters may have specific rules about recording.</li>
+  </ul>
+
+  <h2>Who genuinely benefits vs who's better off with a phone app</h2>
+  <p>If you're in back-to-back meetings all day, doing interviews, or need reliable transcripts for research or journalism, a dedicated device solves a real friction point — it's always ready, doesn't drain your phone's battery from constant recording, and the hardware is built for exactly one job. But if you only occasionally need to remember what was said in a meeting, most people already have a solution sitting in their pocket: many phone note apps and even Voice Memos-style apps now offer on-device or app-based transcription, and several video call platforms already build in AI meeting summaries for free. Buying dedicated hardware only makes sense once you've hit the limits of what your phone and existing apps can already do.</p>
+
+  <div class="note-card"><strong>Worth knowing:</strong> AI transcription and summarisation quality varies a lot by accent, background noise, and number of speakers. Test with a free trial before committing to an annual subscription, since a bad summary of an important meeting isn't much use to anyone.</div>
+
+  <h2>Bottom line</h2>
+  <p>These devices are useful for people whose work genuinely revolves around conversations and meetings, but they're not magic — you're paying an ongoing subscription for AI processing, and you carry a real responsibility around consent whenever another person is in the room.</p>
+</article>
+
+<div class="cta-box">
+<h3>Compare live prices before you buy</h3>
+<p>Twisti tracks pricing across PB Tech, Noel Leeming, JB Hi-Fi and Harvey Norman so you know exactly who's cheapest today.</p>
+<a href="index.html" class="cta-btn">Compare prices now</a>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

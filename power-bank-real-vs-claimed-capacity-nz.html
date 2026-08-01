@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power Bank mAh: Real vs Claimed NZ | Twisti</title>
+<meta name="description" content="Why a 20,000mAh power bank never delivers 20,000mAh to your phone — real usable capacity, the maths behind it, and specs that actually matter.">
+<link rel="canonical" href="https://twisti.org/power-bank-real-vs-claimed-capacity-nz.html">
+<meta property="og:title" content="Power Bank mAh: Real vs Claimed Capacity Explained">
+<meta property="og:description" content="Why a 20,000mAh power bank never delivers 20,000mAh to your phone — real usable capacity, the maths behind it, and specs that actually matter.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/power-bank-real-vs-claimed-capacity-nz.html">
+<meta property="og:site_name" content="Twisti">
+<meta property="og:image" content="https://twisti.org/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Power Bank mAh: Real vs Claimed Capacity Explained">
+<meta name="twitter:description" content="Why a 20,000mAh power bank never delivers 20,000mAh to your phone — real usable capacity, the maths behind it, and specs that actually matter.">
+<meta name="twitter:image" content="https://twisti.org/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Power Bank mAh: Real vs Claimed Capacity Explained",
+  "description": "Why a 20,000mAh power bank never delivers 20,000mAh to your phone — real usable capacity, the maths behind it, and specs that actually matter.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-08-01",
+  "dateModified": "2026-08-01",
+  "mainEntityOfPage": "https://twisti.org/power-bank-real-vs-claimed-capacity-nz.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://twisti.org/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Power Banks", "item": "https://twisti.org/power-bank-real-vs-claimed-capacity-nz.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / Power Banks</div>
+  <div class="page-eyebrow">EXPLAINER</div>
+  <h1>Power Bank mAh: Real vs Claimed Capacity Explained</h1>
+  <p class="lede">A "20,000mAh" power bank will never put 20,000mAh into your phone — not because it's faulty, but because of basic physics in how lithium cells convert voltage. Here's the actual maths, and which specs matter more than the mAh number on the box.</p>
+  <span class="byline">Twisti guides · Updated August 2026</span>
+
+  <h2>Why the advertised mAh figure is misleading</h2>
+  <p>Every power bank sold in NZ lists its capacity based on the internal battery cell's rating, which is measured at <strong>3.7V</strong> (the nominal voltage of a lithium-ion or lithium-polymer cell). But your phone charges over USB at <strong>5V</strong> (or higher, if using USB-PD fast charging at 9V/12V/20V). Converting that stored energy from 3.7V up to 5V isn't free — it costs energy, and that's before you even count the resistive losses in the cables, connectors and charging circuitry.</p>
+  <p>The physics is straightforward once you see it as a fixed amount of stored energy (measured in watt-hours) rather than a raw mAh number: energy in watt-hours equals mAh multiplied by volts, divided by 1000. A 20,000mAh cell rated at 3.7V actually stores about 74Wh of energy. When that energy is converted and delivered at 5V, the maximum theoretical output is 74Wh ÷ 5V × 1000 = 14,800mAh — and that's before subtracting any conversion inefficiency at all.</p>
+
+  <h2>The real-world math, step by step</h2>
+  <div class="compare-card">
+    <h3>Worked example: a 20,000mAh power bank</h3>
+    <p><strong>Step 1 — stored energy:</strong> 20,000mAh × 3.7V ÷ 1000 = 74 watt-hours (Wh) of actual stored energy.</p>
+    <p><strong>Step 2 — theoretical output at 5V:</strong> 74Wh ÷ 5V × 1000 = 14,800mAh at USB voltage, already a 26% drop from the advertised figure.</p>
+    <p><strong>Step 3 — real-world conversion losses:</strong> DC-DC voltage conversion circuitry typically runs at 80-90% efficiency, so multiply again: 14,800mAh × 0.85 (a realistic average) ≈ 12,580mAh actually delivered to your phone.</p>
+    <p><strong>Net result:</strong> A "20,000mAh" power bank typically delivers somewhere between <strong>11,000mAh and 14,000mAh</strong> of real, usable charge to your phone — roughly <strong>55-70%</strong> of the number printed on the box.</p>
+  </div>
+
+  <h2>Why this isn't false advertising (technically)</h2>
+  <p>Manufacturers aren't lying — they're measuring the internal cell capacity, which is a real and standard measurement, and NZ Commerce Commission rules around accurate advertising don't require power bank makers to print the 5V-converted figure. Almost every brand does this, from budget Kmart/Warehouse-shelf power banks through to premium brands like Anker, Mophie and Belkin. The gap between claimed and delivered capacity is consistent across the industry — it's not a sign of a dodgy product, it's just how the spec convention works. What varies between a cheap $15 power bank and a $60 Anker is the conversion efficiency (closer to 85-90% on quality units vs sometimes below 75% on the cheapest ones) and, critically, build safety.</p>
+
+  <h2>What matters more than the mAh number</h2>
+  <h3>Output wattage and USB-PD support</h3>
+  <p>A 10,000mAh power bank with 30W USB-PD fast charging will refill a modern phone faster and more usefully than a 20,000mAh power bank stuck on old 10W USB-A output. If you're buying to top up a phone that supports fast charging (most phones sold in NZ since 2021 do, typically 18-45W), check the power bank's <strong>output wattage</strong> and whether it explicitly lists <strong>USB-PD (Power Delivery)</strong> or <strong>Qualcomm Quick Charge</strong> support — these matter more day-to-day than an extra 5,000mAh of rated capacity you'll rarely use in full.</p>
+  <h3>Pass-through and multi-device charging</h3>
+  <p>If you plan to charge a phone and a laptop from the same bank, check the total wattage budget is shared sensibly across ports — some cheaper banks silently throttle both ports when used simultaneously, delivering far below the rated output on each.</p>
+  <h3>Cell chemistry and cycle life</h3>
+  <p>Lithium-polymer (Li-Po) cells are lighter and thinner, common in slim travel banks, while lithium-ion (Li-ion) cells are usually cheaper per mAh and slightly more durable over hundreds of charge cycles. For a power bank you'll use daily over 2-3 years, cycle life matters more than the marginal weight difference.</p>
+
+  <div class="note-card"><strong>Rule of thumb:</strong> To estimate real usable capacity from any power bank's advertised mAh figure, multiply by 0.6 as a conservative estimate (or 0.65-0.7 for a quality brand with efficient circuitry). So a 20,000mAh bank realistically gives you 12,000-14,000mAh — enough for roughly 2.5-3 full charges of a typical 4,500-5,000mAh phone battery, not 4 charges as the raw maths on the box might suggest.</div>
+
+  <h2>How much power bank do you actually need?</h2>
+  <p>Most modern phones sold in NZ carry a 4,000-5,000mAh battery. Using the 0.6 real-capacity multiplier: a 10,000mAh power bank realistically delivers around 6,000mAh — roughly one full phone charge plus a partial top-up. A 20,000mAh bank realistically delivers 12,000-14,000mAh — about two full charges plus some spare. Unless you're camping, tramping, or travelling without reliable power access for multiple days, a 10,000mAh bank covers most people's actual weekly usage, and it's lighter to carry and cheaper to replace.</p>
+
+  <h2>Bottom line</h2>
+  <p>Ignore the raw mAh number as a like-for-like comparison tool — it consistently overstates real delivered capacity by 30-45% across every brand. Instead, apply the roughly 0.6x rule to estimate real capacity, and prioritise output wattage and USB-PD support over chasing a bigger mAh figure. For most NZ buyers, a 10,000-15,000mAh power bank with 20W+ USB-PD output from a known brand (Anker, Belkin, Mophie, or a reputable NZ-stocked alternative) will serve better day-to-day than an oversized 26,800mAh bank that charges slowly and weighs down your bag.</p>
+</article>
+
+<div class="cta-box">
+<h3>Compare live prices before you buy</h3>
+<p>Twisti tracks pricing across PB Tech, Noel Leeming, JB Hi-Fi and Harvey Norman so you know exactly who's cheapest today.</p>
+<a href="index.html" class="cta-btn">Compare prices now</a>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

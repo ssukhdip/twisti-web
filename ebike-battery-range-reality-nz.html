@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Bike Battery Range: Real vs Claimed NZ | Twisti</title>
+<meta name="description" content="Why e-bike range claims rarely match NZ reality: hills, headwinds and cold weather cut battery range, plus tips to get more from every charge.">
+<link rel="canonical" href="https://twisti.org/ebike-battery-range-reality-nz.html">
+<meta property="og:title" content="E-Bike Battery Range: Real vs Claimed NZ | Twisti">
+<meta property="og:description" content="Why e-bike range claims rarely match NZ reality: hills, headwinds and cold weather cut battery range, plus tips to get more from every charge.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twisti.org/ebike-battery-range-reality-nz.html">
+<meta property="og:site_name" content="Twisti">
+<meta property="og:image" content="https://twisti.org/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="E-Bike Battery Range: Real vs Claimed NZ | Twisti">
+<meta name="twitter:description" content="Why e-bike range claims rarely match NZ reality: hills, headwinds and cold weather cut battery range, plus tips to get more from every charge.">
+<meta name="twitter:image" content="https://twisti.org/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f0; --surface:#ffffff; --surface-2:#e9e9e6; --text:#14211b; --text-dim:#5c6b64;
+  --accent:#1a6b4a; --accent-tint:#e4f1ea; --border:rgba(20,33,27,0.10); --up:#1a6b4a; --down:#c14545;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,27,0.04), 0 8px 24px rgba(20,33,27,0.05);
+}
+[data-theme="dark"]{
+  --bg:#1a1a1a; --surface:#232323; --surface-2:#2a2a2a; --text:#eef1ef; --text-dim:#9aa39d;
+  --accent:#2dd4a0; --accent-tint:rgba(45,212,160,0.12); --border:rgba(255,255,255,0.09); --up:#2dd4a0; --down:#e0685f;
+  --shadow:0 1px 2px rgba(0,0,0,0.2), 0 12px 28px rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);}
+.nav-inner{max-width:1200px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;}
+.logo{display:flex; align-items:center; gap:8px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; letter-spacing:-0.02em;}
+.logo-mark{height:34px; width:auto; object-fit:contain; flex-shrink:0; display:block;}
+.nav-links{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500; color:var(--text-dim);}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.theme-toggle{width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;}
+.btn-login{padding:9px 20px; border-radius:100px; background:var(--accent); color:#fff; font-weight:600; font-size:14px; border:none; cursor:pointer;}
+[data-theme="dark"] .btn-login{color:#0d1410;}
+@media (max-width:960px){ .nav-links{display:none;} }
+
+article.page{padding:56px 0 80px; max-width:720px; margin:0 auto;}
+.breadcrumb{font-size:13px; color:var(--text-dim); margin-bottom:20px;}
+.breadcrumb a{color:var(--accent); font-weight:500;}
+.page-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:14px;}
+h1{font-size:34px; line-height:1.15; letter-spacing:-0.02em; font-weight:700; margin-bottom:14px;}
+.lede{font-size:16.5px; color:var(--text-dim); line-height:1.6; margin-bottom:10px;}
+.byline{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dim); margin-bottom:40px; display:block;}
+h2{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:700; margin:40px 0 14px; letter-spacing:-0.01em;}
+h3{font-family:'Space Grotesk', sans-serif; font-size:17px; font-weight:600; margin:28px 0 10px;}
+p{font-size:15.5px; line-height:1.75; color:var(--text-dim); margin-bottom:16px;}
+ul{margin:0 0 16px 20px; color:var(--text-dim); font-size:15.5px; line-height:1.75;}
+li{margin-bottom:8px;}
+strong{color:var(--text); font-weight:600;}
+.compare-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:20px 0; box-shadow:var(--shadow);}
+.compare-card h3{margin-top:0;}
+.note-card{background:var(--accent-tint); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; font-size:14px; color:var(--text-dim); line-height:1.6; margin:24px 0;}
+.note-card strong{color:var(--text);}
+.cta-box{background:var(--text); color:var(--bg); border-radius:var(--radius); padding:28px 30px; margin:40px 0; text-align:center;}
+[data-theme="dark"] .cta-box{background:var(--accent); color:#0d1410;}
+.cta-box h3{color:inherit; margin-top:0;}
+.cta-box p{color:inherit; opacity:0.85; margin-bottom:18px;}
+.cta-btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 26px; border-radius:100px; font-weight:700; font-size:14px;}
+[data-theme="dark"] .cta-box .cta-btn{background:var(--bg); color:var(--text);}
+
+footer.site-footer{border-top:1px solid var(--border); padding:36px 0; margin-top:20px;}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+.footer-links{display:flex; align-items:center; gap:24px; font-size:13.5px; color:var(--text-dim);}
+.footer-links a:hover{color:var(--accent);}
+.footer-meta{font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+@media (max-width:640px){ .footer-inner{flex-direction:column; align-items:flex-start;} }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "E-Bike Battery Range in NZ: What You Really Get vs the Claim",
+  "description": "Why e-bike range claims rarely match NZ reality: hills, headwinds and cold weather cut battery range, plus tips to get more from every charge.",
+  "author": { "@type": "Organization", "name": "Twisti" },
+  "publisher": { "@type": "Organization", "name": "Twisti", "logo": { "@type": "ImageObject", "url": "https://twisti.org/logo.png" } },
+  "datePublished": "2026-08-01",
+  "dateModified": "2026-08-01",
+  "mainEntityOfPage": "https://twisti.org/ebike-battery-range-reality-nz.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://twisti.org/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://twisti.org/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "E-Bikes", "item": "https://twisti.org/ebike-battery-range-reality-nz.html" }
+  ]
+}
+</script>
+</head>
+<body data-theme="light">
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="logo.png" alt="Twisti" class="logo-mark">twisti</a>
+    <div class="nav-links">
+      <a href="index.html#picks">Categories</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a href="auth.html" class="btn-login" id="loginBtn" style="display:inline-block;">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page wrap">
+  <div class="breadcrumb"><a href="blog.html">Blog</a> / E-Bikes</div>
+  <div class="page-eyebrow">BUYING GUIDE</div>
+  <h1>E-Bike Battery Range in NZ: What You Really Get vs the Claim</h1>
+  <p class="lede">"100km range" on the box almost never means 100km on your actual commute. Here's the math behind e-bike range claims and what Wellington, Dunedin and Auckland riders should realistically expect.</p>
+  <span class="byline">Twisti guides · Updated August 2026</span>
+
+  <h2>How manufacturers get their range numbers</h2>
+  <p>Advertised range figures are produced under near-ideal lab or test-track conditions: lowest assist (eco) mode, a rider around 70–75kg, flat ground, no wind, tyres at full pressure, and a battery that's brand new. Some brands use the EN 15194 test standard, others use their own internal method, and the two aren't directly comparable even when both say "up to 100km." None of it reflects a real commute with traffic lights, hills, a headwind coming off the harbour, or panniers loaded with groceries.</p>
+
+  <h2>The Wh-to-km math</h2>
+  <p>Battery capacity is measured in watt-hours (Wh) — a typical mid-range e-bike battery is <strong>500–625Wh</strong>. As a rough rule, flat-ground eco-mode riding uses about 8–12Wh per kilometre, which is where "100km" claims come from on a 625Wh pack (625 ÷ 10 ≈ 62–78km, already lower than the marketing number before terrain is factored in). On higher assist modes climbing real hills, consumption commonly rises to <strong>20–35Wh per kilometre</strong> — more than double to triple the eco-mode rate — which is the core reason claimed range collapses so fast in daily use.</p>
+
+  <h2>What NZ terrain actually does to range</h2>
+  <p>New Zealand's commuter cities are unusually hilly by global e-bike standards. Wellington's CBD-to-suburbs commutes routinely involve 100–200m of climbing each way, Dunedin's town belt is steeper again, and Auckland's volcanic cones (Mt Eden, One Tree Hill, Mt Albert) turn flat-looking suburban routes into repeated short, steep pinches. Climbing at a sustained gradient in a higher assist mode can use 3–4 times the energy per kilometre of flat eco-mode riding. Combined with headwinds — common on Wellington's exposed routes and Christchurch's open plains — realistic range for NZ commuters running mixed assist levels on hilly routes is typically <strong>40–60% of the claimed maximum</strong>. A bike advertised at 100km will often deliver 40–60km on a genuine hilly commute.</p>
+
+  <div class="compare-card">
+    <h3>Claimed vs realistic NZ range by battery size</h3>
+    <p><strong>400Wh battery:</strong> Claimed ~60–70km eco flat. Realistic hilly NZ commute: roughly 25–35km.</p>
+    <p><strong>500Wh battery:</strong> Claimed ~75–90km eco flat. Realistic hilly NZ commute: roughly 30–45km.</p>
+    <p><strong>625Wh battery:</strong> Claimed ~90–110km eco flat. Realistic hilly NZ commute: roughly 40–60km.</p>
+    <p><strong>750Wh+ battery (dual-battery/cargo bikes):</strong> Claimed ~130–150km eco flat. Realistic hilly NZ commute: roughly 55–80km.</p>
+  </div>
+
+  <h2>Cold weather cuts range too</h2>
+  <p>Lithium-ion batteries lose usable capacity as temperature drops — expect a noticeable hit once ambient temperature is under about 10°C, which covers most NZ mornings from roughly May to September, especially in Otago, Canterbury and inland areas. On a cold Dunedin or Central Otago morning, riders commonly see <strong>10–20% less range</strong> than the same battery delivers on a mild day, on top of the terrain losses above. The effect is temporary — capacity recovers as the battery warms during the ride — but it stacks with hill and headwind losses on exactly the days commuters most want reliable range.</p>
+
+  <h2>Assist mode matters more than most riders realise</h2>
+  <p>Most e-bikes offer three to five assist levels, and the jump between them isn't linear. Moving from eco to the middle "normal" or "sport" mode on a hill climb can roughly double energy draw for a modest speed gain, while jumping to "turbo" or "boost" mode on the same climb can triple it again. A commuter who rides everything on turbo because it feels effortless is often burning through a battery that could have covered nearly double the distance on a smarter mix of eco on flats and boost only on the steepest sections. Riders who consciously downshift assist mode on flat and downhill stretches consistently report getting noticeably closer to the claimed range than those who leave the bike on one setting for the whole commute.</p>
+
+  <h2>Practical tips to get more range</h2>
+  <ul>
+    <li><strong>Ride in eco or the lowest usable assist</strong> on flat sections and save higher assist for climbs only — most e-bike controllers let you switch mid-ride.</li>
+    <li><strong>Keep tyres near max pressure.</strong> Under-inflated tyres can add 10–15% to energy use from rolling resistance alone.</li>
+    <li><strong>Charge indoors overnight in cold months</strong> — batteries perform and charge better above ~10°C, and bringing the battery inside rather than leaving it in a cold garage measurably helps range the next morning.</li>
+    <li><strong>Pedal actively rather than relying on throttle-only riding</strong> where fitted — throttle-heavy riding drains a battery noticeably faster than pedal-assist at the same speed.</li>
+    <li><strong>Service the drivetrain.</strong> A dry, dirty chain adds mechanical drag that the motor has to compensate for, quietly increasing Wh/km.</li>
+  </ul>
+
+  <div class="note-card"><strong>Useful tip:</strong> When comparing e-bikes in NZ stores, ask for the Wh rating of the battery, not just the advertised "range" — a 500Wh battery quoted at "100km" and a 625Wh battery quoted at "90km" are being marketed with different assumptions, and the higher Wh battery will almost always outperform on your actual hilly commute regardless of the headline number.</div>
+
+  <h2>Bottom line</h2>
+  <p>Treat any advertised e-bike range figure as a ceiling, not an estimate — for hilly NZ commuting with mixed assist modes, plan around 40–60% of the claimed number, and go up one battery size (or budget for a second battery on longer commutes) if your route includes real climbing. A 625Wh battery giving a realistic 40–60km is a safer buy for Wellington or Dunedin commuting than a 400Wh battery claiming "70km" on the box.</p>
+</article>
+
+<div class="cta-box">
+<h3>Compare live prices before you buy</h3>
+<p>Twisti tracks pricing across PB Tech, Noel Leeming, JB Hi-Fi and Harvey Norman so you know exactly who's cheapest today.</p>
+<a href="index.html" class="cta-btn">Compare prices now</a>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:hello@twisti.org">hello@twisti.org</a>
+    </div>
+    <div class="footer-meta"><span>Made with ♥ in New Zealand</span><span>·</span><span>© 2026 Twisti</span></div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const saved = localStorage.getItem('twisti-theme');
+  if(saved){ body.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  toggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('twisti-theme', next);
+  });
+  (function initAuthState(){
+    const loginBtn = document.getElementById('loginBtn');
+    const token = localStorage.getItem('twisti_access');
+    const userRaw = localStorage.getItem('twisti_user');
+    if (!token || !userRaw) return;
+    let user;
+    try { user = JSON.parse(userRaw); } catch { return; }
+    const label = (user.name || user.email || 'Account').split(' ')[0];
+    loginBtn.textContent = label;
+    loginBtn.href = '#';
+    loginBtn.title = `Signed in as ${user.email || label} — click to sign out`;
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Sign out of Twisti?')) {
+        localStorage.removeItem('twisti_access');
+        localStorage.removeItem('twisti_user');
+        window.location.reload();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

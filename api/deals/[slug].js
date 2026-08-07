@@ -67,11 +67,19 @@ return;
 }
 
 let data = null;
+async function tryFetch() {
+  const r = await fetch(`${API}/api/search?q=${encodeURIComponent(entry.query)}&country=NZ`, { signal: AbortSignal.timeout(6000) });
+  if (!r.ok) throw new Error('bad status ' + r.status);
+  return r.json();
+}
 try {
-const r = await fetch(`${API}/api/search?q=${encodeURIComponent(entry.query)}&country=NZ`);
-data = await r.json();
+  data = await tryFetch();
 } catch (e) {
-data = null;
+  try {
+    data = await tryFetch();
+  } catch (e2) {
+    data = null;
+  }
 }
 
 const result = data && Array.isArray(data.results) ? data.results[0] : null;
@@ -162,7 +170,7 @@ h1 { font-size: 26px; margin: 20px 0 8px; }
 <p class="sub">${cheapestPrice
 ? `Cheapest right now: <strong>$${Number(cheapestPrice).toFixed(2)} NZD</strong> at <strong>${esc(cheapestStore)}</strong>. Prices update automatically.`
 : `Live pricing is temporarily unavailable for this search — try the full comparison tool below.`}</p>
-${bodyHtml || '<div class="empty">No live prices to show right now.</div>'}
+${bodyHtml || `<div class="empty"><p>${esc(entry.title)} prices change frequently across JB Hi-Fi, Noel Leeming, PB Tech and Harvey Norman, so we don't want to show you a stale number. Twisti checks all major NZ retailers automatically to surface the lowest verified price, track price drops, and give you a straight buy-now-or-wait verdict. Run a full search below to see current listings, ratings and prices for the ${esc(entry.title)} right now.</p></div>`}
 <a class="cta" href="/?q=${encodeURIComponent(entry.query)}">See full comparison + AI buy/wait verdict &rarr;</a>
 </body>
 </html>`;
